@@ -252,7 +252,7 @@ class DeepSeekV3MoE(nn.Module):
         super(DeepSeekV3MoE, self).__init__()
         self.input_proj = nn.Linear(input_dim, hidden_size_deepseek).half()
         # Load the DeepSeek model (using trust_remote_code as needed)
-        self.model = AutoModel.from_pretrained("deepseek-ai/deepseek-coder-7b", trust_remote_code=True, torch_dtype=torch.float16, low_cpu_mem_usage=True)
+        self.model = AutoModel.from_pretrained("deepseek-ai/deepseek-coder-7b", trust_remote_code=True, torch_dtype=torch.float16, low_cpu_mem_usage=True, device_map="auto")
         self.output_proj = nn.Linear(hidden_size_deepseek, output_dim).half()
         # MoE Router
         self.router = nn.Linear(hidden_size_deepseek, num_experts).half()
@@ -387,7 +387,7 @@ for seq_length in seq_lengths:
     #  Model 5: DeepSeek-V3 MoE
     # -----------------------
     print("\nTraining DeepSeek-V3 MoE...")
-    model_deepseek = DeepSeekV3MoE(input_dim, output_dim).to(device)
+    model_deepseek = DeepSeekV3MoE(input_dim, output_dim)
     # Freeze the backbone of the DeepSeek model
     for param in model_deepseek.model.parameters():
         param.requires_grad = False
