@@ -1,4 +1,4 @@
-# Try 1 - Supervised fine-tuning
+# Modified Code: Supervised fine-tuning pipeline repeated 10 times with Mann–Whitney U significance testing
 
 import os
 import numpy as np
@@ -6,10 +6,11 @@ import matplotlib.pyplot as plt
 import torch
 import torch.nn as nn
 import torch.optim as optim
-
 from torch.utils.data import DataLoader, TensorDataset
 from transformers import GPT2Config, GPT2Model, AdamW, AutoModel, BertModel, BertConfig, BitsAndBytesConfig
+from scipy.stats import mannwhitneyu
 
+# Quantization config for DeepSeek model
 quant_config = BitsAndBytesConfig(
     load_in_8bit=True,  # or load_in_4bit=True, if you want 4-bit
     llm_int8_threshold=6.0  # optional, sets the threshold for zero out
@@ -32,6 +33,7 @@ seq_lengths = [5, 10, 15, 20]
 num_epochs = 10
 batch_size = 32
 lr_default = 1e-4
+num_runs = 10  # number of repeats of the pipeline
 
 # =============================================================================
 # 1) Load Data & Train/Val/Test Split
@@ -76,7 +78,6 @@ input_dim = X_train_t.size(-1)  # number of neurons
 output_dim = Y_train_t.size(-1)  # number of tail features
 print(f"Input_dim={input_dim}, Output_dim={output_dim}")
 
-
 # =============================================================================
 # 2) Helper Functions
 # =============================================================================
@@ -94,7 +95,6 @@ def create_sequences(inputs, targets, seq_length):
         sequences_inputs.append(inputs[i: i + seq_length])
         sequences_targets.append(targets[i: i + seq_length])
     return torch.stack(sequences_inputs), torch.stack(sequences_targets)
-
 
 def average_sliding_window_predictions(predictions, seq_length, total_length):
     """
@@ -116,13 +116,11 @@ def average_sliding_window_predictions(predictions, seq_length, total_length):
     averaged /= counts[:, None]
     return averaged
 
-
 def compute_rmse(preds, targets):
     """
     Compute overall RMSE (over all tail components).
     """
     return np.sqrt(np.mean((preds - targets) ** 2))
-
 
 def train_model(model, optimizer, train_loader, val_loader, device, num_epochs, use_position_ids=False):
     criterion = nn.MSELoss()
@@ -165,7 +163,6 @@ def train_model(model, optimizer, train_loader, val_loader, device, num_epochs, 
         print(f"Epoch {epoch + 1}/{num_epochs}: Train Loss: {avg_train_loss:.4f}, Val Loss: {avg_val_loss:.4f}")
     return train_losses, val_losses
 
-
 def get_predictions(model, data_loader, device, use_position_ids=False):
     model.eval()
     preds_list = []
@@ -184,7 +181,6 @@ def get_predictions(model, data_loader, device, use_position_ids=False):
     all_preds = torch.cat(preds_list, dim=0)
     all_targets = torch.cat(targets_list, dim=0)
     return all_preds, all_targets
-
 
 # =============================================================================
 # 3) Model Definitions
@@ -206,7 +202,6 @@ class CustomGPT2ModelPretrained(nn.Module):
         logits = self.output_proj(hidden_states)
         return logits
 
-
 # ----- LSTM Model -----
 class LSTMModel(nn.Module):
     def __init__(self, input_dim, hidden_dim, output_dim, num_layers=1):
@@ -218,7 +213,6 @@ class LSTMModel(nn.Module):
         out, _ = self.lstm(x)
         out = self.fc(out)
         return out
-
 
 # ----- Reservoir Computer -----
 class ReservoirComputer(nn.Module):
@@ -244,9 +238,7 @@ class ReservoirComputer(nn.Module):
             outputs.append(y_t.unsqueeze(1))
         return torch.cat(outputs, dim=1)
 
-
 # ----- DeepSeek-V3 MoE Model -----
-# Model parameters for DeepSeek
 hidden_size_deepseek = 4096
 num_experts = 8
 top_k = 2
@@ -295,175 +287,210 @@ class CustomBERTModel(nn.Module):
         logits = self.output_proj(hidden_states)
         return logits
 
-
 # =============================================================================
-# 4) Main Loop: Iterate Over Different Sequence Lengths
+# 4) Main Loop: Repeat Runs and Iterate Over Different Sequence Lengths
 # =============================================================================
-# This dictionary will store overall RMSE for each model per sequence length.
-# Structure: { seq_length: { model_name: rmse, ... }, ... }
-final_all_rmse = {}
 
-for seq_length in seq_lengths:
+# Define model names for later plotting and significance testing
+model_names = ["GPT2 Pretrained", "LSTM", "Reservoir", "DeepSeek MoE", "BERT"]
+
+# Dictionary to store RMSE for each model per sequence length across runs.
+# Structure: { seq_length: { model_name: [rmse_run1, rmse_run2, ...], ... }, ... }
+final_all_rmse = {seq: {model: [] for model in model_names} for seq in seq_lengths}
+
+for run in range(1, num_runs + 1):
     print("\n==============================")
-    print(f"Sequence Length = {seq_length}")
+    print(f"Run {run} of {num_runs}")
     print("==============================")
-
-    # Create a dedicated folder for this sequence length
-    seq_folder = os.path.join(BASE_SAVE_DIR, f"seq_{seq_length}")
-    os.makedirs(seq_folder, exist_ok=True)
-
-    # Create sliding-window sequences
-    train_neural_seq, train_tail_seq = create_sequences(X_train_t, Y_train_t, seq_length)
-    val_neural_seq, val_tail_seq = create_sequences(X_val_t, Y_val_t, seq_length)
-    test_neural_seq, test_tail_seq = create_sequences(X_test_t, Y_test_t, seq_length)
-
-    # Create DataLoaders
-    train_dataset = TensorDataset(train_neural_seq, train_tail_seq)
-    val_dataset = TensorDataset(val_neural_seq, val_tail_seq)
-    test_dataset = TensorDataset(test_neural_seq, test_tail_seq)
-
-    train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
-    val_loader = DataLoader(val_dataset, batch_size=batch_size)
-    test_loader = DataLoader(test_dataset, batch_size=batch_size)
-
-    # Dictionary to store RMSE for each model for this seq_length
-    rmse_results = {}
-
-    # -----------------------
-    #  Model 2: GPT-2 Pretrained
-    # -----------------------
-    print("\nTraining GPT-2 (Pretrained)...")
-    model_gpt2_pretrained = CustomGPT2ModelPretrained(input_dim, output_dim).to(device)
-    optimizer_gpt2_pretrained = AdamW(model_gpt2_pretrained.parameters(), lr=lr_default)
-    train_model(model_gpt2_pretrained, optimizer_gpt2_pretrained, train_loader, val_loader, device, num_epochs,
-                use_position_ids=False)
-
-    # torch.save(model_gpt2_pretrained.state_dict(), os.path.join(seq_folder, "gpt2_pretrained_weights.pth"))
-    preds, _ = get_predictions(model_gpt2_pretrained, test_loader, device, use_position_ids=False)
-    final_preds = average_sliding_window_predictions(preds, seq_length, len(X_test_t))
-    np.save(os.path.join(seq_folder, f"fish{fish_num}_final_predictions_gpt2_pretrained_test.npy"), final_preds)
-
-    rmse = compute_rmse(final_preds, Y_test)
-    rmse_results["GPT2 Pretrained"] = rmse
-    print(f"GPT-2 Pretrained Overall RMSE: {rmse:.4f}")
-
-    # -----------------------
-    #  Model 3: LSTM
-    # -----------------------
-    print("\nTraining LSTM...")
-    lstm_hidden_dim = 256
-    model_lstm = LSTMModel(input_dim, lstm_hidden_dim, output_dim, num_layers=1).to(device)
-    optimizer_lstm = optim.Adam(model_lstm.parameters(), lr=lr_default)
-    train_model(model_lstm, optimizer_lstm, train_loader, val_loader, device, num_epochs, use_position_ids=False)
-
-    # torch.save(model_lstm.state_dict(), os.path.join(seq_folder, "lstm_weights.pth"))
-    preds, _ = get_predictions(model_lstm, test_loader, device, use_position_ids=False)
-    final_preds = average_sliding_window_predictions(preds, seq_length, len(X_test_t))
-    np.save(os.path.join(seq_folder, f"fish{fish_num}_final_predictions_lstm_test.npy"), final_preds)
-
-    rmse = compute_rmse(final_preds, Y_test)
-    rmse_results["LSTM"] = rmse
-    print(f"LSTM Overall RMSE: {rmse:.4f}")
-
-    # -----------------------
-    #  Model 4: Reservoir Computer
-    # -----------------------
-    print("\nTraining Reservoir Computer...")
-    res_hidden_dim = 256
-    alpha = 0.9
-    model_res = ReservoirComputer(input_dim, res_hidden_dim, output_dim, alpha).to(device)
-    optimizer_res = optim.Adam(model_res.readout.parameters(), lr=lr_default)
-    train_model(model_res, optimizer_res, train_loader, val_loader, device, num_epochs, use_position_ids=False)
-
-    # torch.save(model_res.state_dict(), os.path.join(seq_folder, "reservoir_weights.pth"))
-    preds, _ = get_predictions(model_res, test_loader, device, use_position_ids=False)
-    final_preds = average_sliding_window_predictions(preds, seq_length, len(X_test_t))
-    np.save(os.path.join(seq_folder, f"fish{fish_num}_final_predictions_reservoir_test.npy"), final_preds)
-
-    rmse = compute_rmse(final_preds, Y_test)
-    rmse_results["Reservoir"] = rmse
-    print(f"Reservoir Overall RMSE: {rmse:.4f}")
-
-    # -----------------------
-    #  Model 5: DeepSeek-V3 MoE
-    # -----------------------
-    print("\nTraining DeepSeek-V3 MoE...")
-    model_deepseek = DeepSeekV3MoE(input_dim, output_dim).to(device)
-    # Freeze the backbone of the DeepSeek model
-    for param in model_deepseek.model.parameters():
-        param.requires_grad = False
-    # Only fine-tune the router and output projection (and input_proj is trainable)
-    for param in model_deepseek.router.parameters():
-        param.requires_grad = True
-    for param in model_deepseek.output_proj.parameters():
-        param.requires_grad = True
-
-    optimizer_deepseek = AdamW(filter(lambda p: p.requires_grad, model_deepseek.parameters()), lr=lr_default)
-    train_model(model_deepseek, optimizer_deepseek, train_loader, val_loader, device, num_epochs,
-                use_position_ids=False)
-
-    # torch.save(model_deepseek.state_dict(), os.path.join(seq_folder, "deepseek_moe_weights.pth"))
-    preds, _ = get_predictions(model_deepseek, test_loader, device, use_position_ids=False)
-    final_preds = average_sliding_window_predictions(preds, seq_length, len(X_test_t))
-    np.save(os.path.join(seq_folder, f"fish{fish_num}_final_predictions_deepseek_moe_test.npy"), final_preds)
-
-    rmse = compute_rmse(final_preds, Y_test)
-    rmse_results["DeepSeek MoE"] = rmse
-    print(f"DeepSeek MoE Overall RMSE: {rmse:.4f}")
-
-    # -----------------------
-    #  Model 6: Small BERT Model
-    # -----------------------
-    print("\nTraining Small BERT Model...")
-    bert_hidden_size = 768
-    model_bert = CustomBERTModel(input_dim, bert_hidden_size, output_dim).to(device)
-    optimizer_bert = AdamW(model_bert.parameters(), lr=lr_default)
-    train_model(model_bert, optimizer_bert, train_loader, val_loader, device, num_epochs, use_position_ids=False)
-
-    # torch.save(model_bert.state_dict(), os.path.join(seq_folder, "bert_weights.pth"))
-    preds, _ = get_predictions(model_bert, test_loader, device, use_position_ids=False)
-    final_preds = average_sliding_window_predictions(preds, seq_length, len(X_test_t))
-    np.save(os.path.join(seq_folder, f"fish{fish_num}_final_predictions_bert_test.npy"), final_preds)
-
-    rmse = compute_rmse(final_preds, Y_test)
-    rmse_results["BERT"] = rmse
-    print(f"BERT Overall RMSE: {rmse:.4f}")
-
-    # Save the RMSE results for this sequence length
-    final_all_rmse[seq_length] = rmse_results
+    
+    # Create a folder for this run
+    run_folder = os.path.join(BASE_SAVE_DIR, f"run_{run}")
+    os.makedirs(run_folder, exist_ok=True)
+    
+    for seq_length in seq_lengths:
+        print("\n------------------------------")
+        print(f"Run {run}, Sequence Length = {seq_length}")
+        print("------------------------------")
+    
+        # Create a dedicated folder for this sequence length within this run
+        seq_folder = os.path.join(run_folder, f"seq_{seq_length}")
+        os.makedirs(seq_folder, exist_ok=True)
+    
+        # Create sliding-window sequences
+        train_neural_seq, train_tail_seq = create_sequences(X_train_t, Y_train_t, seq_length)
+        val_neural_seq, val_tail_seq = create_sequences(X_val_t, Y_val_t, seq_length)
+        test_neural_seq, test_tail_seq = create_sequences(X_test_t, Y_test_t, seq_length)
+    
+        # Create DataLoaders
+        train_dataset = TensorDataset(train_neural_seq, train_tail_seq)
+        val_dataset = TensorDataset(val_neural_seq, val_tail_seq)
+        test_dataset = TensorDataset(test_neural_seq, test_tail_seq)
+    
+        train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
+        val_loader = DataLoader(val_dataset, batch_size=batch_size)
+        test_loader = DataLoader(test_dataset, batch_size=batch_size)
+    
+        # Dictionary to store RMSE for each model for this seq_length in this run
+        rmse_results = {}
+    
+        # -----------------------
+        #  Model 1: GPT-2 Pretrained
+        # -----------------------
+        print("\nTraining GPT-2 (Pretrained)...")
+        model_gpt2_pretrained = CustomGPT2ModelPretrained(input_dim, output_dim).to(device)
+        optimizer_gpt2_pretrained = AdamW(model_gpt2_pretrained.parameters(), lr=lr_default)
+        train_model(model_gpt2_pretrained, optimizer_gpt2_pretrained, train_loader, val_loader, device, num_epochs,
+                    use_position_ids=False)
+    
+        preds, _ = get_predictions(model_gpt2_pretrained, test_loader, device, use_position_ids=False)
+        final_preds = average_sliding_window_predictions(preds, seq_length, len(X_test_t))
+        save_path = os.path.join(seq_folder, f"fish{fish_num}_final_predictions_gpt2_pretrained_test_run{run}.npy")
+        np.save(save_path, final_preds)
+    
+        rmse = compute_rmse(final_preds, Y_test)
+        rmse_results["GPT2 Pretrained"] = rmse
+        print(f"GPT-2 Pretrained Overall RMSE: {rmse:.4f}")
+    
+        # -----------------------
+        #  Model 2: LSTM
+        # -----------------------
+        print("\nTraining LSTM...")
+        lstm_hidden_dim = 256
+        model_lstm = LSTMModel(input_dim, lstm_hidden_dim, output_dim, num_layers=1).to(device)
+        optimizer_lstm = optim.Adam(model_lstm.parameters(), lr=lr_default)
+        train_model(model_lstm, optimizer_lstm, train_loader, val_loader, device, num_epochs, use_position_ids=False)
+    
+        preds, _ = get_predictions(model_lstm, test_loader, device, use_position_ids=False)
+        final_preds = average_sliding_window_predictions(preds, seq_length, len(X_test_t))
+        save_path = os.path.join(seq_folder, f"fish{fish_num}_final_predictions_lstm_test_run{run}.npy")
+        np.save(save_path, final_preds)
+    
+        rmse = compute_rmse(final_preds, Y_test)
+        rmse_results["LSTM"] = rmse
+        print(f"LSTM Overall RMSE: {rmse:.4f}")
+    
+        # -----------------------
+        #  Model 3: Reservoir Computer
+        # -----------------------
+        print("\nTraining Reservoir Computer...")
+        res_hidden_dim = 256
+        alpha = 0.9
+        model_res = ReservoirComputer(input_dim, res_hidden_dim, output_dim, alpha).to(device)
+        optimizer_res = optim.Adam(model_res.readout.parameters(), lr=lr_default)
+        train_model(model_res, optimizer_res, train_loader, val_loader, device, num_epochs, use_position_ids=False)
+    
+        preds, _ = get_predictions(model_res, test_loader, device, use_position_ids=False)
+        final_preds = average_sliding_window_predictions(preds, seq_length, len(X_test_t))
+        save_path = os.path.join(seq_folder, f"fish{fish_num}_final_predictions_reservoir_test_run{run}.npy")
+        np.save(save_path, final_preds)
+    
+        rmse = compute_rmse(final_preds, Y_test)
+        rmse_results["Reservoir"] = rmse
+        print(f"Reservoir Overall RMSE: {rmse:.4f}")
+    
+        # -----------------------
+        #  Model 4: DeepSeek-V3 MoE
+        # -----------------------
+        print("\nTraining DeepSeek-V3 MoE...")
+        model_deepseek = DeepSeekV3MoE(input_dim, output_dim).to(device)
+        # Freeze the backbone of the DeepSeek model
+        for param in model_deepseek.model.parameters():
+            param.requires_grad = False
+        # Only fine-tune the router and output projection (and input_proj is trainable)
+        for param in model_deepseek.router.parameters():
+            param.requires_grad = True
+        for param in model_deepseek.output_proj.parameters():
+            param.requires_grad = True
+    
+        optimizer_deepseek = AdamW(filter(lambda p: p.requires_grad, model_deepseek.parameters()), lr=lr_default)
+        train_model(model_deepseek, optimizer_deepseek, train_loader, val_loader, device, num_epochs,
+                    use_position_ids=False)
+    
+        preds, _ = get_predictions(model_deepseek, test_loader, device, use_position_ids=False)
+        final_preds = average_sliding_window_predictions(preds, seq_length, len(X_test_t))
+        save_path = os.path.join(seq_folder, f"fish{fish_num}_final_predictions_deepseek_moe_test_run{run}.npy")
+        np.save(save_path, final_preds)
+    
+        rmse = compute_rmse(final_preds, Y_test)
+        rmse_results["DeepSeek MoE"] = rmse
+        print(f"DeepSeek MoE Overall RMSE: {rmse:.4f}")
+    
+        # -----------------------
+        #  Model 5: Small BERT Model
+        # -----------------------
+        print("\nTraining Small BERT Model...")
+        bert_hidden_size = 768
+        model_bert = CustomBERTModel(input_dim, bert_hidden_size, output_dim).to(device)
+        optimizer_bert = AdamW(model_bert.parameters(), lr=lr_default)
+        train_model(model_bert, optimizer_bert, train_loader, val_loader, device, num_epochs, use_position_ids=False)
+    
+        preds, _ = get_predictions(model_bert, test_loader, device, use_position_ids=False)
+        final_preds = average_sliding_window_predictions(preds, seq_length, len(X_test_t))
+        save_path = os.path.join(seq_folder, f"fish{fish_num}_final_predictions_bert_test_run{run}.npy")
+        np.save(save_path, final_preds)
+    
+        rmse = compute_rmse(final_preds, Y_test)
+        rmse_results["BERT"] = rmse
+        print(f"BERT Overall RMSE: {rmse:.4f}")
+    
+        # Save the RMSE results for this sequence length for this run
+        for model in model_names:
+            final_all_rmse[seq_length][model].append(rmse_results[model])
 
 # =============================================================================
 # 5) Final Grouped Bar Plot (Overall RMSE across sequence lengths)
 # =============================================================================
-# Define the model names and sequence lengths (order is important)
-model_names = ["GPT2 Pretrained", "LSTM", "Reservoir", "DeepSeek MoE", "BERT"]
-seq_length_list = seq_lengths  # [10, 20, 30, 40, 50]
-
-# Collect RMSE values for each model across all sequence lengths
-rmse_by_model = {model: [] for model in model_names}
-for seq in seq_length_list:
+# Calculate mean and standard error over runs for each model and sequence length
+mean_rmse_by_model = {model: [] for model in model_names}
+stderr_rmse_by_model = {model: [] for model in model_names}
+for seq in seq_lengths:
     for model in model_names:
-        rmse_by_model[model].append(final_all_rmse[seq][model])
+        rmse_vals = np.array(final_all_rmse[seq][model])
+        mean_rmse_by_model[model].append(np.mean(rmse_vals))
+        stderr_rmse_by_model[model].append(np.std(rmse_vals) / np.sqrt(len(rmse_vals)))
 
-x = np.arange(len(seq_length_list))  # one group per sequence length
+x = np.arange(len(seq_lengths))  # one group per sequence length
 num_models = len(model_names)
 width = 0.8 / num_models  # width of each bar within a group
 
 fig, ax = plt.subplots(figsize=(10, 6))
 for i, model in enumerate(model_names):
     offset = (i - num_models / 2) * width + width / 2
-    ax.bar(x + offset, rmse_by_model[model], width=width, label=model)
+    ax.bar(x + offset, mean_rmse_by_model[model], width=width, yerr=stderr_rmse_by_model[model],
+           capsize=5, label=model)
 
 ax.set_xlabel("Sequence Length")
 ax.set_ylabel("Overall RMSE")
-ax.set_title("Overall RMSE Comparison Across Sequence Lengths")
+ax.set_title("Overall RMSE Comparison Across Sequence Lengths (Mean ± SEM over runs)")
 ax.set_xticks(x)
-ax.set_xticklabels(seq_length_list)
+ax.set_xticklabels(seq_lengths)
 ax.legend()
 plt.tight_layout()
 final_plot_path = os.path.join(BASE_SAVE_DIR, f"fish{fish_num}_grouped_rmse_comparison.png")
 plt.savefig(final_plot_path)
-# plt.show()
 print(f"Final grouped bar plot saved to {final_plot_path}")
 
-print("All models trained and predictions saved for all sequence lengths.")
+# =============================================================================
+# 6) Significance Testing using Mann–Whitney U Test
+# =============================================================================
+# Perform pairwise Mann–Whitney U tests between models (for each sequence length) over the runs.
+significance_results = ""
+for seq in seq_lengths:
+    significance_results += f"Sequence Length {seq}:\n"
+    for i in range(len(model_names)):
+        for j in range(i+1, len(model_names)):
+            model_a = model_names[i]
+            model_b = model_names[j]
+            vals_a = np.array(final_all_rmse[seq][model_a])
+            vals_b = np.array(final_all_rmse[seq][model_b])
+            stat, p_val = mannwhitneyu(vals_a, vals_b, alternative='two-sided')
+            significance_results += f"  {model_a} vs {model_b}: p-value = {p_val:.4e}\n"
+    significance_results += "\n"
+
+# Save significance results to a text file
+sig_file_path = os.path.join(BASE_SAVE_DIR, f"fish{fish_num}_significance_results.txt")
+with open(sig_file_path, "w") as f:
+    f.write(significance_results)
+print(f"Significance test results saved to {sig_file_path}")
+
+print("All models trained, predictions saved for all sequence lengths and runs, and significance tests completed.")
