@@ -8,7 +8,12 @@ import torch.nn as nn
 import torch.optim as optim
 
 from torch.utils.data import DataLoader, TensorDataset
-from transformers import GPT2Config, GPT2Model, AdamW, AutoModel, BertModel, BertConfig
+from transformers import GPT2Config, GPT2Model, AdamW, AutoModel, BertModel, BertConfig, BitsAndBytesConfig
+
+quant_config = BitsAndBytesConfig(
+    load_in_8bit=True,  # or load_in_4bit=True, if you want 4-bit
+    llm_int8_threshold=6.0  # optional, sets the threshold for zero out
+)
 
 # =============================================================================
 # 0) Setup
@@ -246,25 +251,21 @@ hidden_size_deepseek = 4096
 num_experts = 8
 top_k = 2
 
-
 class DeepSeekV3MoE(nn.Module):
     def __init__(self, input_dim, output_dim):
         super(DeepSeekV3MoE, self).__init__()
-        self.input_proj = nn.Linear(input_dim, hidden_size_deepseek).half()
+        self.input_proj = nn.Linear(input_dim, hidden_size_deepseek)
         # Load the DeepSeek model (using trust_remote_code as needed)
-        self.model = AutoModel.from_pretrained("deepseek-ai/deepseek-coder-7b", trust_remote_code=True, torch_dtype=torch.float16, low_cpu_mem_usage=True, device_map="auto")
-        self.output_proj = nn.Linear(hidden_size_deepseek, output_dim).half()
+        self.model = AutoModel.from_pretrained("deepseek-ai/deepseek-coder-7b", trust_remote_code=True, device_map="auto", quantization_config=quant_config)
+        self.output_proj = nn.Linear(hidden_size_deepseek, output_dim)
         # MoE Router
-        self.router = nn.Linear(hidden_size_deepseek, num_experts).half()
+        self.router = nn.Linear(hidden_size_deepseek, num_experts)
         self.softmax = nn.Softmax(dim=-1)
 
     def forward(self, x):
-        x = x.to(torch.float16)
-        x = self.input_proj(x)  # custom layer is now on GPU
+        x = self.input_proj(x)  # (batch, seq_len, hidden_size_deepseek)
         outputs = self.model(inputs_embeds=x, output_hidden_states=True)
-        hidden_states = outputs.hidden_states[-1]
-        # Move hidden_states to the device of the custom layers (GPU)
-        hidden_states = hidden_states.to(self.input_proj.weight.device)
+        hidden_states = outputs.hidden_states[-1]  # (batch, seq_len, hidden_size_deepseek)
         router_logits = self.router(hidden_states)
         routing_weights = self.softmax(router_logits)
         top_k_experts = torch.topk(routing_weights, top_k, dim=-1)[1]
@@ -274,7 +275,7 @@ class DeepSeekV3MoE(nn.Module):
             expert_output = torch.gather(hidden_states, dim=-1, index=expert_idx)
             aggregated_output += expert_output / top_k
         logits = self.output_proj(aggregated_output)
-        return logits.to(torch.float32)
+        return logits
 
 # ----- Small BERT Model -----
 class CustomBERTModel(nn.Module):
@@ -387,10 +388,7 @@ for seq_length in seq_lengths:
     #  Model 5: DeepSeek-V3 MoE
     # -----------------------
     print("\nTraining DeepSeek-V3 MoE...")
-    model_deepseek = DeepSeekV3MoE(input_dim, output_dim)
-    model_deepseek.input_proj = model_deepseek.input_proj.to(device)
-    model_deepseek.router = model_deepseek.router.to(device)
-    model_deepseek.output_proj = model_deepseek.output_proj.to(device)
+    model_deepseek = DeepSeekV3MoE(input_dim, output_dim).to(device)
     # Freeze the backbone of the DeepSeek model
     for param in model_deepseek.model.parameters():
         param.requires_grad = False
