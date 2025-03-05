@@ -13,6 +13,7 @@ from transformers import GPT2Model, AdamW, AutoModel, BertModel, BertConfig, Bit
 ################################################################################
 # 1) Set Directories and Experiment Parameters
 ################################################################################
+# Change folder to experiment_5.
 BASE_SAVE_DIR = os.path.join(os.getcwd(), "/hpc/group/naumannlab/jjm132/nlp4neuro/results/experiment_5")
 os.makedirs(BASE_SAVE_DIR, exist_ok=True)
 
@@ -62,8 +63,7 @@ def info_nce_loss(z, c, prediction_step=1, temperature=0.07):
         # For each sample, extract context at time t.
         c_t = c[:, t, :]  # shape: (B, latent_dim)
         # Compute dot product between c_t and every timestep in z for the same sample.
-        # This yields a tensor of shape (B, T).
-        logits = torch.sum(c_t.unsqueeze(1) * z, dim=-1)
+        logits = torch.sum(c_t.unsqueeze(1) * z, dim=-1)  # (B, T)
         logits = logits / temperature
 
         # The correct prediction index for each sample is t+prediction_step.
@@ -230,10 +230,11 @@ class DeepSeekCPC(nn.Module):
 class BERTCPC(nn.Module):
     def __init__(self, input_dim, hidden_size, latent_dim):
         super().__init__()
+        # Change num_attention_heads to 8 so that hidden_size (256) is divisible.
         config = BertConfig(
             hidden_size=hidden_size,
             num_hidden_layers=6,
-            num_attention_heads=6,
+            num_attention_heads=8,
             intermediate_size=hidden_size * 4
         )
         self.bert = BertModel(config)
