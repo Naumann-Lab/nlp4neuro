@@ -38,8 +38,12 @@ print(f"Using device: {device}")
 ################################################################################
 def info_nce_loss(z, c, prediction_step=1, temperature=0.07):
     """
-    Computes InfoNCE loss between context c_t and future latent z_{t+k}.
-
+    Computes InfoNCE loss between context c_t and future latent z_{t+k} for each sample.
+    
+    For each sample in the batch, for each time step t (such that t+prediction_step is valid),
+    we compute the dot product between c_t (of that sample) and all timesteps of z (of that sample).
+    The target is the index corresponding to time t+prediction_step.
+    
     Args:
         z: Tensor of shape (B, T, latent_dim) -- latent embeddings.
         c: Tensor of shape (B, T, latent_dim) -- context embeddings.
@@ -50,25 +54,21 @@ def info_nce_loss(z, c, prediction_step=1, temperature=0.07):
         Scalar tensor with averaged InfoNCE loss.
     """
     B, T, latent_dim = z.shape
-    device = z.device
     total_loss = 0.0
     valid_steps = 0
 
+    loss_fn = nn.CrossEntropyLoss()
     for t in range(T - prediction_step):
-        c_t = c[:, t, :]                    # (B, latent_dim)
-        z_tk = z[:, t + prediction_step, :]   # (B, latent_dim)
-
-        # Use all time steps in the batch as negatives.
-        z_all = z.view(B * T, latent_dim)
-        c_t_expanded = c_t.unsqueeze(1).expand(-1, B * T, -1).contiguous().view(B * T, latent_dim)
-        logits = torch.sum(c_t_expanded * z_all, dim=1)  # (B*T,)
-        logits = logits.view(B, T)
+        # For each sample, extract context at time t.
+        c_t = c[:, t, :]  # shape: (B, latent_dim)
+        # Compute dot product between c_t and every timestep in z for the same sample.
+        # This yields a tensor of shape (B, T).
+        logits = torch.sum(c_t.unsqueeze(1) * z, dim=-1)
         logits = logits / temperature
 
-        targets = torch.tensor([t + prediction_step] * B, dtype=torch.long, device=device)
-        loss_fn = nn.CrossEntropyLoss()
-        batch_loss = loss_fn(logits, targets)
-        total_loss += batch_loss
+        # The correct prediction index for each sample is t+prediction_step.
+        targets = torch.full((B,), t + prediction_step, dtype=torch.long, device=z.device)
+        total_loss += loss_fn(logits, targets)
         valid_steps += 1
 
     return total_loss / valid_steps
