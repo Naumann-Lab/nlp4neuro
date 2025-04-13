@@ -1,0 +1,32 @@
+Using device: cuda
+
+========== Processing Fish 9 ==========
+Fish 9: Neural data shape: (3047, 12499)
+
+--- Fish 9: Run 1 of 10 ---
+
+Sequence Length = 5
+[Model: GPT2]
+Epoch [1/5]: Train Loss=384.7461, Val Loss=1.6153
+Epoch [2/5]: Train Loss=25.6964, Val Loss=1.5957
+Epoch [3/5]: Train Loss=17.6139, Val Loss=1.5834
+Epoch [4/5]: Train Loss=13.4728, Val Loss=1.5729
+Epoch [5/5]: Train Loss=10.8352, Val Loss=1.5524
+GPT2 Test CPC Loss: 1.5640
+[Model: LSTM]
+Epoch [1/5]: Train Loss=0.7124, Val Loss=0.1266
+Epoch [2/5]: Train Loss=0.0287, Val Loss=0.0119
+Epoch [3/5]: Train Loss=0.0021, Val Loss=0.0051
+Epoch [4/5]: Train Loss=0.0008, Val Loss=0.0038
+Epoch [5/5]: Train Loss=0.0004, Val Loss=0.0025
+LSTM Test CPC Loss: 0.0020
+[Model: Reservoir]
+Epoch [1/5]: Train Loss=9.1047, Val Loss=3.7122
+Epoch [2/5]: Train Loss=2.6230, Val Loss=2.1947
+Epoch [3/5]: Train Loss=1.5821, Val Loss=1.6040
+Epoch [4/5]: Train Loss=1.0505, Val Loss=1.2353
+Epoch [5/5]: Train Loss=0.7235, Val Loss=1.0165
+Reservoir Test CPC Loss: 1.1894
+[Model: DeepSeek]
+DeepSeek model failed to load/train. Recording NaN for CPC loss and predictions.
+[Model: BERT]

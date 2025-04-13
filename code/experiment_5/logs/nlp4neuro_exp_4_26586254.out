@@ -1,0 +1,9 @@
+Using device: cuda
+
+========== Processing Fish 9 ==========
+Fish 9: Neural data shape: (3047, 12499)
+
+--- Fish 9: Run 1 of 10 ---
+
+Sequence Length = 5
+[Model: GPT2]
