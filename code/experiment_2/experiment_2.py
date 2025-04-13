@@ -1,18 +1,33 @@
 import os
 import numpy as np
+import matplotlib
+matplotlib.use("Agg")  # For headless environments
 import matplotlib.pyplot as plt
 import torch
 import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader, TensorDataset
-from transformers import GPT2Config, GPT2Model, AdamW, AutoModel, BertModel, BertConfig, BitsAndBytesConfig
+
+# -----------------------------
+# Key changes below!
+# -----------------------------
+# 1) Switch from 8-bit to 4-bit quantization for DeepSeek
+# 2) Freeze all pretrained model parameters except for the input/output projections
+# 3) Lower batch_size from 32 to 2
+# 4) Fewer epochs from 10 to 3
+# -----------------------------
+
+from transformers import (
+    GPT2Config, GPT2Model, AdamW, AutoModel, BertModel, BertConfig,
+    BitsAndBytesConfig
+)
 from scipy.stats import wilcoxon
 
 ################################################################################
-# Quantization config for DeepSeek model (if using int8 or int4, adjust below).
+# Quantization config for DeepSeek model
 ################################################################################
 quant_config = BitsAndBytesConfig(
-    load_in_8bit=True,    # or load_in_4bit=True, if desired
+    load_in_4bit=True,   # switched to 4-bit for tighter memory
     llm_int8_threshold=6.0
 )
 
@@ -29,10 +44,10 @@ print(f"Using device: {device}")
 fish_list = [9, 10, 11, 12, 13]
 
 seq_lengths = [5, 20]
-num_epochs = 10
-batch_size = 32
+num_epochs = 3        # reduced from 10 to lower GPU usage
+batch_size = 2        # reduced from 32 to lower GPU usage
 lr_default = 1e-4
-num_runs = 10  # number of repeats of the pipeline
+num_runs = 10         # number of repeats of the pipeline
 
 ################################################################################
 # 1) Helper Functions
@@ -129,7 +144,14 @@ def get_predictions(model, data_loader, device, use_position_ids=False):
 ################################################################################
 # 2) Model Definitions
 ################################################################################
-# ------------------------------------------------------------------------------
+
+# ----------------------
+# For the *pretrained* models below, we will freeze the main transformer
+# parameters to drastically reduce memory usage. Only the input_proj/output_proj
+# will remain trainable. The untrained versions remain fully trainable by default.
+# ----------------------
+
+# ------------------------------------------------------------------------------ 
 # GPT-2 (Pretrained)
 # ------------------------------------------------------------------------------
 class GPT2PretrainedModel(nn.Module):
@@ -140,9 +162,12 @@ class GPT2PretrainedModel(nn.Module):
         self.input_proj = nn.Linear(input_dim, hidden_size)
         self.output_proj = nn.Linear(hidden_size, output_dim)
 
+        # Freeze all GPT-2 parameters:
+        for param in self.transformer.parameters():
+            param.requires_grad = False
+
     def forward(self, x, position_ids=None):
-        # position_ids is ignored for GPT-2 in this custom version, 
-        # but we keep the parameter for consistency
+        # position_ids is ignored for GPT-2 in this custom version
         x = self.input_proj(x)
         outputs = self.transformer(inputs_embeds=x)
         hidden_states = outputs.last_hidden_state
@@ -180,6 +205,10 @@ class BERTPretrainedModel(nn.Module):
         hidden_size = self.bert.config.hidden_size
         self.input_proj = nn.Linear(input_dim, hidden_size)
         self.output_proj = nn.Linear(hidden_size, output_dim)
+
+        # Freeze BERT parameters:
+        for param in self.bert.parameters():
+            param.requires_grad = False
 
     def forward(self, x, position_ids=None):
         x = self.input_proj(x)
@@ -225,10 +254,13 @@ class DeepSeekPretrainedModel(nn.Module):
         # Output projection
         self.output_proj = nn.Linear(hidden_size_deepseek, output_dim)
 
+        # Freeze all core model parameters:
+        for param in self.model.parameters():
+            param.requires_grad = False
+
     def forward(self, x, position_ids=None):
         x = self.input_proj(x)
         outputs = self.model(inputs_embeds=x, output_hidden_states=True)
-        # last hidden states
         hidden_states = outputs.last_hidden_state
         logits = self.output_proj(hidden_states)
         return logits
@@ -240,14 +272,14 @@ class DeepSeekUntrainedModel(nn.Module):
     def __init__(self, input_dim, output_dim, hidden_size_deepseek=4096):
         super().__init__()
         self.input_proj = nn.Linear(input_dim, hidden_size_deepseek)
-        # Create a fresh config and load AutoModel from config (not from_pretrained)
-        # We'll use the same "deepseek-coder-7b" architecture shape if possible,
-        # but random initialization so that it's effectively 'untrained.'
-        # If "trust_remote_code" is required for the architecture, we do:
-        config = AutoModel.from_pretrained("deepseek-ai/deepseek-coder-7b", trust_remote_code=True).config
-        # Now create a new model instance with that config (NOT loaded from pretrained weights).
-        # We must be sure to pass the config but skip loading checkpoint weights.
-        self.model = AutoModel.from_config(config, trust_remote_code=True)
+        # Create a fresh config from the pretrained config for architecture shape:
+        dummy_config = AutoModel.from_pretrained(
+            "deepseek-ai/deepseek-coder-7b", trust_remote_code=True
+        ).config
+
+        # Now create a new random model instance with that config
+        self.model = AutoModel.from_config(dummy_config, trust_remote_code=True)
+
         # Output projection
         self.output_proj = nn.Linear(hidden_size_deepseek, output_dim)
 
@@ -262,7 +294,6 @@ class DeepSeekUntrainedModel(nn.Module):
 # 3) Main Experiment 2 Loop
 ################################################################################
 
-# We'll define a short label for each of the 6 model variants for convenience:
 model_variants = [
     ("GPT2 Pretrained", GPT2PretrainedModel),
     ("GPT2 Untrained", GPT2UntrainedModel),
@@ -309,7 +340,7 @@ for fish_num in fish_list:
     Y_val = tail_data[train_end:val_end]
     Y_test = tail_data[val_end:]
 
-    # Save ground truth for test in the fish folder so we can always reconstruct
+    # Save ground truth for test in the fish folder
     np.save(os.path.join(fish_save_dir, f"fish{fish_num}_groundtruth_test.npy"), Y_test)
 
     # Convert to PyTorch tensors
@@ -327,11 +358,7 @@ for fish_num in fish_list:
     ############################################################################
     # 3.2) Storage structure for final RMSE results for each model and seq_length
     ############################################################################
-    # final_rmse[seq_length][model_name] = list of RMSE across runs
     final_rmse = {seq_len: {m[0]: [] for m in model_variants} for seq_len in seq_lengths}
-
-    # For reproducibility, store the final predictions in the fish directory.
-    # We'll create a subfolder for each run, and within that subfolder, store predictions for each model & seq length.
 
     for run in range(1, num_runs + 1):
         print(f"\n=== Fish {fish_num} - Run {run}/{num_runs} ===")
@@ -363,20 +390,15 @@ for fish_num in fish_list:
                 # Instantiate model
                 model = model_class(input_dim, output_dim).to(device)
 
-                # Special case: for DeepSeek Pretrained, consider partial fine-tuning:
-                # if you want to freeze the main model and only train final layers, do so here:
-                if "DeepSeek Pretrained" in model_name:
-                    # Freeze the main model
-                    for param in model.model.parameters():
-                        param.requires_grad = False
-                    # Keep input_proj, output_proj trainable
-                    for param in model.input_proj.parameters():
-                        param.requires_grad = True
-                    for param in model.output_proj.parameters():
-                        param.requires_grad = True
+                # For untrained models, everything is trainable by default.
+                # For pretrained models, the above classes already freeze the base.
 
                 optimizer = AdamW(filter(lambda p: p.requires_grad, model.parameters()), lr=lr_default)
-                train_model(model, optimizer, train_loader, val_loader, device, num_epochs, use_position_ids=False)
+
+                train_model(
+                    model, optimizer, train_loader, val_loader,
+                    device, num_epochs, use_position_ids=False
+                )
 
                 # Get test predictions
                 preds, _ = get_predictions(model, test_loader, device, use_position_ids=False)
@@ -391,16 +413,14 @@ for fish_num in fish_list:
                 final_rmse[seq_length][model_name].append(rmse_val)
                 print(f"{model_name} - RMSE: {rmse_val:.4f}")
 
+    # After all runs for this fish, make bar plots + do Wilcoxon tests
+
     ############################################################################
-    # 3.3) After all runs: create a bar plot for each seq_length
+    # 3.3) Create bar plots for each seq_length
     ############################################################################
     for seq_length in seq_lengths:
-        # We'll create a grouped bar plot with the 6 model variants:
-        # GPT2 Pretrained, GPT2 Untrained, BERT Pretrained, BERT Untrained,
-        # DeepSeek Pretrained, DeepSeek Untrained.
-
         model_names = [m[0] for m in model_variants]
-        rmse_data = [final_rmse[seq_length][mn] for mn in model_names]  # each is a list of 10 RMSE values
+        rmse_data = [final_rmse[seq_length][mn] for mn in model_names]
         rmse_means = [np.mean(r) for r in rmse_data]
         rmse_stderrs = [np.std(r) / np.sqrt(len(r)) for r in rmse_data]
 
@@ -422,9 +442,6 @@ for fish_num in fish_list:
     ############################################################################
     # 3.4) Wilcoxon test: pretrained vs. untrained for GPT2, BERT, DeepSeek
     ############################################################################
-    # We'll store the results in a text file.
-    # For each seq_length, do: GPT2 Pretrained vs. GPT2 Untrained, BERT Pretrained vs. BERT Untrained,
-    # DeepSeek Pretrained vs. DeepSeek Untrained.
     significance_results = []
     for seq_length in seq_lengths:
         significance_results.append(f"--- Sequence Length = {seq_length} ---")
