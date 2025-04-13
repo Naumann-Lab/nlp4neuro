@@ -6,33 +6,51 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader, TensorDataset
-from transformers import GPT2Config, GPT2Model, AdamW, AutoModel, BertModel, BertConfig, AutoConfig
+
+from transformers import (
+    GPT2Config,
+    GPT2Model,
+    AdamW,
+    AutoModel,
+    AutoConfig,
+    BertModel,
+    BertConfig
+)
 from scipy.stats import wilcoxon
 
 # =============================================================================
 # 0) Setup & Data Loading
 # =============================================================================
-RESULTS_DIR = f"/hpc/group/naumannlab/jjm132/nlp4neuro/results/experiment2_results"  # separate folder for experiment 2
+
+RESULTS_DIR = "/hpc/group/naumannlab/jjm132/nlp4neuro/results/experiment2_results"
 os.makedirs(RESULTS_DIR, exist_ok=True)
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"Using device: {device}")
 
-# Use the same data as in experiment 1 (adjust paths as needed)
+# Choose which fish to run (example: only fish 9, or a list)
 fish_num = 9
-data_dir = f"/hpc/group/naumannlab/jjm132/data_prepped_for_models"
-neural_data = np.load(os.path.join(data_dir, f"fish{fish_num}_neural_data_matched.npy"), allow_pickle=True)[:,:-2]
-tail_data   = np.load(os.path.join(data_dir, f"fish{fish_num}_tail_data_matched.npy"), allow_pickle=True)
 
-# Transpose neural data so shape is (num_frames, num_neurons)
-neural_data = neural_data.T  
+data_dir = "/hpc/group/naumannlab/jjm132/data_prepped_for_models"
+neural_data = np.load(
+    os.path.join(data_dir, f"fish{fish_num}_neural_data_matched.npy"),
+    allow_pickle=True
+)[:, :-2]
+tail_data = np.load(
+    os.path.join(data_dir, f"fish{fish_num}_tail_data_matched.npy"),
+    allow_pickle=True
+)
+
+# Transpose neural data => shape: (num_frames, num_neurons)
+neural_data = neural_data.T
 print("Neural data shape:", neural_data.shape)
 print("Tail data shape:", tail_data.shape)
 assert neural_data.shape[0] == tail_data.shape[0], "Mismatch in data length"
 
+# Train/Val/Test split
 total_frames = neural_data.shape[0]
-train_end = int(0.7 * total_frames)
-val_end   = int(0.8 * total_frames)  # 70% train, 10% val, 20% test
+train_end = int(0.7 * total_frames)  # 70% train
+val_end   = int(0.8 * total_frames)  # 10% val, 20% test
 
 X_train = neural_data[:train_end]
 X_val   = neural_data[train_end:val_end]
@@ -41,51 +59,62 @@ Y_train = tail_data[:train_end]
 Y_val   = tail_data[train_end:val_end]
 Y_test  = tail_data[val_end:]
 
-# Save ground truth for later evaluation
-np.save(os.path.join(RESULTS_DIR, "final_predictions_groundtruth_val.npy"), Y_val)
-np.save(os.path.join(RESULTS_DIR, "final_predictions_groundtruth_test.npy"), Y_test)
-print("Ground truth for val/test saved.")
+# Save ground-truth for reference, in base results directory
+np.save(os.path.join(RESULTS_DIR, "groundtruth_val.npy"), Y_val)
+np.save(os.path.join(RESULTS_DIR, "groundtruth_test.npy"), Y_test)
+print("Ground truth for val/test saved in base directory.")
 
 # Convert to PyTorch tensors
 X_train_t = torch.tensor(X_train, dtype=torch.float32)
-X_val_t   = torch.tensor(X_val, dtype=torch.float32)
-X_test_t  = torch.tensor(X_test, dtype=torch.float32)
+X_val_t   = torch.tensor(X_val,   dtype=torch.float32)
+X_test_t  = torch.tensor(X_test,  dtype=torch.float32)
 Y_train_t = torch.tensor(Y_train, dtype=torch.float32)
-Y_val_t   = torch.tensor(Y_val, dtype=torch.float32)
-Y_test_t  = torch.tensor(Y_test, dtype=torch.float32)
+Y_val_t   = torch.tensor(Y_val,   dtype=torch.float32)
+Y_test_t  = torch.tensor(Y_test,  dtype=torch.float32)
 
-# Get dimensions
-input_dim = X_train_t.size(-1)   # number of neurons
-output_dim = Y_train_t.size(-1)   # number of tail features
+# Input/output dimensions
+input_dim  = X_train_t.size(-1)  # number of neurons
+output_dim = Y_train_t.size(-1)  # number of tail features
 print(f"Input_dim={input_dim}, Output_dim={output_dim}")
 
 # =============================================================================
 # 1) Helper Functions
 # =============================================================================
+
 def create_sequences(inputs, targets, seq_length):
-    sequences_inputs = []
-    sequences_targets = []
+    """
+    Create overlapping sequences of length seq_length from continuous data.
+    Returns: (seq_inputs, seq_targets) with shape (num_windows, seq_length, input_dim).
+    """
+    seq_in_list = []
+    seq_out_list = []
     for i in range(len(inputs) - seq_length + 1):
-        sequences_inputs.append(inputs[i: i + seq_length])
-        sequences_targets.append(targets[i: i + seq_length])
-    return torch.stack(sequences_inputs), torch.stack(sequences_targets)
+        seq_in_list.append(inputs[i : i + seq_length])
+        seq_out_list.append(targets[i : i + seq_length])
+    return torch.stack(seq_in_list), torch.stack(seq_out_list)
 
 def average_sliding_window_predictions(predictions, seq_length, total_length):
+    """
+    Averages predictions to get a single series of length total_length.
+    """
     if torch.is_tensor(predictions):
         predictions = predictions.cpu().numpy()
     num_windows, _, out_dim = predictions.shape
-    averaged = np.zeros((total_length, out_dim))
+    out = np.zeros((total_length, out_dim))
     counts = np.zeros(total_length)
     for i in range(num_windows):
-        averaged[i: i + seq_length, :] += predictions[i]
-        counts[i: i + seq_length] += 1
-    averaged /= counts[:, None]
-    return averaged
+        out[i : i + seq_length] += predictions[i]
+        counts[i : i + seq_length] += 1
+    out /= counts[:, None]
+    return out
 
 def compute_rmse(preds, targets):
     return np.sqrt(np.mean((preds - targets) ** 2))
 
-def train_model(model, optimizer, train_loader, val_loader, device, num_epochs, use_position_ids=False):
+def train_model(model, optimizer, train_loader, val_loader, device, num_epochs):
+    """
+    Simple training loop with MSE loss.
+    """
     criterion = nn.MSELoss()
     for epoch in range(num_epochs):
         model.train()
@@ -93,46 +122,37 @@ def train_model(model, optimizer, train_loader, val_loader, device, num_epochs, 
         for inputs, targets in train_loader:
             inputs, targets = inputs.to(device), targets.to(device)
             optimizer.zero_grad()
-            if use_position_ids:
-                bsz, seq_len, _ = inputs.shape
-                position_ids = torch.arange(seq_len).unsqueeze(0).expand(bsz, seq_len).to(device)
-                outputs = model(inputs, position_ids=position_ids)
-            else:
-                outputs = model(inputs)
+            outputs = model(inputs)
             loss = criterion(outputs, targets)
             loss.backward()
             optimizer.step()
             total_train_loss += loss.item()
+
         avg_train_loss = total_train_loss / len(train_loader)
-        
+
+        # Validation
         model.eval()
         total_val_loss = 0.0
         with torch.no_grad():
             for inputs, targets in val_loader:
                 inputs, targets = inputs.to(device), targets.to(device)
-                if use_position_ids:
-                    bsz, seq_len, _ = inputs.shape
-                    position_ids = torch.arange(seq_len).unsqueeze(0).expand(bsz, seq_len).to(device)
-                    outputs = model(inputs, position_ids=position_ids)
-                else:
-                    outputs = model(inputs)
+                outputs = model(inputs)
                 loss = criterion(outputs, targets)
                 total_val_loss += loss.item()
-        avg_val_loss = total_val_loss / len(val_loader)
-        print(f"Epoch {epoch+1}/{num_epochs}: Train Loss {avg_train_loss:.4f}, Val Loss {avg_val_loss:.4f}")
 
-def get_predictions(model, data_loader, device, use_position_ids=False):
+        avg_val_loss = total_val_loss / len(val_loader)
+        print(f"Epoch {epoch + 1}/{num_epochs}: Train Loss {avg_train_loss:.4f}, Val Loss {avg_val_loss:.4f}")
+
+def get_predictions(model, data_loader, device):
+    """
+    Return predictions for entire data_loader.
+    """
     model.eval()
     preds_list = []
     with torch.no_grad():
         for inputs, _ in data_loader:
             inputs = inputs.to(device)
-            if use_position_ids:
-                bsz, seq_len, _ = inputs.shape
-                position_ids = torch.arange(seq_len).unsqueeze(0).expand(bsz, seq_len).to(device)
-                outputs = model(inputs, position_ids=position_ids)
-            else:
-                outputs = model(inputs)
+            outputs = model(inputs)
             preds_list.append(outputs.cpu())
     return torch.cat(preds_list, dim=0)
 
@@ -140,313 +160,294 @@ def get_predictions(model, data_loader, device, use_position_ids=False):
 # 2) Model Definitions
 # =============================================================================
 
-# ---- DeepSeek Models (MoE) ----
+# ---- DeepSeek Models (Pretrained vs Vanilla) ----
 hidden_size_deepseek = 4096
 num_experts = 8
 top_k = 2
 
-class DeepSeekV3MoE(nn.Module):
-    # Pretrained DeepSeek (using pretrained weights)
+class DeepSeekV3MoEPretrained(nn.Module):
+    """
+    DeepSeek Pretrained
+    """
     def __init__(self, input_dim, output_dim):
-        super(DeepSeekV3MoE, self).__init__()
+        super().__init__()
+        from transformers import AutoModel
         self.input_proj = nn.Linear(input_dim, hidden_size_deepseek)
         self.model = AutoModel.from_pretrained("deepseek-ai/deepseek-coder-7b", trust_remote_code=True)
         self.output_proj = nn.Linear(hidden_size_deepseek, output_dim)
         self.router = nn.Linear(hidden_size_deepseek, num_experts)
         self.softmax = nn.Softmax(dim=-1)
+
     def forward(self, x):
         x = self.input_proj(x)
-        outputs = self.model(inputs_embeds=x, output_hidden_states=True)
-        hidden_states = outputs.hidden_states[-1]
+        out = self.model(inputs_embeds=x, output_hidden_states=True)
+        hidden_states = out.hidden_states[-1]
         router_logits = self.router(hidden_states)
         routing_weights = self.softmax(router_logits)
         top_k_experts = torch.topk(routing_weights, top_k, dim=-1)[1]
-        aggregated_output = torch.zeros_like(hidden_states)
+        aggregated = torch.zeros_like(hidden_states)
         for i in range(top_k):
             expert_idx = top_k_experts[:, :, i].unsqueeze(-1).expand_as(hidden_states)
-            expert_output = torch.gather(hidden_states, dim=-1, index=expert_idx)
-            aggregated_output += expert_output / top_k
-        logits = self.output_proj(aggregated_output)
+            expert_out = torch.gather(hidden_states, dim=-1, index=expert_idx)
+            aggregated += expert_out / top_k
+        logits = self.output_proj(aggregated)
         return logits
 
 class DeepSeekV3MoEVanilla(nn.Module):
-    # Vanilla DeepSeek: instantiated from config (untrained)
+    """
+    DeepSeek Untrained (Vanilla) - same architecture, random init
+    """
     def __init__(self, input_dim, output_dim):
-        super(DeepSeekV3MoEVanilla, self).__init__()
+        super().__init__()
+        from transformers import AutoModel, AutoConfig
         self.input_proj = nn.Linear(input_dim, hidden_size_deepseek)
-        config = AutoConfig.from_pretrained("deepseek-ai/deepseek-coder-7b")
-        self.model = AutoModel.from_config(config)
+        config = AutoConfig.from_pretrained("deepseek-ai/deepseek-coder-7b", trust_remote_code=True)
+        self.model = AutoModel.from_config(config, trust_remote_code=True)
         self.output_proj = nn.Linear(hidden_size_deepseek, output_dim)
         self.router = nn.Linear(hidden_size_deepseek, num_experts)
         self.softmax = nn.Softmax(dim=-1)
+
     def forward(self, x):
         x = self.input_proj(x)
-        outputs = self.model(inputs_embeds=x, output_hidden_states=True)
-        hidden_states = outputs.hidden_states[-1]
+        out = self.model(inputs_embeds=x, output_hidden_states=True)
+        hidden_states = out.hidden_states[-1]
         router_logits = self.router(hidden_states)
         routing_weights = self.softmax(router_logits)
         top_k_experts = torch.topk(routing_weights, top_k, dim=-1)[1]
-        aggregated_output = torch.zeros_like(hidden_states)
+        aggregated = torch.zeros_like(hidden_states)
         for i in range(top_k):
             expert_idx = top_k_experts[:, :, i].unsqueeze(-1).expand_as(hidden_states)
-            expert_output = torch.gather(hidden_states, dim=-1, index=expert_idx)
-            aggregated_output += expert_output / top_k
-        logits = self.output_proj(aggregated_output)
+            expert_out = torch.gather(hidden_states, dim=-1, index=expert_idx)
+            aggregated += expert_out / top_k
+        logits = self.output_proj(aggregated)
         return logits
 
-# ---- GPT-2 Models ----
-class CustomGPT2ModelPretrained(nn.Module):
-    # GPT-2 with pretrained weights
+# ---- GPT-2 Models (Pretrained vs Vanilla) ----
+class GPT2Pretrained(nn.Module):
+    """
+    GPT-2 with pretrained weights
+    """
     def __init__(self, input_dim, output_dim):
-        super(CustomGPT2ModelPretrained, self).__init__()
+        super().__init__()
         self.transformer = GPT2Model.from_pretrained("gpt2")
         hidden_size = self.transformer.config.n_embd
         self.input_proj = nn.Linear(input_dim, hidden_size)
         self.output_proj = nn.Linear(hidden_size, output_dim)
-    def forward(self, x, position_ids=None):
+
+    def forward(self, x):
         x = self.input_proj(x)
-        outputs = self.transformer(inputs_embeds=x, position_ids=position_ids)
-        hidden_states = outputs.last_hidden_state
+        out = self.transformer(inputs_embeds=x)
+        hidden_states = out.last_hidden_state
         logits = self.output_proj(hidden_states)
         return logits
 
-class CustomGPT2ModelScratch(nn.Module):
-    # GPT-2 from scratch (vanilla)
+class GPT2Vanilla(nn.Module):
+    """
+    GPT-2 Untrained (Vanilla) - random init
+    Example smaller config
+    """
     def __init__(self, input_dim, hidden_size, output_dim, n_head, n_layer, n_positions):
-        super(CustomGPT2ModelScratch, self).__init__()
-        self.input_proj = nn.Linear(input_dim, hidden_size)
+        super().__init__()
         config = GPT2Config(
             n_embd=hidden_size,
             n_layer=n_layer,
             n_head=n_head,
             n_positions=n_positions,
-            vocab_size=1,
+            vocab_size=1
         )
         self.transformer = GPT2Model(config)
+        self.input_proj = nn.Linear(input_dim, hidden_size)
         self.output_proj = nn.Linear(hidden_size, output_dim)
-    def forward(self, x, position_ids=None):
+
+    def forward(self, x):
         x = self.input_proj(x)
-        outputs = self.transformer(inputs_embeds=x, position_ids=position_ids)
-        hidden_states = outputs.last_hidden_state
+        out = self.transformer(inputs_embeds=x)
+        hidden_states = out.last_hidden_state
         logits = self.output_proj(hidden_states)
         return logits
 
-# ---- BERT Models ----
-class CustomBERTModelPretrained(nn.Module):
-    # BERT with pretrained weights
+# ---- BERT Models (Pretrained vs Vanilla) ----
+class BERTPretrained(nn.Module):
+    """
+    BERT (bert-base-uncased) pretrained
+    """
     def __init__(self, input_dim, output_dim):
-        super(CustomBERTModelPretrained, self).__init__()
-        hidden_size = 768
-        self.input_proj = nn.Linear(input_dim, hidden_size)
+        super().__init__()
         self.bert = BertModel.from_pretrained("bert-base-uncased")
-        self.output_proj = nn.Linear(hidden_size, output_dim)
-    def forward(self, x, position_ids=None):
-        x = self.input_proj(x)
-        outputs = self.bert(inputs_embeds=x)
-        hidden_states = outputs.last_hidden_state
-        logits = self.output_proj(hidden_states)
-        return logits
-
-class CustomBERTModelVanilla(nn.Module):
-    # BERT from scratch (vanilla)
-    def __init__(self, input_dim, output_dim):
-        super(CustomBERTModelVanilla, self).__init__()
-        hidden_size = 768
+        hidden_size = self.bert.config.hidden_size
         self.input_proj = nn.Linear(input_dim, hidden_size)
-        config = BertConfig(hidden_size=hidden_size, num_hidden_layers=6, num_attention_heads=12,
-                            intermediate_size=hidden_size * 4)
-        self.bert = BertModel(config)
         self.output_proj = nn.Linear(hidden_size, output_dim)
-    def forward(self, x, position_ids=None):
+
+    def forward(self, x):
         x = self.input_proj(x)
-        outputs = self.bert(inputs_embeds=x)
-        hidden_states = outputs.last_hidden_state
+        out = self.bert(inputs_embeds=x)
+        hidden_states = out.last_hidden_state
+        logits = self.output_proj(hidden_states)
+        return logits
+
+class BERTVanilla(nn.Module):
+    """
+    BERT Untrained (Vanilla) - random init
+    """
+    def __init__(self, input_dim, output_dim):
+        super().__init__()
+        config = BertConfig.from_pretrained("bert-base-uncased")
+        self.bert = BertModel(config)  # random init
+        hidden_size = config.hidden_size
+        self.input_proj = nn.Linear(input_dim, hidden_size)
+        self.output_proj = nn.Linear(hidden_size, output_dim)
+
+    def forward(self, x):
+        x = self.input_proj(x)
+        out = self.bert(inputs_embeds=x)
+        hidden_states = out.last_hidden_state
         logits = self.output_proj(hidden_states)
         return logits
 
 # =============================================================================
-# 3) Main Loop: 10 Runs, Single Sequence Length of 20
+# 3) Main Loop: 10 Runs, Sequence Lengths [5, 20]
 # =============================================================================
-model_names = ["DeepSeek Pretrained", "DeepSeek Vanilla", 
-               "GPT2 Pretrained", "GPT2 Vanilla",
-               "BERT Pretrained", "BERT Vanilla"]
+model_names = [
+    "DeepSeek Pretrained",
+    "DeepSeek Vanilla",
+    "GPT2 Pretrained",
+    "GPT2 Vanilla",
+    "BERT Pretrained",
+    "BERT Vanilla",
+]
 
-seq_lengths = [20]  # Only sequence length 20 is used
-num_epochs = 5
+def build_model(model_name, input_dim, output_dim):
+    if model_name == "DeepSeek Pretrained":
+        return DeepSeekV3MoEPretrained(input_dim, output_dim)
+    elif model_name == "DeepSeek Vanilla":
+        return DeepSeekV3MoEVanilla(input_dim, output_dim)
+    elif model_name == "GPT2 Pretrained":
+        return GPT2Pretrained(input_dim, output_dim)
+    elif model_name == "GPT2 Vanilla":
+        # Example config for GPT-2 vanilla
+        hidden_size = 512  # smaller than actual GPT2 for demonstration
+        n_head = 8
+        n_layer = 6
+        n_positions = 512
+        return GPT2Vanilla(input_dim, hidden_size, output_dim, n_head, n_layer, n_positions)
+    elif model_name == "BERT Pretrained":
+        return BERTPretrained(input_dim, output_dim)
+    elif model_name == "BERT Vanilla":
+        return BERTVanilla(input_dim, output_dim)
+    else:
+        raise ValueError(f"Unknown model name {model_name}")
+
+# We'll test these sequence lengths
+seq_lengths = [5, 20]
+
+num_runs = 10
+num_epochs = 10
 batch_size = 32
 lr_default = 1e-4
-num_runs = 10
 
-# Structure to store RMSE for each model across runs
-final_all_rmse = {seq: {model: [] for model in model_names} for seq in seq_lengths}
+# final_all_rmse[seq_len][model_name] -> list of RMSEs over multiple runs
+final_all_rmse = {
+    seq: {m: [] for m in model_names}
+    for seq in seq_lengths
+}
 
-# For GPT2 vanilla hyperparameters (example values)
-gpt2_hidden_size = 768
-gpt2_n_head = 12
-gpt2_n_layer = 6
-gpt2_n_positions = 1024
-
-for run in range(1, num_runs + 1):
-    print("\n==============================")
-    print(f"Run {run} of {num_runs}")
-    print("==============================")
-    
-    run_folder = os.path.join(RESULTS_DIR, f"run_{run}")
-    os.makedirs(run_folder, exist_ok=True)
-    
+for run_idx in range(1, num_runs + 1):
+    print(f"\n=== Run {run_idx}/{num_runs} ===")
     for seq_length in seq_lengths:
-        print("\n------------------------------")
-        print(f"Run {run}, Sequence Length = {seq_length}")
-        print("------------------------------")
-        
-        seq_folder = os.path.join(run_folder, f"seq_{seq_length}")
-        os.makedirs(seq_folder, exist_ok=True)
-        
-        train_seq_x, train_seq_y = create_sequences(X_train_t, Y_train_t, seq_length)
-        val_seq_x, val_seq_y     = create_sequences(X_val_t, Y_val_t, seq_length)
-        test_seq_x, test_seq_y   = create_sequences(X_test_t, Y_test_t, seq_length)
-        
-        train_loader = DataLoader(TensorDataset(train_seq_x, train_seq_y), batch_size=batch_size, shuffle=True)
-        val_loader   = DataLoader(TensorDataset(val_seq_x, val_seq_y), batch_size=batch_size)
-        test_loader  = DataLoader(TensorDataset(test_seq_x, test_seq_y), batch_size=batch_size)
-        
-        rmse_results = {}
-        
-        # --- DeepSeek Pretrained ---
-        print("\nTraining DeepSeek Pretrained...")
-        model = DeepSeekV3MoE(input_dim, output_dim).to(device)
-        for param in model.model.parameters():
-            param.requires_grad = False
-        optimizer = AdamW(filter(lambda p: p.requires_grad, model.parameters()), lr=lr_default)
-        train_model(model, optimizer, train_loader, val_loader, device, num_epochs)
-        torch.save(model.state_dict(), os.path.join(seq_folder, f"deepseek_moe_pretrained_weights_run{run}.pth"))
-        preds = get_predictions(model, test_loader, device)
-        final_preds = average_sliding_window_predictions(preds, seq_length, len(X_test_t))
-        np.save(os.path.join(seq_folder, f"final_predictions_deepseek_moe_pretrained_test_run{run}.npy"), final_preds)
-        rmse = compute_rmse(final_preds, Y_test)
-        rmse_results["DeepSeek Pretrained"] = rmse
-        print(f"DeepSeek Pretrained RMSE: {rmse:.4f}")
-        
-        # --- DeepSeek Vanilla ---
-        print("\nTraining DeepSeek Vanilla...")
-        model = DeepSeekV3MoEVanilla(input_dim, output_dim).to(device)
-        for param in model.model.parameters():
-            param.requires_grad = False
-        optimizer = AdamW(filter(lambda p: p.requires_grad, model.parameters()), lr=lr_default)
-        train_model(model, optimizer, train_loader, val_loader, device, num_epochs)
-        torch.save(model.state_dict(), os.path.join(seq_folder, f"deepseek_moe_vanilla_weights_run{run}.pth"))
-        preds = get_predictions(model, test_loader, device)
-        final_preds = average_sliding_window_predictions(preds, seq_length, len(X_test_t))
-        np.save(os.path.join(seq_folder, f"final_predictions_deepseek_moe_vanilla_test_run{run}.npy"), final_preds)
-        rmse = compute_rmse(final_preds, Y_test)
-        rmse_results["DeepSeek Vanilla"] = rmse
-        print(f"DeepSeek Vanilla RMSE: {rmse:.4f}")
-        
-        # --- GPT2 Pretrained ---
-        print("\nTraining GPT2 Pretrained...")
-        model = CustomGPT2ModelPretrained(input_dim, output_dim).to(device)
-        optimizer = AdamW(model.parameters(), lr=lr_default)
-        train_model(model, optimizer, train_loader, val_loader, device, num_epochs)
-        torch.save(model.state_dict(), os.path.join(seq_folder, f"gpt2_pretrained_weights_run{run}.pth"))
-        preds = get_predictions(model, test_loader, device)
-        final_preds = average_sliding_window_predictions(preds, seq_length, len(X_test_t))
-        np.save(os.path.join(seq_folder, f"final_predictions_gpt2_pretrained_test_run{run}.npy"), final_preds)
-        rmse = compute_rmse(final_preds, Y_test)
-        rmse_results["GPT2 Pretrained"] = rmse
-        print(f"GPT2 Pretrained RMSE: {rmse:.4f}")
-        
-        # --- GPT2 Vanilla ---
-        print("\nTraining GPT2 Vanilla...")
-        model = CustomGPT2ModelScratch(input_dim, gpt2_hidden_size, output_dim, gpt2_n_head, gpt2_n_layer, gpt2_n_positions).to(device)
-        optimizer = AdamW(model.parameters(), lr=lr_default)
-        train_model(model, optimizer, train_loader, val_loader, device, num_epochs)
-        torch.save(model.state_dict(), os.path.join(seq_folder, f"gpt2_vanilla_weights_run{run}.pth"))
-        preds = get_predictions(model, test_loader, device)
-        final_preds = average_sliding_window_predictions(preds, seq_length, len(X_test_t))
-        np.save(os.path.join(seq_folder, f"final_predictions_gpt2_vanilla_test_run{run}.npy"), final_preds)
-        rmse = compute_rmse(final_preds, Y_test)
-        rmse_results["GPT2 Vanilla"] = rmse
-        print(f"GPT2 Vanilla RMSE: {rmse:.4f}")
-        
-        # --- BERT Pretrained ---
-        print("\nTraining BERT Pretrained...")
-        model = CustomBERTModelPretrained(input_dim, output_dim).to(device)
-        optimizer = AdamW(model.parameters(), lr=lr_default)
-        train_model(model, optimizer, train_loader, val_loader, device, num_epochs)
-        torch.save(model.state_dict(), os.path.join(seq_folder, f"bert_pretrained_weights_run{run}.pth"))
-        preds = get_predictions(model, test_loader, device)
-        final_preds = average_sliding_window_predictions(preds, seq_length, len(X_test_t))
-        np.save(os.path.join(seq_folder, f"final_predictions_bert_pretrained_test_run{run}.npy"), final_preds)
-        rmse = compute_rmse(final_preds, Y_test)
-        rmse_results["BERT Pretrained"] = rmse
-        print(f"BERT Pretrained RMSE: {rmse:.4f}")
-        
-        # --- BERT Vanilla ---
-        print("\nTraining BERT Vanilla...")
-        model = CustomBERTModelVanilla(input_dim, output_dim).to(device)
-        optimizer = AdamW(model.parameters(), lr=lr_default)
-        train_model(model, optimizer, train_loader, val_loader, device, num_epochs)
-        torch.save(model.state_dict(), os.path.join(seq_folder, f"bert_vanilla_weights_run{run}.pth"))
-        preds = get_predictions(model, test_loader, device)
-        final_preds = average_sliding_window_predictions(preds, seq_length, len(X_test_t))
-        np.save(os.path.join(seq_folder, f"final_predictions_bert_vanilla_test_run{run}.npy"), final_preds)
-        rmse = compute_rmse(final_preds, Y_test)
-        rmse_results["BERT Vanilla"] = rmse
-        print(f"BERT Vanilla RMSE: {rmse:.4f}")
-        
-        for model_name in model_names:
-            final_all_rmse[seq_length][model_name].append(rmse_results[model_name])
+        print(f"--- Sequence Length = {seq_length} ---")
+
+        # Prepare sequences
+        train_in_seq, train_out_seq = create_sequences(X_train_t, Y_train_t, seq_length)
+        val_in_seq,   val_out_seq   = create_sequences(X_val_t,   Y_val_t,   seq_length)
+        test_in_seq,  test_out_seq  = create_sequences(X_test_t,  Y_test_t,  seq_length)
+
+        train_loader = DataLoader(TensorDataset(train_in_seq, train_out_seq), batch_size=batch_size, shuffle=True)
+        val_loader   = DataLoader(TensorDataset(val_in_seq,   val_out_seq),   batch_size=batch_size)
+        test_loader  = DataLoader(TensorDataset(test_in_seq,  test_out_seq),  batch_size=batch_size)
+
+        # Train/eval each model for this run
+        for m_name in model_names:
+            print(f"\nTraining {m_name} ...")
+
+            # Build model
+            model = build_model(m_name, input_dim, output_dim).to(device)
+
+            # If it's a huge pretrained model, optionally freeze main backbone (example: DeepSeek)
+            # In the original code, you freeze the main .model parameters for partial fine-tuning:
+            if m_name == "DeepSeek Pretrained":
+                for param in model.model.parameters():
+                    param.requires_grad = False
+            # You could do the same for GPT2 Pretrained / BERT Pretrained if desired:
+            # else if m_name == "GPT2 Pretrained": ...
+            # else if m_name == "BERT Pretrained": ...
+            # We'll skip here for demonstration.
+
+            optimizer = AdamW(filter(lambda p: p.requires_grad, model.parameters()), lr=lr_default)
+
+            train_model(model, optimizer, train_loader, val_loader, device, num_epochs)
+
+            # Evaluate on test set
+            preds = get_predictions(model, test_loader, device)
+            final_preds = average_sliding_window_predictions(preds, seq_length, len(X_test_t))
+            rmse_val = compute_rmse(final_preds, Y_test)
+            final_all_rmse[seq_length][m_name].append(rmse_val)
+            print(f"{m_name} RMSE = {rmse_val:.4f}")
+
+            # Save predictions in the base directory so you can re-plot
+            save_name = f"fish{fish_num}_{m_name.replace(' ', '_')}_run{run_idx}_seq{seq_length}.npy"
+            np.save(os.path.join(RESULTS_DIR, save_name), final_preds)
+            print(f"Saved predictions: {save_name}")
 
 # =============================================================================
-# 4) Final Grouped Bar Plot (Overall RMSE)
+# 4) Bar Plots for each seq_length
 # =============================================================================
-mean_rmse_by_model = {model: [] for model in model_names}
-stderr_rmse_by_model = {model: [] for model in model_names}
-for seq in seq_lengths:
-    for model in model_names:
-        vals = np.array(final_all_rmse[seq][model])
-        mean_rmse_by_model[model].append(np.mean(vals))
-        stderr_rmse_by_model[model].append(np.std(vals) / np.sqrt(len(vals)))
+for seq_length in seq_lengths:
+    means = []
+    sems = []
+    for m_name in model_names:
+        vals = np.array(final_all_rmse[seq_length][m_name])
+        means.append(vals.mean())
+        sems.append(vals.std() / np.sqrt(len(vals)))
 
-x = np.arange(len(seq_lengths))
-num_models = len(model_names)
-width = 0.8 / num_models
-
-fig, ax = plt.subplots(figsize=(12, 6))
-for i, model in enumerate(model_names):
-    offset = (i - num_models/2)*width + width/2
-    ax.bar(x + offset, mean_rmse_by_model[model], width=width, yerr=stderr_rmse_by_model[model],
-           capsize=5, label=model)
-ax.set_xlabel("Sequence Length")
-ax.set_ylabel("Overall RMSE")
-ax.set_title("Model Comparison: Pretrained vs Vanilla (Mean ± SEM over runs)")
-ax.set_xticks(x)
-ax.set_xticklabels(seq_lengths)
-ax.legend()
-plt.tight_layout()
-final_plot_path = os.path.join(RESULTS_DIR, "grouped_rmse_comparison_experiment2.png")
-plt.savefig(final_plot_path)
-print(f"Final grouped bar plot saved to {final_plot_path}")
+    x = np.arange(len(model_names))
+    fig, ax = plt.subplots(figsize=(10, 5))
+    ax.bar(x, means, yerr=sems, capsize=5)
+    ax.set_xticks(x)
+    ax.set_xticklabels(model_names, rotation=45, ha='right')
+    ax.set_ylabel("RMSE")
+    ax.set_title(f"Fish {fish_num} - Seq Length {seq_length}\nMean ± SEM over {num_runs} runs")
+    plt.tight_layout()
+    fig_name = f"fish{fish_num}_rmse_barplot_seq{seq_length}.png"
+    plt.savefig(os.path.join(RESULTS_DIR, fig_name))
+    plt.close()
+    print(f"Saved bar plot: {fig_name}")
 
 # =============================================================================
-# 5) Significance Testing using Wilcoxon Signed-Rank Test
+# 5) Significance Testing (Wilcoxon Signed-Rank)
+#    Only compare each Pretrained vs. its Untrained counterpart
 # =============================================================================
-# For each model family compare the pretrained vs vanilla version (paired test).
-significance_results = ""
-for seq in seq_lengths:
-    significance_results += f"Sequence Length {seq}:\n"
-    for family in ["DeepSeek", "GPT2", "BERT"]:
-        key_pre = f"{family} Pretrained"
-        key_van = f"{family} Vanilla"
-        vals_pre = np.array(final_all_rmse[seq][key_pre])
-        vals_van = np.array(final_all_rmse[seq][key_van])
-        stat, p_val = wilcoxon(vals_pre, vals_van)
-        significance_results += f"  {family} Pretrained vs {family} Vanilla: p-value = {p_val:.4e}\n"
-    significance_results += "\n"
+pairs = [
+    ("DeepSeek Pretrained", "DeepSeek Vanilla"),
+    ("GPT2 Pretrained",     "GPT2 Vanilla"),
+    ("BERT Pretrained",     "BERT Vanilla"),
+]
 
-sig_file_path = os.path.join(RESULTS_DIR, "significance_results_wilcoxon.txt")
-with open(sig_file_path, "w") as f:
-    f.write(significance_results)
-print(f"Significance test results saved to {sig_file_path}")
+sig_results = []
+sig_results.append(f"Significance Testing (Wilcoxon) for Fish {fish_num}:\n")
+for seq_length in seq_lengths:
+    sig_results.append(f"Sequence Length {seq_length}:\n")
+    for (pre_m, van_m) in pairs:
+        pre_vals = np.array(final_all_rmse[seq_length][pre_m])
+        van_vals = np.array(final_all_rmse[seq_length][van_m])
+        stat, p_val = wilcoxon(pre_vals, van_vals, alternative='two-sided')
+        sig_results.append(
+            f"  {pre_m} vs {van_m} => p-value = {p_val:.4e}"
+        )
+    sig_results.append("")
 
-print("Experiment 2 completed: All models trained, predictions saved, plots and significance tests generated.")
+sig_file = os.path.join(RESULTS_DIR, "significance_results_wilcoxon.txt")
+with open(sig_file, "w") as f:
+    f.write("\n".join(sig_results))
+
+print(f"Significance results saved: {sig_file}")
+print("Done!")
