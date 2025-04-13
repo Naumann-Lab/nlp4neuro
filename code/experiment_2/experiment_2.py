@@ -7,7 +7,7 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader, TensorDataset
 
-# ADDED: We need BitsAndBytesConfig to match how DeepSeek is loaded and quantized
+# Import BitsAndBytesConfig for quantization support
 from transformers import (
     GPT2Config,
     GPT2Model,
@@ -20,9 +20,9 @@ from transformers import (
 )
 from scipy.stats import wilcoxon
 
-# ADDED: Quantization config for partial-freeze fine-tuning of DeepSeek
+# Define a quantization configuration for DeepSeek
 quant_config = BitsAndBytesConfig(
-    load_in_8bit=True,  # or load_in_4bit=True if desired
+    load_in_8bit=True,          # or load_in_4bit=True if desired
     llm_int8_threshold=6.0
 )
 
@@ -168,7 +168,6 @@ def get_predictions(model, data_loader, device):
 # 2) Model Definitions
 # =============================================================================
 
-# We keep the same dimensional parameters
 hidden_size_deepseek = 4096
 num_experts = 8
 top_k = 2
@@ -176,15 +175,16 @@ top_k = 2
 class DeepSeekV3MoEPretrained(nn.Module):
     """
     DeepSeek Pretrained
-    ADAPTED: Now we load with BitsAndBytesConfig quantization, set device_map="auto"
-    so that partial-freezing matches the code in 'CODE TO CHECK'.
+    ADAPTED: Now we load the DeepSeek model with 8-bit quantization and device_map="auto".
+    The forward pass wraps the transformer call in a no_grad block to avoid storing huge
+    activation buffers. (Note: This stops gradients flowing from the transformer's output 
+    back to the input projection. If you need to fine-tune the input projection as well,
+    you may need to trade off some memory usage.)
     """
     def __init__(self, input_dim, output_dim):
         super().__init__()
         from transformers import AutoModel
         self.input_proj = nn.Linear(input_dim, hidden_size_deepseek)
-        # ADAPTED: load the large pretrained model in 8-bit quantized mode,
-        # with device_map="auto", so we can freeze it except the newly introduced layers
         self.model = AutoModel.from_pretrained(
             "deepseek-ai/deepseek-coder-7b",
             trust_remote_code=True,
@@ -197,7 +197,9 @@ class DeepSeekV3MoEPretrained(nn.Module):
 
     def forward(self, x):
         x = self.input_proj(x)
-        out = self.model(inputs_embeds=x, output_hidden_states=True)
+        # Use inference mode for the frozen transformer to save memory.
+        with torch.inference_mode():
+            out = self.model(inputs_embeds=x, output_hidden_states=True)
         hidden_states = out.hidden_states[-1]
         router_logits = self.router(hidden_states)
         routing_weights = self.softmax(router_logits)
@@ -354,9 +356,7 @@ def build_model(model_name, input_dim, output_dim):
     else:
         raise ValueError(f"Unknown model name {model_name}")
 
-# We'll test these sequence lengths
 seq_lengths = [5, 20]
-
 num_runs = 10
 num_epochs = 10
 batch_size = 32
@@ -389,22 +389,17 @@ for run_idx in range(1, num_runs + 1):
             # Build model
             model = build_model(m_name, input_dim, output_dim).to(device)
 
-            # If it's a huge pretrained model, we freeze the main backbone:
+            # For huge pretrained models, freeze the backbone as needed.
             if m_name == "DeepSeek Pretrained":
-                # ADDED: Partial-freezing the backbone to match the reference code
                 for param in model.model.parameters():
                     param.requires_grad = False
-                # The newly introduced layers remain trainable (input_proj, router, output_proj)
+                # Ensure the additional layers remain trainable.
                 for param in model.input_proj.parameters():
                     param.requires_grad = True
                 for param in model.router.parameters():
                     param.requires_grad = True
                 for param in model.output_proj.parameters():
                     param.requires_grad = True
-
-            # (You could do the same for GPT2Pretrained or BERTPretrained if you want partial freeze.)
-            # else if m_name == "GPT2 Pretrained": ...
-            # else if m_name == "BERT Pretrained": ...
 
             optimizer = AdamW(filter(lambda p: p.requires_grad, model.parameters()), lr=lr_default)
 
