@@ -175,10 +175,9 @@ top_k = 2
 class DeepSeekV3MoEPretrained(nn.Module):
     """
     DeepSeek Pretrained
-    UPDATED: This version now mimics the memory-saving technique used in your second code.
-    The large transformer is loaded in quantized mode (using BitsAndBytesConfig) and its 
-    parameters are frozen. Unlike our previous attempt, we do not wrap its call in any 
-    additional context – we simply call it normally as in your second code.
+    UPDATED: This version now mimics the memory-saving technique from your second code.
+    The transformer is loaded in quantized mode and its parameters are frozen.
+    We call the transformer normally (as in code 2) and then freeze its parameters.
     """
     def __init__(self, input_dim, output_dim):
         super().__init__()
@@ -196,8 +195,7 @@ class DeepSeekV3MoEPretrained(nn.Module):
 
     def forward(self, x):
         x = self.input_proj(x)
-        # Call the transformer normally (like in code 2). Its parameters are frozen,
-        # so gradient tracking is minimal and memory use stays low.
+        # Call the transformer normally
         out = self.model(inputs_embeds=x, output_hidden_states=True)
         hidden_states = out.hidden_states[-1]
         router_logits = self.router(hidden_states)
@@ -371,7 +369,6 @@ for run_idx in range(1, num_runs + 1):
     print(f"\n=== Run {run_idx}/{num_runs} ===")
     for seq_length in seq_lengths:
         print(f"--- Sequence Length = {seq_length} ---")
-
         # Prepare sequences
         train_in_seq, train_out_seq = create_sequences(X_train_t, Y_train_t, seq_length)
         val_in_seq,   val_out_seq   = create_sequences(X_val_t,   Y_val_t,   seq_length)
@@ -384,10 +381,8 @@ for run_idx in range(1, num_runs + 1):
         # Train/eval each model for this run
         for m_name in model_names:
             print(f"\nTraining {m_name} ...")
-
             # Build model
             model = build_model(m_name, input_dim, output_dim).to(device)
-
             # For huge pretrained models, freeze the backbone as needed.
             if m_name == "DeepSeek Pretrained":
                 for param in model.model.parameters():
@@ -401,20 +396,21 @@ for run_idx in range(1, num_runs + 1):
                     param.requires_grad = True
 
             optimizer = AdamW(filter(lambda p: p.requires_grad, model.parameters()), lr=lr_default)
-
             train_model(model, optimizer, train_loader, val_loader, device, num_epochs)
-
             # Evaluate on test set
             preds = get_predictions(model, test_loader, device)
             final_preds = average_sliding_window_predictions(preds, seq_length, len(X_test_t))
             rmse_val = compute_rmse(final_preds, Y_test)
             final_all_rmse[seq_length][m_name].append(rmse_val)
             print(f"{m_name} RMSE = {rmse_val:.4f}")
-
             # Save predictions in the base directory so you can re-plot
             save_name = f"fish{fish_num}_{m_name.replace(' ', '_')}_run{run_idx}_seq{seq_length}.npy"
             np.save(os.path.join(RESULTS_DIR, save_name), final_preds)
             print(f"Saved predictions: {save_name}")
+
+            # --- Free up GPU memory after finishing this model ---
+            del model
+            torch.cuda.empty_cache()
 
 # =============================================================================
 # 4) Bar Plots for each seq_length
