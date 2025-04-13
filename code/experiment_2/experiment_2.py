@@ -175,9 +175,11 @@ top_k = 2
 class DeepSeekV3MoEPretrained(nn.Module):
     """
     DeepSeek Pretrained
-    UPDATED: This version now mimics the memory-saving technique from your second code.
-    The transformer is loaded in quantized mode and its parameters are frozen.
-    We call the transformer normally (as in code 2) and then freeze its parameters.
+    UPDATED: This version mimics the technique from your second code.
+    Here, we load the transformer in quantized mode and freeze its parameters.
+    Additionally, to reduce memory usage, we now freeze the input projection so that no
+    gradients flow through the expensive transformer branch.
+    Trainable parameters will then only be the router and the output projection.
     """
     def __init__(self, input_dim, output_dim):
         super().__init__()
@@ -195,7 +197,7 @@ class DeepSeekV3MoEPretrained(nn.Module):
 
     def forward(self, x):
         x = self.input_proj(x)
-        # Call the transformer normally
+        # Call the transformer normally; its parameters are frozen.
         out = self.model(inputs_embeds=x, output_hidden_states=True)
         hidden_states = out.hidden_states[-1]
         router_logits = self.router(hidden_states)
@@ -211,7 +213,7 @@ class DeepSeekV3MoEPretrained(nn.Module):
 
 class DeepSeekV3MoEVanilla(nn.Module):
     """
-    DeepSeek Untrained (Vanilla) - same architecture, random init
+    DeepSeek Untrained (Vanilla) - same architecture, random init.
     """
     def __init__(self, input_dim, output_dim):
         super().__init__()
@@ -241,7 +243,7 @@ class DeepSeekV3MoEVanilla(nn.Module):
 # ---- GPT-2 Models (Pretrained vs Vanilla) ----
 class GPT2Pretrained(nn.Module):
     """
-    GPT-2 with pretrained weights
+    GPT-2 with pretrained weights.
     """
     def __init__(self, input_dim, output_dim):
         super().__init__()
@@ -259,8 +261,7 @@ class GPT2Pretrained(nn.Module):
 
 class GPT2Vanilla(nn.Module):
     """
-    GPT-2 Untrained (Vanilla) - random init
-    Example smaller config
+    GPT-2 Untrained (Vanilla) - random init. Example with a smaller configuration.
     """
     def __init__(self, input_dim, hidden_size, output_dim, n_head, n_layer, n_positions):
         super().__init__()
@@ -285,7 +286,7 @@ class GPT2Vanilla(nn.Module):
 # ---- BERT Models (Pretrained vs Vanilla) ----
 class BERTPretrained(nn.Module):
     """
-    BERT (bert-base-uncased) pretrained
+    BERT (bert-base-uncased) pretrained.
     """
     def __init__(self, input_dim, output_dim):
         super().__init__()
@@ -303,7 +304,7 @@ class BERTPretrained(nn.Module):
 
 class BERTVanilla(nn.Module):
     """
-    BERT Untrained (Vanilla) - random init
+    BERT Untrained (Vanilla) - random init.
     """
     def __init__(self, input_dim, output_dim):
         super().__init__()
@@ -360,10 +361,7 @@ batch_size = 32
 lr_default = 1e-4
 
 # final_all_rmse[seq_len][model_name] -> list of RMSEs over multiple runs
-final_all_rmse = {
-    seq: {m: [] for m in model_names}
-    for seq in seq_lengths
-}
+final_all_rmse = { seq: {m: [] for m in model_names} for seq in seq_lengths }
 
 for run_idx in range(1, num_runs + 1):
     print(f"\n=== Run {run_idx}/{num_runs} ===")
@@ -383,13 +381,15 @@ for run_idx in range(1, num_runs + 1):
             print(f"\nTraining {m_name} ...")
             # Build model
             model = build_model(m_name, input_dim, output_dim).to(device)
-            # For huge pretrained models, freeze the backbone as needed.
+            # For huge pretrained models, freeze the backbone.
             if m_name == "DeepSeek Pretrained":
+                # Freeze the transformer
                 for param in model.model.parameters():
                     param.requires_grad = False
-                # Ensure the additional layers remain trainable.
+                # ALSO freeze the input projection to avoid backpropagating through the expensive branch.
                 for param in model.input_proj.parameters():
-                    param.requires_grad = True
+                    param.requires_grad = False
+                # Only fine-tune the router and the output projection.
                 for param in model.router.parameters():
                     param.requires_grad = True
                 for param in model.output_proj.parameters():
@@ -407,7 +407,6 @@ for run_idx in range(1, num_runs + 1):
             save_name = f"fish{fish_num}_{m_name.replace(' ', '_')}_run{run_idx}_seq{seq_length}.npy"
             np.save(os.path.join(RESULTS_DIR, save_name), final_preds)
             print(f"Saved predictions: {save_name}")
-
             # --- Free up GPU memory after finishing this model ---
             del model
             torch.cuda.empty_cache()
