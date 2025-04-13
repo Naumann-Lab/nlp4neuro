@@ -7,6 +7,7 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader, TensorDataset
 
+# ADDED: We need BitsAndBytesConfig to match how DeepSeek is loaded and quantized
 from transformers import (
     GPT2Config,
     GPT2Model,
@@ -14,9 +15,16 @@ from transformers import (
     AutoModel,
     AutoConfig,
     BertModel,
-    BertConfig
+    BertConfig,
+    BitsAndBytesConfig
 )
 from scipy.stats import wilcoxon
+
+# ADDED: Quantization config for partial-freeze fine-tuning of DeepSeek
+quant_config = BitsAndBytesConfig(
+    load_in_8bit=True,  # or load_in_4bit=True if desired
+    llm_int8_threshold=6.0
+)
 
 # =============================================================================
 # 0) Setup & Data Loading
@@ -160,7 +168,7 @@ def get_predictions(model, data_loader, device):
 # 2) Model Definitions
 # =============================================================================
 
-# ---- DeepSeek Models (Pretrained vs Vanilla) ----
+# We keep the same dimensional parameters
 hidden_size_deepseek = 4096
 num_experts = 8
 top_k = 2
@@ -168,12 +176,21 @@ top_k = 2
 class DeepSeekV3MoEPretrained(nn.Module):
     """
     DeepSeek Pretrained
+    ADAPTED: Now we load with BitsAndBytesConfig quantization, set device_map="auto"
+    so that partial-freezing matches the code in 'CODE TO CHECK'.
     """
     def __init__(self, input_dim, output_dim):
         super().__init__()
         from transformers import AutoModel
         self.input_proj = nn.Linear(input_dim, hidden_size_deepseek)
-        self.model = AutoModel.from_pretrained("deepseek-ai/deepseek-coder-7b", trust_remote_code=True)
+        # ADAPTED: load the large pretrained model in 8-bit quantized mode,
+        # with device_map="auto", so we can freeze it except the newly introduced layers
+        self.model = AutoModel.from_pretrained(
+            "deepseek-ai/deepseek-coder-7b",
+            trust_remote_code=True,
+            device_map="auto",
+            quantization_config=quant_config
+        )
         self.output_proj = nn.Linear(hidden_size_deepseek, output_dim)
         self.router = nn.Linear(hidden_size_deepseek, num_experts)
         self.softmax = nn.Softmax(dim=-1)
@@ -372,15 +389,22 @@ for run_idx in range(1, num_runs + 1):
             # Build model
             model = build_model(m_name, input_dim, output_dim).to(device)
 
-            # If it's a huge pretrained model, optionally freeze main backbone (example: DeepSeek)
-            # In the original code, you freeze the main .model parameters for partial fine-tuning:
+            # If it's a huge pretrained model, we freeze the main backbone:
             if m_name == "DeepSeek Pretrained":
+                # ADDED: Partial-freezing the backbone to match the reference code
                 for param in model.model.parameters():
                     param.requires_grad = False
-            # You could do the same for GPT2 Pretrained / BERT Pretrained if desired:
+                # The newly introduced layers remain trainable (input_proj, router, output_proj)
+                for param in model.input_proj.parameters():
+                    param.requires_grad = True
+                for param in model.router.parameters():
+                    param.requires_grad = True
+                for param in model.output_proj.parameters():
+                    param.requires_grad = True
+
+            # (You could do the same for GPT2Pretrained or BERTPretrained if you want partial freeze.)
             # else if m_name == "GPT2 Pretrained": ...
             # else if m_name == "BERT Pretrained": ...
-            # We'll skip here for demonstration.
 
             optimizer = AdamW(filter(lambda p: p.requires_grad, model.parameters()), lr=lr_default)
 
