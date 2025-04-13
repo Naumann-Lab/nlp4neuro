@@ -175,11 +175,10 @@ top_k = 2
 class DeepSeekV3MoEPretrained(nn.Module):
     """
     DeepSeek Pretrained
-    ADAPTED: Now we load the DeepSeek model with 8-bit quantization and device_map="auto".
-    The forward pass wraps the transformer call in a no_grad block to avoid storing huge
-    activation buffers. (Note: This stops gradients flowing from the transformer's output 
-    back to the input projection. If you need to fine-tune the input projection as well,
-    you may need to trade off some memory usage.)
+    UPDATED: This version now mimics the memory-saving technique used in your second code.
+    The large transformer is loaded in quantized mode (using BitsAndBytesConfig) and its 
+    parameters are frozen. Unlike our previous attempt, we do not wrap its call in any 
+    additional context – we simply call it normally as in your second code.
     """
     def __init__(self, input_dim, output_dim):
         super().__init__()
@@ -197,9 +196,9 @@ class DeepSeekV3MoEPretrained(nn.Module):
 
     def forward(self, x):
         x = self.input_proj(x)
-        # Use inference mode for the frozen transformer to save memory.
-        with torch.inference_mode():
-            out = self.model(inputs_embeds=x, output_hidden_states=True)
+        # Call the transformer normally (like in code 2). Its parameters are frozen,
+        # so gradient tracking is minimal and memory use stays low.
+        out = self.model(inputs_embeds=x, output_hidden_states=True)
         hidden_states = out.hidden_states[-1]
         router_logits = self.router(hidden_states)
         routing_weights = self.softmax(router_logits)
