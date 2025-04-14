@@ -14,9 +14,6 @@ from transformers import (
 )
 from scipy.stats import wilcoxon
 
-# For randomizing a fresh model and converting to 8-bit
-from bitsandbytes import replace_8bit_linear
-
 ################################################################################
 # Optional GPU info
 ################################################################################
@@ -28,21 +25,23 @@ if torch.cuda.is_available():
 ################################################################################
 # Global parameters
 ################################################################################
-BATCH_SIZE   = 32   # Lower if you see OOM
-NUM_EPOCHS   = 10
+BATCH_SIZE   = 2    # <-- Try 2 or even 1 to avoid OOM if you only have limited GPU
+NUM_EPOCHS   = 3    # reduce further if memory/time is a problem
 LR_DEFAULT   = 1e-4
-NUM_RUNS     = 10
+NUM_RUNS     = 1    # just 1 run for debugging; raise to 10 if you have memory/time
 SEQ_LENGTHS  = [5, 20]
-FISH_LIST    = [9, 10, 11, 12, 13]
+FISH_LIST    = [9]  # You can re-add [9,10,11,12,13], but start with one fish to debug
 
-BASE_SAVE_DIR = os.path.join(os.getcwd(), "results", "experiment_2_untrained_fixed")
+BASE_SAVE_DIR = os.path.join(os.getcwd(), "results", "experiment_2_no_bnb_replace")
 os.makedirs(BASE_SAVE_DIR, exist_ok=True)
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-print(f"[INFO] experiment_2: running on device: {device}")
+print(f"[INFO] experiment_2_no_bnb_replace running on device: {device}")
 
 ################################################################################
-# 8-bit quantization config for DeepSeek
+# 8-bit quantization config for DeepSeek PRETRAINED ONLY
+# (Your older bitsandbytes version can do load_in_8bit from pretrained,
+# but we cannot do random->8bit if we can't import replace_8bit_linear.)
 ################################################################################
 quant_config = BitsAndBytesConfig(
     load_in_8bit=True,
@@ -120,7 +119,7 @@ def get_predictions(model, data_loader, device):
     return all_preds, all_targets
 
 ################################################################################
-# 1) GPT-2 (pretrained vs untrained)
+# GPT-2 (pretrained vs untrained)
 ################################################################################
 class GPT2PretrainedModel(nn.Module):
     def __init__(self, input_dim, output_dim):
@@ -154,7 +153,7 @@ class GPT2UntrainedModel(nn.Module):
         return logits
 
 ################################################################################
-# 2) BERT (pretrained vs untrained)
+# BERT (pretrained vs untrained)
 ################################################################################
 class BERTPretrainedModel(nn.Module):
     def __init__(self, input_dim, output_dim):
@@ -188,7 +187,7 @@ class BERTUntrainedModel(nn.Module):
         return logits
 
 ################################################################################
-# 3) DeepSeek Pretrained (8-bit)
+# DeepSeek Pretrained (8-bit)
 ################################################################################
 HIDDEN_SIZE_DEEPSEEK = 4096
 NUM_EXPERTS = 8
@@ -198,12 +197,16 @@ class DeepSeekPretrainedMoE(nn.Module):
     def __init__(self, input_dim, output_dim):
         super().__init__()
         self.input_proj = nn.Linear(input_dim, HIDDEN_SIZE_DEEPSEEK)
+
         # Load pretrained DeepSeek in 8-bit
         self.model = AutoModel.from_pretrained(
             "deepseek-ai/deepseek-coder-7b",
             trust_remote_code=True,
             device_map="auto",
-            quantization_config=quant_config
+            quantization_config=BitsAndBytesConfig(
+                load_in_8bit=True,
+                llm_int8_threshold=6.0
+            )
         )
 
         # MoE Router
@@ -214,9 +217,8 @@ class DeepSeekPretrainedMoE(nn.Module):
     def forward(self, x):
         x = self.input_proj(x)
         outputs = self.model(inputs_embeds=x, output_hidden_states=True)
-        hidden_states = outputs.hidden_states[-1]  # last hidden states
+        hidden_states = outputs.hidden_states[-1]
 
-        # Mixture-of-Experts
         router_logits = self.router(hidden_states)
         routing_weights = self.softmax(router_logits)
         top_k_experts = torch.topk(routing_weights, TOP_K, dim=-1)[1]
@@ -230,45 +232,39 @@ class DeepSeekPretrainedMoE(nn.Module):
         return self.output_proj(aggregated)
 
 ################################################################################
-# 4) DeepSeek Untrained (8-bit) - truly random
+# DeepSeek Untrained (float32) - truly random, cannot do 8-bit
 ################################################################################
 class DeepSeekUntrainedMoE(nn.Module):
-    def __init__(self, input_dim, output_dim, device="cuda"):
+    """
+    Builds a random, float32 version of the 7B model from config. This can be huge
+    in memory. We do partial freeze so we only train input_proj/router/output_proj.
+    If you do not have enough GPU memory, reduce BATCH_SIZE or use half().
+
+    We do NOT do 8-bit or 4-bit conversion, since your bitsandbytes version lacks
+    replace_8bit_linear. This is truly untrained in float.
+    """
+    def __init__(self, input_dim, output_dim):
         super().__init__()
         self.input_proj = nn.Linear(input_dim, HIDDEN_SIZE_DEEPSEEK)
 
-        ###############################
-        # STEP 1: Get the config from the existing pretrained model
-        ###############################
+        # Step 1: get config from deepseek-coder-7b
         base_config = AutoModel.from_pretrained(
-            "deepseek-ai/deepseek-coder-7b",  # just to get config
+            "deepseek-ai/deepseek-coder-7b",
             trust_remote_code=True
         ).config
 
-        ###############################
-        # STEP 2: Build a fresh random model in full precision
-        ###############################
+        # Step 2: build fresh random model in float
         self.model = AutoModel.from_config(base_config, trust_remote_code=True)
-        # Randomize
         with torch.no_grad():
             for param in self.model.parameters():
                 param.normal_(mean=0.0, std=0.02)
 
-        ###############################
-        # STEP 3: Convert to 8-bit using bitsandbytes
-        ###############################
-        from bitsandbytes import replace_8bit_linear
-        self.model = replace_8bit_linear(self.model)  # now 8-bit
-        self.model.to(device)
-
-        ###############################
-        # MoE Router
-        ###############################
+        # MoE router + output
         self.router = nn.Linear(HIDDEN_SIZE_DEEPSEEK, NUM_EXPERTS)
         self.softmax = nn.Softmax(dim=-1)
         self.output_proj = nn.Linear(HIDDEN_SIZE_DEEPSEEK, output_dim)
 
-        # random init for router + output_proj
+        # random init for router, output_proj
         with torch.no_grad():
             for param in self.router.parameters():
                 param.normal_(mean=0.0, std=0.02)
@@ -280,7 +276,6 @@ class DeepSeekUntrainedMoE(nn.Module):
         outputs = self.model(inputs_embeds=x, output_hidden_states=True)
         hidden_states = outputs.hidden_states[-1]
 
-        # MoE routing
         router_logits = self.router(hidden_states)
         routing_weights = self.softmax(router_logits)
         top_k_experts = torch.topk(routing_weights, TOP_K, dim=-1)[1]
@@ -294,21 +289,21 @@ class DeepSeekUntrainedMoE(nn.Module):
         return self.output_proj(aggregated)
 
 ################################################################################
-# 5) Model variants dictionary
+# Model variants dictionary
 ################################################################################
 model_variants = [
     ("GPT2 Pretrained", GPT2PretrainedModel),
     ("GPT2 Untrained", GPT2UntrainedModel),
     ("BERT Pretrained", BERTPretrainedModel),
     ("BERT Untrained", BERTUntrainedModel),
-    ("DeepSeek Pretrained", DeepSeekPretrainedMoE),
-    ("DeepSeek Untrained", DeepSeekUntrainedMoE),
+    ("DeepSeek Pretrained", DeepSeekPretrainedMoE),   # 8-bit
+    ("DeepSeek Untrained", DeepSeekUntrainedMoE)      # float, random
 ]
 
 ################################################################################
-# 6) Main Experiment Loop
+# Main Experiment Loop
 ################################################################################
-for fish_num in [9, 10, 11, 12, 13]:
+for fish_num in FISH_LIST:
     print("\n===========================================")
     print(f"Starting Experiment 2 for Fish {fish_num}")
     print("===========================================")
@@ -325,6 +320,7 @@ for fish_num in [9, 10, 11, 12, 13]:
         f"/hpc/group/naumannlab/jjm132/data_prepped_for_models/fish{fish_num}_tail_data_matched.npy",
         allow_pickle=True
     )
+
     # Transpose neural
     neural_data = neural_data.T  # shape: (time, neurons)
     print("Neural data shape:", neural_data.shape)
@@ -356,8 +352,10 @@ for fish_num in [9, 10, 11, 12, 13]:
     output_dim = Y_train_t.size(-1)
     print(f"[Fish {fish_num}] input_dim={input_dim}, output_dim={output_dim}")
 
-    # final_rmse[seq_len][model_name] = list of 10 RMSE values
-    final_rmse = {seq_len: {mv[0]: [] for mv in model_variants} for seq_len in SEQ_LENGTHS}
+    # final_rmse[seq_len][model_name] = lists of RMSE (one per run)
+    final_rmse = {
+        seq_len: {mv[0]: [] for mv in model_variants} for seq_len in SEQ_LENGTHS
+    }
 
     # multiple runs
     for run in range(1, NUM_RUNS + 1):
@@ -387,9 +385,9 @@ for fish_num in [9, 10, 11, 12, 13]:
             for model_name, model_class in model_variants:
                 print(f"\n[Run {run}] Training {model_name} ...")
 
-                # If untrained deepseek, pass device
                 if model_name == "DeepSeek Untrained":
-                    model = model_class(input_dim, output_dim, device=device)
+                    # This is float 7B, watch out for OOM
+                    model = model_class(input_dim, output_dim).to(device)
                 else:
                     model = model_class(input_dim, output_dim).to(device)
 
@@ -411,7 +409,6 @@ for fish_num in [9, 10, 11, 12, 13]:
                     lr=LR_DEFAULT
                 )
 
-                # Train
                 train_model(model, optimizer, train_loader, val_loader, device, NUM_EPOCHS)
                 preds, _ = get_predictions(model, test_loader, device)
                 final_preds = average_sliding_window_predictions(preds, seq_length, len(X_test_t))
