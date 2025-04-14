@@ -119,7 +119,6 @@ def get_predictions(model, data_loader, device):
     all_targets = torch.cat(targets_list, dim=0)
     return all_preds, all_targets
 
-
 ################################################################################
 # 1) GPT-2 (pretrained vs untrained)
 ################################################################################
@@ -154,7 +153,6 @@ class GPT2UntrainedModel(nn.Module):
         logits = self.output_proj(hidden_states)
         return logits
 
-
 ################################################################################
 # 2) BERT (pretrained vs untrained)
 ################################################################################
@@ -188,7 +186,6 @@ class BERTUntrainedModel(nn.Module):
         hidden_states = outputs.last_hidden_state
         logits = self.output_proj(hidden_states)
         return logits
-
 
 ################################################################################
 # 3) DeepSeek Pretrained (8-bit)
@@ -232,7 +229,6 @@ class DeepSeekPretrainedMoE(nn.Module):
 
         return self.output_proj(aggregated)
 
-
 ################################################################################
 # 4) DeepSeek Untrained (8-bit) - truly random
 ################################################################################
@@ -261,6 +257,7 @@ class DeepSeekUntrainedMoE(nn.Module):
         ###############################
         # STEP 3: Convert to 8-bit using bitsandbytes
         ###############################
+        from bitsandbytes import replace_8bit_linear
         self.model = replace_8bit_linear(self.model)  # now 8-bit
         self.model.to(device)
 
@@ -296,7 +293,6 @@ class DeepSeekUntrainedMoE(nn.Module):
 
         return self.output_proj(aggregated)
 
-
 ################################################################################
 # 5) Model variants dictionary
 ################################################################################
@@ -312,7 +308,7 @@ model_variants = [
 ################################################################################
 # 6) Main Experiment Loop
 ################################################################################
-for fish_num in FISH_LIST:
+for fish_num in [9, 10, 11, 12, 13]:
     print("\n===========================================")
     print(f"Starting Experiment 2 for Fish {fish_num}")
     print("===========================================")
@@ -391,7 +387,7 @@ for fish_num in FISH_LIST:
             for model_name, model_class in model_variants:
                 print(f"\n[Run {run}] Training {model_name} ...")
 
-                # If untrained deepseek, we pass device, otherwise just input_dim, output_dim
+                # If untrained deepseek, pass device
                 if model_name == "DeepSeek Untrained":
                     model = model_class(input_dim, output_dim, device=device)
                 else:
@@ -415,7 +411,7 @@ for fish_num in FISH_LIST:
                     lr=LR_DEFAULT
                 )
 
-                # Possibly print GPU usage here if desired
+                # Train
                 train_model(model, optimizer, train_loader, val_loader, device, NUM_EPOCHS)
                 preds, _ = get_predictions(model, test_loader, device)
                 final_preds = average_sliding_window_predictions(preds, seq_length, len(X_test_t))
