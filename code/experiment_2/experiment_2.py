@@ -5,11 +5,13 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader, TensorDataset
-from transformers import GPT2Config, GPT2Model, AdamW, AutoModel, BertModel, BertConfig, BitsAndBytesConfig
+from transformers import (
+    GPT2Config, GPT2Model, AdamW, AutoModel, BertModel, BertConfig, BitsAndBytesConfig
+)
 from scipy.stats import wilcoxon
 
 ################################################################################
-# Optional: Print out some GPU info at startup to see if there's enough memory.
+# Optional GPU info
 ################################################################################
 if torch.cuda.is_available():
     print("[INFO] Using GPU:", torch.cuda.get_device_name(0))
@@ -17,13 +19,13 @@ if torch.cuda.is_available():
     print("[INFO] Initial memory reserved:", torch.cuda.memory_reserved(0) / 1e9, "GB")
 
 ################################################################################
-# Adjust if needed (reduce batch size if OOM).
+# Global parameters
 ################################################################################
 BATCH_SIZE = 32
 NUM_EPOCHS = 10
 LR_DEFAULT = 1e-4
 NUM_RUNS = 10
-SEQ_LENGTHS = [5, 20]  # as requested
+SEQ_LENGTHS = [5, 20]  
 FISH_LIST = [9, 10, 11, 12, 13]
 
 BASE_SAVE_DIR = os.path.join(os.getcwd(), "results", "experiment_2_corrected")
@@ -33,7 +35,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"[INFO] experiment_2_corrected running on device: {device}")
 
 ################################################################################
-# Quantization config for DeepSeek model (8-bit, set threshold, etc.)
+# 8-bit quantization config for DeepSeek
 ################################################################################
 quant_config = BitsAndBytesConfig(
     load_in_8bit=True,
@@ -47,8 +49,8 @@ def create_sequences(inputs, targets, seq_length):
     sequences_inputs = []
     sequences_targets = []
     for i in range(len(inputs) - seq_length + 1):
-        sequences_inputs.append(inputs[i: i + seq_length])
-        sequences_targets.append(targets[i: i + seq_length])
+        sequences_inputs.append(inputs[i : i + seq_length])
+        sequences_targets.append(targets[i : i + seq_length])
     return torch.stack(sequences_inputs), torch.stack(sequences_targets)
 
 def average_sliding_window_predictions(predictions, seq_length, total_length):
@@ -91,7 +93,6 @@ def train_model(model, optimizer, train_loader, val_loader, device, num_epochs):
                 total_val_loss += loss.item()
         avg_val_loss = total_val_loss / len(val_loader)
         print(f"Epoch {epoch + 1}/{num_epochs} - Train Loss: {avg_train_loss:.4f}, Val Loss: {avg_val_loss:.4f}")
-    return
 
 def get_predictions(model, data_loader, device):
     model.eval()
@@ -176,8 +177,7 @@ class BERTUntrainedModel(nn.Module):
         return logits
 
 ################################################################################
-# DeepSeek (Pretrained MoE) - same approach from experiment_4
-# Using partial freeze, router, top_k, etc.
+# DeepSeek (Pretrained MoE)
 ################################################################################
 HIDDEN_SIZE_DEEPSEEK = 4096
 NUM_EXPERTS = 8
@@ -187,7 +187,7 @@ class DeepSeekPretrainedMoE(nn.Module):
     def __init__(self, input_dim, output_dim):
         super().__init__()
         self.input_proj = nn.Linear(input_dim, HIDDEN_SIZE_DEEPSEEK)
-        # Load pretrained DeepSeek
+        # Load pretrained DeepSeek in 8-bit
         self.model = AutoModel.from_pretrained(
             "deepseek-ai/deepseek-coder-7b",
             trust_remote_code=True,
@@ -195,59 +195,74 @@ class DeepSeekPretrainedMoE(nn.Module):
             quantization_config=quant_config
         )
         self.output_proj = nn.Linear(HIDDEN_SIZE_DEEPSEEK, output_dim)
-        # MoE Router
+
+        # Router for mixture-of-experts
         self.router = nn.Linear(HIDDEN_SIZE_DEEPSEEK, NUM_EXPERTS)
         self.softmax = nn.Softmax(dim=-1)
 
     def forward(self, x):
         x = self.input_proj(x)
         outputs = self.model(inputs_embeds=x, output_hidden_states=True)
-        hidden_states = outputs.hidden_states[-1]  # last hidden states
+        hidden_states = outputs.hidden_states[-1]  # last hidden
         # MoE routing
         router_logits = self.router(hidden_states)
         routing_weights = self.softmax(router_logits)
         top_k_experts = torch.topk(routing_weights, TOP_K, dim=-1)[1]
         aggregated_output = torch.zeros_like(hidden_states)
-
         for i in range(TOP_K):
+            # gather expert i
             expert_idx = top_k_experts[:, :, i].unsqueeze(-1).expand_as(hidden_states)
             expert_output = torch.gather(hidden_states, dim=-1, index=expert_idx)
             aggregated_output += expert_output / TOP_K
-        # final linear
+
         logits = self.output_proj(aggregated_output)
         return logits
 
 ################################################################################
-# DeepSeek (Untrained MoE) - random init, but same architecture
+# DeepSeek (Untrained MoE) - random but also 8-bit
 ################################################################################
 class DeepSeekUntrainedMoE(nn.Module):
     def __init__(self, input_dim, output_dim):
         super().__init__()
         self.input_proj = nn.Linear(input_dim, HIDDEN_SIZE_DEEPSEEK)
-        # Instead of from_pretrained, load from config for random init
-        base_config = AutoModel.from_pretrained(
+        # Load the same architecture in 8-bit
+        self.model = AutoModel.from_pretrained(
             "deepseek-ai/deepseek-coder-7b",
-            trust_remote_code=True
-        ).config
-        self.model = AutoModel.from_config(base_config, trust_remote_code=True)
+            trust_remote_code=True,
+            device_map="auto",
+            quantization_config=quant_config
+        )
+        # Then randomize all weights so it's effectively untrained
+        with torch.no_grad():
+            for param in self.model.parameters():
+                param.normal_(mean=0.0, std=0.02)
+
         self.output_proj = nn.Linear(HIDDEN_SIZE_DEEPSEEK, output_dim)
-        # MoE Router
+
+        # Router
         self.router = nn.Linear(HIDDEN_SIZE_DEEPSEEK, NUM_EXPERTS)
         self.softmax = nn.Softmax(dim=-1)
+        # Random init for router + output_proj if you want them untrained
+        with torch.no_grad():
+            for param in self.router.parameters():
+                param.normal_(mean=0.0, std=0.02)
+            for param in self.output_proj.parameters():
+                param.normal_(mean=0.0, std=0.02)
 
     def forward(self, x):
         x = self.input_proj(x)
         outputs = self.model(inputs_embeds=x, output_hidden_states=True)
         hidden_states = outputs.hidden_states[-1]
+        # MoE routing
         router_logits = self.router(hidden_states)
         routing_weights = self.softmax(router_logits)
         top_k_experts = torch.topk(routing_weights, TOP_K, dim=-1)[1]
         aggregated_output = torch.zeros_like(hidden_states)
-
         for i in range(TOP_K):
             expert_idx = top_k_experts[:, :, i].unsqueeze(-1).expand_as(hidden_states)
             expert_output = torch.gather(hidden_states, dim=-1, index=expert_idx)
             aggregated_output += expert_output / TOP_K
+
         logits = self.output_proj(aggregated_output)
         return logits
 
@@ -255,7 +270,6 @@ class DeepSeekUntrainedMoE(nn.Module):
 # 3) Main Experiment 2
 # Compare: GPT-2 (P vs U), BERT (P vs U), DeepSeek (P vs U)
 ################################################################################
-
 model_variants = [
     ("GPT2 Pretrained", GPT2PretrainedModel),
     ("GPT2 Untrained", GPT2UntrainedModel),
@@ -346,10 +360,13 @@ for fish_num in FISH_LIST:
                 print(f"\n[Run {run}] Training {model_name} ...")
                 model = model_class(input_dim, output_dim).to(device)
 
-                # If DeepSeek Pretrained, freeze all but router & output_proj
-                if model_name == "DeepSeek Pretrained":
+                # For DeepSeek partial freeze (pretrained or untrained):
+                # Freeze the base model, allow router, input_proj, output_proj to train.
+                if "DeepSeek" in model_name:
+                    # freeze all base model
                     for param in model.model.parameters():
                         param.requires_grad = False
+                    # unfreeze these
                     for param in model.router.parameters():
                         param.requires_grad = True
                     for param in model.output_proj.parameters():
@@ -357,11 +374,9 @@ for fish_num in FISH_LIST:
                     for param in model.input_proj.parameters():
                         param.requires_grad = True
 
-                # If still OOM, you can also freeze the input_proj or reduce the dimension.
-
                 optimizer = AdamW(filter(lambda p: p.requires_grad, model.parameters()), lr=LR_DEFAULT)
 
-                # Print GPU usage before training
+                # GPU usage (optional)
                 if torch.cuda.is_available():
                     print("[GPU before training] allocated:", 
                           torch.cuda.memory_allocated(0) / 1e9, "GB",
@@ -369,7 +384,6 @@ for fish_num in FISH_LIST:
 
                 train_model(model, optimizer, train_loader, val_loader, device, NUM_EPOCHS)
 
-                # Print GPU usage after training
                 if torch.cuda.is_available():
                     print("[GPU after training] allocated:", 
                           torch.cuda.memory_allocated(0) / 1e9, "GB",
