@@ -15,33 +15,27 @@ from transformers import (
 from scipy.stats import wilcoxon
 
 ################################################################################
-# Optional GPU info
+# 1) Global Parameters
 ################################################################################
-if torch.cuda.is_available():
-    print("[INFO] Using GPU:", torch.cuda.get_device_name(0))
-    print("[INFO] Initial memory allocated:", torch.cuda.memory_allocated(0) / 1e9, "GB")
-    print("[INFO] Initial memory reserved:", torch.cuda.memory_reserved(0) / 1e9, "GB")
-
-################################################################################
-# Global parameters
-################################################################################
-BATCH_SIZE   = 2    # <-- Try 2 or even 1 to avoid OOM if you only have limited GPU
-NUM_EPOCHS   = 3    # reduce further if memory/time is a problem
-LR_DEFAULT   = 1e-4
-NUM_RUNS     = 1    # just 1 run for debugging; raise to 10 if you have memory/time
-SEQ_LENGTHS  = [5, 20]
-FISH_LIST    = [9]  # You can re-add [9,10,11,12,13], but start with one fish to debug
-
-BASE_SAVE_DIR = os.path.join(os.getcwd(), "results", "experiment_2_no_bnb_replace")
+# Adjust as needed
+BASE_SAVE_DIR = "/hpc/group/naumannlab/jjm132/nlp4neuro/results/experiment_2"
 os.makedirs(BASE_SAVE_DIR, exist_ok=True)
 
+# To avoid OOM with a large float 7B model, use a small batch_size
+BATCH_SIZE   = 2   
+NUM_EPOCHS   = 3   
+LR_DEFAULT   = 1e-4
+NUM_RUNS     = 10        # now 10 runs/trials
+SEQ_LENGTHS  = [5, 20]
+FISH_LIST    = [9, 10, 11, 12, 13]
+
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-print(f"[INFO] experiment_2_no_bnb_replace running on device: {device}")
+if torch.cuda.is_available():
+    print("[INFO] GPU:", torch.cuda.get_device_name(0))
+print(f"[INFO] Running on device: {device}")
 
 ################################################################################
-# 8-bit quantization config for DeepSeek PRETRAINED ONLY
-# (Your older bitsandbytes version can do load_in_8bit from pretrained,
-# but we cannot do random->8bit if we can't import replace_8bit_linear.)
+# 2) 8-bit Quantization Config for DeepSeek PRETRAINED
 ################################################################################
 quant_config = BitsAndBytesConfig(
     load_in_8bit=True,
@@ -49,10 +43,13 @@ quant_config = BitsAndBytesConfig(
 )
 
 ################################################################################
-# Helper Functions
+# 3) Helper Functions
 ################################################################################
 def create_sequences(inputs, targets, seq_length):
-    """ Make sliding-window sequences of length seq_length. """
+    """
+    Make sliding-window sequences of length seq_length.
+    outputs: (N - seq_length+1, seq_length, input_dim)
+    """
     seq_x, seq_y = [], []
     for i in range(len(inputs) - seq_length + 1):
         seq_x.append(inputs[i : i + seq_length])
@@ -61,8 +58,8 @@ def create_sequences(inputs, targets, seq_length):
 
 def average_sliding_window_predictions(predictions, seq_length, total_length):
     """
-    Convert overlapping predictions back to frame-aligned by averaging overlaps.
-    predictions: (num_windows, seq_len, output_dim)
+    Convert overlapping predictions back to frame-aligned by averaging the overlaps.
+    predictions: (num_windows, seq_length, output_dim)
     """
     if torch.is_tensor(predictions):
         predictions = predictions.cpu().numpy()
@@ -103,7 +100,7 @@ def train_model(model, optimizer, train_loader, val_loader, device, num_epochs):
                 loss = criterion(outputs, targets)
                 total_val_loss += loss.item()
         avg_val_loss = total_val_loss / len(val_loader)
-        print(f"Epoch {epoch+1}/{num_epochs} - Train Loss: {avg_train_loss:.4f}, Val Loss: {avg_val_loss:.4f}")
+        print(f"Epoch {epoch+1}/{num_epochs} | Train Loss: {avg_train_loss:.4f}, Val Loss: {avg_val_loss:.4f}")
 
 def get_predictions(model, data_loader, device):
     model.eval()
@@ -119,8 +116,9 @@ def get_predictions(model, data_loader, device):
     return all_preds, all_targets
 
 ################################################################################
-# GPT-2 (pretrained vs untrained)
+# 4) Model Classes
 ################################################################################
+# GPT-2 Pretrained vs Untrained
 class GPT2PretrainedModel(nn.Module):
     def __init__(self, input_dim, output_dim):
         super().__init__()
@@ -152,9 +150,7 @@ class GPT2UntrainedModel(nn.Module):
         logits = self.output_proj(hidden_states)
         return logits
 
-################################################################################
-# BERT (pretrained vs untrained)
-################################################################################
+# BERT Pretrained vs Untrained
 class BERTPretrainedModel(nn.Module):
     def __init__(self, input_dim, output_dim):
         super().__init__()
@@ -186,9 +182,7 @@ class BERTUntrainedModel(nn.Module):
         logits = self.output_proj(hidden_states)
         return logits
 
-################################################################################
-# DeepSeek Pretrained (8-bit)
-################################################################################
+# DeepSeek Pretrained (8-bit) vs Untrained (float, random)
 HIDDEN_SIZE_DEEPSEEK = 4096
 NUM_EXPERTS = 8
 TOP_K = 2
@@ -197,19 +191,13 @@ class DeepSeekPretrainedMoE(nn.Module):
     def __init__(self, input_dim, output_dim):
         super().__init__()
         self.input_proj = nn.Linear(input_dim, HIDDEN_SIZE_DEEPSEEK)
-
-        # Load pretrained DeepSeek in 8-bit
+        # 8-bit pretrained
         self.model = AutoModel.from_pretrained(
             "deepseek-ai/deepseek-coder-7b",
             trust_remote_code=True,
             device_map="auto",
-            quantization_config=BitsAndBytesConfig(
-                load_in_8bit=True,
-                llm_int8_threshold=6.0
-            )
+            quantization_config=quant_config
         )
-
-        # MoE Router
         self.router = nn.Linear(HIDDEN_SIZE_DEEPSEEK, NUM_EXPERTS)
         self.softmax = nn.Softmax(dim=-1)
         self.output_proj = nn.Linear(HIDDEN_SIZE_DEEPSEEK, output_dim)
@@ -218,53 +206,40 @@ class DeepSeekPretrainedMoE(nn.Module):
         x = self.input_proj(x)
         outputs = self.model(inputs_embeds=x, output_hidden_states=True)
         hidden_states = outputs.hidden_states[-1]
-
+        # MoE routing
         router_logits = self.router(hidden_states)
         routing_weights = self.softmax(router_logits)
         top_k_experts = torch.topk(routing_weights, TOP_K, dim=-1)[1]
         aggregated = torch.zeros_like(hidden_states)
-
         for i in range(TOP_K):
             idx = top_k_experts[..., i].unsqueeze(-1).expand_as(hidden_states)
             expert_output = torch.gather(hidden_states, dim=-1, index=idx)
             aggregated += expert_output / TOP_K
-
         return self.output_proj(aggregated)
 
-################################################################################
-# DeepSeek Untrained (float32) - truly random, cannot do 8-bit
-################################################################################
 class DeepSeekUntrainedMoE(nn.Module):
     """
-    Builds a random, float32 version of the 7B model from config. This can be huge
-    in memory. We do partial freeze so we only train input_proj/router/output_proj.
-    If you do not have enough GPU memory, reduce BATCH_SIZE or use half().
-
-    We do NOT do 8-bit or 4-bit conversion, since your bitsandbytes version lacks
-    replace_8bit_linear. This is truly untrained in float.
+    Builds a random float32 7B model from config. Partial freeze to only train
+    input_proj, router, output_proj.  No 8-bit available if bitsandbytes is old.
     """
     def __init__(self, input_dim, output_dim):
         super().__init__()
         self.input_proj = nn.Linear(input_dim, HIDDEN_SIZE_DEEPSEEK)
-
         # Step 1: get config from deepseek-coder-7b
         base_config = AutoModel.from_pretrained(
             "deepseek-ai/deepseek-coder-7b",
             trust_remote_code=True
         ).config
-
-        # Step 2: build fresh random model in float
+        # Step 2: random model
         self.model = AutoModel.from_config(base_config, trust_remote_code=True)
         with torch.no_grad():
             for param in self.model.parameters():
                 param.normal_(mean=0.0, std=0.02)
-
-        # MoE router + output
+        # Router + output
         self.router = nn.Linear(HIDDEN_SIZE_DEEPSEEK, NUM_EXPERTS)
         self.softmax = nn.Softmax(dim=-1)
         self.output_proj = nn.Linear(HIDDEN_SIZE_DEEPSEEK, output_dim)
-
-        # random init for router, output_proj
+        # random init for router & output_proj
         with torch.no_grad():
             for param in self.router.parameters():
                 param.normal_(mean=0.0, std=0.02)
@@ -275,43 +250,38 @@ class DeepSeekUntrainedMoE(nn.Module):
         x = self.input_proj(x)
         outputs = self.model(inputs_embeds=x, output_hidden_states=True)
         hidden_states = outputs.hidden_states[-1]
-
+        # MoE routing
         router_logits = self.router(hidden_states)
         routing_weights = self.softmax(router_logits)
         top_k_experts = torch.topk(routing_weights, TOP_K, dim=-1)[1]
         aggregated = torch.zeros_like(hidden_states)
-
         for i in range(TOP_K):
             idx = top_k_experts[..., i].unsqueeze(-1).expand_as(hidden_states)
             expert_output = torch.gather(hidden_states, dim=-1, index=idx)
             aggregated += expert_output / TOP_K
-
         return self.output_proj(aggregated)
 
 ################################################################################
-# Model variants dictionary
+# 5) Model Variants
 ################################################################################
 model_variants = [
     ("GPT2 Pretrained", GPT2PretrainedModel),
     ("GPT2 Untrained", GPT2UntrainedModel),
     ("BERT Pretrained", BERTPretrainedModel),
     ("BERT Untrained", BERTUntrainedModel),
-    ("DeepSeek Pretrained", DeepSeekPretrainedMoE),   # 8-bit
-    ("DeepSeek Untrained", DeepSeekUntrainedMoE)      # float, random
+    ("DeepSeek Pretrained", DeepSeekPretrainedMoE),
+    ("DeepSeek Untrained", DeepSeekUntrainedMoE),
 ]
 
 ################################################################################
-# Main Experiment Loop
+# 6) Main Experiment
 ################################################################################
 for fish_num in FISH_LIST:
     print("\n===========================================")
     print(f"Starting Experiment 2 for Fish {fish_num}")
     print("===========================================")
 
-    fish_save_dir = os.path.join(BASE_SAVE_DIR, f"fish{fish_num}")
-    os.makedirs(fish_save_dir, exist_ok=True)
-
-    # Load the neural & tail data
+    # Load data
     neural_data = np.load(
         f"/hpc/group/naumannlab/jjm132/data_prepped_for_models/fish{fish_num}_neural_data_matched.npy",
         allow_pickle=True
@@ -320,25 +290,25 @@ for fish_num in FISH_LIST:
         f"/hpc/group/naumannlab/jjm132/data_prepped_for_models/fish{fish_num}_tail_data_matched.npy",
         allow_pickle=True
     )
-
-    # Transpose neural
-    neural_data = neural_data.T  # shape: (time, neurons)
+    neural_data = neural_data.T  # shape: (num_frames, num_neurons)
+    assert neural_data.shape[0] == tail_data.shape[0], "Mismatch in data length"
     print("Neural data shape:", neural_data.shape)
     print("Tail data shape:", tail_data.shape)
-    assert neural_data.shape[0] == tail_data.shape[0], "Mismatch in data length"
 
     total_frames = neural_data.shape[0]
     train_end = int(0.7 * total_frames)
     val_end   = int(0.8 * total_frames)
 
     X_train = neural_data[:train_end]
-    Y_train = tail_data[:train_end]
     X_val   = neural_data[train_end:val_end]
-    Y_val   = tail_data[train_end:val_end]
     X_test  = neural_data[val_end:]
+    Y_train = tail_data[:train_end]
+    Y_val   = tail_data[train_end:val_end]
     Y_test  = tail_data[val_end:]
 
-    np.save(os.path.join(fish_save_dir, f"fish{fish_num}_groundtruth_test.npy"), Y_test)
+    # Save the ground truth test data (once per fish) in the base directory
+    gt_path = os.path.join(BASE_SAVE_DIR, f"fish{fish_num}_test_groundtruth.npy")
+    np.save(gt_path, Y_test)
 
     # Convert to torch
     X_train_t = torch.tensor(X_train, dtype=torch.float32)
@@ -352,51 +322,49 @@ for fish_num in FISH_LIST:
     output_dim = Y_train_t.size(-1)
     print(f"[Fish {fish_num}] input_dim={input_dim}, output_dim={output_dim}")
 
-    # final_rmse[seq_len][model_name] = lists of RMSE (one per run)
+    # final_rmse[seq_len][model_name] = list of RMSE across runs
     final_rmse = {
-        seq_len: {mv[0]: [] for mv in model_variants} for seq_len in SEQ_LENGTHS
+        seq_len: {mv[0]: [] for mv in model_variants}
+        for seq_len in SEQ_LENGTHS
     }
 
-    # multiple runs
-    for run in range(1, NUM_RUNS + 1):
-        print(f"\n=== Fish {fish_num} - Run {run}/{NUM_RUNS} ===")
-        run_folder = os.path.join(fish_save_dir, f"run_{run}")
-        os.makedirs(run_folder, exist_ok=True)
+    ############################################################################
+    # Multiple runs: 10 trials
+    ############################################################################
+    for run_idx in range(1, NUM_RUNS+1):
+        print(f"\n=== Fish {fish_num} - Run {run_idx}/{NUM_RUNS} ===")
 
         for seq_length in SEQ_LENGTHS:
             print(f"\n--- Sequence Length = {seq_length} ---")
-            seq_folder = os.path.join(run_folder, f"seq_{seq_length}")
-            os.makedirs(seq_folder, exist_ok=True)
 
-            # create sliding windows
+            # Create sliding-window sequences
             train_in_seq, train_out_seq = create_sequences(X_train_t, Y_train_t, seq_length)
             val_in_seq,   val_out_seq   = create_sequences(X_val_t,   Y_val_t,   seq_length)
             test_in_seq,  test_out_seq  = create_sequences(X_test_t,  Y_test_t,  seq_length)
 
-            train_dataset = TensorDataset(train_in_seq, train_out_seq)
-            val_dataset   = TensorDataset(val_in_seq,   val_out_seq)
-            test_dataset  = TensorDataset(test_in_seq,  test_out_seq)
+            train_loader = DataLoader(TensorDataset(train_in_seq, train_out_seq),
+                                      batch_size=BATCH_SIZE, shuffle=True)
+            val_loader   = DataLoader(TensorDataset(val_in_seq,   val_out_seq),
+                                      batch_size=BATCH_SIZE)
+            test_loader  = DataLoader(TensorDataset(test_in_seq,  test_out_seq),
+                                      batch_size=BATCH_SIZE)
 
-            train_loader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True)
-            val_loader   = DataLoader(val_dataset,   batch_size=BATCH_SIZE)
-            test_loader  = DataLoader(test_dataset,  batch_size=BATCH_SIZE)
-
-            # Train/eval all 6 variants
+            # Train/Eval all model variants
             for model_name, model_class in model_variants:
-                print(f"\n[Run {run}] Training {model_name} ...")
+                print(f"\n[Run {run_idx}] Training {model_name} ...")
 
+                # If DeepSeek Untrained => big float model
                 if model_name == "DeepSeek Untrained":
-                    # This is float 7B, watch out for OOM
                     model = model_class(input_dim, output_dim).to(device)
                 else:
                     model = model_class(input_dim, output_dim).to(device)
 
-                # Partial freeze for DeepSeek (both pretrained & untrained):
+                # Partial freeze for DeepSeek
                 if "DeepSeek" in model_name:
-                    # Freeze the base model
+                    # freeze base model
                     for param in model.model.parameters():
                         param.requires_grad = False
-                    # Unfreeze input_proj, router, output_proj
+                    # unfreeze input_proj, router, output_proj
                     for param in model.input_proj.parameters():
                         param.requires_grad = True
                     for param in model.router.parameters():
@@ -404,25 +372,36 @@ for fish_num in FISH_LIST:
                     for param in model.output_proj.parameters():
                         param.requires_grad = True
 
-                optimizer = AdamW(
-                    filter(lambda p: p.requires_grad, model.parameters()),
-                    lr=LR_DEFAULT
+                optimizer = AdamW(filter(lambda p: p.requires_grad, model.parameters()),
+                                  lr=LR_DEFAULT)
+
+                # Train
+                train_model(model, optimizer, train_loader, val_loader, device, NUM_EPOCHS)
+
+                # Predict on test
+                preds_tensor, _ = get_predictions(model, test_loader, device)
+                final_preds = average_sliding_window_predictions(
+                    preds_tensor, seq_length, len(X_test_t)
                 )
 
-                train_model(model, optimizer, train_loader, val_loader, device, NUM_EPOCHS)
-                preds, _ = get_predictions(model, test_loader, device)
-                final_preds = average_sliding_window_predictions(preds, seq_length, len(X_test_t))
+                # Save predictions in base directory:
+                # e.g. fish9_model_DeepSeek_Untrained_run5_seq20_test_preds.npy
+                pred_filename = (
+                    f"fish{fish_num}_model_{model_name.replace(' ','_')}"
+                    f"_run{run_idx}_seq{seq_length}_test_preds.npy"
+                )
+                pred_path = os.path.join(BASE_SAVE_DIR, pred_filename)
+                np.save(pred_path, final_preds)
 
-                # save preds
-                save_pred_path = os.path.join(seq_folder, f"{model_name.replace(' ','_')}_test_preds.npy")
-                np.save(save_pred_path, final_preds)
-
-                # compute RMSE
+                # Compute RMSE
                 rmse_val = compute_rmse(final_preds, Y_test)
                 final_rmse[seq_length][model_name].append(rmse_val)
-                print(f"{model_name} - RMSE: {rmse_val:.4f}")
+                print(f"{model_name} => RMSE: {rmse_val:.4f}")
 
-    # After all runs: bar plots + Wilcoxon
+    ############################################################################
+    # After all runs => bar plots + Wilcoxon
+    ############################################################################
+    # One bar plot per seq_length
     for seq_length in SEQ_LENGTHS:
         mnames = [mv[0] for mv in model_variants]
         rmse_data = [final_rmse[seq_length][mn] for mn in mnames]
@@ -430,50 +409,58 @@ for fish_num in FISH_LIST:
         stderrs = [np.std(r)/np.sqrt(len(r)) for r in rmse_data]
 
         x = np.arange(len(mnames))
-        width = 0.6
         fig, ax = plt.subplots(figsize=(10,6))
         ax.bar(x, means, yerr=stderrs, capsize=4)
         ax.set_xticks(x)
         ax.set_xticklabels(mnames, rotation=20)
         ax.set_ylabel("RMSE")
-        ax.set_title(f"Fish {fish_num} - SeqLength {seq_length} (Mean ± SEM over {NUM_RUNS} runs)")
+        ax.set_title(
+            f"Fish {fish_num} - SeqLength {seq_length}\n"
+            f"Mean ± SEM over {NUM_RUNS} runs"
+        )
         plt.tight_layout()
 
-        barplot_path = os.path.join(fish_save_dir, f"fish{fish_num}_seq{seq_length}_barplot.png")
+        # Save bar plot in fish subfolder
+        barplot_path = os.path.join(
+            BASE_SAVE_DIR,
+            f"fish{fish_num}_seq{seq_length}_barplot.png"
+        )
         plt.savefig(barplot_path)
         plt.close()
         print(f"Saved bar plot => {barplot_path}")
 
-    # Wilcoxon test: pretrained vs untrained
+    # Wilcoxon test: pretrained vs. untrained for each family
     sig_results = []
     for seq_length in SEQ_LENGTHS:
-        sig_results.append(f"--- Sequence Length = {seq_length} ---")
+        sig_results.append(f"=== Sequence Length = {seq_length} ===")
 
         # GPT-2
         gp = np.array(final_rmse[seq_length]["GPT2 Pretrained"])
         gu = np.array(final_rmse[seq_length]["GPT2 Untrained"])
         stat, pval = wilcoxon(gp, gu)
-        sig_results.append(f"GPT2 (P vs U): p-value = {pval:.4e}")
+        sig_results.append(f"GPT2 (Pre vs Un): p-value = {pval:.4e}")
 
         # BERT
         bp = np.array(final_rmse[seq_length]["BERT Pretrained"])
         bu = np.array(final_rmse[seq_length]["BERT Untrained"])
         stat, pval = wilcoxon(bp, bu)
-        sig_results.append(f"BERT (P vs U): p-value = {pval:.4e}")
+        sig_results.append(f"BERT (Pre vs Un): p-value = {pval:.4e}")
 
         # DeepSeek
         dp = np.array(final_rmse[seq_length]["DeepSeek Pretrained"])
         du = np.array(final_rmse[seq_length]["DeepSeek Untrained"])
         stat, pval = wilcoxon(dp, du)
-        sig_results.append(f"DeepSeek (P vs U): p-value = {pval:.4e}")
+        sig_results.append(f"DeepSeek (Pre vs Un): p-value = {pval:.4e}")
 
         sig_results.append("")
 
-    sig_file = os.path.join(fish_save_dir, f"fish{fish_num}_wilcoxon_results.txt")
-    with open(sig_file, "w") as f:
+    # Save significance results in base directory
+    sig_filename = f"fish{fish_num}_wilcoxon_results.txt"
+    sig_path = os.path.join(BASE_SAVE_DIR, sig_filename)
+    with open(sig_path, "w") as f:
         for line in sig_results:
             f.write(line + "\n")
-    print(f"[INFO] Wilcoxon results saved => {sig_file}")
+    print(f"[INFO] Wilcoxon results => {sig_path}")
     print(f"=== Done with Fish {fish_num} ===\n")
 
 print("[INFO] All done. Experiment 2 completed for all fish!")
