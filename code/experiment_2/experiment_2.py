@@ -1,14 +1,21 @@
 import os
 import numpy as np
+import matplotlib
+matplotlib.use("Agg")  # for headless environments
 import matplotlib.pyplot as plt
+
 import torch
 import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader, TensorDataset
+
 from transformers import (
     GPT2Config, GPT2Model, AdamW, AutoModel, BertModel, BertConfig, BitsAndBytesConfig
 )
 from scipy.stats import wilcoxon
+
+# For randomizing a fresh model and converting to 8-bit
+from bitsandbytes import replace_8bit_linear
 
 ################################################################################
 # Optional GPU info
@@ -21,18 +28,18 @@ if torch.cuda.is_available():
 ################################################################################
 # Global parameters
 ################################################################################
-BATCH_SIZE = 32
-NUM_EPOCHS = 10
-LR_DEFAULT = 1e-4
-NUM_RUNS = 10
-SEQ_LENGTHS = [5, 20]  
-FISH_LIST = [9, 10, 11, 12, 13]
+BATCH_SIZE   = 32   # Lower if you see OOM
+NUM_EPOCHS   = 10
+LR_DEFAULT   = 1e-4
+NUM_RUNS     = 10
+SEQ_LENGTHS  = [5, 20]
+FISH_LIST    = [9, 10, 11, 12, 13]
 
-BASE_SAVE_DIR = os.path.join(os.getcwd(), "results", "experiment_2_corrected")
+BASE_SAVE_DIR = os.path.join(os.getcwd(), "results", "experiment_2_untrained_fixed")
 os.makedirs(BASE_SAVE_DIR, exist_ok=True)
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-print(f"[INFO] experiment_2_corrected running on device: {device}")
+print(f"[INFO] experiment_2: running on device: {device}")
 
 ################################################################################
 # 8-bit quantization config for DeepSeek
@@ -46,17 +53,21 @@ quant_config = BitsAndBytesConfig(
 # Helper Functions
 ################################################################################
 def create_sequences(inputs, targets, seq_length):
-    sequences_inputs = []
-    sequences_targets = []
+    """ Make sliding-window sequences of length seq_length. """
+    seq_x, seq_y = [], []
     for i in range(len(inputs) - seq_length + 1):
-        sequences_inputs.append(inputs[i : i + seq_length])
-        sequences_targets.append(targets[i : i + seq_length])
-    return torch.stack(sequences_inputs), torch.stack(sequences_targets)
+        seq_x.append(inputs[i : i + seq_length])
+        seq_y.append(targets[i : i + seq_length])
+    return torch.stack(seq_x), torch.stack(seq_y)
 
 def average_sliding_window_predictions(predictions, seq_length, total_length):
+    """
+    Convert overlapping predictions back to frame-aligned by averaging overlaps.
+    predictions: (num_windows, seq_len, output_dim)
+    """
     if torch.is_tensor(predictions):
         predictions = predictions.cpu().numpy()
-    num_windows, seq_len, out_dim = predictions.shape
+    num_windows, _, out_dim = predictions.shape
     averaged = np.zeros((total_length, out_dim))
     counts = np.zeros(total_length)
     for i in range(num_windows):
@@ -83,6 +94,7 @@ def train_model(model, optimizer, train_loader, val_loader, device, num_epochs):
             total_train_loss += loss.item()
         avg_train_loss = total_train_loss / len(train_loader)
 
+        # Validation
         model.eval()
         total_val_loss = 0.0
         with torch.no_grad():
@@ -92,12 +104,11 @@ def train_model(model, optimizer, train_loader, val_loader, device, num_epochs):
                 loss = criterion(outputs, targets)
                 total_val_loss += loss.item()
         avg_val_loss = total_val_loss / len(val_loader)
-        print(f"Epoch {epoch + 1}/{num_epochs} - Train Loss: {avg_train_loss:.4f}, Val Loss: {avg_val_loss:.4f}")
+        print(f"Epoch {epoch+1}/{num_epochs} - Train Loss: {avg_train_loss:.4f}, Val Loss: {avg_val_loss:.4f}")
 
 def get_predictions(model, data_loader, device):
     model.eval()
-    preds_list = []
-    targets_list = []
+    preds_list, targets_list = [], []
     with torch.no_grad():
         for inputs, targets in data_loader:
             inputs, targets = inputs.to(device), targets.to(device)
@@ -108,8 +119,9 @@ def get_predictions(model, data_loader, device):
     all_targets = torch.cat(targets_list, dim=0)
     return all_preds, all_targets
 
+
 ################################################################################
-# GPT2 (pretrained vs untrained)
+# 1) GPT-2 (pretrained vs untrained)
 ################################################################################
 class GPT2PretrainedModel(nn.Module):
     def __init__(self, input_dim, output_dim):
@@ -142,8 +154,9 @@ class GPT2UntrainedModel(nn.Module):
         logits = self.output_proj(hidden_states)
         return logits
 
+
 ################################################################################
-# BERT (pretrained vs untrained)
+# 2) BERT (pretrained vs untrained)
 ################################################################################
 class BERTPretrainedModel(nn.Module):
     def __init__(self, input_dim, output_dim):
@@ -176,8 +189,9 @@ class BERTUntrainedModel(nn.Module):
         logits = self.output_proj(hidden_states)
         return logits
 
+
 ################################################################################
-# DeepSeek (Pretrained MoE)
+# 3) DeepSeek Pretrained (8-bit)
 ################################################################################
 HIDDEN_SIZE_DEEPSEEK = 4096
 NUM_EXPERTS = 8
@@ -194,55 +208,70 @@ class DeepSeekPretrainedMoE(nn.Module):
             device_map="auto",
             quantization_config=quant_config
         )
-        self.output_proj = nn.Linear(HIDDEN_SIZE_DEEPSEEK, output_dim)
 
-        # Router for mixture-of-experts
+        # MoE Router
         self.router = nn.Linear(HIDDEN_SIZE_DEEPSEEK, NUM_EXPERTS)
         self.softmax = nn.Softmax(dim=-1)
+        self.output_proj = nn.Linear(HIDDEN_SIZE_DEEPSEEK, output_dim)
 
     def forward(self, x):
         x = self.input_proj(x)
         outputs = self.model(inputs_embeds=x, output_hidden_states=True)
-        hidden_states = outputs.hidden_states[-1]  # last hidden
-        # MoE routing
+        hidden_states = outputs.hidden_states[-1]  # last hidden states
+
+        # Mixture-of-Experts
         router_logits = self.router(hidden_states)
         routing_weights = self.softmax(router_logits)
         top_k_experts = torch.topk(routing_weights, TOP_K, dim=-1)[1]
-        aggregated_output = torch.zeros_like(hidden_states)
-        for i in range(TOP_K):
-            # gather expert i
-            expert_idx = top_k_experts[:, :, i].unsqueeze(-1).expand_as(hidden_states)
-            expert_output = torch.gather(hidden_states, dim=-1, index=expert_idx)
-            aggregated_output += expert_output / TOP_K
+        aggregated = torch.zeros_like(hidden_states)
 
-        logits = self.output_proj(aggregated_output)
-        return logits
+        for i in range(TOP_K):
+            idx = top_k_experts[..., i].unsqueeze(-1).expand_as(hidden_states)
+            expert_output = torch.gather(hidden_states, dim=-1, index=idx)
+            aggregated += expert_output / TOP_K
+
+        return self.output_proj(aggregated)
+
 
 ################################################################################
-# DeepSeek (Untrained MoE) - random but also 8-bit
+# 4) DeepSeek Untrained (8-bit) - truly random
 ################################################################################
 class DeepSeekUntrainedMoE(nn.Module):
-    def __init__(self, input_dim, output_dim):
+    def __init__(self, input_dim, output_dim, device="cuda"):
         super().__init__()
         self.input_proj = nn.Linear(input_dim, HIDDEN_SIZE_DEEPSEEK)
-        # Load the same architecture in 8-bit
-        self.model = AutoModel.from_pretrained(
-            "deepseek-ai/deepseek-coder-7b",
-            trust_remote_code=True,
-            device_map="auto",
-            quantization_config=quant_config
-        )
-        # Then randomize all weights so it's effectively untrained
+
+        ###############################
+        # STEP 1: Get the config from the existing pretrained model
+        ###############################
+        base_config = AutoModel.from_pretrained(
+            "deepseek-ai/deepseek-coder-7b",  # just to get config
+            trust_remote_code=True
+        ).config
+
+        ###############################
+        # STEP 2: Build a fresh random model in full precision
+        ###############################
+        self.model = AutoModel.from_config(base_config, trust_remote_code=True)
+        # Randomize
         with torch.no_grad():
             for param in self.model.parameters():
                 param.normal_(mean=0.0, std=0.02)
 
-        self.output_proj = nn.Linear(HIDDEN_SIZE_DEEPSEEK, output_dim)
+        ###############################
+        # STEP 3: Convert to 8-bit using bitsandbytes
+        ###############################
+        self.model = replace_8bit_linear(self.model)  # now 8-bit
+        self.model.to(device)
 
-        # Router
+        ###############################
+        # MoE Router
+        ###############################
         self.router = nn.Linear(HIDDEN_SIZE_DEEPSEEK, NUM_EXPERTS)
         self.softmax = nn.Softmax(dim=-1)
-        # Random init for router + output_proj if you want them untrained
+        self.output_proj = nn.Linear(HIDDEN_SIZE_DEEPSEEK, output_dim)
+
+        # random init for router + output_proj
         with torch.no_grad():
             for param in self.router.parameters():
                 param.normal_(mean=0.0, std=0.02)
@@ -253,22 +282,23 @@ class DeepSeekUntrainedMoE(nn.Module):
         x = self.input_proj(x)
         outputs = self.model(inputs_embeds=x, output_hidden_states=True)
         hidden_states = outputs.hidden_states[-1]
+
         # MoE routing
         router_logits = self.router(hidden_states)
         routing_weights = self.softmax(router_logits)
         top_k_experts = torch.topk(routing_weights, TOP_K, dim=-1)[1]
-        aggregated_output = torch.zeros_like(hidden_states)
-        for i in range(TOP_K):
-            expert_idx = top_k_experts[:, :, i].unsqueeze(-1).expand_as(hidden_states)
-            expert_output = torch.gather(hidden_states, dim=-1, index=expert_idx)
-            aggregated_output += expert_output / TOP_K
+        aggregated = torch.zeros_like(hidden_states)
 
-        logits = self.output_proj(aggregated_output)
-        return logits
+        for i in range(TOP_K):
+            idx = top_k_experts[..., i].unsqueeze(-1).expand_as(hidden_states)
+            expert_output = torch.gather(hidden_states, dim=-1, index=idx)
+            aggregated += expert_output / TOP_K
+
+        return self.output_proj(aggregated)
+
 
 ################################################################################
-# 3) Main Experiment 2
-# Compare: GPT-2 (P vs U), BERT (P vs U), DeepSeek (P vs U)
+# 5) Model variants dictionary
 ################################################################################
 model_variants = [
     ("GPT2 Pretrained", GPT2PretrainedModel),
@@ -279,6 +309,9 @@ model_variants = [
     ("DeepSeek Untrained", DeepSeekUntrainedMoE),
 ]
 
+################################################################################
+# 6) Main Experiment Loop
+################################################################################
 for fish_num in FISH_LIST:
     print("\n===========================================")
     print(f"Starting Experiment 2 for Fish {fish_num}")
@@ -287,7 +320,7 @@ for fish_num in FISH_LIST:
     fish_save_dir = os.path.join(BASE_SAVE_DIR, f"fish{fish_num}")
     os.makedirs(fish_save_dir, exist_ok=True)
 
-    # Load data
+    # Load the neural & tail data
     neural_data = np.load(
         f"/hpc/group/naumannlab/jjm132/data_prepped_for_models/fish{fish_num}_neural_data_matched.npy",
         allow_pickle=True
@@ -296,16 +329,15 @@ for fish_num in FISH_LIST:
         f"/hpc/group/naumannlab/jjm132/data_prepped_for_models/fish{fish_num}_tail_data_matched.npy",
         allow_pickle=True
     )
-    neural_data = neural_data.T  # shape: (num_frames, num_neurons)
+    # Transpose neural
+    neural_data = neural_data.T  # shape: (time, neurons)
     print("Neural data shape:", neural_data.shape)
     print("Tail data shape:", tail_data.shape)
-
     assert neural_data.shape[0] == tail_data.shape[0], "Mismatch in data length"
-    total_frames = neural_data.shape[0]
 
-    # Train/val/test split
+    total_frames = neural_data.shape[0]
     train_end = int(0.7 * total_frames)
-    val_end = int(0.8 * total_frames)
+    val_end   = int(0.8 * total_frames)
 
     X_train = neural_data[:train_end]
     Y_train = tail_data[:train_end]
@@ -324,16 +356,14 @@ for fish_num in FISH_LIST:
     X_test_t  = torch.tensor(X_test,  dtype=torch.float32)
     Y_test_t  = torch.tensor(Y_test,  dtype=torch.float32)
 
-    input_dim = X_train_t.size(-1)
+    input_dim  = X_train_t.size(-1)
     output_dim = Y_train_t.size(-1)
     print(f"[Fish {fish_num}] input_dim={input_dim}, output_dim={output_dim}")
 
-    # final_rmse[seq_len][model_name] = list of RMSE across runs
-    final_rmse = {s: {m[0]: [] for m in model_variants} for s in SEQ_LENGTHS}
+    # final_rmse[seq_len][model_name] = list of 10 RMSE values
+    final_rmse = {seq_len: {mv[0]: [] for mv in model_variants} for seq_len in SEQ_LENGTHS}
 
-    ############################################################################
-    # Multiple runs
-    ############################################################################
+    # multiple runs
     for run in range(1, NUM_RUNS + 1):
         print(f"\n=== Fish {fish_num} - Run {run}/{NUM_RUNS} ===")
         run_folder = os.path.join(fish_save_dir, f"run_{run}")
@@ -344,119 +374,113 @@ for fish_num in FISH_LIST:
             seq_folder = os.path.join(run_folder, f"seq_{seq_length}")
             os.makedirs(seq_folder, exist_ok=True)
 
-            # Create sliding-window sequences
+            # create sliding windows
             train_in_seq, train_out_seq = create_sequences(X_train_t, Y_train_t, seq_length)
             val_in_seq,   val_out_seq   = create_sequences(X_val_t,   Y_val_t,   seq_length)
             test_in_seq,  test_out_seq  = create_sequences(X_test_t,  Y_test_t,  seq_length)
 
-            train_loader = DataLoader(TensorDataset(train_in_seq, train_out_seq), 
-                                      batch_size=BATCH_SIZE, shuffle=True)
-            val_loader   = DataLoader(TensorDataset(val_in_seq,   val_out_seq), 
-                                      batch_size=BATCH_SIZE)
-            test_loader  = DataLoader(TensorDataset(test_in_seq,  test_out_seq), 
-                                      batch_size=BATCH_SIZE)
+            train_dataset = TensorDataset(train_in_seq, train_out_seq)
+            val_dataset   = TensorDataset(val_in_seq,   val_out_seq)
+            test_dataset  = TensorDataset(test_in_seq,  test_out_seq)
 
+            train_loader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True)
+            val_loader   = DataLoader(val_dataset,   batch_size=BATCH_SIZE)
+            test_loader  = DataLoader(test_dataset,  batch_size=BATCH_SIZE)
+
+            # Train/eval all 6 variants
             for model_name, model_class in model_variants:
                 print(f"\n[Run {run}] Training {model_name} ...")
-                model = model_class(input_dim, output_dim).to(device)
 
-                # For DeepSeek partial freeze (pretrained or untrained):
-                # Freeze the base model, allow router, input_proj, output_proj to train.
+                # If untrained deepseek, we pass device, otherwise just input_dim, output_dim
+                if model_name == "DeepSeek Untrained":
+                    model = model_class(input_dim, output_dim, device=device)
+                else:
+                    model = model_class(input_dim, output_dim).to(device)
+
+                # Partial freeze for DeepSeek (both pretrained & untrained):
                 if "DeepSeek" in model_name:
-                    # freeze all base model
+                    # Freeze the base model
                     for param in model.model.parameters():
                         param.requires_grad = False
-                    # unfreeze these
+                    # Unfreeze input_proj, router, output_proj
+                    for param in model.input_proj.parameters():
+                        param.requires_grad = True
                     for param in model.router.parameters():
                         param.requires_grad = True
                     for param in model.output_proj.parameters():
                         param.requires_grad = True
-                    for param in model.input_proj.parameters():
-                        param.requires_grad = True
 
-                optimizer = AdamW(filter(lambda p: p.requires_grad, model.parameters()), lr=LR_DEFAULT)
+                optimizer = AdamW(
+                    filter(lambda p: p.requires_grad, model.parameters()),
+                    lr=LR_DEFAULT
+                )
 
-                # GPU usage (optional)
-                if torch.cuda.is_available():
-                    print("[GPU before training] allocated:", 
-                          torch.cuda.memory_allocated(0) / 1e9, "GB",
-                          "| reserved:", torch.cuda.memory_reserved(0) / 1e9, "GB")
-
+                # Possibly print GPU usage here if desired
                 train_model(model, optimizer, train_loader, val_loader, device, NUM_EPOCHS)
-
-                if torch.cuda.is_available():
-                    print("[GPU after training] allocated:", 
-                          torch.cuda.memory_allocated(0) / 1e9, "GB",
-                          "| reserved:", torch.cuda.memory_reserved(0) / 1e9, "GB")
-
                 preds, _ = get_predictions(model, test_loader, device)
                 final_preds = average_sliding_window_predictions(preds, seq_length, len(X_test_t))
 
-                # Save predictions
-                pred_file = os.path.join(seq_folder, f"{model_name.replace(' ','_')}_test_preds.npy")
-                np.save(pred_file, final_preds)
+                # save preds
+                save_pred_path = os.path.join(seq_folder, f"{model_name.replace(' ','_')}_test_preds.npy")
+                np.save(save_pred_path, final_preds)
 
-                # Compute RMSE
+                # compute RMSE
                 rmse_val = compute_rmse(final_preds, Y_test)
                 final_rmse[seq_length][model_name].append(rmse_val)
                 print(f"{model_name} - RMSE: {rmse_val:.4f}")
 
-    ############################################################################
-    # 4) Make bar plots comparing all six variants for each seq_length
-    ############################################################################
+    # After all runs: bar plots + Wilcoxon
     for seq_length in SEQ_LENGTHS:
-        mnames = [m[0] for m in model_variants]
+        mnames = [mv[0] for mv in model_variants]
         rmse_data = [final_rmse[seq_length][mn] for mn in mnames]
-        rmse_means = [np.mean(r) for r in rmse_data]
-        rmse_stderrs = [np.std(r)/np.sqrt(len(r)) for r in rmse_data]
+        means = [np.mean(r) for r in rmse_data]
+        stderrs = [np.std(r)/np.sqrt(len(r)) for r in rmse_data]
 
         x = np.arange(len(mnames))
         width = 0.6
-        fig, ax = plt.subplots(figsize=(10, 6))
-        ax.bar(x, rmse_means, yerr=rmse_stderrs, capsize=4)
+        fig, ax = plt.subplots(figsize=(10,6))
+        ax.bar(x, means, yerr=stderrs, capsize=4)
         ax.set_xticks(x)
         ax.set_xticklabels(mnames, rotation=20)
         ax.set_ylabel("RMSE")
-        ax.set_title(f"Fish {fish_num} - Seq Length {seq_length} (Mean ± SEM over {NUM_RUNS} runs)")
+        ax.set_title(f"Fish {fish_num} - SeqLength {seq_length} (Mean ± SEM over {NUM_RUNS} runs)")
         plt.tight_layout()
 
-        plot_path = os.path.join(fish_save_dir, f"fish{fish_num}_seq{seq_length}_barplot.png")
-        plt.savefig(plot_path)
+        barplot_path = os.path.join(fish_save_dir, f"fish{fish_num}_seq{seq_length}_barplot.png")
+        plt.savefig(barplot_path)
         plt.close()
-        print(f"Saved bar plot for seq {seq_length} to {plot_path}")
+        print(f"Saved bar plot => {barplot_path}")
 
-    ############################################################################
-    # 5) Wilcoxon tests: pretrained vs untrained for each model class
-    ############################################################################
-    significance_results = []
+    # Wilcoxon test: pretrained vs untrained
+    sig_results = []
     for seq_length in SEQ_LENGTHS:
-        significance_results.append(f"--- Sequence Length = {seq_length} ---")
+        sig_results.append(f"--- Sequence Length = {seq_length} ---")
 
         # GPT-2
         gp = np.array(final_rmse[seq_length]["GPT2 Pretrained"])
         gu = np.array(final_rmse[seq_length]["GPT2 Untrained"])
         stat, pval = wilcoxon(gp, gu)
-        significance_results.append(f"GPT2 (P vs U): p-value = {pval:.4e}")
+        sig_results.append(f"GPT2 (P vs U): p-value = {pval:.4e}")
 
         # BERT
         bp = np.array(final_rmse[seq_length]["BERT Pretrained"])
         bu = np.array(final_rmse[seq_length]["BERT Untrained"])
         stat, pval = wilcoxon(bp, bu)
-        significance_results.append(f"BERT (P vs U): p-value = {pval:.4e}")
+        sig_results.append(f"BERT (P vs U): p-value = {pval:.4e}")
 
         # DeepSeek
         dp = np.array(final_rmse[seq_length]["DeepSeek Pretrained"])
         du = np.array(final_rmse[seq_length]["DeepSeek Untrained"])
         stat, pval = wilcoxon(dp, du)
-        significance_results.append(f"DeepSeek (P vs U): p-value = {pval:.4e}")
+        sig_results.append(f"DeepSeek (P vs U): p-value = {pval:.4e}")
 
-        significance_results.append("")
+        sig_results.append("")
 
-    sig_file_path = os.path.join(fish_save_dir, f"fish{fish_num}_wilcoxon_results.txt")
-    with open(sig_file_path, "w") as f:
-        for line in significance_results:
+    sig_file = os.path.join(fish_save_dir, f"fish{fish_num}_wilcoxon_results.txt")
+    with open(sig_file, "w") as f:
+        for line in sig_results:
             f.write(line + "\n")
-    print(f"[INFO] Wilcoxon results saved to {sig_file_path}")
+    print(f"[INFO] Wilcoxon results saved => {sig_file}")
     print(f"=== Done with Fish {fish_num} ===\n")
 
-print("[INFO] Experiment 2 completed for all fish.")
+print("[INFO] All done. Experiment 2 completed for all fish!")
