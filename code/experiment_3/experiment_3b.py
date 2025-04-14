@@ -34,7 +34,7 @@ data_dir = f"/hpc/group/naumannlab/jjm132/data_prepped_for_models"
 neural_data_orig = np.load(
     os.path.join(data_dir, f"fish{fish_num}_neural_data_matched.npy"), 
     allow_pickle=True
-)[:, :-2]  # shape: (num_neurons, num_timepoints) in your original storage
+)[:, :-2]  # shape: (num_neurons, num_timepoints)
 tail_data_orig = np.load(
     os.path.join(data_dir, f"fish{fish_num}_tail_data_matched.npy"), 
     allow_pickle=True
@@ -57,11 +57,15 @@ Y_train_full = tail_data_orig[:train_end]
 Y_val_full   = tail_data_orig[train_end:val_end]
 Y_test_full  = tail_data_orig[val_end:]
 
+# The output dimension is simply the number of tail features.
+output_dim = Y_train_full.shape[1]
+
 # Save ground truths (without removal) for final reference
 np.save(os.path.join(RESULTS_DIR, "groundtruth_val.npy"), Y_val_full)
 np.save(os.path.join(RESULTS_DIR, "groundtruth_test.npy"), Y_test_full)
 
 print("Ground truth for val/test saved in", RESULTS_DIR)
+print(f"Output_dim = {output_dim}")
 
 
 ###############################################################################
@@ -414,6 +418,8 @@ for scenario in SCENARIOS:
                 hidden_size = fam_params["hidden_size"]
                 embedding_instance = emb_class(input_dim_scenario, hidden_size)
                 ModelClass = fam_params["ModelClass"]
+                
+                # <--- here's where we use the 'output_dim' we defined earlier
                 model = ModelClass(embedding_instance, output_dim).to(device)
 
                 optimizer = AdamW(
@@ -454,7 +460,6 @@ for scenario in SCENARIOS:
                 )
                 if not os.path.exists(save_truth_path):
                     np.save(save_truth_path, Y_test_full)
-
 
 ###############################################################################
 # 7) After all runs: bar plots and significance tests
