@@ -1,8 +1,8 @@
 #!/bin/bash
 
 #SBATCH --job-name=nlp4neuro          # Job name
-#SBATCH --output=logs/nlp4neuro_exp1_%j.out # Standard output file (%j will be replaced by the job ID)
-#SBATCH --error=logs/nlp4neuro_exp1_%j.err  # Standard error file
+#SBATCH --output=logs/nlp4neuro_exp6_%j.out # Standard output file (%j will be replaced by the job ID)
+#SBATCH --error=logs/nlp4neuro_exp6_%j.err  # Standard error file
 #SBATCH --time=72:00:00                    # Max run time (adjust as needed)
 #SBATCH --mem=64G                         # Memory request per node
 #SBATCH --cpus-per-task=8                  # Number of CPU cores per task
@@ -19,4 +19,4 @@
 source /hpc/group/naumannlab/jjm132/miniconda3/bin/activate jjmenv
 
 # Run your python script
-python experiment_1.py
+python experiment_6.py
