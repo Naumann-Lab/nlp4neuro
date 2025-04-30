@@ -1,0 +1,95 @@
+[INFO] Using GPU: NVIDIA RTX 6000 Ada Generation
+[INFO] Initial memory allocated: 0.0 GB
+[INFO] Initial memory reserved: 0.0 GB
+[INFO] experiment_2_no_bnb_replace running on device: cuda
+
+===========================================
+Starting Experiment 2 for Fish 9
+===========================================
+Neural data shape: (3047, 12499)
+Tail data shape: (3047, 6)
+[Fish 9] input_dim=12499, output_dim=6
+
+=== Fish 9 - Run 1/1 ===
+
+--- Sequence Length = 5 ---
+
+[Run 1] Training GPT2 Pretrained ...
+Epoch 1/3 - Train Loss: 0.0714, Val Loss: 0.0037
+Epoch 2/3 - Train Loss: 0.0096, Val Loss: 0.0023
+Epoch 3/3 - Train Loss: 0.0064, Val Loss: 0.0067
+GPT2 Pretrained - RMSE: 0.0969
+
+[Run 1] Training GPT2 Untrained ...
+Epoch 1/3 - Train Loss: 0.0260, Val Loss: 0.0014
+Epoch 2/3 - Train Loss: 0.0046, Val Loss: 0.0019
+Epoch 3/3 - Train Loss: 0.0042, Val Loss: 0.0012
+GPT2 Untrained - RMSE: 0.0363
+
+[Run 1] Training BERT Pretrained ...
+Epoch 1/3 - Train Loss: 0.0130, Val Loss: 0.0033
+Epoch 2/3 - Train Loss: 0.0035, Val Loss: 0.0011
+Epoch 3/3 - Train Loss: 0.0031, Val Loss: 0.0022
+BERT Pretrained - RMSE: 0.0601
+
+[Run 1] Training BERT Untrained ...
+Epoch 1/3 - Train Loss: 0.0294, Val Loss: 0.0021
+Epoch 2/3 - Train Loss: 0.0061, Val Loss: 0.0019
+Epoch 3/3 - Train Loss: 0.0040, Val Loss: 0.0024
+BERT Untrained - RMSE: 0.0593
+
+[Run 1] Training DeepSeek Pretrained ...
+Epoch 1/3 - Train Loss: 0.0509, Val Loss: 0.0021
+Epoch 2/3 - Train Loss: 0.0019, Val Loss: 0.0014
+Epoch 3/3 - Train Loss: 0.0020, Val Loss: 0.0026
+DeepSeek Pretrained - RMSE: 0.0584
+
+[Run 1] Training DeepSeek Untrained ...
+Epoch 1/3 - Train Loss: 0.1398, Val Loss: 0.0036
+Epoch 2/3 - Train Loss: 0.0015, Val Loss: 0.0013
+Epoch 3/3 - Train Loss: 0.0014, Val Loss: 0.0033
+DeepSeek Untrained - RMSE: 0.0669
+
+--- Sequence Length = 20 ---
+
+[Run 1] Training GPT2 Pretrained ...
+Epoch 1/3 - Train Loss: 0.0509, Val Loss: 0.0060
+Epoch 2/3 - Train Loss: 0.0080, Val Loss: 0.0055
+Epoch 3/3 - Train Loss: 0.0053, Val Loss: 0.0018
+GPT2 Pretrained - RMSE: 0.0550
+
+[Run 1] Training GPT2 Untrained ...
+Epoch 1/3 - Train Loss: 0.0261, Val Loss: 0.0012
+Epoch 2/3 - Train Loss: 0.0039, Val Loss: 0.0021
+Epoch 3/3 - Train Loss: 0.0036, Val Loss: 0.0011
+GPT2 Untrained - RMSE: 0.0382
+
+[Run 1] Training BERT Pretrained ...
+Epoch 1/3 - Train Loss: 0.0116, Val Loss: 0.0012
+Epoch 2/3 - Train Loss: 0.0034, Val Loss: 0.0028
+Epoch 3/3 - Train Loss: 0.0029, Val Loss: 0.0043
+BERT Pretrained - RMSE: 0.0822
+
+[Run 1] Training BERT Untrained ...
+Epoch 1/3 - Train Loss: 0.0240, Val Loss: 0.0033
+Epoch 2/3 - Train Loss: 0.0046, Val Loss: 0.0028
+Epoch 3/3 - Train Loss: 0.0033, Val Loss: 0.0035
+BERT Untrained - RMSE: 0.0763
+
+[Run 1] Training DeepSeek Pretrained ...
+Epoch 1/3 - Train Loss: 0.0669, Val Loss: 0.0012
+Epoch 2/3 - Train Loss: 0.0016, Val Loss: 0.0018
+Epoch 3/3 - Train Loss: 0.0015, Val Loss: 0.0017
+DeepSeek Pretrained - RMSE: 0.0525
+
+[Run 1] Training DeepSeek Untrained ...
+Epoch 1/3 - Train Loss: 0.0976, Val Loss: 0.0010
+Epoch 2/3 - Train Loss: 0.0012, Val Loss: 0.0010
+Epoch 3/3 - Train Loss: 0.0013, Val Loss: 0.0011
+DeepSeek Untrained - RMSE: 0.0441
+Saved bar plot => /hpc/home/jjm132/jjm132/nlp4neuro/code/experiment_2/results/experiment_2_no_bnb_replace/fish9/fish9_seq5_barplot.png
+Saved bar plot => /hpc/home/jjm132/jjm132/nlp4neuro/code/experiment_2/results/experiment_2_no_bnb_replace/fish9/fish9_seq20_barplot.png
+[INFO] Wilcoxon results saved => /hpc/home/jjm132/jjm132/nlp4neuro/code/experiment_2/results/experiment_2_no_bnb_replace/fish9/fish9_wilcoxon_results.txt
+=== Done with Fish 9 ===
+
+[INFO] All done. Experiment 2 completed for all fish!

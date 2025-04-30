@@ -1,0 +1,932 @@
+Using device: cuda
+Neural data shape: (3047, 12499)
+Tail data shape: (3047, 6)
+Ground truth for val/test saved in /hpc/group/naumannlab/jjm132/nlp4neuro/results/experiment3_results
+Input_dim=12499, Output_dim=6
+
+********** RUN 1 / 10 **********
+
+=== [DeepSeek] Run 1: Embedding = Vanilla ===
+Epoch 1/3 - Train Loss: 0.0641, Val Loss: 0.0012
+Epoch 2/3 - Train Loss: 0.0014, Val Loss: 0.0011
+Epoch 3/3 - Train Loss: 0.0013, Val Loss: 0.0012
+>>>> DeepSeek + Vanilla RMSE = 0.04641
+
+=== [DeepSeek] Run 1: Embedding = Positional ===
+Epoch 1/3 - Train Loss: 0.0658, Val Loss: 0.0015
+Epoch 2/3 - Train Loss: 0.0011, Val Loss: 0.0018
+Epoch 3/3 - Train Loss: 0.0010, Val Loss: 0.0020
+>>>> DeepSeek + Positional RMSE = 0.05796
+
+=== [DeepSeek] Run 1: Embedding = RelativePos ===
+Epoch 1/3 - Train Loss: 0.0451, Val Loss: 0.0012
+Epoch 2/3 - Train Loss: 0.0014, Val Loss: 0.0012
+Epoch 3/3 - Train Loss: 0.0013, Val Loss: 0.0013
+>>>> DeepSeek + RelativePos RMSE = 0.04971
+
+=== [DeepSeek] Run 1: Embedding = Sparse ===
+Epoch 1/3 - Train Loss: 0.0789, Val Loss: 0.0014
+Epoch 2/3 - Train Loss: 0.0013, Val Loss: 0.0010
+Epoch 3/3 - Train Loss: 0.0012, Val Loss: 0.0015
+>>>> DeepSeek + Sparse RMSE = 0.05301
+
+=== [DeepSeek] Run 1: Embedding = Spectral ===
+Epoch 1/3 - Train Loss: 0.0295, Val Loss: 0.0011
+Epoch 2/3 - Train Loss: 0.0011, Val Loss: 0.0010
+Epoch 3/3 - Train Loss: 0.0010, Val Loss: 0.0012
+>>>> DeepSeek + Spectral RMSE = 0.03704
+
+=== [GPT2] Run 1: Embedding = Vanilla ===
+Epoch 1/3 - Train Loss: 0.1647, Val Loss: 0.0026
+Epoch 2/3 - Train Loss: 0.0285, Val Loss: 0.0087
+Epoch 3/3 - Train Loss: 0.0183, Val Loss: 0.0047
+>>>> GPT2 + Vanilla RMSE = 0.08603
+
+=== [GPT2] Run 1: Embedding = Positional ===
+Epoch 1/3 - Train Loss: 0.2619, Val Loss: 0.0259
+Epoch 2/3 - Train Loss: 0.0373, Val Loss: 0.0092
+Epoch 3/3 - Train Loss: 0.0188, Val Loss: 0.0068
+>>>> GPT2 + Positional RMSE = 0.09915
+
+=== [GPT2] Run 1: Embedding = RelativePos ===
+Epoch 1/3 - Train Loss: 0.0728, Val Loss: 0.0155
+Epoch 2/3 - Train Loss: 0.0179, Val Loss: 0.0041
+Epoch 3/3 - Train Loss: 0.0122, Val Loss: 0.0087
+>>>> GPT2 + RelativePos RMSE = 0.10990
+
+=== [GPT2] Run 1: Embedding = Sparse ===
+Epoch 1/3 - Train Loss: 0.3887, Val Loss: 0.0244
+Epoch 2/3 - Train Loss: 0.0645, Val Loss: 0.0084
+Epoch 3/3 - Train Loss: 0.0335, Val Loss: 0.0038
+>>>> GPT2 + Sparse RMSE = 0.07839
+
+=== [GPT2] Run 1: Embedding = Spectral ===
+Epoch 1/3 - Train Loss: 0.5057, Val Loss: 0.0817
+Epoch 2/3 - Train Loss: 0.0577, Val Loss: 0.0076
+Epoch 3/3 - Train Loss: 0.0235, Val Loss: 0.0019
+>>>> GPT2 + Spectral RMSE = 0.05696
+
+=== [BERT] Run 1: Embedding = Vanilla ===
+Epoch 1/3 - Train Loss: 0.0615, Val Loss: 0.0108
+Epoch 2/3 - Train Loss: 0.0107, Val Loss: 0.0065
+Epoch 3/3 - Train Loss: 0.0081, Val Loss: 0.0069
+>>>> BERT + Vanilla RMSE = 0.10075
+
+=== [BERT] Run 1: Embedding = Positional ===
+Epoch 1/3 - Train Loss: 0.0439, Val Loss: 0.0046
+Epoch 2/3 - Train Loss: 0.0107, Val Loss: 0.0098
+Epoch 3/3 - Train Loss: 0.0079, Val Loss: 0.0057
+>>>> BERT + Positional RMSE = 0.09317
+
+=== [BERT] Run 1: Embedding = RelativePos ===
+Epoch 1/3 - Train Loss: 0.0465, Val Loss: 0.0064
+Epoch 2/3 - Train Loss: 0.0101, Val Loss: 0.0068
+Epoch 3/3 - Train Loss: 0.0076, Val Loss: 0.0065
+>>>> BERT + RelativePos RMSE = 0.09586
+
+=== [BERT] Run 1: Embedding = Sparse ===
+Epoch 1/3 - Train Loss: 0.0603, Val Loss: 0.0035
+Epoch 2/3 - Train Loss: 0.0112, Val Loss: 0.0079
+Epoch 3/3 - Train Loss: 0.0086, Val Loss: 0.0086
+>>>> BERT + Sparse RMSE = 0.11061
+
+=== [BERT] Run 1: Embedding = Spectral ===
+Epoch 1/3 - Train Loss: 0.0553, Val Loss: 0.0111
+Epoch 2/3 - Train Loss: 0.0106, Val Loss: 0.0119
+Epoch 3/3 - Train Loss: 0.0080, Val Loss: 0.0115
+>>>> BERT + Spectral RMSE = 0.12369
+
+********** RUN 2 / 10 **********
+
+=== [DeepSeek] Run 2: Embedding = Vanilla ===
+Epoch 1/3 - Train Loss: 0.0554, Val Loss: 0.0011
+Epoch 2/3 - Train Loss: 0.0013, Val Loss: 0.0009
+Epoch 3/3 - Train Loss: 0.0013, Val Loss: 0.0011
+>>>> DeepSeek + Vanilla RMSE = 0.04700
+
+=== [DeepSeek] Run 2: Embedding = Positional ===
+Epoch 1/3 - Train Loss: 0.1487, Val Loss: 0.0010
+Epoch 2/3 - Train Loss: 0.0014, Val Loss: 0.0010
+Epoch 3/3 - Train Loss: 0.0014, Val Loss: 0.0012
+>>>> DeepSeek + Positional RMSE = 0.04843
+
+=== [DeepSeek] Run 2: Embedding = RelativePos ===
+Epoch 1/3 - Train Loss: 0.0304, Val Loss: 0.0013
+Epoch 2/3 - Train Loss: 0.0013, Val Loss: 0.0012
+Epoch 3/3 - Train Loss: 0.0012, Val Loss: 0.0011
+>>>> DeepSeek + RelativePos RMSE = 0.03903
+
+=== [DeepSeek] Run 2: Embedding = Sparse ===
+Epoch 1/3 - Train Loss: 0.0628, Val Loss: 0.0011
+Epoch 2/3 - Train Loss: 0.0013, Val Loss: 0.0015
+Epoch 3/3 - Train Loss: 0.0012, Val Loss: 0.0011
+>>>> DeepSeek + Sparse RMSE = 0.04133
+
+=== [DeepSeek] Run 2: Embedding = Spectral ===
+Epoch 1/3 - Train Loss: 0.0376, Val Loss: 0.0011
+Epoch 2/3 - Train Loss: 0.0012, Val Loss: 0.0012
+Epoch 3/3 - Train Loss: 0.0010, Val Loss: 0.0013
+>>>> DeepSeek + Spectral RMSE = 0.03592
+
+=== [GPT2] Run 2: Embedding = Vanilla ===
+Epoch 1/3 - Train Loss: 0.1090, Val Loss: 0.0044
+Epoch 2/3 - Train Loss: 0.0221, Val Loss: 0.0097
+Epoch 3/3 - Train Loss: 0.0157, Val Loss: 0.0032
+>>>> GPT2 + Vanilla RMSE = 0.06933
+
+=== [GPT2] Run 2: Embedding = Positional ===
+Epoch 1/3 - Train Loss: 0.1589, Val Loss: 0.0223
+Epoch 2/3 - Train Loss: 0.0242, Val Loss: 0.0108
+Epoch 3/3 - Train Loss: 0.0151, Val Loss: 0.0041
+>>>> GPT2 + Positional RMSE = 0.07664
+
+=== [GPT2] Run 2: Embedding = RelativePos ===
+Epoch 1/3 - Train Loss: 0.1378, Val Loss: 0.0054
+Epoch 2/3 - Train Loss: 0.0237, Val Loss: 0.0050
+Epoch 3/3 - Train Loss: 0.0154, Val Loss: 0.0043
+>>>> GPT2 + RelativePos RMSE = 0.07773
+
+=== [GPT2] Run 2: Embedding = Sparse ===
+Epoch 1/3 - Train Loss: 0.1721, Val Loss: 0.0113
+Epoch 2/3 - Train Loss: 0.0372, Val Loss: 0.0094
+Epoch 3/3 - Train Loss: 0.0239, Val Loss: 0.0125
+>>>> GPT2 + Sparse RMSE = 0.12252
+
+=== [GPT2] Run 2: Embedding = Spectral ===
+Epoch 1/3 - Train Loss: 0.3995, Val Loss: 0.0195
+Epoch 2/3 - Train Loss: 0.0352, Val Loss: 0.0204
+Epoch 3/3 - Train Loss: 0.0207, Val Loss: 0.0175
+>>>> GPT2 + Spectral RMSE = 0.14454
+
+=== [BERT] Run 2: Embedding = Vanilla ===
+Epoch 1/3 - Train Loss: 0.0950, Val Loss: 0.0193
+Epoch 2/3 - Train Loss: 0.0142, Val Loss: 0.0110
+Epoch 3/3 - Train Loss: 0.0097, Val Loss: 0.0087
+>>>> BERT + Vanilla RMSE = 0.11004
+
+=== [BERT] Run 2: Embedding = Positional ===
+Epoch 1/3 - Train Loss: 0.0532, Val Loss: 0.0087
+Epoch 2/3 - Train Loss: 0.0101, Val Loss: 0.0094
+Epoch 3/3 - Train Loss: 0.0079, Val Loss: 0.0066
+>>>> BERT + Positional RMSE = 0.09571
+
+=== [BERT] Run 2: Embedding = RelativePos ===
+Epoch 1/3 - Train Loss: 0.0401, Val Loss: 0.0103
+Epoch 2/3 - Train Loss: 0.0099, Val Loss: 0.0058
+Epoch 3/3 - Train Loss: 0.0075, Val Loss: 0.0071
+>>>> BERT + RelativePos RMSE = 0.10019
+
+=== [BERT] Run 2: Embedding = Sparse ===
+Epoch 1/3 - Train Loss: 0.0584, Val Loss: 0.0147
+Epoch 2/3 - Train Loss: 0.0119, Val Loss: 0.0108
+Epoch 3/3 - Train Loss: 0.0091, Val Loss: 0.0083
+>>>> BERT + Sparse RMSE = 0.10595
+
+=== [BERT] Run 2: Embedding = Spectral ===
+Epoch 1/3 - Train Loss: 0.0639, Val Loss: 0.0075
+Epoch 2/3 - Train Loss: 0.0116, Val Loss: 0.0110
+Epoch 3/3 - Train Loss: 0.0084, Val Loss: 0.0049
+>>>> BERT + Spectral RMSE = 0.08507
+
+********** RUN 3 / 10 **********
+
+=== [DeepSeek] Run 3: Embedding = Vanilla ===
+Epoch 1/3 - Train Loss: 0.0338, Val Loss: 0.0014
+Epoch 2/3 - Train Loss: 0.0012, Val Loss: 0.0017
+Epoch 3/3 - Train Loss: 0.0010, Val Loss: 0.0010
+>>>> DeepSeek + Vanilla RMSE = 0.03542
+
+=== [DeepSeek] Run 3: Embedding = Positional ===
+Epoch 1/3 - Train Loss: 0.0554, Val Loss: 0.0017
+Epoch 2/3 - Train Loss: 0.0011, Val Loss: 0.0011
+Epoch 3/3 - Train Loss: 0.0011, Val Loss: 0.0011
+>>>> DeepSeek + Positional RMSE = 0.03525
+
+=== [DeepSeek] Run 3: Embedding = RelativePos ===
+Epoch 1/3 - Train Loss: 0.0463, Val Loss: 0.0012
+Epoch 2/3 - Train Loss: 0.0014, Val Loss: 0.0010
+Epoch 3/3 - Train Loss: 0.0013, Val Loss: 0.0010
+>>>> DeepSeek + RelativePos RMSE = 0.04338
+
+=== [DeepSeek] Run 3: Embedding = Sparse ===
+Epoch 1/3 - Train Loss: 0.0388, Val Loss: 0.0010
+Epoch 2/3 - Train Loss: 0.0014, Val Loss: 0.0013
+Epoch 3/3 - Train Loss: 0.0012, Val Loss: 0.0011
+>>>> DeepSeek + Sparse RMSE = 0.04029
+
+=== [DeepSeek] Run 3: Embedding = Spectral ===
+Epoch 1/3 - Train Loss: 0.0395, Val Loss: 0.0010
+Epoch 2/3 - Train Loss: 0.0013, Val Loss: 0.0011
+Epoch 3/3 - Train Loss: 0.0010, Val Loss: 0.0011
+>>>> DeepSeek + Spectral RMSE = 0.03846
+
+=== [GPT2] Run 3: Embedding = Vanilla ===
+Epoch 1/3 - Train Loss: 0.1163, Val Loss: 0.0041
+Epoch 2/3 - Train Loss: 0.0196, Val Loss: 0.0043
+Epoch 3/3 - Train Loss: 0.0134, Val Loss: 0.0046
+>>>> GPT2 + Vanilla RMSE = 0.08832
+
+=== [GPT2] Run 3: Embedding = Positional ===
+Epoch 1/3 - Train Loss: 0.1237, Val Loss: 0.0147
+Epoch 2/3 - Train Loss: 0.0211, Val Loss: 0.0092
+Epoch 3/3 - Train Loss: 0.0135, Val Loss: 0.0066
+>>>> GPT2 + Positional RMSE = 0.09636
+
+=== [GPT2] Run 3: Embedding = RelativePos ===
+Epoch 1/3 - Train Loss: 0.1019, Val Loss: 0.0158
+Epoch 2/3 - Train Loss: 0.0219, Val Loss: 0.0065
+Epoch 3/3 - Train Loss: 0.0138, Val Loss: 0.0042
+>>>> GPT2 + RelativePos RMSE = 0.07901
+
+=== [GPT2] Run 3: Embedding = Sparse ===
+Epoch 1/3 - Train Loss: 0.1980, Val Loss: 0.0289
+Epoch 2/3 - Train Loss: 0.0375, Val Loss: 0.0195
+Epoch 3/3 - Train Loss: 0.0218, Val Loss: 0.0119
+>>>> GPT2 + Sparse RMSE = 0.12661
+
+=== [GPT2] Run 3: Embedding = Spectral ===
+Epoch 1/3 - Train Loss: 0.4814, Val Loss: 0.0085
+Epoch 2/3 - Train Loss: 0.0533, Val Loss: 0.0038
+Epoch 3/3 - Train Loss: 0.0267, Val Loss: 0.0014
+>>>> GPT2 + Spectral RMSE = 0.03871
+
+=== [BERT] Run 3: Embedding = Vanilla ===
+Epoch 1/3 - Train Loss: 0.0962, Val Loss: 0.0081
+Epoch 2/3 - Train Loss: 0.0119, Val Loss: 0.0082
+Epoch 3/3 - Train Loss: 0.0088, Val Loss: 0.0060
+>>>> BERT + Vanilla RMSE = 0.09225
+
+=== [BERT] Run 3: Embedding = Positional ===
+Epoch 1/3 - Train Loss: 0.0417, Val Loss: 0.0023
+Epoch 2/3 - Train Loss: 0.0098, Val Loss: 0.0053
+Epoch 3/3 - Train Loss: 0.0074, Val Loss: 0.0033
+>>>> BERT + Positional RMSE = 0.07220
+
+=== [BERT] Run 3: Embedding = RelativePos ===
+Epoch 1/3 - Train Loss: 0.0428, Val Loss: 0.0095
+Epoch 2/3 - Train Loss: 0.0101, Val Loss: 0.0066
+Epoch 3/3 - Train Loss: 0.0076, Val Loss: 0.0102
+>>>> BERT + RelativePos RMSE = 0.11638
+
+=== [BERT] Run 3: Embedding = Sparse ===
+Epoch 1/3 - Train Loss: 0.0619, Val Loss: 0.0045
+Epoch 2/3 - Train Loss: 0.0122, Val Loss: 0.0074
+Epoch 3/3 - Train Loss: 0.0091, Val Loss: 0.0075
+>>>> BERT + Sparse RMSE = 0.10400
+
+=== [BERT] Run 3: Embedding = Spectral ===
+Epoch 1/3 - Train Loss: 0.0535, Val Loss: 0.0082
+Epoch 2/3 - Train Loss: 0.0116, Val Loss: 0.0060
+Epoch 3/3 - Train Loss: 0.0087, Val Loss: 0.0103
+>>>> BERT + Spectral RMSE = 0.11539
+
+********** RUN 4 / 10 **********
+
+=== [DeepSeek] Run 4: Embedding = Vanilla ===
+Epoch 1/3 - Train Loss: 0.0464, Val Loss: 0.0018
+Epoch 2/3 - Train Loss: 0.0014, Val Loss: 0.0012
+Epoch 3/3 - Train Loss: 0.0013, Val Loss: 0.0010
+>>>> DeepSeek + Vanilla RMSE = 0.04436
+
+=== [DeepSeek] Run 4: Embedding = Positional ===
+Epoch 1/3 - Train Loss: 0.0454, Val Loss: 0.0011
+Epoch 2/3 - Train Loss: 0.0014, Val Loss: 0.0015
+Epoch 3/3 - Train Loss: 0.0011, Val Loss: 0.0015
+>>>> DeepSeek + Positional RMSE = 0.03545
+
+=== [DeepSeek] Run 4: Embedding = RelativePos ===
+Epoch 1/3 - Train Loss: 0.0446, Val Loss: 0.0010
+Epoch 2/3 - Train Loss: 0.0014, Val Loss: 0.0009
+Epoch 3/3 - Train Loss: 0.0012, Val Loss: 0.0013
+>>>> DeepSeek + RelativePos RMSE = 0.04791
+
+=== [DeepSeek] Run 4: Embedding = Sparse ===
+Epoch 1/3 - Train Loss: 0.0553, Val Loss: 0.0010
+Epoch 2/3 - Train Loss: 0.0013, Val Loss: 0.0010
+Epoch 3/3 - Train Loss: 0.0012, Val Loss: 0.0012
+>>>> DeepSeek + Sparse RMSE = 0.05030
+
+=== [DeepSeek] Run 4: Embedding = Spectral ===
+Epoch 1/3 - Train Loss: 0.0344, Val Loss: 0.0009
+Epoch 2/3 - Train Loss: 0.0012, Val Loss: 0.0013
+Epoch 3/3 - Train Loss: 0.0009, Val Loss: 0.0013
+>>>> DeepSeek + Spectral RMSE = 0.04648
+
+=== [GPT2] Run 4: Embedding = Vanilla ===
+Epoch 1/3 - Train Loss: 0.2206, Val Loss: 0.0636
+Epoch 2/3 - Train Loss: 0.0366, Val Loss: 0.0112
+Epoch 3/3 - Train Loss: 0.0224, Val Loss: 0.0108
+>>>> GPT2 + Vanilla RMSE = 0.12217
+
+=== [GPT2] Run 4: Embedding = Positional ===
+Epoch 1/3 - Train Loss: 0.1404, Val Loss: 0.0146
+Epoch 2/3 - Train Loss: 0.0257, Val Loss: 0.0094
+Epoch 3/3 - Train Loss: 0.0173, Val Loss: 0.0054
+>>>> GPT2 + Positional RMSE = 0.08670
+
+=== [GPT2] Run 4: Embedding = RelativePos ===
+Epoch 1/3 - Train Loss: 0.2074, Val Loss: 0.0260
+Epoch 2/3 - Train Loss: 0.0327, Val Loss: 0.0200
+Epoch 3/3 - Train Loss: 0.0195, Val Loss: 0.0118
+>>>> GPT2 + RelativePos RMSE = 0.12650
+
+=== [GPT2] Run 4: Embedding = Sparse ===
+Epoch 1/3 - Train Loss: 0.1270, Val Loss: 0.0128
+Epoch 2/3 - Train Loss: 0.0285, Val Loss: 0.0068
+Epoch 3/3 - Train Loss: 0.0162, Val Loss: 0.0050
+>>>> GPT2 + Sparse RMSE = 0.08818
+
+=== [GPT2] Run 4: Embedding = Spectral ===
+Epoch 1/3 - Train Loss: 0.2982, Val Loss: 0.0191
+Epoch 2/3 - Train Loss: 0.0473, Val Loss: 0.0121
+Epoch 3/3 - Train Loss: 0.0259, Val Loss: 0.0058
+>>>> GPT2 + Spectral RMSE = 0.09242
+
+=== [BERT] Run 4: Embedding = Vanilla ===
+Epoch 1/3 - Train Loss: 0.0861, Val Loss: 0.0116
+Epoch 2/3 - Train Loss: 0.0123, Val Loss: 0.0080
+Epoch 3/3 - Train Loss: 0.0089, Val Loss: 0.0091
+>>>> BERT + Vanilla RMSE = 0.11121
+
+=== [BERT] Run 4: Embedding = Positional ===
+Epoch 1/3 - Train Loss: 0.0420, Val Loss: 0.0054
+Epoch 2/3 - Train Loss: 0.0101, Val Loss: 0.0051
+Epoch 3/3 - Train Loss: 0.0076, Val Loss: 0.0057
+>>>> BERT + Positional RMSE = 0.09145
+
+=== [BERT] Run 4: Embedding = RelativePos ===
+Epoch 1/3 - Train Loss: 0.0430, Val Loss: 0.0107
+Epoch 2/3 - Train Loss: 0.0104, Val Loss: 0.0110
+Epoch 3/3 - Train Loss: 0.0078, Val Loss: 0.0072
+>>>> BERT + RelativePos RMSE = 0.09858
+
+=== [BERT] Run 4: Embedding = Sparse ===
+Epoch 1/3 - Train Loss: 0.0516, Val Loss: 0.0186
+Epoch 2/3 - Train Loss: 0.0122, Val Loss: 0.0080
+Epoch 3/3 - Train Loss: 0.0091, Val Loss: 0.0132
+>>>> BERT + Sparse RMSE = 0.13041
+
+=== [BERT] Run 4: Embedding = Spectral ===
+Epoch 1/3 - Train Loss: 0.0691, Val Loss: 0.0131
+Epoch 2/3 - Train Loss: 0.0125, Val Loss: 0.0145
+Epoch 3/3 - Train Loss: 0.0087, Val Loss: 0.0090
+>>>> BERT + Spectral RMSE = 0.11006
+
+********** RUN 5 / 10 **********
+
+=== [DeepSeek] Run 5: Embedding = Vanilla ===
+Epoch 1/3 - Train Loss: 0.0241, Val Loss: 0.0011
+Epoch 2/3 - Train Loss: 0.0012, Val Loss: 0.0014
+Epoch 3/3 - Train Loss: 0.0010, Val Loss: 0.0012
+>>>> DeepSeek + Vanilla RMSE = 0.03558
+
+=== [DeepSeek] Run 5: Embedding = Positional ===
+Epoch 1/3 - Train Loss: 0.0456, Val Loss: 0.0012
+Epoch 2/3 - Train Loss: 0.0013, Val Loss: 0.0010
+Epoch 3/3 - Train Loss: 0.0012, Val Loss: 0.0012
+>>>> DeepSeek + Positional RMSE = 0.04396
+
+=== [DeepSeek] Run 5: Embedding = RelativePos ===
+Epoch 1/3 - Train Loss: 0.0510, Val Loss: 0.0011
+Epoch 2/3 - Train Loss: 0.0013, Val Loss: 0.0014
+Epoch 3/3 - Train Loss: 0.0012, Val Loss: 0.0011
+>>>> DeepSeek + RelativePos RMSE = 0.03565
+
+=== [DeepSeek] Run 5: Embedding = Sparse ===
+Epoch 1/3 - Train Loss: 0.0387, Val Loss: 0.0010
+Epoch 2/3 - Train Loss: 0.0012, Val Loss: 0.0012
+Epoch 3/3 - Train Loss: 0.0010, Val Loss: 0.0010
+>>>> DeepSeek + Sparse RMSE = 0.03568
+
+=== [DeepSeek] Run 5: Embedding = Spectral ===
+Epoch 1/3 - Train Loss: 0.0260, Val Loss: 0.0011
+Epoch 2/3 - Train Loss: 0.0010, Val Loss: 0.0012
+Epoch 3/3 - Train Loss: 0.0008, Val Loss: 0.0017
+>>>> DeepSeek + Spectral RMSE = 0.05349
+
+=== [GPT2] Run 5: Embedding = Vanilla ===
+Epoch 1/3 - Train Loss: 0.1352, Val Loss: 0.0101
+Epoch 2/3 - Train Loss: 0.0296, Val Loss: 0.0177
+Epoch 3/3 - Train Loss: 0.0190, Val Loss: 0.0116
+>>>> GPT2 + Vanilla RMSE = 0.12326
+
+=== [GPT2] Run 5: Embedding = Positional ===
+Epoch 1/3 - Train Loss: 0.1332, Val Loss: 0.0108
+Epoch 2/3 - Train Loss: 0.0189, Val Loss: 0.0068
+Epoch 3/3 - Train Loss: 0.0129, Val Loss: 0.0062
+>>>> GPT2 + Positional RMSE = 0.09537
+
+=== [GPT2] Run 5: Embedding = RelativePos ===
+Epoch 1/3 - Train Loss: 0.1178, Val Loss: 0.0086
+Epoch 2/3 - Train Loss: 0.0197, Val Loss: 0.0080
+Epoch 3/3 - Train Loss: 0.0124, Val Loss: 0.0071
+>>>> GPT2 + RelativePos RMSE = 0.10125
+
+=== [GPT2] Run 5: Embedding = Sparse ===
+Epoch 1/3 - Train Loss: 0.2652, Val Loss: 0.0305
+Epoch 2/3 - Train Loss: 0.0406, Val Loss: 0.0096
+Epoch 3/3 - Train Loss: 0.0230, Val Loss: 0.0095
+>>>> GPT2 + Sparse RMSE = 0.11494
+
+=== [GPT2] Run 5: Embedding = Spectral ===
+Epoch 1/3 - Train Loss: 0.2332, Val Loss: 0.0335
+Epoch 2/3 - Train Loss: 0.0286, Val Loss: 0.0108
+Epoch 3/3 - Train Loss: 0.0175, Val Loss: 0.0123
+>>>> GPT2 + Spectral RMSE = 0.12694
+
+=== [BERT] Run 5: Embedding = Vanilla ===
+Epoch 1/3 - Train Loss: 0.0446, Val Loss: 0.0096
+Epoch 2/3 - Train Loss: 0.0103, Val Loss: 0.0078
+Epoch 3/3 - Train Loss: 0.0078, Val Loss: 0.0072
+>>>> BERT + Vanilla RMSE = 0.10053
+
+=== [BERT] Run 5: Embedding = Positional ===
+Epoch 1/3 - Train Loss: 0.0527, Val Loss: 0.0128
+Epoch 2/3 - Train Loss: 0.0106, Val Loss: 0.0069
+Epoch 3/3 - Train Loss: 0.0080, Val Loss: 0.0066
+>>>> BERT + Positional RMSE = 0.09630
+
+=== [BERT] Run 5: Embedding = RelativePos ===
+Epoch 1/3 - Train Loss: 0.0544, Val Loss: 0.0060
+Epoch 2/3 - Train Loss: 0.0111, Val Loss: 0.0106
+Epoch 3/3 - Train Loss: 0.0083, Val Loss: 0.0075
+>>>> BERT + RelativePos RMSE = 0.10397
+
+=== [BERT] Run 5: Embedding = Sparse ===
+Epoch 1/3 - Train Loss: 0.0743, Val Loss: 0.0176
+Epoch 2/3 - Train Loss: 0.0131, Val Loss: 0.0097
+Epoch 3/3 - Train Loss: 0.0099, Val Loss: 0.0122
+>>>> BERT + Sparse RMSE = 0.12551
+
+=== [BERT] Run 5: Embedding = Spectral ===
+Epoch 1/3 - Train Loss: 0.0700, Val Loss: 0.0039
+Epoch 2/3 - Train Loss: 0.0126, Val Loss: 0.0056
+Epoch 3/3 - Train Loss: 0.0090, Val Loss: 0.0061
+>>>> BERT + Spectral RMSE = 0.09084
+
+********** RUN 6 / 10 **********
+
+=== [DeepSeek] Run 6: Embedding = Vanilla ===
+Epoch 1/3 - Train Loss: 0.0237, Val Loss: 0.0011
+Epoch 2/3 - Train Loss: 0.0011, Val Loss: 0.0011
+Epoch 3/3 - Train Loss: 0.0008, Val Loss: 0.0013
+>>>> DeepSeek + Vanilla RMSE = 0.04812
+
+=== [DeepSeek] Run 6: Embedding = Positional ===
+Epoch 1/3 - Train Loss: 0.0365, Val Loss: 0.0011
+Epoch 2/3 - Train Loss: 0.0012, Val Loss: 0.0013
+Epoch 3/3 - Train Loss: 0.0011, Val Loss: 0.0011
+>>>> DeepSeek + Positional RMSE = 0.04455
+
+=== [DeepSeek] Run 6: Embedding = RelativePos ===
+Epoch 1/3 - Train Loss: 0.0427, Val Loss: 0.0015
+Epoch 2/3 - Train Loss: 0.0014, Val Loss: 0.0012
+Epoch 3/3 - Train Loss: 0.0012, Val Loss: 0.0014
+>>>> DeepSeek + RelativePos RMSE = 0.05090
+
+=== [DeepSeek] Run 6: Embedding = Sparse ===
+Epoch 1/3 - Train Loss: 0.0696, Val Loss: 0.0010
+Epoch 2/3 - Train Loss: 0.0014, Val Loss: 0.0011
+Epoch 3/3 - Train Loss: 0.0013, Val Loss: 0.0011
+>>>> DeepSeek + Sparse RMSE = 0.04492
+
+=== [DeepSeek] Run 6: Embedding = Spectral ===
+Epoch 1/3 - Train Loss: 0.0897, Val Loss: 0.0018
+Epoch 2/3 - Train Loss: 0.0013, Val Loss: 0.0019
+Epoch 3/3 - Train Loss: 0.0013, Val Loss: 0.0011
+>>>> DeepSeek + Spectral RMSE = 0.03829
+
+=== [GPT2] Run 6: Embedding = Vanilla ===
+Epoch 1/3 - Train Loss: 0.3324, Val Loss: 0.0211
+Epoch 2/3 - Train Loss: 0.0441, Val Loss: 0.0171
+Epoch 3/3 - Train Loss: 0.0272, Val Loss: 0.0112
+>>>> GPT2 + Vanilla RMSE = 0.11826
+
+=== [GPT2] Run 6: Embedding = Positional ===
+Epoch 1/3 - Train Loss: 0.1949, Val Loss: 0.0542
+Epoch 2/3 - Train Loss: 0.0345, Val Loss: 0.0127
+Epoch 3/3 - Train Loss: 0.0209, Val Loss: 0.0176
+>>>> GPT2 + Positional RMSE = 0.14791
+
+=== [GPT2] Run 6: Embedding = RelativePos ===
+Epoch 1/3 - Train Loss: 0.1261, Val Loss: 0.0068
+Epoch 2/3 - Train Loss: 0.0200, Val Loss: 0.0078
+Epoch 3/3 - Train Loss: 0.0131, Val Loss: 0.0026
+>>>> GPT2 + RelativePos RMSE = 0.06706
+
+=== [GPT2] Run 6: Embedding = Sparse ===
+Epoch 1/3 - Train Loss: 0.1804, Val Loss: 0.0175
+Epoch 2/3 - Train Loss: 0.0444, Val Loss: 0.0108
+Epoch 3/3 - Train Loss: 0.0229, Val Loss: 0.0073
+>>>> GPT2 + Sparse RMSE = 0.10085
+
+=== [GPT2] Run 6: Embedding = Spectral ===
+Epoch 1/3 - Train Loss: 0.2603, Val Loss: 0.0176
+Epoch 2/3 - Train Loss: 0.0401, Val Loss: 0.0143
+Epoch 3/3 - Train Loss: 0.0221, Val Loss: 0.0204
+>>>> GPT2 + Spectral RMSE = 0.15994
+
+=== [BERT] Run 6: Embedding = Vanilla ===
+Epoch 1/3 - Train Loss: 0.0712, Val Loss: 0.0082
+Epoch 2/3 - Train Loss: 0.0107, Val Loss: 0.0087
+Epoch 3/3 - Train Loss: 0.0084, Val Loss: 0.0085
+>>>> BERT + Vanilla RMSE = 0.10674
+
+=== [BERT] Run 6: Embedding = Positional ===
+Epoch 1/3 - Train Loss: 0.0390, Val Loss: 0.0060
+Epoch 2/3 - Train Loss: 0.0099, Val Loss: 0.0089
+Epoch 3/3 - Train Loss: 0.0075, Val Loss: 0.0051
+>>>> BERT + Positional RMSE = 0.08467
+
+=== [BERT] Run 6: Embedding = RelativePos ===
+Epoch 1/3 - Train Loss: 0.0673, Val Loss: 0.0119
+Epoch 2/3 - Train Loss: 0.0115, Val Loss: 0.0109
+Epoch 3/3 - Train Loss: 0.0084, Val Loss: 0.0066
+>>>> BERT + RelativePos RMSE = 0.09936
+
+=== [BERT] Run 6: Embedding = Sparse ===
+Epoch 1/3 - Train Loss: 0.0535, Val Loss: 0.0116
+Epoch 2/3 - Train Loss: 0.0125, Val Loss: 0.0072
+Epoch 3/3 - Train Loss: 0.0092, Val Loss: 0.0069
+>>>> BERT + Sparse RMSE = 0.10006
+
+=== [BERT] Run 6: Embedding = Spectral ===
+Epoch 1/3 - Train Loss: 0.0799, Val Loss: 0.0158
+Epoch 2/3 - Train Loss: 0.0126, Val Loss: 0.0090
+Epoch 3/3 - Train Loss: 0.0090, Val Loss: 0.0061
+>>>> BERT + Spectral RMSE = 0.09411
+
+********** RUN 7 / 10 **********
+
+=== [DeepSeek] Run 7: Embedding = Vanilla ===
+Epoch 1/3 - Train Loss: 0.0781, Val Loss: 0.0010
+Epoch 2/3 - Train Loss: 0.0014, Val Loss: 0.0011
+Epoch 3/3 - Train Loss: 0.0013, Val Loss: 0.0020
+>>>> DeepSeek + Vanilla RMSE = 0.06316
+
+=== [DeepSeek] Run 7: Embedding = Positional ===
+Epoch 1/3 - Train Loss: 0.0611, Val Loss: 0.0011
+Epoch 2/3 - Train Loss: 0.0014, Val Loss: 0.0012
+Epoch 3/3 - Train Loss: 0.0013, Val Loss: 0.0011
+>>>> DeepSeek + Positional RMSE = 0.04673
+
+=== [DeepSeek] Run 7: Embedding = RelativePos ===
+Epoch 1/3 - Train Loss: 0.0357, Val Loss: 0.0012
+Epoch 2/3 - Train Loss: 0.0013, Val Loss: 0.0017
+Epoch 3/3 - Train Loss: 0.0011, Val Loss: 0.0012
+>>>> DeepSeek + RelativePos RMSE = 0.04416
+
+=== [DeepSeek] Run 7: Embedding = Sparse ===
+Epoch 1/3 - Train Loss: 0.0375, Val Loss: 0.0012
+Epoch 2/3 - Train Loss: 0.0013, Val Loss: 0.0009
+Epoch 3/3 - Train Loss: 0.0011, Val Loss: 0.0010
+>>>> DeepSeek + Sparse RMSE = 0.03713
+
+=== [DeepSeek] Run 7: Embedding = Spectral ===
+Epoch 1/3 - Train Loss: 0.0245, Val Loss: 0.0019
+Epoch 2/3 - Train Loss: 0.0011, Val Loss: 0.0018
+Epoch 3/3 - Train Loss: 0.0009, Val Loss: 0.0012
+>>>> DeepSeek + Spectral RMSE = 0.04335
+
+=== [GPT2] Run 7: Embedding = Vanilla ===
+Epoch 1/3 - Train Loss: 0.1267, Val Loss: 0.0089
+Epoch 2/3 - Train Loss: 0.0260, Val Loss: 0.0061
+Epoch 3/3 - Train Loss: 0.0169, Val Loss: 0.0032
+>>>> GPT2 + Vanilla RMSE = 0.07445
+
+=== [GPT2] Run 7: Embedding = Positional ===
+Epoch 1/3 - Train Loss: 0.3341, Val Loss: 0.0177
+Epoch 2/3 - Train Loss: 0.0354, Val Loss: 0.0130
+Epoch 3/3 - Train Loss: 0.0234, Val Loss: 0.0105
+>>>> GPT2 + Positional RMSE = 0.12053
+
+=== [GPT2] Run 7: Embedding = RelativePos ===
+Epoch 1/3 - Train Loss: 0.1093, Val Loss: 0.0217
+Epoch 2/3 - Train Loss: 0.0220, Val Loss: 0.0096
+Epoch 3/3 - Train Loss: 0.0148, Val Loss: 0.0046
+>>>> GPT2 + RelativePos RMSE = 0.08258
+
+=== [GPT2] Run 7: Embedding = Sparse ===
+Epoch 1/3 - Train Loss: 0.4962, Val Loss: 0.0103
+Epoch 2/3 - Train Loss: 0.0690, Val Loss: 0.0074
+Epoch 3/3 - Train Loss: 0.0275, Val Loss: 0.0016
+>>>> GPT2 + Sparse RMSE = 0.03997
+
+=== [GPT2] Run 7: Embedding = Spectral ===
+Epoch 1/3 - Train Loss: 0.3798, Val Loss: 0.0946
+Epoch 2/3 - Train Loss: 0.0370, Val Loss: 0.0563
+Epoch 3/3 - Train Loss: 0.0223, Val Loss: 0.0277
+>>>> GPT2 + Spectral RMSE = 0.18354
+
+=== [BERT] Run 7: Embedding = Vanilla ===
+Epoch 1/3 - Train Loss: 0.0646, Val Loss: 0.0058
+Epoch 2/3 - Train Loss: 0.0113, Val Loss: 0.0063
+Epoch 3/3 - Train Loss: 0.0084, Val Loss: 0.0079
+>>>> BERT + Vanilla RMSE = 0.10476
+
+=== [BERT] Run 7: Embedding = Positional ===
+Epoch 1/3 - Train Loss: 0.0655, Val Loss: 0.0049
+Epoch 2/3 - Train Loss: 0.0105, Val Loss: 0.0087
+Epoch 3/3 - Train Loss: 0.0081, Val Loss: 0.0107
+>>>> BERT + Positional RMSE = 0.11725
+
+=== [BERT] Run 7: Embedding = RelativePos ===
+Epoch 1/3 - Train Loss: 0.0482, Val Loss: 0.0061
+Epoch 2/3 - Train Loss: 0.0111, Val Loss: 0.0053
+Epoch 3/3 - Train Loss: 0.0083, Val Loss: 0.0080
+>>>> BERT + RelativePos RMSE = 0.10545
+
+=== [BERT] Run 7: Embedding = Sparse ===
+Epoch 1/3 - Train Loss: 0.0891, Val Loss: 0.0050
+Epoch 2/3 - Train Loss: 0.0141, Val Loss: 0.0076
+Epoch 3/3 - Train Loss: 0.0103, Val Loss: 0.0086
+>>>> BERT + Sparse RMSE = 0.10850
+
+=== [BERT] Run 7: Embedding = Spectral ===
+Epoch 1/3 - Train Loss: 0.0670, Val Loss: 0.0105
+Epoch 2/3 - Train Loss: 0.0116, Val Loss: 0.0075
+Epoch 3/3 - Train Loss: 0.0087, Val Loss: 0.0094
+>>>> BERT + Spectral RMSE = 0.11318
+
+********** RUN 8 / 10 **********
+
+=== [DeepSeek] Run 8: Embedding = Vanilla ===
+Epoch 1/3 - Train Loss: 0.0389, Val Loss: 0.0015
+Epoch 2/3 - Train Loss: 0.0012, Val Loss: 0.0011
+Epoch 3/3 - Train Loss: 0.0011, Val Loss: 0.0012
+>>>> DeepSeek + Vanilla RMSE = 0.04252
+
+=== [DeepSeek] Run 8: Embedding = Positional ===
+Epoch 1/3 - Train Loss: 0.0449, Val Loss: 0.0011
+Epoch 2/3 - Train Loss: 0.0012, Val Loss: 0.0010
+Epoch 3/3 - Train Loss: 0.0010, Val Loss: 0.0011
+>>>> DeepSeek + Positional RMSE = 0.03829
+
+=== [DeepSeek] Run 8: Embedding = RelativePos ===
+Epoch 1/3 - Train Loss: 0.0325, Val Loss: 0.0014
+Epoch 2/3 - Train Loss: 0.0013, Val Loss: 0.0010
+Epoch 3/3 - Train Loss: 0.0012, Val Loss: 0.0017
+>>>> DeepSeek + RelativePos RMSE = 0.05624
+
+=== [DeepSeek] Run 8: Embedding = Sparse ===
+Epoch 1/3 - Train Loss: 0.0361, Val Loss: 0.0010
+Epoch 2/3 - Train Loss: 0.0013, Val Loss: 0.0015
+Epoch 3/3 - Train Loss: 0.0011, Val Loss: 0.0013
+>>>> DeepSeek + Sparse RMSE = 0.05091
+
+=== [DeepSeek] Run 8: Embedding = Spectral ===
+Epoch 1/3 - Train Loss: 0.0510, Val Loss: 0.0012
+Epoch 2/3 - Train Loss: 0.0012, Val Loss: 0.0014
+Epoch 3/3 - Train Loss: 0.0010, Val Loss: 0.0013
+>>>> DeepSeek + Spectral RMSE = 0.04864
+
+=== [GPT2] Run 8: Embedding = Vanilla ===
+Epoch 1/3 - Train Loss: 0.1246, Val Loss: 0.0097
+Epoch 2/3 - Train Loss: 0.0267, Val Loss: 0.0071
+Epoch 3/3 - Train Loss: 0.0172, Val Loss: 0.0087
+>>>> GPT2 + Vanilla RMSE = 0.11073
+
+=== [GPT2] Run 8: Embedding = Positional ===
+Epoch 1/3 - Train Loss: 0.1072, Val Loss: 0.0103
+Epoch 2/3 - Train Loss: 0.0190, Val Loss: 0.0050
+Epoch 3/3 - Train Loss: 0.0123, Val Loss: 0.0042
+>>>> GPT2 + Positional RMSE = 0.08120
+
+=== [GPT2] Run 8: Embedding = RelativePos ===
+Epoch 1/3 - Train Loss: 0.1438, Val Loss: 0.0117
+Epoch 2/3 - Train Loss: 0.0228, Val Loss: 0.0117
+Epoch 3/3 - Train Loss: 0.0145, Val Loss: 0.0037
+>>>> GPT2 + RelativePos RMSE = 0.07681
+
+=== [GPT2] Run 8: Embedding = Sparse ===
+Epoch 1/3 - Train Loss: 0.5729, Val Loss: 0.0561
+Epoch 2/3 - Train Loss: 0.0658, Val Loss: 0.0333
+Epoch 3/3 - Train Loss: 0.0337, Val Loss: 0.0215
+>>>> GPT2 + Sparse RMSE = 0.16293
+
+=== [GPT2] Run 8: Embedding = Spectral ===
+Epoch 1/3 - Train Loss: 0.3592, Val Loss: 0.0479
+Epoch 2/3 - Train Loss: 0.0493, Val Loss: 0.0084
+Epoch 3/3 - Train Loss: 0.0219, Val Loss: 0.0016
+>>>> GPT2 + Spectral RMSE = 0.05246
+
+=== [BERT] Run 8: Embedding = Vanilla ===
+Epoch 1/3 - Train Loss: 0.0639, Val Loss: 0.0140
+Epoch 2/3 - Train Loss: 0.0115, Val Loss: 0.0139
+Epoch 3/3 - Train Loss: 0.0085, Val Loss: 0.0066
+>>>> BERT + Vanilla RMSE = 0.09925
+
+=== [BERT] Run 8: Embedding = Positional ===
+Epoch 1/3 - Train Loss: 0.0579, Val Loss: 0.0127
+Epoch 2/3 - Train Loss: 0.0115, Val Loss: 0.0068
+Epoch 3/3 - Train Loss: 0.0085, Val Loss: 0.0092
+>>>> BERT + Positional RMSE = 0.11210
+
+=== [BERT] Run 8: Embedding = RelativePos ===
+Epoch 1/3 - Train Loss: 0.0452, Val Loss: 0.0038
+Epoch 2/3 - Train Loss: 0.0111, Val Loss: 0.0071
+Epoch 3/3 - Train Loss: 0.0081, Val Loss: 0.0085
+>>>> BERT + RelativePos RMSE = 0.10770
+
+=== [BERT] Run 8: Embedding = Sparse ===
+Epoch 1/3 - Train Loss: 0.0890, Val Loss: 0.0134
+Epoch 2/3 - Train Loss: 0.0142, Val Loss: 0.0131
+Epoch 3/3 - Train Loss: 0.0106, Val Loss: 0.0102
+>>>> BERT + Sparse RMSE = 0.11488
+
+=== [BERT] Run 8: Embedding = Spectral ===
+Epoch 1/3 - Train Loss: 0.0844, Val Loss: 0.0076
+Epoch 2/3 - Train Loss: 0.0109, Val Loss: 0.0067
+Epoch 3/3 - Train Loss: 0.0085, Val Loss: 0.0032
+>>>> BERT + Spectral RMSE = 0.07412
+
+********** RUN 9 / 10 **********
+
+=== [DeepSeek] Run 9: Embedding = Vanilla ===
+Epoch 1/3 - Train Loss: 0.0753, Val Loss: 0.0010
+Epoch 2/3 - Train Loss: 0.0014, Val Loss: 0.0011
+Epoch 3/3 - Train Loss: 0.0013, Val Loss: 0.0014
+>>>> DeepSeek + Vanilla RMSE = 0.04991
+
+=== [DeepSeek] Run 9: Embedding = Positional ===
+Epoch 1/3 - Train Loss: 0.0492, Val Loss: 0.0011
+Epoch 2/3 - Train Loss: 0.0012, Val Loss: 0.0011
+Epoch 3/3 - Train Loss: 0.0010, Val Loss: 0.0010
+>>>> DeepSeek + Positional RMSE = 0.04442
+
+=== [DeepSeek] Run 9: Embedding = RelativePos ===
+Epoch 1/3 - Train Loss: 0.0280, Val Loss: 0.0016
+Epoch 2/3 - Train Loss: 0.0013, Val Loss: 0.0012
+Epoch 3/3 - Train Loss: 0.0012, Val Loss: 0.0012
+>>>> DeepSeek + RelativePos RMSE = 0.04628
+
+=== [DeepSeek] Run 9: Embedding = Sparse ===
+Epoch 1/3 - Train Loss: 0.0388, Val Loss: 0.0013
+Epoch 2/3 - Train Loss: 0.0013, Val Loss: 0.0010
+Epoch 3/3 - Train Loss: 0.0011, Val Loss: 0.0016
+>>>> DeepSeek + Sparse RMSE = 0.03518
+
+=== [DeepSeek] Run 9: Embedding = Spectral ===
+Epoch 1/3 - Train Loss: 0.0241, Val Loss: 0.0010
+Epoch 2/3 - Train Loss: 0.0012, Val Loss: 0.0018
+Epoch 3/3 - Train Loss: 0.0011, Val Loss: 0.0012
+>>>> DeepSeek + Spectral RMSE = 0.04584
+
+=== [GPT2] Run 9: Embedding = Vanilla ===
+Epoch 1/3 - Train Loss: 0.1501, Val Loss: 0.0068
+Epoch 2/3 - Train Loss: 0.0225, Val Loss: 0.0065
+Epoch 3/3 - Train Loss: 0.0156, Val Loss: 0.0072
+>>>> GPT2 + Vanilla RMSE = 0.10071
+
+=== [GPT2] Run 9: Embedding = Positional ===
+Epoch 1/3 - Train Loss: 0.1467, Val Loss: 0.0096
+Epoch 2/3 - Train Loss: 0.0243, Val Loss: 0.0105
+Epoch 3/3 - Train Loss: 0.0152, Val Loss: 0.0095
+>>>> GPT2 + Positional RMSE = 0.11345
+
+=== [GPT2] Run 9: Embedding = RelativePos ===
+Epoch 1/3 - Train Loss: 0.3704, Val Loss: 0.0417
+Epoch 2/3 - Train Loss: 0.0446, Val Loss: 0.0108
+Epoch 3/3 - Train Loss: 0.0223, Val Loss: 0.0053
+>>>> GPT2 + RelativePos RMSE = 0.09089
+
+=== [GPT2] Run 9: Embedding = Sparse ===
+Epoch 1/3 - Train Loss: 0.3059, Val Loss: 0.0316
+Epoch 2/3 - Train Loss: 0.0400, Val Loss: 0.0283
+Epoch 3/3 - Train Loss: 0.0236, Val Loss: 0.0095
+>>>> GPT2 + Sparse RMSE = 0.11502
+
+=== [GPT2] Run 9: Embedding = Spectral ===
+Epoch 1/3 - Train Loss: 0.1338, Val Loss: 0.0068
+Epoch 2/3 - Train Loss: 0.0222, Val Loss: 0.0057
+Epoch 3/3 - Train Loss: 0.0150, Val Loss: 0.0096
+>>>> GPT2 + Spectral RMSE = 0.11394
+
+=== [BERT] Run 9: Embedding = Vanilla ===
+Epoch 1/3 - Train Loss: 0.0697, Val Loss: 0.0055
+Epoch 2/3 - Train Loss: 0.0114, Val Loss: 0.0039
+Epoch 3/3 - Train Loss: 0.0085, Val Loss: 0.0035
+>>>> BERT + Vanilla RMSE = 0.07493
+
+=== [BERT] Run 9: Embedding = Positional ===
+Epoch 1/3 - Train Loss: 0.0506, Val Loss: 0.0110
+Epoch 2/3 - Train Loss: 0.0102, Val Loss: 0.0105
+Epoch 3/3 - Train Loss: 0.0078, Val Loss: 0.0062
+>>>> BERT + Positional RMSE = 0.09407
+
+=== [BERT] Run 9: Embedding = RelativePos ===
+Epoch 1/3 - Train Loss: 0.0469, Val Loss: 0.0105
+Epoch 2/3 - Train Loss: 0.0102, Val Loss: 0.0068
+Epoch 3/3 - Train Loss: 0.0075, Val Loss: 0.0113
+>>>> BERT + RelativePos RMSE = 0.12269
+
+=== [BERT] Run 9: Embedding = Sparse ===
+Epoch 1/3 - Train Loss: 0.0652, Val Loss: 0.0114
+Epoch 2/3 - Train Loss: 0.0121, Val Loss: 0.0064
+Epoch 3/3 - Train Loss: 0.0092, Val Loss: 0.0073
+>>>> BERT + Sparse RMSE = 0.10282
+
+=== [BERT] Run 9: Embedding = Spectral ===
+Epoch 1/3 - Train Loss: 0.0620, Val Loss: 0.0087
+Epoch 2/3 - Train Loss: 0.0111, Val Loss: 0.0078
+Epoch 3/3 - Train Loss: 0.0083, Val Loss: 0.0060
+>>>> BERT + Spectral RMSE = 0.09197
+
+********** RUN 10 / 10 **********
+
+=== [DeepSeek] Run 10: Embedding = Vanilla ===
+Epoch 1/3 - Train Loss: 0.0608, Val Loss: 0.0010
+Epoch 2/3 - Train Loss: 0.0011, Val Loss: 0.0020
+Epoch 3/3 - Train Loss: 0.0011, Val Loss: 0.0020
+>>>> DeepSeek + Vanilla RMSE = 0.06401
+
+=== [DeepSeek] Run 10: Embedding = Positional ===
+Epoch 1/3 - Train Loss: 0.0431, Val Loss: 0.0010
+Epoch 2/3 - Train Loss: 0.0014, Val Loss: 0.0011
+Epoch 3/3 - Train Loss: 0.0013, Val Loss: 0.0010
+>>>> DeepSeek + Positional RMSE = 0.04367
+
+=== [DeepSeek] Run 10: Embedding = RelativePos ===
+Epoch 1/3 - Train Loss: 0.0335, Val Loss: 0.0011
+Epoch 2/3 - Train Loss: 0.0013, Val Loss: 0.0014
+Epoch 3/3 - Train Loss: 0.0012, Val Loss: 0.0014
+>>>> DeepSeek + RelativePos RMSE = 0.05022
+
+=== [DeepSeek] Run 10: Embedding = Sparse ===
+Epoch 1/3 - Train Loss: 0.0413, Val Loss: 0.0010
+Epoch 2/3 - Train Loss: 0.0010, Val Loss: 0.0011
+Epoch 3/3 - Train Loss: 0.0007, Val Loss: 0.0010
+>>>> DeepSeek + Sparse RMSE = 0.03606
+
+=== [DeepSeek] Run 10: Embedding = Spectral ===
+Epoch 1/3 - Train Loss: 0.0460, Val Loss: 0.0010
+Epoch 2/3 - Train Loss: 0.0012, Val Loss: 0.0011
+Epoch 3/3 - Train Loss: 0.0010, Val Loss: 0.0011
+>>>> DeepSeek + Spectral RMSE = 0.04395
+
+=== [GPT2] Run 10: Embedding = Vanilla ===
+Epoch 1/3 - Train Loss: 0.2448, Val Loss: 0.0199
+Epoch 2/3 - Train Loss: 0.0282, Val Loss: 0.0119
+Epoch 3/3 - Train Loss: 0.0180, Val Loss: 0.0144
+>>>> GPT2 + Vanilla RMSE = 0.13810
+
+=== [GPT2] Run 10: Embedding = Positional ===
+Epoch 1/3 - Train Loss: 0.1732, Val Loss: 0.0129
+Epoch 2/3 - Train Loss: 0.0259, Val Loss: 0.0167
+Epoch 3/3 - Train Loss: 0.0163, Val Loss: 0.0094
+>>>> GPT2 + Positional RMSE = 0.11461
+
+=== [GPT2] Run 10: Embedding = RelativePos ===
+Epoch 1/3 - Train Loss: 0.1237, Val Loss: 0.0186
+Epoch 2/3 - Train Loss: 0.0234, Val Loss: 0.0132
+Epoch 3/3 - Train Loss: 0.0150, Val Loss: 0.0074
+>>>> GPT2 + RelativePos RMSE = 0.10291
+
+=== [GPT2] Run 10: Embedding = Sparse ===
+Epoch 1/3 - Train Loss: 0.3573, Val Loss: 0.0412
+Epoch 2/3 - Train Loss: 0.0443, Val Loss: 0.0315
+Epoch 3/3 - Train Loss: 0.0257, Val Loss: 0.0120
+>>>> GPT2 + Sparse RMSE = 0.12514
+
+=== [GPT2] Run 10: Embedding = Spectral ===
+Epoch 1/3 - Train Loss: 0.1382, Val Loss: 0.0253
+Epoch 2/3 - Train Loss: 0.0306, Val Loss: 0.0112
+Epoch 3/3 - Train Loss: 0.0208, Val Loss: 0.0065
+>>>> GPT2 + Spectral RMSE = 0.09543
+
+=== [BERT] Run 10: Embedding = Vanilla ===
+Epoch 1/3 - Train Loss: 0.0389, Val Loss: 0.0123
+Epoch 2/3 - Train Loss: 0.0102, Val Loss: 0.0128
+Epoch 3/3 - Train Loss: 0.0074, Val Loss: 0.0057
+>>>> BERT + Vanilla RMSE = 0.09101
+
+=== [BERT] Run 10: Embedding = Positional ===
+Epoch 1/3 - Train Loss: 0.0482, Val Loss: 0.0086
+Epoch 2/3 - Train Loss: 0.0103, Val Loss: 0.0039
+Epoch 3/3 - Train Loss: 0.0079, Val Loss: 0.0089
+>>>> BERT + Positional RMSE = 0.10830
+
+=== [BERT] Run 10: Embedding = RelativePos ===
+Epoch 1/3 - Train Loss: 0.0444, Val Loss: 0.0124
+Epoch 2/3 - Train Loss: 0.0112, Val Loss: 0.0056
+Epoch 3/3 - Train Loss: 0.0080, Val Loss: 0.0052
+>>>> BERT + RelativePos RMSE = 0.08646
+
+=== [BERT] Run 10: Embedding = Sparse ===
+Epoch 1/3 - Train Loss: 0.0520, Val Loss: 0.0088
+Epoch 2/3 - Train Loss: 0.0117, Val Loss: 0.0081
+Epoch 3/3 - Train Loss: 0.0088, Val Loss: 0.0046
+>>>> BERT + Sparse RMSE = 0.08406
+
+=== [BERT] Run 10: Embedding = Spectral ===
+Epoch 1/3 - Train Loss: 0.0578, Val Loss: 0.0120
+Epoch 2/3 - Train Loss: 0.0121, Val Loss: 0.0070
+Epoch 3/3 - Train Loss: 0.0088, Val Loss: 0.0077
+>>>> BERT + Spectral RMSE = 0.10341
+DeepSeek bar plot saved to: /hpc/group/naumannlab/jjm132/nlp4neuro/results/experiment3_results/final_plots_and_stats/deepseek_embeddings_barplot.png
+DeepSeek significance results saved to: /hpc/group/naumannlab/jjm132/nlp4neuro/results/experiment3_results/final_plots_and_stats/deepseek_wilcoxon_significance.txt
+GPT2 bar plot saved to: /hpc/group/naumannlab/jjm132/nlp4neuro/results/experiment3_results/final_plots_and_stats/gpt2_embeddings_barplot.png
+GPT2 significance results saved to: /hpc/group/naumannlab/jjm132/nlp4neuro/results/experiment3_results/final_plots_and_stats/gpt2_wilcoxon_significance.txt
+BERT bar plot saved to: /hpc/group/naumannlab/jjm132/nlp4neuro/results/experiment3_results/final_plots_and_stats/bert_embeddings_barplot.png
+BERT significance results saved to: /hpc/group/naumannlab/jjm132/nlp4neuro/results/experiment3_results/final_plots_and_stats/bert_wilcoxon_significance.txt
+Experiment 3 completed: 10 runs with 3 families x 5 embeddings each, predictions/plots/stats saved.

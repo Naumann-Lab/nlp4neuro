@@ -1,0 +1,3963 @@
+[INFO] GPU: NVIDIA RTX 6000 Ada Generation
+[INFO] Running on device: cuda
+
+===========================================
+Starting Experiment 2 for Fish 9
+===========================================
+Neural data shape: (3047, 12499)
+Tail data shape: (3047, 6)
+[Fish 9] input_dim=12499, output_dim=6
+
+=== Fish 9 - Run 1/10 ===
+
+--- Sequence Length = 5 ---
+
+[Run 1] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.1144, Val Loss: 0.0025
+Epoch 2/3 | Train Loss: 0.0099, Val Loss: 0.0046
+Epoch 3/3 | Train Loss: 0.0066, Val Loss: 0.0020
+GPT2 Pretrained => RMSE: 0.0557
+
+[Run 1] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0204, Val Loss: 0.0043
+Epoch 2/3 | Train Loss: 0.0044, Val Loss: 0.0043
+Epoch 3/3 | Train Loss: 0.0041, Val Loss: 0.0015
+GPT2 Untrained => RMSE: 0.0471
+
+[Run 1] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0124, Val Loss: 0.0033
+Epoch 2/3 | Train Loss: 0.0042, Val Loss: 0.0013
+Epoch 3/3 | Train Loss: 0.0035, Val Loss: 0.0045
+BERT Pretrained => RMSE: 0.0820
+
+[Run 1] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0283, Val Loss: 0.0029
+Epoch 2/3 | Train Loss: 0.0062, Val Loss: 0.0042
+Epoch 3/3 | Train Loss: 0.0041, Val Loss: 0.0032
+BERT Untrained => RMSE: 0.0684
+
+[Run 1] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0265, Val Loss: 0.0077
+Epoch 2/3 | Train Loss: 0.0028, Val Loss: 0.0021
+Epoch 3/3 | Train Loss: 0.0027, Val Loss: 0.0014
+DeepSeek Pretrained => RMSE: 0.0408
+
+[Run 1] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0494, Val Loss: 0.0011
+Epoch 2/3 | Train Loss: 0.0019, Val Loss: 0.0019
+Epoch 3/3 | Train Loss: 0.0017, Val Loss: 0.0014
+DeepSeek Untrained => RMSE: 0.0376
+
+--- Sequence Length = 20 ---
+
+[Run 1] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.1110, Val Loss: 0.0026
+Epoch 2/3 | Train Loss: 0.0080, Val Loss: 0.0031
+Epoch 3/3 | Train Loss: 0.0053, Val Loss: 0.0016
+GPT2 Pretrained => RMSE: 0.0522
+
+[Run 1] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0297, Val Loss: 0.0014
+Epoch 2/3 | Train Loss: 0.0039, Val Loss: 0.0014
+Epoch 3/3 | Train Loss: 0.0035, Val Loss: 0.0014
+GPT2 Untrained => RMSE: 0.0455
+
+[Run 1] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0100, Val Loss: 0.0012
+Epoch 2/3 | Train Loss: 0.0030, Val Loss: 0.0012
+Epoch 3/3 | Train Loss: 0.0027, Val Loss: 0.0013
+BERT Pretrained => RMSE: 0.0434
+
+[Run 1] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0246, Val Loss: 0.0031
+Epoch 2/3 | Train Loss: 0.0045, Val Loss: 0.0015
+Epoch 3/3 | Train Loss: 0.0035, Val Loss: 0.0056
+BERT Untrained => RMSE: 0.0927
+
+[Run 1] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.1073, Val Loss: 0.0040
+Epoch 2/3 | Train Loss: 0.0020, Val Loss: 0.0033
+Epoch 3/3 | Train Loss: 0.0022, Val Loss: 0.0044
+DeepSeek Pretrained => RMSE: 0.0701
+
+[Run 1] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0667, Val Loss: 0.0116
+Epoch 2/3 | Train Loss: 0.0018, Val Loss: 0.0013
+Epoch 3/3 | Train Loss: 0.0012, Val Loss: 0.0026
+DeepSeek Untrained => RMSE: 0.0603
+
+=== Fish 9 - Run 2/10 ===
+
+--- Sequence Length = 5 ---
+
+[Run 2] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.1130, Val Loss: 0.0029
+Epoch 2/3 | Train Loss: 0.0095, Val Loss: 0.0019
+Epoch 3/3 | Train Loss: 0.0063, Val Loss: 0.0016
+GPT2 Pretrained => RMSE: 0.0385
+
+[Run 2] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0276, Val Loss: 0.0016
+Epoch 2/3 | Train Loss: 0.0045, Val Loss: 0.0011
+Epoch 3/3 | Train Loss: 0.0041, Val Loss: 0.0019
+GPT2 Untrained => RMSE: 0.0532
+
+[Run 2] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0136, Val Loss: 0.0020
+Epoch 2/3 | Train Loss: 0.0039, Val Loss: 0.0014
+Epoch 3/3 | Train Loss: 0.0033, Val Loss: 0.0090
+BERT Pretrained => RMSE: 0.1112
+
+[Run 2] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0297, Val Loss: 0.0043
+Epoch 2/3 | Train Loss: 0.0065, Val Loss: 0.0027
+Epoch 3/3 | Train Loss: 0.0042, Val Loss: 0.0048
+BERT Untrained => RMSE: 0.0832
+
+[Run 2] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0252, Val Loss: 0.0025
+Epoch 2/3 | Train Loss: 0.0029, Val Loss: 0.0073
+Epoch 3/3 | Train Loss: 0.0038, Val Loss: 0.0027
+DeepSeek Pretrained => RMSE: 0.0415
+
+[Run 2] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.2379, Val Loss: 0.0044
+Epoch 2/3 | Train Loss: 0.0033, Val Loss: 0.0028
+Epoch 3/3 | Train Loss: 0.0017, Val Loss: 0.0023
+DeepSeek Untrained => RMSE: 0.0551
+
+--- Sequence Length = 20 ---
+
+[Run 2] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.0855, Val Loss: 0.0032
+Epoch 2/3 | Train Loss: 0.0084, Val Loss: 0.0024
+Epoch 3/3 | Train Loss: 0.0055, Val Loss: 0.0013
+GPT2 Pretrained => RMSE: 0.0492
+
+[Run 2] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0301, Val Loss: 0.0011
+Epoch 2/3 | Train Loss: 0.0039, Val Loss: 0.0013
+Epoch 3/3 | Train Loss: 0.0035, Val Loss: 0.0022
+GPT2 Untrained => RMSE: 0.0543
+
+[Run 2] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0134, Val Loss: 0.0037
+Epoch 2/3 | Train Loss: 0.0032, Val Loss: 0.0012
+Epoch 3/3 | Train Loss: 0.0030, Val Loss: 0.0017
+BERT Pretrained => RMSE: 0.0333
+
+[Run 2] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0222, Val Loss: 0.0027
+Epoch 2/3 | Train Loss: 0.0048, Val Loss: 0.0017
+Epoch 3/3 | Train Loss: 0.0035, Val Loss: 0.0030
+BERT Untrained => RMSE: 0.0707
+
+[Run 2] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0296, Val Loss: 0.0019
+Epoch 2/3 | Train Loss: 0.0020, Val Loss: 0.0014
+Epoch 3/3 | Train Loss: 0.0020, Val Loss: 0.0184
+DeepSeek Pretrained => RMSE: 0.1348
+
+[Run 2] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.1003, Val Loss: 0.0010
+Epoch 2/3 | Train Loss: 0.0012, Val Loss: 0.0016
+Epoch 3/3 | Train Loss: 0.0012, Val Loss: 0.0021
+DeepSeek Untrained => RMSE: 0.0570
+
+=== Fish 9 - Run 3/10 ===
+
+--- Sequence Length = 5 ---
+
+[Run 3] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.0557, Val Loss: 0.0075
+Epoch 2/3 | Train Loss: 0.0088, Val Loss: 0.0033
+Epoch 3/3 | Train Loss: 0.0057, Val Loss: 0.0019
+GPT2 Pretrained => RMSE: 0.0552
+
+[Run 3] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0299, Val Loss: 0.0013
+Epoch 2/3 | Train Loss: 0.0044, Val Loss: 0.0016
+Epoch 3/3 | Train Loss: 0.0041, Val Loss: 0.0014
+GPT2 Untrained => RMSE: 0.0474
+
+[Run 3] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0143, Val Loss: 0.0024
+Epoch 2/3 | Train Loss: 0.0044, Val Loss: 0.0024
+Epoch 3/3 | Train Loss: 0.0034, Val Loss: 0.0043
+BERT Pretrained => RMSE: 0.0792
+
+[Run 3] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0263, Val Loss: 0.0024
+Epoch 2/3 | Train Loss: 0.0059, Val Loss: 0.0032
+Epoch 3/3 | Train Loss: 0.0042, Val Loss: 0.0034
+BERT Untrained => RMSE: 0.0651
+
+[Run 3] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0186, Val Loss: 0.0013
+Epoch 2/3 | Train Loss: 0.0028, Val Loss: 0.0035
+Epoch 3/3 | Train Loss: 0.0027, Val Loss: 0.0091
+DeepSeek Pretrained => RMSE: 0.0840
+
+[Run 3] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0957, Val Loss: 0.0018
+Epoch 2/3 | Train Loss: 0.0017, Val Loss: 0.0014
+Epoch 3/3 | Train Loss: 0.0015, Val Loss: 0.0034
+DeepSeek Untrained => RMSE: 0.0700
+
+--- Sequence Length = 20 ---
+
+[Run 3] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.0714, Val Loss: 0.0045
+Epoch 2/3 | Train Loss: 0.0091, Val Loss: 0.0046
+Epoch 3/3 | Train Loss: 0.0060, Val Loss: 0.0024
+GPT2 Pretrained => RMSE: 0.0632
+
+[Run 3] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0239, Val Loss: 0.0009
+Epoch 2/3 | Train Loss: 0.0040, Val Loss: 0.0011
+Epoch 3/3 | Train Loss: 0.0035, Val Loss: 0.0013
+GPT2 Untrained => RMSE: 0.0478
+
+[Run 3] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0107, Val Loss: 0.0017
+Epoch 2/3 | Train Loss: 0.0032, Val Loss: 0.0018
+Epoch 3/3 | Train Loss: 0.0029, Val Loss: 0.0014
+BERT Pretrained => RMSE: 0.0502
+
+[Run 3] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0232, Val Loss: 0.0060
+Epoch 2/3 | Train Loss: 0.0046, Val Loss: 0.0018
+Epoch 3/3 | Train Loss: 0.0034, Val Loss: 0.0038
+BERT Untrained => RMSE: 0.0784
+
+[Run 3] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0332, Val Loss: 0.0034
+Epoch 2/3 | Train Loss: 0.0020, Val Loss: 0.0045
+Epoch 3/3 | Train Loss: 0.0027, Val Loss: 0.0016
+DeepSeek Pretrained => RMSE: 0.0473
+
+[Run 3] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0302, Val Loss: 0.0011
+Epoch 2/3 | Train Loss: 0.0014, Val Loss: 0.0012
+Epoch 3/3 | Train Loss: 0.0013, Val Loss: 0.0030
+DeepSeek Untrained => RMSE: 0.0763
+
+=== Fish 9 - Run 4/10 ===
+
+--- Sequence Length = 5 ---
+
+[Run 4] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.0691, Val Loss: 0.0011
+Epoch 2/3 | Train Loss: 0.0090, Val Loss: 0.0021
+Epoch 3/3 | Train Loss: 0.0060, Val Loss: 0.0016
+GPT2 Pretrained => RMSE: 0.0375
+
+[Run 4] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0212, Val Loss: 0.0021
+Epoch 2/3 | Train Loss: 0.0043, Val Loss: 0.0032
+Epoch 3/3 | Train Loss: 0.0039, Val Loss: 0.0024
+GPT2 Untrained => RMSE: 0.0615
+
+[Run 4] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0141, Val Loss: 0.0027
+Epoch 2/3 | Train Loss: 0.0040, Val Loss: 0.0029
+Epoch 3/3 | Train Loss: 0.0035, Val Loss: 0.0013
+BERT Pretrained => RMSE: 0.0399
+
+[Run 4] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0269, Val Loss: 0.0061
+Epoch 2/3 | Train Loss: 0.0060, Val Loss: 0.0018
+Epoch 3/3 | Train Loss: 0.0041, Val Loss: 0.0011
+BERT Untrained => RMSE: 0.0379
+
+[Run 4] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0515, Val Loss: 0.0017
+Epoch 2/3 | Train Loss: 0.0025, Val Loss: 0.0018
+Epoch 3/3 | Train Loss: 0.0032, Val Loss: 0.0034
+DeepSeek Pretrained => RMSE: 0.0585
+
+[Run 4] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.1393, Val Loss: 0.0027
+Epoch 2/3 | Train Loss: 0.0016, Val Loss: 0.0013
+Epoch 3/3 | Train Loss: 0.0014, Val Loss: 0.0012
+DeepSeek Untrained => RMSE: 0.0380
+
+--- Sequence Length = 20 ---
+
+[Run 4] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.0685, Val Loss: 0.0046
+Epoch 2/3 | Train Loss: 0.0091, Val Loss: 0.0048
+Epoch 3/3 | Train Loss: 0.0062, Val Loss: 0.0015
+GPT2 Pretrained => RMSE: 0.0451
+
+[Run 4] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0314, Val Loss: 0.0010
+Epoch 2/3 | Train Loss: 0.0039, Val Loss: 0.0022
+Epoch 3/3 | Train Loss: 0.0036, Val Loss: 0.0012
+GPT2 Untrained => RMSE: 0.0375
+
+[Run 4] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0150, Val Loss: 0.0025
+Epoch 2/3 | Train Loss: 0.0035, Val Loss: 0.0024
+Epoch 3/3 | Train Loss: 0.0030, Val Loss: 0.0013
+BERT Pretrained => RMSE: 0.0482
+
+[Run 4] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0221, Val Loss: 0.0022
+Epoch 2/3 | Train Loss: 0.0045, Val Loss: 0.0029
+Epoch 3/3 | Train Loss: 0.0033, Val Loss: 0.0018
+BERT Untrained => RMSE: 0.0539
+
+[Run 4] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0300, Val Loss: 0.0020
+Epoch 2/3 | Train Loss: 0.0016, Val Loss: 0.0030
+Epoch 3/3 | Train Loss: 0.0028, Val Loss: 0.0022
+DeepSeek Pretrained => RMSE: 0.0501
+
+[Run 4] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.1038, Val Loss: 0.0018
+Epoch 2/3 | Train Loss: 0.0020, Val Loss: 0.0018
+Epoch 3/3 | Train Loss: 0.0014, Val Loss: 0.0010
+DeepSeek Untrained => RMSE: 0.0361
+
+=== Fish 9 - Run 5/10 ===
+
+--- Sequence Length = 5 ---
+
+[Run 5] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.1276, Val Loss: 0.0083
+Epoch 2/3 | Train Loss: 0.0122, Val Loss: 0.0029
+Epoch 3/3 | Train Loss: 0.0080, Val Loss: 0.0019
+GPT2 Pretrained => RMSE: 0.0547
+
+[Run 5] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0263, Val Loss: 0.0029
+Epoch 2/3 | Train Loss: 0.0045, Val Loss: 0.0039
+Epoch 3/3 | Train Loss: 0.0042, Val Loss: 0.0012
+GPT2 Untrained => RMSE: 0.0389
+
+[Run 5] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0141, Val Loss: 0.0019
+Epoch 2/3 | Train Loss: 0.0039, Val Loss: 0.0042
+Epoch 3/3 | Train Loss: 0.0033, Val Loss: 0.0014
+BERT Pretrained => RMSE: 0.0355
+
+[Run 5] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0240, Val Loss: 0.0067
+Epoch 2/3 | Train Loss: 0.0057, Val Loss: 0.0023
+Epoch 3/3 | Train Loss: 0.0040, Val Loss: 0.0049
+BERT Untrained => RMSE: 0.0549
+
+[Run 5] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0643, Val Loss: 0.0011
+Epoch 2/3 | Train Loss: 0.0015, Val Loss: 0.0016
+Epoch 3/3 | Train Loss: 0.0015, Val Loss: 0.0010
+DeepSeek Pretrained => RMSE: 0.0352
+
+[Run 5] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.1366, Val Loss: 0.0060
+Epoch 2/3 | Train Loss: 0.0026, Val Loss: 0.0090
+Epoch 3/3 | Train Loss: 0.0018, Val Loss: 0.0026
+DeepSeek Untrained => RMSE: 0.0579
+
+--- Sequence Length = 20 ---
+
+[Run 5] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.0361, Val Loss: 0.0017
+Epoch 2/3 | Train Loss: 0.0050, Val Loss: 0.0015
+Epoch 3/3 | Train Loss: 0.0036, Val Loss: 0.0062
+GPT2 Pretrained => RMSE: 0.0900
+
+[Run 5] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0238, Val Loss: 0.0019
+Epoch 2/3 | Train Loss: 0.0039, Val Loss: 0.0025
+Epoch 3/3 | Train Loss: 0.0034, Val Loss: 0.0013
+GPT2 Untrained => RMSE: 0.0355
+
+[Run 5] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0120, Val Loss: 0.0023
+Epoch 2/3 | Train Loss: 0.0031, Val Loss: 0.0022
+Epoch 3/3 | Train Loss: 0.0028, Val Loss: 0.0012
+BERT Pretrained => RMSE: 0.0338
+
+[Run 5] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0282, Val Loss: 0.0021
+Epoch 2/3 | Train Loss: 0.0045, Val Loss: 0.0019
+Epoch 3/3 | Train Loss: 0.0034, Val Loss: 0.0015
+BERT Untrained => RMSE: 0.0512
+
+[Run 5] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0229, Val Loss: 0.0016
+Epoch 2/3 | Train Loss: 0.0021, Val Loss: 0.0015
+Epoch 3/3 | Train Loss: 0.0029, Val Loss: 0.0044
+DeepSeek Pretrained => RMSE: 0.0824
+
+[Run 5] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0704, Val Loss: 0.0012
+Epoch 2/3 | Train Loss: 0.0017, Val Loss: 0.0023
+Epoch 3/3 | Train Loss: 0.0010, Val Loss: 0.0012
+DeepSeek Untrained => RMSE: 0.0341
+
+=== Fish 9 - Run 6/10 ===
+
+--- Sequence Length = 5 ---
+
+[Run 6] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.2121, Val Loss: 0.0085
+Epoch 2/3 | Train Loss: 0.0140, Val Loss: 0.0059
+Epoch 3/3 | Train Loss: 0.0084, Val Loss: 0.0021
+GPT2 Pretrained => RMSE: 0.0564
+
+[Run 6] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0319, Val Loss: 0.0017
+Epoch 2/3 | Train Loss: 0.0046, Val Loss: 0.0020
+Epoch 3/3 | Train Loss: 0.0043, Val Loss: 0.0016
+GPT2 Untrained => RMSE: 0.0354
+
+[Run 6] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0121, Val Loss: 0.0022
+Epoch 2/3 | Train Loss: 0.0040, Val Loss: 0.0079
+Epoch 3/3 | Train Loss: 0.0033, Val Loss: 0.0034
+BERT Pretrained => RMSE: 0.0722
+
+[Run 6] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0333, Val Loss: 0.0039
+Epoch 2/3 | Train Loss: 0.0061, Val Loss: 0.0112
+Epoch 3/3 | Train Loss: 0.0044, Val Loss: 0.0019
+BERT Untrained => RMSE: 0.0560
+
+[Run 6] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0374, Val Loss: 0.0021
+Epoch 2/3 | Train Loss: 0.0030, Val Loss: 0.0016
+Epoch 3/3 | Train Loss: 0.0028, Val Loss: 0.0013
+DeepSeek Pretrained => RMSE: 0.0426
+
+[Run 6] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0562, Val Loss: 0.0024
+Epoch 2/3 | Train Loss: 0.0022, Val Loss: 0.0015
+Epoch 3/3 | Train Loss: 0.0017, Val Loss: 0.0017
+DeepSeek Untrained => RMSE: 0.0415
+
+--- Sequence Length = 20 ---
+
+[Run 6] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.1157, Val Loss: 0.0042
+Epoch 2/3 | Train Loss: 0.0082, Val Loss: 0.0016
+Epoch 3/3 | Train Loss: 0.0056, Val Loss: 0.0011
+GPT2 Pretrained => RMSE: 0.0454
+
+[Run 6] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0319, Val Loss: 0.0012
+Epoch 2/3 | Train Loss: 0.0038, Val Loss: 0.0031
+Epoch 3/3 | Train Loss: 0.0035, Val Loss: 0.0010
+GPT2 Untrained => RMSE: 0.0426
+
+[Run 6] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0137, Val Loss: 0.0011
+Epoch 2/3 | Train Loss: 0.0034, Val Loss: 0.0035
+Epoch 3/3 | Train Loss: 0.0029, Val Loss: 0.0010
+BERT Pretrained => RMSE: 0.0395
+
+[Run 6] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0228, Val Loss: 0.0024
+Epoch 2/3 | Train Loss: 0.0043, Val Loss: 0.0015
+Epoch 3/3 | Train Loss: 0.0033, Val Loss: 0.0023
+BERT Untrained => RMSE: 0.0631
+
+[Run 6] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0312, Val Loss: 0.0019
+Epoch 2/3 | Train Loss: 0.0018, Val Loss: 0.0030
+Epoch 3/3 | Train Loss: 0.0019, Val Loss: 0.0070
+DeepSeek Pretrained => RMSE: 0.0947
+
+[Run 6] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0329, Val Loss: 0.0012
+Epoch 2/3 | Train Loss: 0.0013, Val Loss: 0.0013
+Epoch 3/3 | Train Loss: 0.0012, Val Loss: 0.0013
+DeepSeek Untrained => RMSE: 0.0340
+
+=== Fish 9 - Run 7/10 ===
+
+--- Sequence Length = 5 ---
+
+[Run 7] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.0983, Val Loss: 0.0034
+Epoch 2/3 | Train Loss: 0.0089, Val Loss: 0.0035
+Epoch 3/3 | Train Loss: 0.0063, Val Loss: 0.0016
+GPT2 Pretrained => RMSE: 0.0511
+
+[Run 7] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0255, Val Loss: 0.0011
+Epoch 2/3 | Train Loss: 0.0043, Val Loss: 0.0045
+Epoch 3/3 | Train Loss: 0.0040, Val Loss: 0.0032
+GPT2 Untrained => RMSE: 0.0454
+
+[Run 7] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0137, Val Loss: 0.0017
+Epoch 2/3 | Train Loss: 0.0040, Val Loss: 0.0017
+Epoch 3/3 | Train Loss: 0.0033, Val Loss: 0.0030
+BERT Pretrained => RMSE: 0.0697
+
+[Run 7] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0340, Val Loss: 0.0070
+Epoch 2/3 | Train Loss: 0.0062, Val Loss: 0.0014
+Epoch 3/3 | Train Loss: 0.0045, Val Loss: 0.0063
+BERT Untrained => RMSE: 0.0692
+
+[Run 7] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.1539, Val Loss: 0.0010
+Epoch 2/3 | Train Loss: 0.0014, Val Loss: 0.0016
+Epoch 3/3 | Train Loss: 0.0014, Val Loss: 0.0011
+DeepSeek Pretrained => RMSE: 0.0411
+
+[Run 7] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0532, Val Loss: 0.0014
+Epoch 2/3 | Train Loss: 0.0015, Val Loss: 0.0021
+Epoch 3/3 | Train Loss: 0.0015, Val Loss: 0.0027
+DeepSeek Untrained => RMSE: 0.0577
+
+--- Sequence Length = 20 ---
+
+[Run 7] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.1681, Val Loss: 0.0073
+Epoch 2/3 | Train Loss: 0.0132, Val Loss: 0.0016
+Epoch 3/3 | Train Loss: 0.0079, Val Loss: 0.0022
+GPT2 Pretrained => RMSE: 0.0548
+
+[Run 7] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0306, Val Loss: 0.0011
+Epoch 2/3 | Train Loss: 0.0040, Val Loss: 0.0015
+Epoch 3/3 | Train Loss: 0.0035, Val Loss: 0.0041
+GPT2 Untrained => RMSE: 0.0799
+
+[Run 7] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0110, Val Loss: 0.0011
+Epoch 2/3 | Train Loss: 0.0033, Val Loss: 0.0075
+Epoch 3/3 | Train Loss: 0.0028, Val Loss: 0.0013
+BERT Pretrained => RMSE: 0.0428
+
+[Run 7] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0264, Val Loss: 0.0017
+Epoch 2/3 | Train Loss: 0.0045, Val Loss: 0.0010
+Epoch 3/3 | Train Loss: 0.0036, Val Loss: 0.0022
+BERT Untrained => RMSE: 0.0623
+
+[Run 7] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0298, Val Loss: 0.0020
+Epoch 2/3 | Train Loss: 0.0022, Val Loss: 0.0018
+Epoch 3/3 | Train Loss: 0.0016, Val Loss: 0.0024
+DeepSeek Pretrained => RMSE: 0.0605
+
+[Run 7] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0404, Val Loss: 0.0019
+Epoch 2/3 | Train Loss: 0.0015, Val Loss: 0.0016
+Epoch 3/3 | Train Loss: 0.0013, Val Loss: 0.0014
+DeepSeek Untrained => RMSE: 0.0364
+
+=== Fish 9 - Run 8/10 ===
+
+--- Sequence Length = 5 ---
+
+[Run 8] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.0378, Val Loss: 0.0029
+Epoch 2/3 | Train Loss: 0.0060, Val Loss: 0.0019
+Epoch 3/3 | Train Loss: 0.0041, Val Loss: 0.0019
+GPT2 Pretrained => RMSE: 0.0531
+
+[Run 8] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0338, Val Loss: 0.0018
+Epoch 2/3 | Train Loss: 0.0047, Val Loss: 0.0016
+Epoch 3/3 | Train Loss: 0.0043, Val Loss: 0.0019
+GPT2 Untrained => RMSE: 0.0415
+
+[Run 8] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0117, Val Loss: 0.0017
+Epoch 2/3 | Train Loss: 0.0037, Val Loss: 0.0013
+Epoch 3/3 | Train Loss: 0.0032, Val Loss: 0.0015
+BERT Pretrained => RMSE: 0.0357
+
+[Run 8] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0251, Val Loss: 0.0030
+Epoch 2/3 | Train Loss: 0.0058, Val Loss: 0.0032
+Epoch 3/3 | Train Loss: 0.0041, Val Loss: 0.0018
+BERT Untrained => RMSE: 0.0357
+
+[Run 8] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0381, Val Loss: 0.0014
+Epoch 2/3 | Train Loss: 0.0027, Val Loss: 0.0026
+Epoch 3/3 | Train Loss: 0.0027, Val Loss: 0.0015
+DeepSeek Pretrained => RMSE: 0.0496
+
+[Run 8] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0350, Val Loss: 0.0029
+Epoch 2/3 | Train Loss: 0.0019, Val Loss: 0.0015
+Epoch 3/3 | Train Loss: 0.0016, Val Loss: 0.0013
+DeepSeek Untrained => RMSE: 0.0364
+
+--- Sequence Length = 20 ---
+
+[Run 8] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.0381, Val Loss: 0.0016
+Epoch 2/3 | Train Loss: 0.0068, Val Loss: 0.0049
+Epoch 3/3 | Train Loss: 0.0044, Val Loss: 0.0020
+GPT2 Pretrained => RMSE: 0.0559
+
+[Run 8] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0338, Val Loss: 0.0011
+Epoch 2/3 | Train Loss: 0.0040, Val Loss: 0.0010
+Epoch 3/3 | Train Loss: 0.0035, Val Loss: 0.0016
+GPT2 Untrained => RMSE: 0.0521
+
+[Run 8] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0125, Val Loss: 0.0015
+Epoch 2/3 | Train Loss: 0.0034, Val Loss: 0.0028
+Epoch 3/3 | Train Loss: 0.0029, Val Loss: 0.0011
+BERT Pretrained => RMSE: 0.0374
+
+[Run 8] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0256, Val Loss: 0.0046
+Epoch 2/3 | Train Loss: 0.0046, Val Loss: 0.0047
+Epoch 3/3 | Train Loss: 0.0033, Val Loss: 0.0013
+BERT Untrained => RMSE: 0.0492
+
+[Run 8] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0438, Val Loss: 0.0017
+Epoch 2/3 | Train Loss: 0.0025, Val Loss: 0.0015
+Epoch 3/3 | Train Loss: 0.0033, Val Loss: 0.0019
+DeepSeek Pretrained => RMSE: 0.0393
+
+[Run 8] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.1449, Val Loss: 0.0014
+Epoch 2/3 | Train Loss: 0.0012, Val Loss: 0.0012
+Epoch 3/3 | Train Loss: 0.0013, Val Loss: 0.0075
+DeepSeek Untrained => RMSE: 0.0711
+
+=== Fish 9 - Run 9/10 ===
+
+--- Sequence Length = 5 ---
+
+[Run 9] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.0960, Val Loss: 0.0035
+Epoch 2/3 | Train Loss: 0.0103, Val Loss: 0.0022
+Epoch 3/3 | Train Loss: 0.0066, Val Loss: 0.0012
+GPT2 Pretrained => RMSE: 0.0427
+
+[Run 9] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0224, Val Loss: 0.0023
+Epoch 2/3 | Train Loss: 0.0044, Val Loss: 0.0061
+Epoch 3/3 | Train Loss: 0.0040, Val Loss: 0.0021
+GPT2 Untrained => RMSE: 0.0553
+
+[Run 9] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0125, Val Loss: 0.0019
+Epoch 2/3 | Train Loss: 0.0036, Val Loss: 0.0029
+Epoch 3/3 | Train Loss: 0.0033, Val Loss: 0.0013
+BERT Pretrained => RMSE: 0.0457
+
+[Run 9] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0307, Val Loss: 0.0042
+Epoch 2/3 | Train Loss: 0.0058, Val Loss: 0.0014
+Epoch 3/3 | Train Loss: 0.0042, Val Loss: 0.0045
+BERT Untrained => RMSE: 0.0810
+
+[Run 9] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0645, Val Loss: 0.0012
+Epoch 2/3 | Train Loss: 0.0015, Val Loss: 0.0013
+Epoch 3/3 | Train Loss: 0.0015, Val Loss: 0.0011
+DeepSeek Pretrained => RMSE: 0.0374
+
+[Run 9] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0508, Val Loss: 0.0019
+Epoch 2/3 | Train Loss: 0.0023, Val Loss: 0.0016
+Epoch 3/3 | Train Loss: 0.0022, Val Loss: 0.0013
+DeepSeek Untrained => RMSE: 0.0359
+
+--- Sequence Length = 20 ---
+
+[Run 9] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.0806, Val Loss: 0.0021
+Epoch 2/3 | Train Loss: 0.0088, Val Loss: 0.0011
+Epoch 3/3 | Train Loss: 0.0058, Val Loss: 0.0015
+GPT2 Pretrained => RMSE: 0.0510
+
+[Run 9] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0240, Val Loss: 0.0011
+Epoch 2/3 | Train Loss: 0.0039, Val Loss: 0.0022
+Epoch 3/3 | Train Loss: 0.0034, Val Loss: 0.0016
+GPT2 Untrained => RMSE: 0.0524
+
+[Run 9] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0121, Val Loss: 0.0088
+Epoch 2/3 | Train Loss: 0.0034, Val Loss: 0.0013
+Epoch 3/3 | Train Loss: 0.0030, Val Loss: 0.0023
+BERT Pretrained => RMSE: 0.0631
+
+[Run 9] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0234, Val Loss: 0.0030
+Epoch 2/3 | Train Loss: 0.0045, Val Loss: 0.0014
+Epoch 3/3 | Train Loss: 0.0033, Val Loss: 0.0041
+BERT Untrained => RMSE: 0.0514
+
+[Run 9] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0405, Val Loss: 0.0014
+Epoch 2/3 | Train Loss: 0.0016, Val Loss: 0.0013
+Epoch 3/3 | Train Loss: 0.0018, Val Loss: 0.0013
+DeepSeek Pretrained => RMSE: 0.0429
+
+[Run 9] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0247, Val Loss: 0.0014
+Epoch 2/3 | Train Loss: 0.0015, Val Loss: 0.0013
+Epoch 3/3 | Train Loss: 0.0012, Val Loss: 0.0041
+DeepSeek Untrained => RMSE: 0.0757
+
+=== Fish 9 - Run 10/10 ===
+
+--- Sequence Length = 5 ---
+
+[Run 10] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.0538, Val Loss: 0.0021
+Epoch 2/3 | Train Loss: 0.0076, Val Loss: 0.0017
+Epoch 3/3 | Train Loss: 0.0052, Val Loss: 0.0033
+GPT2 Pretrained => RMSE: 0.0702
+
+[Run 10] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0255, Val Loss: 0.0017
+Epoch 2/3 | Train Loss: 0.0044, Val Loss: 0.0060
+Epoch 3/3 | Train Loss: 0.0040, Val Loss: 0.0037
+GPT2 Untrained => RMSE: 0.0618
+
+[Run 10] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0136, Val Loss: 0.0017
+Epoch 2/3 | Train Loss: 0.0041, Val Loss: 0.0047
+Epoch 3/3 | Train Loss: 0.0034, Val Loss: 0.0040
+BERT Pretrained => RMSE: 0.0769
+
+[Run 10] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0296, Val Loss: 0.0051
+Epoch 2/3 | Train Loss: 0.0059, Val Loss: 0.0074
+Epoch 3/3 | Train Loss: 0.0043, Val Loss: 0.0022
+BERT Untrained => RMSE: 0.0548
+
+[Run 10] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.3523, Val Loss: 0.0060
+Epoch 2/3 | Train Loss: 0.0046, Val Loss: 0.0017
+Epoch 3/3 | Train Loss: 0.0047, Val Loss: 0.0025
+DeepSeek Pretrained => RMSE: 0.0526
+
+[Run 10] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0469, Val Loss: 0.0020
+Epoch 2/3 | Train Loss: 0.0016, Val Loss: 0.0016
+Epoch 3/3 | Train Loss: 0.0016, Val Loss: 0.0047
+DeepSeek Untrained => RMSE: 0.0558
+
+--- Sequence Length = 20 ---
+
+[Run 10] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.0734, Val Loss: 0.0029
+Epoch 2/3 | Train Loss: 0.0075, Val Loss: 0.0042
+Epoch 3/3 | Train Loss: 0.0050, Val Loss: 0.0016
+GPT2 Pretrained => RMSE: 0.0536
+
+[Run 10] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0270, Val Loss: 0.0010
+Epoch 2/3 | Train Loss: 0.0039, Val Loss: 0.0014
+Epoch 3/3 | Train Loss: 0.0035, Val Loss: 0.0017
+GPT2 Untrained => RMSE: 0.0547
+
+[Run 10] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0142, Val Loss: 0.0025
+Epoch 2/3 | Train Loss: 0.0035, Val Loss: 0.0028
+Epoch 3/3 | Train Loss: 0.0031, Val Loss: 0.0038
+BERT Pretrained => RMSE: 0.0788
+
+[Run 10] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0228, Val Loss: 0.0025
+Epoch 2/3 | Train Loss: 0.0047, Val Loss: 0.0042
+Epoch 3/3 | Train Loss: 0.0035, Val Loss: 0.0031
+BERT Untrained => RMSE: 0.0677
+
+[Run 10] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0448, Val Loss: 0.0017
+Epoch 2/3 | Train Loss: 0.0022, Val Loss: 0.0018
+Epoch 3/3 | Train Loss: 0.0021, Val Loss: 0.0014
+DeepSeek Pretrained => RMSE: 0.0400
+
+[Run 10] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0988, Val Loss: 0.0070
+Epoch 2/3 | Train Loss: 0.0040, Val Loss: 0.0010
+Epoch 3/3 | Train Loss: 0.0012, Val Loss: 0.0010
+DeepSeek Untrained => RMSE: 0.0394
+Saved bar plot => /hpc/group/naumannlab/jjm132/nlp4neuro/results/experiment_2/fish9_seq5_barplot.png
+Saved bar plot => /hpc/group/naumannlab/jjm132/nlp4neuro/results/experiment_2/fish9_seq20_barplot.png
+[INFO] Wilcoxon results => /hpc/group/naumannlab/jjm132/nlp4neuro/results/experiment_2/fish9_wilcoxon_results.txt
+=== Done with Fish 9 ===
+
+
+===========================================
+Starting Experiment 2 for Fish 10
+===========================================
+Neural data shape: (2793, 7441)
+Tail data shape: (2793, 6)
+[Fish 10] input_dim=7441, output_dim=6
+
+=== Fish 10 - Run 1/10 ===
+
+--- Sequence Length = 5 ---
+
+[Run 1] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.3435, Val Loss: 0.0050
+Epoch 2/3 | Train Loss: 0.0180, Val Loss: 0.0070
+Epoch 3/3 | Train Loss: 0.0111, Val Loss: 0.0067
+GPT2 Pretrained => RMSE: 0.0752
+
+[Run 1] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0279, Val Loss: 0.0051
+Epoch 2/3 | Train Loss: 0.0058, Val Loss: 0.0024
+Epoch 3/3 | Train Loss: 0.0050, Val Loss: 0.0039
+GPT2 Untrained => RMSE: 0.0556
+
+[Run 1] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0123, Val Loss: 0.0026
+Epoch 2/3 | Train Loss: 0.0049, Val Loss: 0.0041
+Epoch 3/3 | Train Loss: 0.0046, Val Loss: 0.0019
+BERT Pretrained => RMSE: 0.0476
+
+[Run 1] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0293, Val Loss: 0.0124
+Epoch 2/3 | Train Loss: 0.0082, Val Loss: 0.0047
+Epoch 3/3 | Train Loss: 0.0064, Val Loss: 0.0026
+BERT Untrained => RMSE: 0.0517
+
+[Run 1] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0349, Val Loss: 0.0031
+Epoch 2/3 | Train Loss: 0.0030, Val Loss: 0.0048
+Epoch 3/3 | Train Loss: 0.0026, Val Loss: 0.0022
+DeepSeek Pretrained => RMSE: 0.0471
+
+[Run 1] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0278, Val Loss: 0.0029
+Epoch 2/3 | Train Loss: 0.0028, Val Loss: 0.0030
+Epoch 3/3 | Train Loss: 0.0031, Val Loss: 0.0056
+DeepSeek Untrained => RMSE: 0.0890
+
+--- Sequence Length = 20 ---
+
+[Run 1] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.0953, Val Loss: 0.0042
+Epoch 2/3 | Train Loss: 0.0076, Val Loss: 0.0064
+Epoch 3/3 | Train Loss: 0.0055, Val Loss: 0.0032
+GPT2 Pretrained => RMSE: 0.0518
+
+[Run 1] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0308, Val Loss: 0.0035
+Epoch 2/3 | Train Loss: 0.0049, Val Loss: 0.0028
+Epoch 3/3 | Train Loss: 0.0045, Val Loss: 0.0029
+GPT2 Untrained => RMSE: 0.0485
+
+[Run 1] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0146, Val Loss: 0.0033
+Epoch 2/3 | Train Loss: 0.0047, Val Loss: 0.0024
+Epoch 3/3 | Train Loss: 0.0042, Val Loss: 0.0038
+BERT Pretrained => RMSE: 0.0545
+
+[Run 1] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0242, Val Loss: 0.0037
+Epoch 2/3 | Train Loss: 0.0067, Val Loss: 0.0037
+Epoch 3/3 | Train Loss: 0.0049, Val Loss: 0.0039
+BERT Untrained => RMSE: 0.0549
+
+[Run 1] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0745, Val Loss: 0.0031
+Epoch 2/3 | Train Loss: 0.0025, Val Loss: 0.0024
+Epoch 3/3 | Train Loss: 0.0020, Val Loss: 0.0023
+DeepSeek Pretrained => RMSE: 0.0569
+
+[Run 1] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0737, Val Loss: 0.0023
+Epoch 2/3 | Train Loss: 0.0020, Val Loss: 0.0019
+Epoch 3/3 | Train Loss: 0.0017, Val Loss: 0.0019
+DeepSeek Untrained => RMSE: 0.0457
+
+=== Fish 10 - Run 2/10 ===
+
+--- Sequence Length = 5 ---
+
+[Run 2] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.1310, Val Loss: 0.0055
+Epoch 2/3 | Train Loss: 0.0104, Val Loss: 0.0032
+Epoch 3/3 | Train Loss: 0.0075, Val Loss: 0.0029
+GPT2 Pretrained => RMSE: 0.0494
+
+[Run 2] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0242, Val Loss: 0.0025
+Epoch 2/3 | Train Loss: 0.0058, Val Loss: 0.0038
+Epoch 3/3 | Train Loss: 0.0050, Val Loss: 0.0033
+GPT2 Untrained => RMSE: 0.0659
+
+[Run 2] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0163, Val Loss: 0.0050
+Epoch 2/3 | Train Loss: 0.0059, Val Loss: 0.0052
+Epoch 3/3 | Train Loss: 0.0049, Val Loss: 0.0020
+BERT Pretrained => RMSE: 0.0447
+
+[Run 2] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0250, Val Loss: 0.0101
+Epoch 2/3 | Train Loss: 0.0079, Val Loss: 0.0031
+Epoch 3/3 | Train Loss: 0.0059, Val Loss: 0.0048
+BERT Untrained => RMSE: 0.0626
+
+[Run 2] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 3.8301, Val Loss: 3.4240
+Epoch 2/3 | Train Loss: 3.1960, Val Loss: 2.8708
+Epoch 3/3 | Train Loss: 1.7571, Val Loss: 0.4784
+DeepSeek Pretrained => RMSE: 0.9423
+
+[Run 2] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0479, Val Loss: 0.0030
+Epoch 2/3 | Train Loss: 0.0024, Val Loss: 0.0019
+Epoch 3/3 | Train Loss: 0.0022, Val Loss: 0.0024
+DeepSeek Untrained => RMSE: 0.0533
+
+--- Sequence Length = 20 ---
+
+[Run 2] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.0927, Val Loss: 0.0056
+Epoch 2/3 | Train Loss: 0.0098, Val Loss: 0.0044
+Epoch 3/3 | Train Loss: 0.0068, Val Loss: 0.0038
+GPT2 Pretrained => RMSE: 0.0570
+
+[Run 2] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0266, Val Loss: 0.0022
+Epoch 2/3 | Train Loss: 0.0050, Val Loss: 0.0020
+Epoch 3/3 | Train Loss: 0.0043, Val Loss: 0.0029
+GPT2 Untrained => RMSE: 0.0497
+
+[Run 2] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0137, Val Loss: 0.0035
+Epoch 2/3 | Train Loss: 0.0044, Val Loss: 0.0021
+Epoch 3/3 | Train Loss: 0.0041, Val Loss: 0.0022
+BERT Pretrained => RMSE: 0.0485
+
+[Run 2] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0248, Val Loss: 0.0043
+Epoch 2/3 | Train Loss: 0.0068, Val Loss: 0.0038
+Epoch 3/3 | Train Loss: 0.0051, Val Loss: 0.0059
+BERT Untrained => RMSE: 0.0665
+
+[Run 2] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0270, Val Loss: 0.0032
+Epoch 2/3 | Train Loss: 0.0031, Val Loss: 0.0042
+Epoch 3/3 | Train Loss: 0.0026, Val Loss: 0.0025
+DeepSeek Pretrained => RMSE: 0.0529
+
+[Run 2] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0314, Val Loss: 0.0027
+Epoch 2/3 | Train Loss: 0.0018, Val Loss: 0.0018
+Epoch 3/3 | Train Loss: 0.0018, Val Loss: 0.0022
+DeepSeek Untrained => RMSE: 0.0464
+
+=== Fish 10 - Run 3/10 ===
+
+--- Sequence Length = 5 ---
+
+[Run 3] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.1037, Val Loss: 0.0024
+Epoch 2/3 | Train Loss: 0.0116, Val Loss: 0.0036
+Epoch 3/3 | Train Loss: 0.0080, Val Loss: 0.0073
+GPT2 Pretrained => RMSE: 0.0804
+
+[Run 3] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0352, Val Loss: 0.0042
+Epoch 2/3 | Train Loss: 0.0057, Val Loss: 0.0024
+Epoch 3/3 | Train Loss: 0.0052, Val Loss: 0.0024
+GPT2 Untrained => RMSE: 0.0493
+
+[Run 3] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0146, Val Loss: 0.0113
+Epoch 2/3 | Train Loss: 0.0057, Val Loss: 0.0042
+Epoch 3/3 | Train Loss: 0.0051, Val Loss: 0.0116
+BERT Pretrained => RMSE: 0.0964
+
+[Run 3] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0294, Val Loss: 0.0075
+Epoch 2/3 | Train Loss: 0.0084, Val Loss: 0.0036
+Epoch 3/3 | Train Loss: 0.0063, Val Loss: 0.0050
+BERT Untrained => RMSE: 0.0636
+
+[Run 3] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.6793, Val Loss: 0.0101
+Epoch 2/3 | Train Loss: 0.0052, Val Loss: 0.0049
+Epoch 3/3 | Train Loss: 0.0046, Val Loss: 0.0027
+DeepSeek Pretrained => RMSE: 0.0531
+
+[Run 3] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0606, Val Loss: 0.0022
+Epoch 2/3 | Train Loss: 0.0095, Val Loss: 0.0023
+Epoch 3/3 | Train Loss: 0.0049, Val Loss: 0.0032
+DeepSeek Untrained => RMSE: 0.0752
+
+--- Sequence Length = 20 ---
+
+[Run 3] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.3053, Val Loss: 0.0085
+Epoch 2/3 | Train Loss: 0.0133, Val Loss: 0.0029
+Epoch 3/3 | Train Loss: 0.0089, Val Loss: 0.0051
+GPT2 Pretrained => RMSE: 0.0598
+
+[Run 3] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0195, Val Loss: 0.0042
+Epoch 2/3 | Train Loss: 0.0052, Val Loss: 0.0027
+Epoch 3/3 | Train Loss: 0.0040, Val Loss: 0.0026
+GPT2 Untrained => RMSE: 0.0536
+
+[Run 3] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0131, Val Loss: 0.0044
+Epoch 2/3 | Train Loss: 0.0050, Val Loss: 0.0062
+Epoch 3/3 | Train Loss: 0.0043, Val Loss: 0.0044
+BERT Pretrained => RMSE: 0.0611
+
+[Run 3] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0251, Val Loss: 0.0037
+Epoch 2/3 | Train Loss: 0.0065, Val Loss: 0.0032
+Epoch 3/3 | Train Loss: 0.0051, Val Loss: 0.0027
+BERT Untrained => RMSE: 0.0511
+
+[Run 3] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0662, Val Loss: 0.0021
+Epoch 2/3 | Train Loss: 0.0021, Val Loss: 0.0022
+Epoch 3/3 | Train Loss: 0.0030, Val Loss: 0.0025
+DeepSeek Pretrained => RMSE: 0.0595
+
+[Run 3] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0270, Val Loss: 0.0025
+Epoch 2/3 | Train Loss: 0.0021, Val Loss: 0.0021
+Epoch 3/3 | Train Loss: 0.0019, Val Loss: 0.0022
+DeepSeek Untrained => RMSE: 0.0474
+
+=== Fish 10 - Run 4/10 ===
+
+--- Sequence Length = 5 ---
+
+[Run 4] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.1483, Val Loss: 0.0125
+Epoch 2/3 | Train Loss: 0.0126, Val Loss: 0.0051
+Epoch 3/3 | Train Loss: 0.0091, Val Loss: 0.0037
+GPT2 Pretrained => RMSE: 0.0529
+
+[Run 4] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0357, Val Loss: 0.0029
+Epoch 2/3 | Train Loss: 0.0054, Val Loss: 0.0079
+Epoch 3/3 | Train Loss: 0.0053, Val Loss: 0.0019
+GPT2 Untrained => RMSE: 0.0482
+
+[Run 4] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0172, Val Loss: 0.0082
+Epoch 2/3 | Train Loss: 0.0055, Val Loss: 0.0025
+Epoch 3/3 | Train Loss: 0.0048, Val Loss: 0.0053
+BERT Pretrained => RMSE: 0.0636
+
+[Run 4] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0316, Val Loss: 0.0031
+Epoch 2/3 | Train Loss: 0.0083, Val Loss: 0.0085
+Epoch 3/3 | Train Loss: 0.0065, Val Loss: 0.0062
+BERT Untrained => RMSE: 0.0698
+
+[Run 4] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0274, Val Loss: 0.0026
+Epoch 2/3 | Train Loss: 0.0038, Val Loss: 0.0081
+Epoch 3/3 | Train Loss: 0.0038, Val Loss: 0.0037
+DeepSeek Pretrained => RMSE: 0.0583
+
+[Run 4] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0353, Val Loss: 0.0105
+Epoch 2/3 | Train Loss: 0.0036, Val Loss: 0.0023
+Epoch 3/3 | Train Loss: 0.0021, Val Loss: 0.0035
+DeepSeek Untrained => RMSE: 0.0594
+
+--- Sequence Length = 20 ---
+
+[Run 4] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.0964, Val Loss: 0.0046
+Epoch 2/3 | Train Loss: 0.0092, Val Loss: 0.0035
+Epoch 3/3 | Train Loss: 0.0065, Val Loss: 0.0029
+GPT2 Pretrained => RMSE: 0.0516
+
+[Run 4] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0269, Val Loss: 0.0024
+Epoch 2/3 | Train Loss: 0.0050, Val Loss: 0.0026
+Epoch 3/3 | Train Loss: 0.0043, Val Loss: 0.0021
+GPT2 Untrained => RMSE: 0.0491
+
+[Run 4] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0125, Val Loss: 0.0049
+Epoch 2/3 | Train Loss: 0.0046, Val Loss: 0.0032
+Epoch 3/3 | Train Loss: 0.0042, Val Loss: 0.0037
+BERT Pretrained => RMSE: 0.0573
+
+[Run 4] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0258, Val Loss: 0.0022
+Epoch 2/3 | Train Loss: 0.0068, Val Loss: 0.0032
+Epoch 3/3 | Train Loss: 0.0052, Val Loss: 0.0066
+BERT Untrained => RMSE: 0.0708
+
+[Run 4] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0173, Val Loss: 0.0048
+Epoch 2/3 | Train Loss: 0.0038, Val Loss: 0.0034
+Epoch 3/3 | Train Loss: 0.0033, Val Loss: 0.0039
+DeepSeek Pretrained => RMSE: 0.0548
+
+[Run 4] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0202, Val Loss: 0.0082
+Epoch 2/3 | Train Loss: 0.0022, Val Loss: 0.0021
+Epoch 3/3 | Train Loss: 0.0024, Val Loss: 0.0022
+DeepSeek Untrained => RMSE: 0.0489
+
+=== Fish 10 - Run 5/10 ===
+
+--- Sequence Length = 5 ---
+
+[Run 5] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.1314, Val Loss: 0.0026
+Epoch 2/3 | Train Loss: 0.0108, Val Loss: 0.0057
+Epoch 3/3 | Train Loss: 0.0078, Val Loss: 0.0027
+GPT2 Pretrained => RMSE: 0.0482
+
+[Run 5] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0266, Val Loss: 0.0025
+Epoch 2/3 | Train Loss: 0.0057, Val Loss: 0.0040
+Epoch 3/3 | Train Loss: 0.0051, Val Loss: 0.0056
+GPT2 Untrained => RMSE: 0.0678
+
+[Run 5] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0161, Val Loss: 0.0059
+Epoch 2/3 | Train Loss: 0.0058, Val Loss: 0.0055
+Epoch 3/3 | Train Loss: 0.0051, Val Loss: 0.0034
+BERT Pretrained => RMSE: 0.0553
+
+[Run 5] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0262, Val Loss: 0.0052
+Epoch 2/3 | Train Loss: 0.0082, Val Loss: 0.0046
+Epoch 3/3 | Train Loss: 0.0061, Val Loss: 0.0039
+BERT Untrained => RMSE: 0.0575
+
+[Run 5] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.2077, Val Loss: 0.0026
+Epoch 2/3 | Train Loss: 0.0037, Val Loss: 0.0049
+Epoch 3/3 | Train Loss: 0.0028, Val Loss: 0.0023
+DeepSeek Pretrained => RMSE: 0.0486
+
+[Run 5] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0621, Val Loss: 0.0028
+Epoch 2/3 | Train Loss: 0.0024, Val Loss: 0.0037
+Epoch 3/3 | Train Loss: 0.0021, Val Loss: 0.0021
+DeepSeek Untrained => RMSE: 0.0477
+
+--- Sequence Length = 20 ---
+
+[Run 5] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.2035, Val Loss: 0.0079
+Epoch 2/3 | Train Loss: 0.0128, Val Loss: 0.0068
+Epoch 3/3 | Train Loss: 0.0088, Val Loss: 0.0054
+GPT2 Pretrained => RMSE: 0.0611
+
+[Run 5] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0217, Val Loss: 0.0036
+Epoch 2/3 | Train Loss: 0.0050, Val Loss: 0.0027
+Epoch 3/3 | Train Loss: 0.0042, Val Loss: 0.0027
+GPT2 Untrained => RMSE: 0.0489
+
+[Run 5] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0138, Val Loss: 0.0030
+Epoch 2/3 | Train Loss: 0.0047, Val Loss: 0.0069
+Epoch 3/3 | Train Loss: 0.0043, Val Loss: 0.0036
+BERT Pretrained => RMSE: 0.0542
+
+[Run 5] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0258, Val Loss: 0.0037
+Epoch 2/3 | Train Loss: 0.0064, Val Loss: 0.0034
+Epoch 3/3 | Train Loss: 0.0053, Val Loss: 0.0051
+BERT Untrained => RMSE: 0.0619
+
+[Run 5] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0252, Val Loss: 0.0040
+Epoch 2/3 | Train Loss: 0.0031, Val Loss: 0.0028
+Epoch 3/3 | Train Loss: 0.0029, Val Loss: 0.0050
+DeepSeek Pretrained => RMSE: 0.0642
+
+[Run 5] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0452, Val Loss: 0.0019
+Epoch 2/3 | Train Loss: 0.0022, Val Loss: 0.0029
+Epoch 3/3 | Train Loss: 0.0019, Val Loss: 0.0022
+DeepSeek Untrained => RMSE: 0.0495
+
+=== Fish 10 - Run 6/10 ===
+
+--- Sequence Length = 5 ---
+
+[Run 6] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.0502, Val Loss: 0.0022
+Epoch 2/3 | Train Loss: 0.0098, Val Loss: 0.0056
+Epoch 3/3 | Train Loss: 0.0070, Val Loss: 0.0020
+GPT2 Pretrained => RMSE: 0.0463
+
+[Run 6] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0277, Val Loss: 0.0034
+Epoch 2/3 | Train Loss: 0.0056, Val Loss: 0.0024
+Epoch 3/3 | Train Loss: 0.0051, Val Loss: 0.0039
+GPT2 Untrained => RMSE: 0.0649
+
+[Run 6] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0152, Val Loss: 0.0037
+Epoch 2/3 | Train Loss: 0.0055, Val Loss: 0.0034
+Epoch 3/3 | Train Loss: 0.0049, Val Loss: 0.0021
+BERT Pretrained => RMSE: 0.0485
+
+[Run 6] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0273, Val Loss: 0.0127
+Epoch 2/3 | Train Loss: 0.0084, Val Loss: 0.0019
+Epoch 3/3 | Train Loss: 0.0062, Val Loss: 0.0027
+BERT Untrained => RMSE: 0.0510
+
+[Run 6] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0722, Val Loss: 0.0034
+Epoch 2/3 | Train Loss: 0.0033, Val Loss: 0.0030
+Epoch 3/3 | Train Loss: 0.0028, Val Loss: 0.0032
+DeepSeek Pretrained => RMSE: 0.0513
+
+[Run 6] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0391, Val Loss: 0.0025
+Epoch 2/3 | Train Loss: 0.0029, Val Loss: 0.0059
+Epoch 3/3 | Train Loss: 0.0023, Val Loss: 0.0030
+DeepSeek Untrained => RMSE: 0.0553
+
+--- Sequence Length = 20 ---
+
+[Run 6] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.0462, Val Loss: 0.0029
+Epoch 2/3 | Train Loss: 0.0074, Val Loss: 0.0037
+Epoch 3/3 | Train Loss: 0.0051, Val Loss: 0.0025
+GPT2 Pretrained => RMSE: 0.0479
+
+[Run 6] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0227, Val Loss: 0.0026
+Epoch 2/3 | Train Loss: 0.0051, Val Loss: 0.0023
+Epoch 3/3 | Train Loss: 0.0042, Val Loss: 0.0020
+GPT2 Untrained => RMSE: 0.0439
+
+[Run 6] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0147, Val Loss: 0.0079
+Epoch 2/3 | Train Loss: 0.0051, Val Loss: 0.0027
+Epoch 3/3 | Train Loss: 0.0042, Val Loss: 0.0025
+BERT Pretrained => RMSE: 0.0480
+
+[Run 6] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0263, Val Loss: 0.0092
+Epoch 2/3 | Train Loss: 0.0067, Val Loss: 0.0130
+Epoch 3/3 | Train Loss: 0.0050, Val Loss: 0.0027
+BERT Untrained => RMSE: 0.0491
+
+[Run 6] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0329, Val Loss: 0.0027
+Epoch 2/3 | Train Loss: 0.0031, Val Loss: 0.0022
+Epoch 3/3 | Train Loss: 0.0026, Val Loss: 0.0023
+DeepSeek Pretrained => RMSE: 0.0509
+
+[Run 6] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0295, Val Loss: 0.0075
+Epoch 2/3 | Train Loss: 0.0024, Val Loss: 0.0021
+Epoch 3/3 | Train Loss: 0.0019, Val Loss: 0.0020
+DeepSeek Untrained => RMSE: 0.0470
+
+=== Fish 10 - Run 7/10 ===
+
+--- Sequence Length = 5 ---
+
+[Run 7] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.2114, Val Loss: 0.0063
+Epoch 2/3 | Train Loss: 0.0130, Val Loss: 0.0059
+Epoch 3/3 | Train Loss: 0.0088, Val Loss: 0.0053
+GPT2 Pretrained => RMSE: 0.0620
+
+[Run 7] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0290, Val Loss: 0.0049
+Epoch 2/3 | Train Loss: 0.0055, Val Loss: 0.0026
+Epoch 3/3 | Train Loss: 0.0053, Val Loss: 0.0084
+GPT2 Untrained => RMSE: 0.0841
+
+[Run 7] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0145, Val Loss: 0.0032
+Epoch 2/3 | Train Loss: 0.0055, Val Loss: 0.0041
+Epoch 3/3 | Train Loss: 0.0044, Val Loss: 0.0027
+BERT Pretrained => RMSE: 0.0495
+
+[Run 7] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0282, Val Loss: 0.0088
+Epoch 2/3 | Train Loss: 0.0080, Val Loss: 0.0029
+Epoch 3/3 | Train Loss: 0.0062, Val Loss: 0.0040
+BERT Untrained => RMSE: 0.0683
+
+[Run 7] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0379, Val Loss: 0.0025
+Epoch 2/3 | Train Loss: 0.0030, Val Loss: 0.0034
+Epoch 3/3 | Train Loss: 0.0034, Val Loss: 0.0031
+DeepSeek Pretrained => RMSE: 0.0577
+
+[Run 7] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0583, Val Loss: 0.0026
+Epoch 2/3 | Train Loss: 0.0025, Val Loss: 0.0025
+Epoch 3/3 | Train Loss: 0.0021, Val Loss: 0.0019
+DeepSeek Untrained => RMSE: 0.0483
+
+--- Sequence Length = 20 ---
+
+[Run 7] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.1707, Val Loss: 0.0060
+Epoch 2/3 | Train Loss: 0.0108, Val Loss: 0.0042
+Epoch 3/3 | Train Loss: 0.0075, Val Loss: 0.0029
+GPT2 Pretrained => RMSE: 0.0479
+
+[Run 7] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0256, Val Loss: 0.0022
+Epoch 2/3 | Train Loss: 0.0050, Val Loss: 0.0019
+Epoch 3/3 | Train Loss: 0.0044, Val Loss: 0.0026
+GPT2 Untrained => RMSE: 0.0484
+
+[Run 7] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0119, Val Loss: 0.0031
+Epoch 2/3 | Train Loss: 0.0046, Val Loss: 0.0031
+Epoch 3/3 | Train Loss: 0.0041, Val Loss: 0.0030
+BERT Pretrained => RMSE: 0.0529
+
+[Run 7] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0265, Val Loss: 0.0035
+Epoch 2/3 | Train Loss: 0.0063, Val Loss: 0.0034
+Epoch 3/3 | Train Loss: 0.0052, Val Loss: 0.0217
+BERT Untrained => RMSE: 0.1346
+
+[Run 7] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0642, Val Loss: 0.0021
+Epoch 2/3 | Train Loss: 0.0026, Val Loss: 0.0023
+Epoch 3/3 | Train Loss: 0.0028, Val Loss: 0.0034
+DeepSeek Pretrained => RMSE: 0.0533
+
+[Run 7] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0379, Val Loss: 0.0021
+Epoch 2/3 | Train Loss: 0.0024, Val Loss: 0.0020
+Epoch 3/3 | Train Loss: 0.0020, Val Loss: 0.0031
+DeepSeek Untrained => RMSE: 0.0575
+
+=== Fish 10 - Run 8/10 ===
+
+--- Sequence Length = 5 ---
+
+[Run 8] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.1557, Val Loss: 0.0057
+Epoch 2/3 | Train Loss: 0.0136, Val Loss: 0.0057
+Epoch 3/3 | Train Loss: 0.0087, Val Loss: 0.0031
+GPT2 Pretrained => RMSE: 0.0561
+
+[Run 8] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0287, Val Loss: 0.0045
+Epoch 2/3 | Train Loss: 0.0055, Val Loss: 0.0059
+Epoch 3/3 | Train Loss: 0.0054, Val Loss: 0.0048
+GPT2 Untrained => RMSE: 0.0638
+
+[Run 8] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0125, Val Loss: 0.0070
+Epoch 2/3 | Train Loss: 0.0050, Val Loss: 0.0022
+Epoch 3/3 | Train Loss: 0.0045, Val Loss: 0.0025
+BERT Pretrained => RMSE: 0.0468
+
+[Run 8] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0286, Val Loss: 0.0054
+Epoch 2/3 | Train Loss: 0.0086, Val Loss: 0.0033
+Epoch 3/3 | Train Loss: 0.0064, Val Loss: 0.0027
+BERT Untrained => RMSE: 0.0578
+
+[Run 8] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0250, Val Loss: 0.0024
+Epoch 2/3 | Train Loss: 0.0037, Val Loss: 0.0027
+Epoch 3/3 | Train Loss: 0.0031, Val Loss: 0.0029
+DeepSeek Pretrained => RMSE: 0.0467
+
+[Run 8] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0712, Val Loss: 0.0029
+Epoch 2/3 | Train Loss: 0.0024, Val Loss: 0.0022
+Epoch 3/3 | Train Loss: 0.0023, Val Loss: 0.0020
+DeepSeek Untrained => RMSE: 0.0493
+
+--- Sequence Length = 20 ---
+
+[Run 8] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.1369, Val Loss: 0.0045
+Epoch 2/3 | Train Loss: 0.0111, Val Loss: 0.0050
+Epoch 3/3 | Train Loss: 0.0081, Val Loss: 0.0033
+GPT2 Pretrained => RMSE: 0.0524
+
+[Run 8] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0280, Val Loss: 0.0031
+Epoch 2/3 | Train Loss: 0.0050, Val Loss: 0.0021
+Epoch 3/3 | Train Loss: 0.0044, Val Loss: 0.0019
+GPT2 Untrained => RMSE: 0.0475
+
+[Run 8] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0146, Val Loss: 0.0041
+Epoch 2/3 | Train Loss: 0.0048, Val Loss: 0.0027
+Epoch 3/3 | Train Loss: 0.0043, Val Loss: 0.0022
+BERT Pretrained => RMSE: 0.0482
+
+[Run 8] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0248, Val Loss: 0.0115
+Epoch 2/3 | Train Loss: 0.0065, Val Loss: 0.0097
+Epoch 3/3 | Train Loss: 0.0051, Val Loss: 0.0042
+BERT Untrained => RMSE: 0.0578
+
+[Run 8] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0382, Val Loss: 0.0022
+Epoch 2/3 | Train Loss: 0.0022, Val Loss: 0.0024
+Epoch 3/3 | Train Loss: 0.0021, Val Loss: 0.0042
+DeepSeek Pretrained => RMSE: 0.0617
+
+[Run 8] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0430, Val Loss: 0.0023
+Epoch 2/3 | Train Loss: 0.0018, Val Loss: 0.0020
+Epoch 3/3 | Train Loss: 0.0019, Val Loss: 0.0018
+DeepSeek Untrained => RMSE: 0.0479
+
+=== Fish 10 - Run 9/10 ===
+
+--- Sequence Length = 5 ---
+
+[Run 9] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.0688, Val Loss: 0.0050
+Epoch 2/3 | Train Loss: 0.0078, Val Loss: 0.0027
+Epoch 3/3 | Train Loss: 0.0057, Val Loss: 0.0026
+GPT2 Pretrained => RMSE: 0.0472
+
+[Run 9] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0292, Val Loss: 0.0029
+Epoch 2/3 | Train Loss: 0.0058, Val Loss: 0.0031
+Epoch 3/3 | Train Loss: 0.0053, Val Loss: 0.0055
+GPT2 Untrained => RMSE: 0.0675
+
+[Run 9] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0140, Val Loss: 0.0060
+Epoch 2/3 | Train Loss: 0.0057, Val Loss: 0.0021
+Epoch 3/3 | Train Loss: 0.0048, Val Loss: 0.0019
+BERT Pretrained => RMSE: 0.0462
+
+[Run 9] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0275, Val Loss: 0.0096
+Epoch 2/3 | Train Loss: 0.0083, Val Loss: 0.0032
+Epoch 3/3 | Train Loss: 0.0057, Val Loss: 0.0076
+BERT Untrained => RMSE: 0.0769
+
+[Run 9] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0655, Val Loss: 0.0024
+Epoch 2/3 | Train Loss: 0.0025, Val Loss: 0.0022
+Epoch 3/3 | Train Loss: 0.0025, Val Loss: 0.0020
+DeepSeek Pretrained => RMSE: 0.0498
+
+[Run 9] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0489, Val Loss: 0.0038
+Epoch 2/3 | Train Loss: 0.0031, Val Loss: 0.0025
+Epoch 3/3 | Train Loss: 0.0021, Val Loss: 0.0028
+DeepSeek Untrained => RMSE: 0.0571
+
+--- Sequence Length = 20 ---
+
+[Run 9] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.0858, Val Loss: 0.0060
+Epoch 2/3 | Train Loss: 0.0092, Val Loss: 0.0055
+Epoch 3/3 | Train Loss: 0.0065, Val Loss: 0.0020
+GPT2 Pretrained => RMSE: 0.0488
+
+[Run 9] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0229, Val Loss: 0.0025
+Epoch 2/3 | Train Loss: 0.0048, Val Loss: 0.0025
+Epoch 3/3 | Train Loss: 0.0044, Val Loss: 0.0034
+GPT2 Untrained => RMSE: 0.0554
+
+[Run 9] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0134, Val Loss: 0.0026
+Epoch 2/3 | Train Loss: 0.0044, Val Loss: 0.0035
+Epoch 3/3 | Train Loss: 0.0041, Val Loss: 0.0036
+BERT Pretrained => RMSE: 0.0533
+
+[Run 9] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0236, Val Loss: 0.0065
+Epoch 2/3 | Train Loss: 0.0064, Val Loss: 0.0041
+Epoch 3/3 | Train Loss: 0.0050, Val Loss: 0.0065
+BERT Untrained => RMSE: 0.0749
+
+[Run 9] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0761, Val Loss: 0.0054
+Epoch 2/3 | Train Loss: 0.0025, Val Loss: 0.0021
+Epoch 3/3 | Train Loss: 0.0027, Val Loss: 0.0021
+DeepSeek Pretrained => RMSE: 0.0592
+
+[Run 9] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0458, Val Loss: 0.0018
+Epoch 2/3 | Train Loss: 0.0022, Val Loss: 0.0023
+Epoch 3/3 | Train Loss: 0.0018, Val Loss: 0.0022
+DeepSeek Untrained => RMSE: 0.0522
+
+=== Fish 10 - Run 10/10 ===
+
+--- Sequence Length = 5 ---
+
+[Run 10] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.1476, Val Loss: 0.0042
+Epoch 2/3 | Train Loss: 0.0131, Val Loss: 0.0059
+Epoch 3/3 | Train Loss: 0.0089, Val Loss: 0.0072
+GPT2 Pretrained => RMSE: 0.0760
+
+[Run 10] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0272, Val Loss: 0.0031
+Epoch 2/3 | Train Loss: 0.0056, Val Loss: 0.0026
+Epoch 3/3 | Train Loss: 0.0050, Val Loss: 0.0023
+GPT2 Untrained => RMSE: 0.0508
+
+[Run 10] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0167, Val Loss: 0.0058
+Epoch 2/3 | Train Loss: 0.0061, Val Loss: 0.0039
+Epoch 3/3 | Train Loss: 0.0050, Val Loss: 0.0053
+BERT Pretrained => RMSE: 0.0661
+
+[Run 10] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0262, Val Loss: 0.0086
+Epoch 2/3 | Train Loss: 0.0087, Val Loss: 0.0045
+Epoch 3/3 | Train Loss: 0.0060, Val Loss: 0.0038
+BERT Untrained => RMSE: 0.0555
+
+[Run 10] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0445, Val Loss: 0.0030
+Epoch 2/3 | Train Loss: 0.0031, Val Loss: 0.0040
+Epoch 3/3 | Train Loss: 0.0029, Val Loss: 0.0026
+DeepSeek Pretrained => RMSE: 0.0564
+
+[Run 10] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0261, Val Loss: 0.0021
+Epoch 2/3 | Train Loss: 0.0027, Val Loss: 0.0086
+Epoch 3/3 | Train Loss: 0.0022, Val Loss: 0.0021
+DeepSeek Untrained => RMSE: 0.0489
+
+--- Sequence Length = 20 ---
+
+[Run 10] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.1287, Val Loss: 0.0045
+Epoch 2/3 | Train Loss: 0.0098, Val Loss: 0.0050
+Epoch 3/3 | Train Loss: 0.0071, Val Loss: 0.0021
+GPT2 Pretrained => RMSE: 0.0489
+
+[Run 10] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0285, Val Loss: 0.0037
+Epoch 2/3 | Train Loss: 0.0049, Val Loss: 0.0022
+Epoch 3/3 | Train Loss: 0.0043, Val Loss: 0.0022
+GPT2 Untrained => RMSE: 0.0447
+
+[Run 10] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0148, Val Loss: 0.0063
+Epoch 2/3 | Train Loss: 0.0051, Val Loss: 0.0035
+Epoch 3/3 | Train Loss: 0.0044, Val Loss: 0.0062
+BERT Pretrained => RMSE: 0.0694
+
+[Run 10] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0259, Val Loss: 0.0060
+Epoch 2/3 | Train Loss: 0.0070, Val Loss: 0.0041
+Epoch 3/3 | Train Loss: 0.0051, Val Loss: 0.0026
+BERT Untrained => RMSE: 0.0512
+
+[Run 10] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0358, Val Loss: 0.0021
+Epoch 2/3 | Train Loss: 0.0025, Val Loss: 0.0026
+Epoch 3/3 | Train Loss: 0.0025, Val Loss: 0.0045
+DeepSeek Pretrained => RMSE: 0.0776
+
+[Run 10] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0708, Val Loss: 0.0022
+Epoch 2/3 | Train Loss: 0.0018, Val Loss: 0.0021
+Epoch 3/3 | Train Loss: 0.0018, Val Loss: 0.0019
+DeepSeek Untrained => RMSE: 0.0459
+Saved bar plot => /hpc/group/naumannlab/jjm132/nlp4neuro/results/experiment_2/fish10_seq5_barplot.png
+Saved bar plot => /hpc/group/naumannlab/jjm132/nlp4neuro/results/experiment_2/fish10_seq20_barplot.png
+[INFO] Wilcoxon results => /hpc/group/naumannlab/jjm132/nlp4neuro/results/experiment_2/fish10_wilcoxon_results.txt
+=== Done with Fish 10 ===
+
+
+===========================================
+Starting Experiment 2 for Fish 11
+===========================================
+Neural data shape: (2798, 14015)
+Tail data shape: (2798, 6)
+[Fish 11] input_dim=14015, output_dim=6
+
+=== Fish 11 - Run 1/10 ===
+
+--- Sequence Length = 5 ---
+
+[Run 1] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.1091, Val Loss: 0.0040
+Epoch 2/3 | Train Loss: 0.0124, Val Loss: 0.0023
+Epoch 3/3 | Train Loss: 0.0084, Val Loss: 0.0022
+GPT2 Pretrained => RMSE: 0.0436
+
+[Run 1] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0453, Val Loss: 0.0017
+Epoch 2/3 | Train Loss: 0.0048, Val Loss: 0.0038
+Epoch 3/3 | Train Loss: 0.0044, Val Loss: 0.0018
+GPT2 Untrained => RMSE: 0.0672
+
+[Run 1] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0125, Val Loss: 0.0018
+Epoch 2/3 | Train Loss: 0.0040, Val Loss: 0.0022
+Epoch 3/3 | Train Loss: 0.0035, Val Loss: 0.0023
+BERT Pretrained => RMSE: 0.0455
+
+[Run 1] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0333, Val Loss: 0.0136
+Epoch 2/3 | Train Loss: 0.0070, Val Loss: 0.0035
+Epoch 3/3 | Train Loss: 0.0050, Val Loss: 0.0057
+BERT Untrained => RMSE: 0.0586
+
+[Run 1] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0363, Val Loss: 0.0020
+Epoch 2/3 | Train Loss: 0.0020, Val Loss: 0.0019
+Epoch 3/3 | Train Loss: 0.0021, Val Loss: 0.0015
+DeepSeek Pretrained => RMSE: 0.0564
+
+[Run 1] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0419, Val Loss: 0.0146
+Epoch 2/3 | Train Loss: 0.0056, Val Loss: 0.0040
+Epoch 3/3 | Train Loss: 0.0021, Val Loss: 0.0018
+DeepSeek Untrained => RMSE: 0.0603
+
+--- Sequence Length = 20 ---
+
+[Run 1] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.1129, Val Loss: 0.0052
+Epoch 2/3 | Train Loss: 0.0098, Val Loss: 0.0033
+Epoch 3/3 | Train Loss: 0.0066, Val Loss: 0.0019
+GPT2 Pretrained => RMSE: 0.0479
+
+[Run 1] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0350, Val Loss: 0.0021
+Epoch 2/3 | Train Loss: 0.0043, Val Loss: 0.0014
+Epoch 3/3 | Train Loss: 0.0038, Val Loss: 0.0015
+GPT2 Untrained => RMSE: 0.0521
+
+[Run 1] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0110, Val Loss: 0.0043
+Epoch 2/3 | Train Loss: 0.0038, Val Loss: 0.0023
+Epoch 3/3 | Train Loss: 0.0034, Val Loss: 0.0040
+BERT Pretrained => RMSE: 0.0515
+
+[Run 1] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0308, Val Loss: 0.0045
+Epoch 2/3 | Train Loss: 0.0053, Val Loss: 0.0014
+Epoch 3/3 | Train Loss: 0.0040, Val Loss: 0.0055
+BERT Untrained => RMSE: 0.0527
+
+[Run 1] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0591, Val Loss: 0.0065
+Epoch 2/3 | Train Loss: 0.0039, Val Loss: 0.0041
+Epoch 3/3 | Train Loss: 0.0031, Val Loss: 0.0019
+DeepSeek Pretrained => RMSE: 0.0604
+
+[Run 1] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0291, Val Loss: 0.0019
+Epoch 2/3 | Train Loss: 0.0031, Val Loss: 0.0013
+Epoch 3/3 | Train Loss: 0.0016, Val Loss: 0.0022
+DeepSeek Untrained => RMSE: 0.0500
+
+=== Fish 11 - Run 2/10 ===
+
+--- Sequence Length = 5 ---
+
+[Run 2] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.1667, Val Loss: 0.0036
+Epoch 2/3 | Train Loss: 0.0106, Val Loss: 0.0035
+Epoch 3/3 | Train Loss: 0.0074, Val Loss: 0.0052
+GPT2 Pretrained => RMSE: 0.0569
+
+[Run 2] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0456, Val Loss: 0.0025
+Epoch 2/3 | Train Loss: 0.0047, Val Loss: 0.0021
+Epoch 3/3 | Train Loss: 0.0044, Val Loss: 0.0023
+GPT2 Untrained => RMSE: 0.0532
+
+[Run 2] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0129, Val Loss: 0.0025
+Epoch 2/3 | Train Loss: 0.0039, Val Loss: 0.0028
+Epoch 3/3 | Train Loss: 0.0034, Val Loss: 0.0031
+BERT Pretrained => RMSE: 0.0505
+
+[Run 2] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0288, Val Loss: 0.0041
+Epoch 2/3 | Train Loss: 0.0071, Val Loss: 0.0027
+Epoch 3/3 | Train Loss: 0.0050, Val Loss: 0.0027
+BERT Untrained => RMSE: 0.0555
+
+[Run 2] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 1.0822, Val Loss: 0.0016
+Epoch 2/3 | Train Loss: 0.0024, Val Loss: 0.0013
+Epoch 3/3 | Train Loss: 0.0019, Val Loss: 0.0012
+DeepSeek Pretrained => RMSE: 0.0538
+
+[Run 2] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0589, Val Loss: 0.0019
+Epoch 2/3 | Train Loss: 0.0020, Val Loss: 0.0012
+Epoch 3/3 | Train Loss: 0.0018, Val Loss: 0.0017
+DeepSeek Untrained => RMSE: 0.0526
+
+--- Sequence Length = 20 ---
+
+[Run 2] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.0734, Val Loss: 0.0060
+Epoch 2/3 | Train Loss: 0.0097, Val Loss: 0.0036
+Epoch 3/3 | Train Loss: 0.0066, Val Loss: 0.0022
+GPT2 Pretrained => RMSE: 0.0455
+
+[Run 2] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0330, Val Loss: 0.0020
+Epoch 2/3 | Train Loss: 0.0041, Val Loss: 0.0012
+Epoch 3/3 | Train Loss: 0.0037, Val Loss: 0.0020
+GPT2 Untrained => RMSE: 0.0668
+
+[Run 2] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0117, Val Loss: 0.0037
+Epoch 2/3 | Train Loss: 0.0038, Val Loss: 0.0031
+Epoch 3/3 | Train Loss: 0.0032, Val Loss: 0.0015
+BERT Pretrained => RMSE: 0.0594
+
+[Run 2] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0280, Val Loss: 0.0026
+Epoch 2/3 | Train Loss: 0.0057, Val Loss: 0.0015
+Epoch 3/3 | Train Loss: 0.0042, Val Loss: 0.0028
+BERT Untrained => RMSE: 0.0539
+
+[Run 2] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0379, Val Loss: 0.0019
+Epoch 2/3 | Train Loss: 0.0018, Val Loss: 0.0020
+Epoch 3/3 | Train Loss: 0.0019, Val Loss: 0.0025
+DeepSeek Pretrained => RMSE: 0.0467
+
+[Run 2] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0722, Val Loss: 0.0017
+Epoch 2/3 | Train Loss: 0.0016, Val Loss: 0.0013
+Epoch 3/3 | Train Loss: 0.0013, Val Loss: 0.0019
+DeepSeek Untrained => RMSE: 0.0485
+
+=== Fish 11 - Run 3/10 ===
+
+--- Sequence Length = 5 ---
+
+[Run 3] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.0989, Val Loss: 0.0025
+Epoch 2/3 | Train Loss: 0.0093, Val Loss: 0.0056
+Epoch 3/3 | Train Loss: 0.0062, Val Loss: 0.0027
+GPT2 Pretrained => RMSE: 0.0583
+
+[Run 3] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0440, Val Loss: 0.0017
+Epoch 2/3 | Train Loss: 0.0047, Val Loss: 0.0030
+Epoch 3/3 | Train Loss: 0.0045, Val Loss: 0.0021
+GPT2 Untrained => RMSE: 0.0534
+
+[Run 3] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0138, Val Loss: 0.0032
+Epoch 2/3 | Train Loss: 0.0042, Val Loss: 0.0027
+Epoch 3/3 | Train Loss: 0.0037, Val Loss: 0.0023
+BERT Pretrained => RMSE: 0.0560
+
+[Run 3] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0293, Val Loss: 0.0027
+Epoch 2/3 | Train Loss: 0.0074, Val Loss: 0.0070
+Epoch 3/3 | Train Loss: 0.0047, Val Loss: 0.0119
+BERT Untrained => RMSE: 0.0857
+
+[Run 3] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0364, Val Loss: 0.0016
+Epoch 2/3 | Train Loss: 0.0025, Val Loss: 0.0014
+Epoch 3/3 | Train Loss: 0.0025, Val Loss: 0.0014
+DeepSeek Pretrained => RMSE: 0.0515
+
+[Run 3] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0300, Val Loss: 0.0021
+Epoch 2/3 | Train Loss: 0.0023, Val Loss: 0.0016
+Epoch 3/3 | Train Loss: 0.0019, Val Loss: 0.0015
+DeepSeek Untrained => RMSE: 0.0622
+
+--- Sequence Length = 20 ---
+
+[Run 3] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.0506, Val Loss: 0.0049
+Epoch 2/3 | Train Loss: 0.0076, Val Loss: 0.0054
+Epoch 3/3 | Train Loss: 0.0052, Val Loss: 0.0018
+GPT2 Pretrained => RMSE: 0.0487
+
+[Run 3] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0455, Val Loss: 0.0018
+Epoch 2/3 | Train Loss: 0.0040, Val Loss: 0.0013
+Epoch 3/3 | Train Loss: 0.0037, Val Loss: 0.0017
+GPT2 Untrained => RMSE: 0.0524
+
+[Run 3] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0109, Val Loss: 0.0017
+Epoch 2/3 | Train Loss: 0.0038, Val Loss: 0.0027
+Epoch 3/3 | Train Loss: 0.0032, Val Loss: 0.0023
+BERT Pretrained => RMSE: 0.0446
+
+[Run 3] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0235, Val Loss: 0.0044
+Epoch 2/3 | Train Loss: 0.0051, Val Loss: 0.0026
+Epoch 3/3 | Train Loss: 0.0041, Val Loss: 0.0085
+BERT Untrained => RMSE: 0.0736
+
+[Run 3] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0387, Val Loss: 0.0016
+Epoch 2/3 | Train Loss: 0.0021, Val Loss: 0.0015
+Epoch 3/3 | Train Loss: 0.0019, Val Loss: 0.0012
+DeepSeek Pretrained => RMSE: 0.0509
+
+[Run 3] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0575, Val Loss: 0.0016
+Epoch 2/3 | Train Loss: 0.0016, Val Loss: 0.0011
+Epoch 3/3 | Train Loss: 0.0015, Val Loss: 0.0014
+DeepSeek Untrained => RMSE: 0.0705
+
+=== Fish 11 - Run 4/10 ===
+
+--- Sequence Length = 5 ---
+
+[Run 4] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.1029, Val Loss: 0.0080
+Epoch 2/3 | Train Loss: 0.0118, Val Loss: 0.0074
+Epoch 3/3 | Train Loss: 0.0068, Val Loss: 0.0011
+GPT2 Pretrained => RMSE: 0.0558
+
+[Run 4] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0412, Val Loss: 0.0019
+Epoch 2/3 | Train Loss: 0.0048, Val Loss: 0.0023
+Epoch 3/3 | Train Loss: 0.0043, Val Loss: 0.0020
+GPT2 Untrained => RMSE: 0.0749
+
+[Run 4] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0157, Val Loss: 0.0083
+Epoch 2/3 | Train Loss: 0.0051, Val Loss: 0.0072
+Epoch 3/3 | Train Loss: 0.0042, Val Loss: 0.0047
+BERT Pretrained => RMSE: 0.0545
+
+[Run 4] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0323, Val Loss: 0.0011
+Epoch 2/3 | Train Loss: 0.0073, Val Loss: 0.0059
+Epoch 3/3 | Train Loss: 0.0050, Val Loss: 0.0037
+BERT Untrained => RMSE: 0.0524
+
+[Run 4] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0515, Val Loss: 0.0124
+Epoch 2/3 | Train Loss: 0.0053, Val Loss: 0.0025
+Epoch 3/3 | Train Loss: 0.0038, Val Loss: 0.0020
+DeepSeek Pretrained => RMSE: 0.0524
+
+[Run 4] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0265, Val Loss: 0.0017
+Epoch 2/3 | Train Loss: 0.0023, Val Loss: 0.0015
+Epoch 3/3 | Train Loss: 0.0019, Val Loss: 0.0016
+DeepSeek Untrained => RMSE: 0.0530
+
+--- Sequence Length = 20 ---
+
+[Run 4] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.1646, Val Loss: 0.0064
+Epoch 2/3 | Train Loss: 0.0110, Val Loss: 0.0051
+Epoch 3/3 | Train Loss: 0.0073, Val Loss: 0.0041
+GPT2 Pretrained => RMSE: 0.0524
+
+[Run 4] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0442, Val Loss: 0.0036
+Epoch 2/3 | Train Loss: 0.0041, Val Loss: 0.0030
+Epoch 3/3 | Train Loss: 0.0036, Val Loss: 0.0019
+GPT2 Untrained => RMSE: 0.0474
+
+[Run 4] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0109, Val Loss: 0.0054
+Epoch 2/3 | Train Loss: 0.0034, Val Loss: 0.0032
+Epoch 3/3 | Train Loss: 0.0030, Val Loss: 0.0019
+BERT Pretrained => RMSE: 0.0583
+
+[Run 4] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0262, Val Loss: 0.0054
+Epoch 2/3 | Train Loss: 0.0052, Val Loss: 0.0147
+Epoch 3/3 | Train Loss: 0.0040, Val Loss: 0.0042
+BERT Untrained => RMSE: 0.0632
+
+[Run 4] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0431, Val Loss: 0.0015
+Epoch 2/3 | Train Loss: 0.0020, Val Loss: 0.0014
+Epoch 3/3 | Train Loss: 0.0022, Val Loss: 0.0016
+DeepSeek Pretrained => RMSE: 0.0676
+
+[Run 4] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0213, Val Loss: 0.0015
+Epoch 2/3 | Train Loss: 0.0017, Val Loss: 0.0013
+Epoch 3/3 | Train Loss: 0.0031, Val Loss: 0.0022
+DeepSeek Untrained => RMSE: 0.0755
+
+=== Fish 11 - Run 5/10 ===
+
+--- Sequence Length = 5 ---
+
+[Run 5] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.1473, Val Loss: 0.0037
+Epoch 2/3 | Train Loss: 0.0094, Val Loss: 0.0070
+Epoch 3/3 | Train Loss: 0.0062, Val Loss: 0.0050
+GPT2 Pretrained => RMSE: 0.0534
+
+[Run 5] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0308, Val Loss: 0.0024
+Epoch 2/3 | Train Loss: 0.0048, Val Loss: 0.0019
+Epoch 3/3 | Train Loss: 0.0045, Val Loss: 0.0072
+GPT2 Untrained => RMSE: 0.0672
+
+[Run 5] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0132, Val Loss: 0.0045
+Epoch 2/3 | Train Loss: 0.0042, Val Loss: 0.0015
+Epoch 3/3 | Train Loss: 0.0035, Val Loss: 0.0015
+BERT Pretrained => RMSE: 0.0563
+
+[Run 5] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0304, Val Loss: 0.0057
+Epoch 2/3 | Train Loss: 0.0073, Val Loss: 0.0060
+Epoch 3/3 | Train Loss: 0.0055, Val Loss: 0.0016
+BERT Untrained => RMSE: 0.0523
+
+[Run 5] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.1243, Val Loss: 0.0014
+Epoch 2/3 | Train Loss: 0.0017, Val Loss: 0.0010
+Epoch 3/3 | Train Loss: 0.0016, Val Loss: 0.0014
+DeepSeek Pretrained => RMSE: 0.0560
+
+[Run 5] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0310, Val Loss: 0.0025
+Epoch 2/3 | Train Loss: 0.0026, Val Loss: 0.0035
+Epoch 3/3 | Train Loss: 0.0022, Val Loss: 0.0011
+DeepSeek Untrained => RMSE: 0.1023
+
+--- Sequence Length = 20 ---
+
+[Run 5] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.0582, Val Loss: 0.0054
+Epoch 2/3 | Train Loss: 0.0073, Val Loss: 0.0014
+Epoch 3/3 | Train Loss: 0.0050, Val Loss: 0.0032
+GPT2 Pretrained => RMSE: 0.0447
+
+[Run 5] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0391, Val Loss: 0.0017
+Epoch 2/3 | Train Loss: 0.0040, Val Loss: 0.0019
+Epoch 3/3 | Train Loss: 0.0036, Val Loss: 0.0015
+GPT2 Untrained => RMSE: 0.0586
+
+[Run 5] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0113, Val Loss: 0.0040
+Epoch 2/3 | Train Loss: 0.0038, Val Loss: 0.0014
+Epoch 3/3 | Train Loss: 0.0032, Val Loss: 0.0096
+BERT Pretrained => RMSE: 0.0781
+
+[Run 5] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0250, Val Loss: 0.0093
+Epoch 2/3 | Train Loss: 0.0053, Val Loss: 0.0031
+Epoch 3/3 | Train Loss: 0.0039, Val Loss: 0.0115
+BERT Untrained => RMSE: 0.0825
+
+[Run 5] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0216, Val Loss: 0.0019
+Epoch 2/3 | Train Loss: 0.0023, Val Loss: 0.0083
+Epoch 3/3 | Train Loss: 0.0021, Val Loss: 0.0012
+DeepSeek Pretrained => RMSE: 0.0577
+
+[Run 5] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0800, Val Loss: 0.0022
+Epoch 2/3 | Train Loss: 0.0018, Val Loss: 0.0014
+Epoch 3/3 | Train Loss: 0.0015, Val Loss: 0.0014
+DeepSeek Untrained => RMSE: 0.0624
+
+=== Fish 11 - Run 6/10 ===
+
+--- Sequence Length = 5 ---
+
+[Run 6] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.1452, Val Loss: 0.0039
+Epoch 2/3 | Train Loss: 0.0126, Val Loss: 0.0025
+Epoch 3/3 | Train Loss: 0.0085, Val Loss: 0.0071
+GPT2 Pretrained => RMSE: 0.0639
+
+[Run 6] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0342, Val Loss: 0.0023
+Epoch 2/3 | Train Loss: 0.0048, Val Loss: 0.0016
+Epoch 3/3 | Train Loss: 0.0045, Val Loss: 0.0013
+GPT2 Untrained => RMSE: 0.0534
+
+[Run 6] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0165, Val Loss: 0.0012
+Epoch 2/3 | Train Loss: 0.0047, Val Loss: 0.0045
+Epoch 3/3 | Train Loss: 0.0039, Val Loss: 0.0051
+BERT Pretrained => RMSE: 0.0537
+
+[Run 6] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0352, Val Loss: 0.0042
+Epoch 2/3 | Train Loss: 0.0074, Val Loss: 0.0017
+Epoch 3/3 | Train Loss: 0.0049, Val Loss: 0.0030
+BERT Untrained => RMSE: 0.0510
+
+[Run 6] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0363, Val Loss: 0.0032
+Epoch 2/3 | Train Loss: 0.0024, Val Loss: 0.0015
+Epoch 3/3 | Train Loss: 0.0023, Val Loss: 0.0045
+DeepSeek Pretrained => RMSE: 0.1002
+
+[Run 6] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0637, Val Loss: 0.0025
+Epoch 2/3 | Train Loss: 0.0026, Val Loss: 0.0011
+Epoch 3/3 | Train Loss: 0.0018, Val Loss: 0.0013
+DeepSeek Untrained => RMSE: 0.0487
+
+--- Sequence Length = 20 ---
+
+[Run 6] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.1035, Val Loss: 0.0058
+Epoch 2/3 | Train Loss: 0.0099, Val Loss: 0.0045
+Epoch 3/3 | Train Loss: 0.0065, Val Loss: 0.0016
+GPT2 Pretrained => RMSE: 0.0522
+
+[Run 6] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0402, Val Loss: 0.0014
+Epoch 2/3 | Train Loss: 0.0041, Val Loss: 0.0030
+Epoch 3/3 | Train Loss: 0.0037, Val Loss: 0.0021
+GPT2 Untrained => RMSE: 0.0543
+
+[Run 6] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0100, Val Loss: 0.0025
+Epoch 2/3 | Train Loss: 0.0035, Val Loss: 0.0055
+Epoch 3/3 | Train Loss: 0.0032, Val Loss: 0.0027
+BERT Pretrained => RMSE: 0.0446
+
+[Run 6] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0295, Val Loss: 0.0046
+Epoch 2/3 | Train Loss: 0.0054, Val Loss: 0.0034
+Epoch 3/3 | Train Loss: 0.0041, Val Loss: 0.0015
+BERT Untrained => RMSE: 0.0650
+
+[Run 6] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0289, Val Loss: 0.0013
+Epoch 2/3 | Train Loss: 0.0021, Val Loss: 0.0012
+Epoch 3/3 | Train Loss: 0.0018, Val Loss: 0.0037
+DeepSeek Pretrained => RMSE: 0.0849
+
+[Run 6] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0479, Val Loss: 0.0017
+Epoch 2/3 | Train Loss: 0.0016, Val Loss: 0.0020
+Epoch 3/3 | Train Loss: 0.0015, Val Loss: 0.0016
+DeepSeek Untrained => RMSE: 0.0620
+
+=== Fish 11 - Run 7/10 ===
+
+--- Sequence Length = 5 ---
+
+[Run 7] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.0996, Val Loss: 0.0037
+Epoch 2/3 | Train Loss: 0.0114, Val Loss: 0.0046
+Epoch 3/3 | Train Loss: 0.0079, Val Loss: 0.0016
+GPT2 Pretrained => RMSE: 0.0476
+
+[Run 7] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0367, Val Loss: 0.0020
+Epoch 2/3 | Train Loss: 0.0047, Val Loss: 0.0026
+Epoch 3/3 | Train Loss: 0.0045, Val Loss: 0.0045
+GPT2 Untrained => RMSE: 0.0541
+
+[Run 7] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0129, Val Loss: 0.0025
+Epoch 2/3 | Train Loss: 0.0043, Val Loss: 0.0042
+Epoch 3/3 | Train Loss: 0.0036, Val Loss: 0.0038
+BERT Pretrained => RMSE: 0.0534
+
+[Run 7] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0304, Val Loss: 0.0040
+Epoch 2/3 | Train Loss: 0.0071, Val Loss: 0.0049
+Epoch 3/3 | Train Loss: 0.0054, Val Loss: 0.0101
+BERT Untrained => RMSE: 0.0842
+
+[Run 7] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0545, Val Loss: 0.0019
+Epoch 2/3 | Train Loss: 0.0024, Val Loss: 0.0015
+Epoch 3/3 | Train Loss: 0.0025, Val Loss: 0.0011
+DeepSeek Pretrained => RMSE: 0.0491
+
+[Run 7] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0192, Val Loss: 0.0021
+Epoch 2/3 | Train Loss: 0.0024, Val Loss: 0.0023
+Epoch 3/3 | Train Loss: 0.0019, Val Loss: 0.0022
+DeepSeek Untrained => RMSE: 0.0744
+
+--- Sequence Length = 20 ---
+
+[Run 7] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.0972, Val Loss: 0.0028
+Epoch 2/3 | Train Loss: 0.0081, Val Loss: 0.0027
+Epoch 3/3 | Train Loss: 0.0057, Val Loss: 0.0039
+GPT2 Pretrained => RMSE: 0.0557
+
+[Run 7] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0576, Val Loss: 0.0017
+Epoch 2/3 | Train Loss: 0.0039, Val Loss: 0.0011
+Epoch 3/3 | Train Loss: 0.0036, Val Loss: 0.0021
+GPT2 Untrained => RMSE: 0.0452
+
+[Run 7] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0116, Val Loss: 0.0025
+Epoch 2/3 | Train Loss: 0.0041, Val Loss: 0.0124
+Epoch 3/3 | Train Loss: 0.0034, Val Loss: 0.0035
+BERT Pretrained => RMSE: 0.0473
+
+[Run 7] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0209, Val Loss: 0.0065
+Epoch 2/3 | Train Loss: 0.0049, Val Loss: 0.0034
+Epoch 3/3 | Train Loss: 0.0039, Val Loss: 0.0033
+BERT Untrained => RMSE: 0.0573
+
+[Run 7] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0237, Val Loss: 0.0038
+Epoch 2/3 | Train Loss: 0.0035, Val Loss: 0.0020
+Epoch 3/3 | Train Loss: 0.0029, Val Loss: 0.0020
+DeepSeek Pretrained => RMSE: 0.0706
+
+[Run 7] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0542, Val Loss: 0.0013
+Epoch 2/3 | Train Loss: 0.0014, Val Loss: 0.0012
+Epoch 3/3 | Train Loss: 0.0012, Val Loss: 0.0012
+DeepSeek Untrained => RMSE: 0.0600
+
+=== Fish 11 - Run 8/10 ===
+
+--- Sequence Length = 5 ---
+
+[Run 8] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.1218, Val Loss: 0.0045
+Epoch 2/3 | Train Loss: 0.0105, Val Loss: 0.0025
+Epoch 3/3 | Train Loss: 0.0073, Val Loss: 0.0033
+GPT2 Pretrained => RMSE: 0.0450
+
+[Run 8] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0376, Val Loss: 0.0017
+Epoch 2/3 | Train Loss: 0.0048, Val Loss: 0.0026
+Epoch 3/3 | Train Loss: 0.0045, Val Loss: 0.0013
+GPT2 Untrained => RMSE: 0.0661
+
+[Run 8] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0139, Val Loss: 0.0071
+Epoch 2/3 | Train Loss: 0.0045, Val Loss: 0.0049
+Epoch 3/3 | Train Loss: 0.0039, Val Loss: 0.0077
+BERT Pretrained => RMSE: 0.0653
+
+[Run 8] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0293, Val Loss: 0.0054
+Epoch 2/3 | Train Loss: 0.0067, Val Loss: 0.0045
+Epoch 3/3 | Train Loss: 0.0051, Val Loss: 0.0023
+BERT Untrained => RMSE: 0.0470
+
+[Run 8] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.1407, Val Loss: 0.0047
+Epoch 2/3 | Train Loss: 0.0029, Val Loss: 0.0018
+Epoch 3/3 | Train Loss: 0.0028, Val Loss: 0.0042
+DeepSeek Pretrained => RMSE: 0.0522
+
+[Run 8] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0382, Val Loss: 0.0015
+Epoch 2/3 | Train Loss: 0.0023, Val Loss: 0.0025
+Epoch 3/3 | Train Loss: 0.0022, Val Loss: 0.0016
+DeepSeek Untrained => RMSE: 0.0689
+
+--- Sequence Length = 20 ---
+
+[Run 8] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.1235, Val Loss: 0.0038
+Epoch 2/3 | Train Loss: 0.0115, Val Loss: 0.0045
+Epoch 3/3 | Train Loss: 0.0078, Val Loss: 0.0036
+GPT2 Pretrained => RMSE: 0.0488
+
+[Run 8] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0449, Val Loss: 0.0022
+Epoch 2/3 | Train Loss: 0.0042, Val Loss: 0.0020
+Epoch 3/3 | Train Loss: 0.0037, Val Loss: 0.0013
+GPT2 Untrained => RMSE: 0.0495
+
+[Run 8] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0124, Val Loss: 0.0012
+Epoch 2/3 | Train Loss: 0.0038, Val Loss: 0.0070
+Epoch 3/3 | Train Loss: 0.0033, Val Loss: 0.0014
+BERT Pretrained => RMSE: 0.0536
+
+[Run 8] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0266, Val Loss: 0.0028
+Epoch 2/3 | Train Loss: 0.0052, Val Loss: 0.0018
+Epoch 3/3 | Train Loss: 0.0041, Val Loss: 0.0043
+BERT Untrained => RMSE: 0.0577
+
+[Run 8] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.3185, Val Loss: 0.0013
+Epoch 2/3 | Train Loss: 0.0016, Val Loss: 0.0014
+Epoch 3/3 | Train Loss: 0.0014, Val Loss: 0.0013
+DeepSeek Pretrained => RMSE: 0.0492
+
+[Run 8] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0866, Val Loss: 0.0014
+Epoch 2/3 | Train Loss: 0.0016, Val Loss: 0.0016
+Epoch 3/3 | Train Loss: 0.0020, Val Loss: 0.0015
+DeepSeek Untrained => RMSE: 0.0465
+
+=== Fish 11 - Run 9/10 ===
+
+--- Sequence Length = 5 ---
+
+[Run 9] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.1060, Val Loss: 0.0092
+Epoch 2/3 | Train Loss: 0.0094, Val Loss: 0.0028
+Epoch 3/3 | Train Loss: 0.0060, Val Loss: 0.0050
+GPT2 Pretrained => RMSE: 0.0548
+
+[Run 9] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0556, Val Loss: 0.0026
+Epoch 2/3 | Train Loss: 0.0046, Val Loss: 0.0015
+Epoch 3/3 | Train Loss: 0.0042, Val Loss: 0.0014
+GPT2 Untrained => RMSE: 0.0564
+
+[Run 9] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0136, Val Loss: 0.0031
+Epoch 2/3 | Train Loss: 0.0039, Val Loss: 0.0015
+Epoch 3/3 | Train Loss: 0.0035, Val Loss: 0.0014
+BERT Pretrained => RMSE: 0.0544
+
+[Run 9] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0333, Val Loss: 0.0049
+Epoch 2/3 | Train Loss: 0.0070, Val Loss: 0.0079
+Epoch 3/3 | Train Loss: 0.0051, Val Loss: 0.0072
+BERT Untrained => RMSE: 0.0802
+
+[Run 9] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.1442, Val Loss: 0.0011
+Epoch 2/3 | Train Loss: 0.0017, Val Loss: 0.0014
+Epoch 3/3 | Train Loss: 0.0016, Val Loss: 0.0011
+DeepSeek Pretrained => RMSE: 0.0538
+
+[Run 9] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0598, Val Loss: 0.0018
+Epoch 2/3 | Train Loss: 0.0023, Val Loss: 0.0014
+Epoch 3/3 | Train Loss: 0.0020, Val Loss: 0.0037
+DeepSeek Untrained => RMSE: 0.0881
+
+--- Sequence Length = 20 ---
+
+[Run 9] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.0733, Val Loss: 0.0051
+Epoch 2/3 | Train Loss: 0.0089, Val Loss: 0.0021
+Epoch 3/3 | Train Loss: 0.0061, Val Loss: 0.0021
+GPT2 Pretrained => RMSE: 0.0546
+
+[Run 9] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0391, Val Loss: 0.0014
+Epoch 2/3 | Train Loss: 0.0041, Val Loss: 0.0011
+Epoch 3/3 | Train Loss: 0.0037, Val Loss: 0.0017
+GPT2 Untrained => RMSE: 0.0538
+
+[Run 9] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0107, Val Loss: 0.0020
+Epoch 2/3 | Train Loss: 0.0037, Val Loss: 0.0057
+Epoch 3/3 | Train Loss: 0.0030, Val Loss: 0.0016
+BERT Pretrained => RMSE: 0.0530
+
+[Run 9] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0250, Val Loss: 0.0026
+Epoch 2/3 | Train Loss: 0.0054, Val Loss: 0.0086
+Epoch 3/3 | Train Loss: 0.0042, Val Loss: 0.0163
+BERT Untrained => RMSE: 0.0992
+
+[Run 9] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0375, Val Loss: 0.0041
+Epoch 2/3 | Train Loss: 0.0023, Val Loss: 0.0017
+Epoch 3/3 | Train Loss: 0.0022, Val Loss: 0.0018
+DeepSeek Pretrained => RMSE: 0.0504
+
+[Run 9] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0282, Val Loss: 0.0015
+Epoch 2/3 | Train Loss: 0.0037, Val Loss: 0.0015
+Epoch 3/3 | Train Loss: 0.0014, Val Loss: 0.0010
+DeepSeek Untrained => RMSE: 0.0483
+
+=== Fish 11 - Run 10/10 ===
+
+--- Sequence Length = 5 ---
+
+[Run 10] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.0647, Val Loss: 0.0016
+Epoch 2/3 | Train Loss: 0.0076, Val Loss: 0.0014
+Epoch 3/3 | Train Loss: 0.0053, Val Loss: 0.0015
+GPT2 Pretrained => RMSE: 0.0526
+
+[Run 10] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0491, Val Loss: 0.0025
+Epoch 2/3 | Train Loss: 0.0048, Val Loss: 0.0025
+Epoch 3/3 | Train Loss: 0.0044, Val Loss: 0.0066
+GPT2 Untrained => RMSE: 0.0598
+
+[Run 10] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0152, Val Loss: 0.0036
+Epoch 2/3 | Train Loss: 0.0046, Val Loss: 0.0040
+Epoch 3/3 | Train Loss: 0.0039, Val Loss: 0.0028
+BERT Pretrained => RMSE: 0.0533
+
+[Run 10] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0277, Val Loss: 0.0048
+Epoch 2/3 | Train Loss: 0.0069, Val Loss: 0.0063
+Epoch 3/3 | Train Loss: 0.0049, Val Loss: 0.0092
+BERT Untrained => RMSE: 0.0781
+
+[Run 10] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.1976, Val Loss: 0.0012
+Epoch 2/3 | Train Loss: 0.0017, Val Loss: 0.0011
+Epoch 3/3 | Train Loss: 0.0016, Val Loss: 0.0011
+DeepSeek Pretrained => RMSE: 0.0504
+
+[Run 10] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0625, Val Loss: 0.0025
+Epoch 2/3 | Train Loss: 0.0022, Val Loss: 0.0012
+Epoch 3/3 | Train Loss: 0.0019, Val Loss: 0.0020
+DeepSeek Untrained => RMSE: 0.0648
+
+--- Sequence Length = 20 ---
+
+[Run 10] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.1325, Val Loss: 0.0017
+Epoch 2/3 | Train Loss: 0.0077, Val Loss: 0.0030
+Epoch 3/3 | Train Loss: 0.0055, Val Loss: 0.0011
+GPT2 Pretrained => RMSE: 0.0512
+
+[Run 10] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0411, Val Loss: 0.0016
+Epoch 2/3 | Train Loss: 0.0040, Val Loss: 0.0013
+Epoch 3/3 | Train Loss: 0.0035, Val Loss: 0.0014
+GPT2 Untrained => RMSE: 0.0451
+
+[Run 10] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0126, Val Loss: 0.0031
+Epoch 2/3 | Train Loss: 0.0036, Val Loss: 0.0019
+Epoch 3/3 | Train Loss: 0.0031, Val Loss: 0.0016
+BERT Pretrained => RMSE: 0.0638
+
+[Run 10] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0271, Val Loss: 0.0032
+Epoch 2/3 | Train Loss: 0.0055, Val Loss: 0.0022
+Epoch 3/3 | Train Loss: 0.0041, Val Loss: 0.0016
+BERT Untrained => RMSE: 0.0560
+
+[Run 10] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0203, Val Loss: 0.0045
+Epoch 2/3 | Train Loss: 0.0026, Val Loss: 0.0015
+Epoch 3/3 | Train Loss: 0.0024, Val Loss: 0.0065
+DeepSeek Pretrained => RMSE: 0.1155
+
+[Run 10] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0469, Val Loss: 0.0017
+Epoch 2/3 | Train Loss: 0.0016, Val Loss: 0.0015
+Epoch 3/3 | Train Loss: 0.0018, Val Loss: 0.0014
+DeepSeek Untrained => RMSE: 0.0566
+Saved bar plot => /hpc/group/naumannlab/jjm132/nlp4neuro/results/experiment_2/fish11_seq5_barplot.png
+Saved bar plot => /hpc/group/naumannlab/jjm132/nlp4neuro/results/experiment_2/fish11_seq20_barplot.png
+[INFO] Wilcoxon results => /hpc/group/naumannlab/jjm132/nlp4neuro/results/experiment_2/fish11_wilcoxon_results.txt
+=== Done with Fish 11 ===
+
+
+===========================================
+Starting Experiment 2 for Fish 12
+===========================================
+Neural data shape: (2793, 10581)
+Tail data shape: (2793, 6)
+[Fish 12] input_dim=10581, output_dim=6
+
+=== Fish 12 - Run 1/10 ===
+
+--- Sequence Length = 5 ---
+
+[Run 1] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.1519, Val Loss: 0.0055
+Epoch 2/3 | Train Loss: 0.0141, Val Loss: 0.0019
+Epoch 3/3 | Train Loss: 0.0083, Val Loss: 0.0031
+GPT2 Pretrained => RMSE: 0.0535
+
+[Run 1] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0351, Val Loss: 0.0032
+Epoch 2/3 | Train Loss: 0.0057, Val Loss: 0.0042
+Epoch 3/3 | Train Loss: 0.0050, Val Loss: 0.0027
+GPT2 Untrained => RMSE: 0.0614
+
+[Run 1] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0171, Val Loss: 0.0039
+Epoch 2/3 | Train Loss: 0.0066, Val Loss: 0.0041
+Epoch 3/3 | Train Loss: 0.0055, Val Loss: 0.0041
+BERT Pretrained => RMSE: 0.0615
+
+[Run 1] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0295, Val Loss: 0.0024
+Epoch 2/3 | Train Loss: 0.0085, Val Loss: 0.0095
+Epoch 3/3 | Train Loss: 0.0062, Val Loss: 0.0046
+BERT Untrained => RMSE: 0.0682
+
+[Run 1] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0502, Val Loss: 0.0036
+Epoch 2/3 | Train Loss: 0.0029, Val Loss: 0.0042
+Epoch 3/3 | Train Loss: 0.0034, Val Loss: 0.0036
+DeepSeek Pretrained => RMSE: 0.0504
+
+[Run 1] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0622, Val Loss: 0.0028
+Epoch 2/3 | Train Loss: 0.0026, Val Loss: 0.0022
+Epoch 3/3 | Train Loss: 0.0023, Val Loss: 0.0020
+DeepSeek Untrained => RMSE: 0.0514
+
+--- Sequence Length = 20 ---
+
+[Run 1] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.0768, Val Loss: 0.0042
+Epoch 2/3 | Train Loss: 0.0106, Val Loss: 0.0025
+Epoch 3/3 | Train Loss: 0.0070, Val Loss: 0.0040
+GPT2 Pretrained => RMSE: 0.0769
+
+[Run 1] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0268, Val Loss: 0.0026
+Epoch 2/3 | Train Loss: 0.0049, Val Loss: 0.0028
+Epoch 3/3 | Train Loss: 0.0040, Val Loss: 0.0030
+GPT2 Untrained => RMSE: 0.0474
+
+[Run 1] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0141, Val Loss: 0.0020
+Epoch 2/3 | Train Loss: 0.0051, Val Loss: 0.0015
+Epoch 3/3 | Train Loss: 0.0045, Val Loss: 0.0034
+BERT Pretrained => RMSE: 0.0649
+
+[Run 1] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0270, Val Loss: 0.0034
+Epoch 2/3 | Train Loss: 0.0070, Val Loss: 0.0036
+Epoch 3/3 | Train Loss: 0.0056, Val Loss: 0.0073
+BERT Untrained => RMSE: 0.0932
+
+[Run 1] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0355, Val Loss: 0.0022
+Epoch 2/3 | Train Loss: 0.0024, Val Loss: 0.0035
+Epoch 3/3 | Train Loss: 0.0022, Val Loss: 0.0029
+DeepSeek Pretrained => RMSE: 0.0501
+
+[Run 1] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0406, Val Loss: 0.0024
+Epoch 2/3 | Train Loss: 0.0024, Val Loss: 0.0023
+Epoch 3/3 | Train Loss: 0.0019, Val Loss: 0.0018
+DeepSeek Untrained => RMSE: 0.0463
+
+=== Fish 12 - Run 2/10 ===
+
+--- Sequence Length = 5 ---
+
+[Run 2] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.1951, Val Loss: 0.0055
+Epoch 2/3 | Train Loss: 0.0165, Val Loss: 0.0029
+Epoch 3/3 | Train Loss: 0.0105, Val Loss: 0.0027
+GPT2 Pretrained => RMSE: 0.0528
+
+[Run 2] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0312, Val Loss: 0.0022
+Epoch 2/3 | Train Loss: 0.0059, Val Loss: 0.0034
+Epoch 3/3 | Train Loss: 0.0050, Val Loss: 0.0022
+GPT2 Untrained => RMSE: 0.0537
+
+[Run 2] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0145, Val Loss: 0.0033
+Epoch 2/3 | Train Loss: 0.0058, Val Loss: 0.0044
+Epoch 3/3 | Train Loss: 0.0051, Val Loss: 0.0021
+BERT Pretrained => RMSE: 0.0539
+
+[Run 2] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0275, Val Loss: 0.0029
+Epoch 2/3 | Train Loss: 0.0081, Val Loss: 0.0037
+Epoch 3/3 | Train Loss: 0.0061, Val Loss: 0.0062
+BERT Untrained => RMSE: 0.0862
+
+[Run 2] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.2055, Val Loss: 0.0023
+Epoch 2/3 | Train Loss: 0.0020, Val Loss: 0.0021
+Epoch 3/3 | Train Loss: 0.0019, Val Loss: 0.0017
+DeepSeek Pretrained => RMSE: 0.0495
+
+[Run 2] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0697, Val Loss: 0.0021
+Epoch 2/3 | Train Loss: 0.0028, Val Loss: 0.0022
+Epoch 3/3 | Train Loss: 0.0022, Val Loss: 0.0027
+DeepSeek Untrained => RMSE: 0.0647
+
+--- Sequence Length = 20 ---
+
+[Run 2] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.1418, Val Loss: 0.0065
+Epoch 2/3 | Train Loss: 0.0112, Val Loss: 0.0041
+Epoch 3/3 | Train Loss: 0.0074, Val Loss: 0.0019
+GPT2 Pretrained => RMSE: 0.0469
+
+[Run 2] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0422, Val Loss: 0.0020
+Epoch 2/3 | Train Loss: 0.0052, Val Loss: 0.0018
+Epoch 3/3 | Train Loss: 0.0045, Val Loss: 0.0021
+GPT2 Untrained => RMSE: 0.0570
+
+[Run 2] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0153, Val Loss: 0.0022
+Epoch 2/3 | Train Loss: 0.0050, Val Loss: 0.0024
+Epoch 3/3 | Train Loss: 0.0046, Val Loss: 0.0033
+BERT Pretrained => RMSE: 0.0674
+
+[Run 2] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0285, Val Loss: 0.0029
+Epoch 2/3 | Train Loss: 0.0072, Val Loss: 0.0017
+Epoch 3/3 | Train Loss: 0.0055, Val Loss: 0.0052
+BERT Untrained => RMSE: 0.0689
+
+[Run 2] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0346, Val Loss: 0.0023
+Epoch 2/3 | Train Loss: 0.0025, Val Loss: 0.0024
+Epoch 3/3 | Train Loss: 0.0028, Val Loss: 0.0019
+DeepSeek Pretrained => RMSE: 0.0487
+
+[Run 2] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0379, Val Loss: 0.0033
+Epoch 2/3 | Train Loss: 0.0020, Val Loss: 0.0026
+Epoch 3/3 | Train Loss: 0.0017, Val Loss: 0.0032
+DeepSeek Untrained => RMSE: 0.0695
+
+=== Fish 12 - Run 3/10 ===
+
+--- Sequence Length = 5 ---
+
+[Run 3] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.1738, Val Loss: 0.0045
+Epoch 2/3 | Train Loss: 0.0121, Val Loss: 0.0024
+Epoch 3/3 | Train Loss: 0.0081, Val Loss: 0.0018
+GPT2 Pretrained => RMSE: 0.0440
+
+[Run 3] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0379, Val Loss: 0.0026
+Epoch 2/3 | Train Loss: 0.0057, Val Loss: 0.0094
+Epoch 3/3 | Train Loss: 0.0047, Val Loss: 0.0023
+GPT2 Untrained => RMSE: 0.0594
+
+[Run 3] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0164, Val Loss: 0.0058
+Epoch 2/3 | Train Loss: 0.0057, Val Loss: 0.0019
+Epoch 3/3 | Train Loss: 0.0051, Val Loss: 0.0044
+BERT Pretrained => RMSE: 0.0769
+
+[Run 3] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0295, Val Loss: 0.0058
+Epoch 2/3 | Train Loss: 0.0086, Val Loss: 0.0037
+Epoch 3/3 | Train Loss: 0.0064, Val Loss: 0.0037
+BERT Untrained => RMSE: 0.0575
+
+[Run 3] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0350, Val Loss: 0.0024
+Epoch 2/3 | Train Loss: 0.0034, Val Loss: 0.0065
+Epoch 3/3 | Train Loss: 0.0037, Val Loss: 0.0076
+DeepSeek Pretrained => RMSE: 0.1034
+
+[Run 3] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0337, Val Loss: 0.0022
+Epoch 2/3 | Train Loss: 0.0030, Val Loss: 0.0050
+Epoch 3/3 | Train Loss: 0.0024, Val Loss: 0.0027
+DeepSeek Untrained => RMSE: 0.0640
+
+--- Sequence Length = 20 ---
+
+[Run 3] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.1442, Val Loss: 0.0039
+Epoch 2/3 | Train Loss: 0.0100, Val Loss: 0.0025
+Epoch 3/3 | Train Loss: 0.0070, Val Loss: 0.0022
+GPT2 Pretrained => RMSE: 0.0507
+
+[Run 3] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0311, Val Loss: 0.0029
+Epoch 2/3 | Train Loss: 0.0050, Val Loss: 0.0037
+Epoch 3/3 | Train Loss: 0.0041, Val Loss: 0.0020
+GPT2 Untrained => RMSE: 0.0498
+
+[Run 3] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0167, Val Loss: 0.0019
+Epoch 2/3 | Train Loss: 0.0054, Val Loss: 0.0043
+Epoch 3/3 | Train Loss: 0.0046, Val Loss: 0.0022
+BERT Pretrained => RMSE: 0.0505
+
+[Run 3] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0272, Val Loss: 0.0089
+Epoch 2/3 | Train Loss: 0.0071, Val Loss: 0.0039
+Epoch 3/3 | Train Loss: 0.0052, Val Loss: 0.0024
+BERT Untrained => RMSE: 0.0546
+
+[Run 3] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0483, Val Loss: 0.0044
+Epoch 2/3 | Train Loss: 0.0028, Val Loss: 0.0025
+Epoch 3/3 | Train Loss: 0.0025, Val Loss: 0.0020
+DeepSeek Pretrained => RMSE: 0.0424
+
+[Run 3] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.1377, Val Loss: 0.0019
+Epoch 2/3 | Train Loss: 0.0018, Val Loss: 0.0017
+Epoch 3/3 | Train Loss: 0.0017, Val Loss: 0.0018
+DeepSeek Untrained => RMSE: 0.0511
+
+=== Fish 12 - Run 4/10 ===
+
+--- Sequence Length = 5 ---
+
+[Run 4] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.0755, Val Loss: 0.0021
+Epoch 2/3 | Train Loss: 0.0108, Val Loss: 0.0040
+Epoch 3/3 | Train Loss: 0.0069, Val Loss: 0.0024
+GPT2 Pretrained => RMSE: 0.0613
+
+[Run 4] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0348, Val Loss: 0.0027
+Epoch 2/3 | Train Loss: 0.0056, Val Loss: 0.0030
+Epoch 3/3 | Train Loss: 0.0049, Val Loss: 0.0057
+GPT2 Untrained => RMSE: 0.0876
+
+[Run 4] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0145, Val Loss: 0.0042
+Epoch 2/3 | Train Loss: 0.0057, Val Loss: 0.0028
+Epoch 3/3 | Train Loss: 0.0049, Val Loss: 0.0021
+BERT Pretrained => RMSE: 0.0452
+
+[Run 4] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0286, Val Loss: 0.0089
+Epoch 2/3 | Train Loss: 0.0087, Val Loss: 0.0034
+Epoch 3/3 | Train Loss: 0.0066, Val Loss: 0.0069
+BERT Untrained => RMSE: 0.0890
+
+[Run 4] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0289, Val Loss: 0.0036
+Epoch 2/3 | Train Loss: 0.0031, Val Loss: 0.0037
+Epoch 3/3 | Train Loss: 0.0035, Val Loss: 0.0025
+DeepSeek Pretrained => RMSE: 0.0526
+
+[Run 4] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0408, Val Loss: 0.0060
+Epoch 2/3 | Train Loss: 0.0025, Val Loss: 0.0021
+Epoch 3/3 | Train Loss: 0.0024, Val Loss: 0.0025
+DeepSeek Untrained => RMSE: 0.0498
+
+--- Sequence Length = 20 ---
+
+[Run 4] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.1272, Val Loss: 0.0025
+Epoch 2/3 | Train Loss: 0.0109, Val Loss: 0.0023
+Epoch 3/3 | Train Loss: 0.0074, Val Loss: 0.0033
+GPT2 Pretrained => RMSE: 0.0546
+
+[Run 4] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0278, Val Loss: 0.0019
+Epoch 2/3 | Train Loss: 0.0050, Val Loss: 0.0019
+Epoch 3/3 | Train Loss: 0.0040, Val Loss: 0.0025
+GPT2 Untrained => RMSE: 0.0471
+
+[Run 4] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0134, Val Loss: 0.0050
+Epoch 2/3 | Train Loss: 0.0054, Val Loss: 0.0033
+Epoch 3/3 | Train Loss: 0.0045, Val Loss: 0.0021
+BERT Pretrained => RMSE: 0.0520
+
+[Run 4] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0273, Val Loss: 0.0054
+Epoch 2/3 | Train Loss: 0.0071, Val Loss: 0.0087
+Epoch 3/3 | Train Loss: 0.0057, Val Loss: 0.0029
+BERT Untrained => RMSE: 0.0540
+
+[Run 4] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0432, Val Loss: 0.0020
+Epoch 2/3 | Train Loss: 0.0024, Val Loss: 0.0027
+Epoch 3/3 | Train Loss: 0.0029, Val Loss: 0.0036
+DeepSeek Pretrained => RMSE: 0.0769
+
+[Run 4] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.1384, Val Loss: 0.0020
+Epoch 2/3 | Train Loss: 0.0017, Val Loss: 0.0024
+Epoch 3/3 | Train Loss: 0.0016, Val Loss: 0.0023
+DeepSeek Untrained => RMSE: 0.0538
+
+=== Fish 12 - Run 5/10 ===
+
+--- Sequence Length = 5 ---
+
+[Run 5] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.0993, Val Loss: 0.0024
+Epoch 2/3 | Train Loss: 0.0092, Val Loss: 0.0018
+Epoch 3/3 | Train Loss: 0.0064, Val Loss: 0.0032
+GPT2 Pretrained => RMSE: 0.0485
+
+[Run 5] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0400, Val Loss: 0.0054
+Epoch 2/3 | Train Loss: 0.0056, Val Loss: 0.0035
+Epoch 3/3 | Train Loss: 0.0052, Val Loss: 0.0032
+GPT2 Untrained => RMSE: 0.0485
+
+[Run 5] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0168, Val Loss: 0.0029
+Epoch 2/3 | Train Loss: 0.0062, Val Loss: 0.0049
+Epoch 3/3 | Train Loss: 0.0051, Val Loss: 0.0024
+BERT Pretrained => RMSE: 0.0488
+
+[Run 5] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0311, Val Loss: 0.0078
+Epoch 2/3 | Train Loss: 0.0089, Val Loss: 0.0070
+Epoch 3/3 | Train Loss: 0.0065, Val Loss: 0.0035
+BERT Untrained => RMSE: 0.0559
+
+[Run 5] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.4278, Val Loss: 0.0026
+Epoch 2/3 | Train Loss: 0.0020, Val Loss: 0.0020
+Epoch 3/3 | Train Loss: 0.0022, Val Loss: 0.0080
+DeepSeek Pretrained => RMSE: 0.0580
+
+[Run 5] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0824, Val Loss: 0.0031
+Epoch 2/3 | Train Loss: 0.0026, Val Loss: 0.0022
+Epoch 3/3 | Train Loss: 0.0023, Val Loss: 0.0023
+DeepSeek Untrained => RMSE: 0.0485
+
+--- Sequence Length = 20 ---
+
+[Run 5] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.0851, Val Loss: 0.0021
+Epoch 2/3 | Train Loss: 0.0094, Val Loss: 0.0027
+Epoch 3/3 | Train Loss: 0.0062, Val Loss: 0.0027
+GPT2 Pretrained => RMSE: 0.0497
+
+[Run 5] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0319, Val Loss: 0.0021
+Epoch 2/3 | Train Loss: 0.0048, Val Loss: 0.0023
+Epoch 3/3 | Train Loss: 0.0040, Val Loss: 0.0019
+GPT2 Untrained => RMSE: 0.0568
+
+[Run 5] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0175, Val Loss: 0.0050
+Epoch 2/3 | Train Loss: 0.0055, Val Loss: 0.0043
+Epoch 3/3 | Train Loss: 0.0048, Val Loss: 0.0030
+BERT Pretrained => RMSE: 0.0542
+
+[Run 5] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0263, Val Loss: 0.0105
+Epoch 2/3 | Train Loss: 0.0071, Val Loss: 0.0056
+Epoch 3/3 | Train Loss: 0.0055, Val Loss: 0.0024
+BERT Untrained => RMSE: 0.0534
+
+[Run 5] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.2163, Val Loss: 0.0018
+Epoch 2/3 | Train Loss: 0.0020, Val Loss: 0.0018
+Epoch 3/3 | Train Loss: 0.0019, Val Loss: 0.0020
+DeepSeek Pretrained => RMSE: 0.0553
+
+[Run 5] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0763, Val Loss: 0.0023
+Epoch 2/3 | Train Loss: 0.0018, Val Loss: 0.0021
+Epoch 3/3 | Train Loss: 0.0017, Val Loss: 0.0054
+DeepSeek Untrained => RMSE: 0.0618
+
+=== Fish 12 - Run 6/10 ===
+
+--- Sequence Length = 5 ---
+
+[Run 6] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.1264, Val Loss: 0.0020
+Epoch 2/3 | Train Loss: 0.0130, Val Loss: 0.0025
+Epoch 3/3 | Train Loss: 0.0092, Val Loss: 0.0026
+GPT2 Pretrained => RMSE: 0.0591
+
+[Run 6] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0293, Val Loss: 0.0051
+Epoch 2/3 | Train Loss: 0.0056, Val Loss: 0.0029
+Epoch 3/3 | Train Loss: 0.0045, Val Loss: 0.0025
+GPT2 Untrained => RMSE: 0.0557
+
+[Run 6] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0163, Val Loss: 0.0019
+Epoch 2/3 | Train Loss: 0.0064, Val Loss: 0.0026
+Epoch 3/3 | Train Loss: 0.0054, Val Loss: 0.0038
+BERT Pretrained => RMSE: 0.0689
+
+[Run 6] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0334, Val Loss: 0.0052
+Epoch 2/3 | Train Loss: 0.0087, Val Loss: 0.0021
+Epoch 3/3 | Train Loss: 0.0069, Val Loss: 0.0024
+BERT Untrained => RMSE: 0.0530
+
+[Run 6] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0351, Val Loss: 0.0036
+Epoch 2/3 | Train Loss: 0.0031, Val Loss: 0.0021
+Epoch 3/3 | Train Loss: 0.0036, Val Loss: 0.0024
+DeepSeek Pretrained => RMSE: 0.0499
+
+[Run 6] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0612, Val Loss: 0.0031
+Epoch 2/3 | Train Loss: 0.0024, Val Loss: 0.0023
+Epoch 3/3 | Train Loss: 0.0024, Val Loss: 0.0016
+DeepSeek Untrained => RMSE: 0.0483
+
+--- Sequence Length = 20 ---
+
+[Run 6] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.1202, Val Loss: 0.0028
+Epoch 2/3 | Train Loss: 0.0099, Val Loss: 0.0018
+Epoch 3/3 | Train Loss: 0.0068, Val Loss: 0.0017
+GPT2 Pretrained => RMSE: 0.0499
+
+[Run 6] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0408, Val Loss: 0.0018
+Epoch 2/3 | Train Loss: 0.0050, Val Loss: 0.0019
+Epoch 3/3 | Train Loss: 0.0043, Val Loss: 0.0018
+GPT2 Untrained => RMSE: 0.0452
+
+[Run 6] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0154, Val Loss: 0.0025
+Epoch 2/3 | Train Loss: 0.0050, Val Loss: 0.0018
+Epoch 3/3 | Train Loss: 0.0045, Val Loss: 0.0021
+BERT Pretrained => RMSE: 0.0484
+
+[Run 6] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0326, Val Loss: 0.0040
+Epoch 2/3 | Train Loss: 0.0075, Val Loss: 0.0046
+Epoch 3/3 | Train Loss: 0.0059, Val Loss: 0.0030
+BERT Untrained => RMSE: 0.0607
+
+[Run 6] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0321, Val Loss: 0.0021
+Epoch 2/3 | Train Loss: 0.0028, Val Loss: 0.0023
+Epoch 3/3 | Train Loss: 0.0078, Val Loss: 0.0042
+DeepSeek Pretrained => RMSE: 0.0725
+
+[Run 6] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0419, Val Loss: 0.0034
+Epoch 2/3 | Train Loss: 0.0027, Val Loss: 0.0031
+Epoch 3/3 | Train Loss: 0.0022, Val Loss: 0.0034
+DeepSeek Untrained => RMSE: 0.0534
+
+=== Fish 12 - Run 7/10 ===
+
+--- Sequence Length = 5 ---
+
+[Run 7] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.1194, Val Loss: 0.0094
+Epoch 2/3 | Train Loss: 0.0117, Val Loss: 0.0031
+Epoch 3/3 | Train Loss: 0.0077, Val Loss: 0.0019
+GPT2 Pretrained => RMSE: 0.0470
+
+[Run 7] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0341, Val Loss: 0.0025
+Epoch 2/3 | Train Loss: 0.0058, Val Loss: 0.0031
+Epoch 3/3 | Train Loss: 0.0051, Val Loss: 0.0021
+GPT2 Untrained => RMSE: 0.0534
+
+[Run 7] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0166, Val Loss: 0.0040
+Epoch 2/3 | Train Loss: 0.0058, Val Loss: 0.0028
+Epoch 3/3 | Train Loss: 0.0052, Val Loss: 0.0024
+BERT Pretrained => RMSE: 0.0566
+
+[Run 7] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0298, Val Loss: 0.0069
+Epoch 2/3 | Train Loss: 0.0086, Val Loss: 0.0046
+Epoch 3/3 | Train Loss: 0.0065, Val Loss: 0.0030
+BERT Untrained => RMSE: 0.0610
+
+[Run 7] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0953, Val Loss: 0.0073
+Epoch 2/3 | Train Loss: 0.0059, Val Loss: 0.0024
+Epoch 3/3 | Train Loss: 0.0069, Val Loss: 0.0069
+DeepSeek Pretrained => RMSE: 0.1003
+
+[Run 7] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.1804, Val Loss: 0.0024
+Epoch 2/3 | Train Loss: 0.0021, Val Loss: 0.0029
+Epoch 3/3 | Train Loss: 0.0020, Val Loss: 0.0031
+DeepSeek Untrained => RMSE: 0.0695
+
+--- Sequence Length = 20 ---
+
+[Run 7] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.2363, Val Loss: 0.0073
+Epoch 2/3 | Train Loss: 0.0130, Val Loss: 0.0056
+Epoch 3/3 | Train Loss: 0.0091, Val Loss: 0.0039
+GPT2 Pretrained => RMSE: 0.0567
+
+[Run 7] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0302, Val Loss: 0.0043
+Epoch 2/3 | Train Loss: 0.0049, Val Loss: 0.0023
+Epoch 3/3 | Train Loss: 0.0040, Val Loss: 0.0032
+GPT2 Untrained => RMSE: 0.0639
+
+[Run 7] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0167, Val Loss: 0.0058
+Epoch 2/3 | Train Loss: 0.0055, Val Loss: 0.0026
+Epoch 3/3 | Train Loss: 0.0047, Val Loss: 0.0025
+BERT Pretrained => RMSE: 0.0492
+
+[Run 7] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0270, Val Loss: 0.0043
+Epoch 2/3 | Train Loss: 0.0076, Val Loss: 0.0047
+Epoch 3/3 | Train Loss: 0.0057, Val Loss: 0.0024
+BERT Untrained => RMSE: 0.0525
+
+[Run 7] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0536, Val Loss: 0.0019
+Epoch 2/3 | Train Loss: 0.0021, Val Loss: 0.0025
+Epoch 3/3 | Train Loss: 0.0021, Val Loss: 0.0022
+DeepSeek Pretrained => RMSE: 0.0554
+
+[Run 7] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0225, Val Loss: 0.0019
+Epoch 2/3 | Train Loss: 0.0025, Val Loss: 0.0032
+Epoch 3/3 | Train Loss: 0.0021, Val Loss: 0.0021
+DeepSeek Untrained => RMSE: 0.0529
+
+=== Fish 12 - Run 8/10 ===
+
+--- Sequence Length = 5 ---
+
+[Run 8] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.1732, Val Loss: 0.0019
+Epoch 2/3 | Train Loss: 0.0142, Val Loss: 0.0061
+Epoch 3/3 | Train Loss: 0.0088, Val Loss: 0.0043
+GPT2 Pretrained => RMSE: 0.0772
+
+[Run 8] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0331, Val Loss: 0.0026
+Epoch 2/3 | Train Loss: 0.0057, Val Loss: 0.0078
+Epoch 3/3 | Train Loss: 0.0049, Val Loss: 0.0027
+GPT2 Untrained => RMSE: 0.0567
+
+[Run 8] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0150, Val Loss: 0.0044
+Epoch 2/3 | Train Loss: 0.0063, Val Loss: 0.0029
+Epoch 3/3 | Train Loss: 0.0051, Val Loss: 0.0037
+BERT Pretrained => RMSE: 0.0623
+
+[Run 8] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0334, Val Loss: 0.0093
+Epoch 2/3 | Train Loss: 0.0091, Val Loss: 0.0028
+Epoch 3/3 | Train Loss: 0.0072, Val Loss: 0.0067
+BERT Untrained => RMSE: 0.0757
+
+[Run 8] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0812, Val Loss: 0.0019
+Epoch 2/3 | Train Loss: 0.0024, Val Loss: 0.0030
+Epoch 3/3 | Train Loss: 0.0024, Val Loss: 0.0039
+DeepSeek Pretrained => RMSE: 0.0638
+
+[Run 8] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0688, Val Loss: 0.0078
+Epoch 2/3 | Train Loss: 0.0026, Val Loss: 0.0023
+Epoch 3/3 | Train Loss: 0.0025, Val Loss: 0.0023
+DeepSeek Untrained => RMSE: 0.0568
+
+--- Sequence Length = 20 ---
+
+[Run 8] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.0732, Val Loss: 0.0027
+Epoch 2/3 | Train Loss: 0.0097, Val Loss: 0.0017
+Epoch 3/3 | Train Loss: 0.0065, Val Loss: 0.0025
+GPT2 Pretrained => RMSE: 0.0558
+
+[Run 8] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0311, Val Loss: 0.0034
+Epoch 2/3 | Train Loss: 0.0051, Val Loss: 0.0017
+Epoch 3/3 | Train Loss: 0.0041, Val Loss: 0.0027
+GPT2 Untrained => RMSE: 0.0656
+
+[Run 8] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0168, Val Loss: 0.0018
+Epoch 2/3 | Train Loss: 0.0055, Val Loss: 0.0018
+Epoch 3/3 | Train Loss: 0.0048, Val Loss: 0.0078
+BERT Pretrained => RMSE: 0.0963
+
+[Run 8] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0279, Val Loss: 0.0043
+Epoch 2/3 | Train Loss: 0.0071, Val Loss: 0.0030
+Epoch 3/3 | Train Loss: 0.0057, Val Loss: 0.0019
+BERT Untrained => RMSE: 0.0481
+
+[Run 8] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.1185, Val Loss: 0.0017
+Epoch 2/3 | Train Loss: 0.0020, Val Loss: 0.0018
+Epoch 3/3 | Train Loss: 0.0018, Val Loss: 0.0018
+DeepSeek Pretrained => RMSE: 0.0517
+
+[Run 8] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0933, Val Loss: 0.0022
+Epoch 2/3 | Train Loss: 0.0021, Val Loss: 0.0036
+Epoch 3/3 | Train Loss: 0.0019, Val Loss: 0.0025
+DeepSeek Untrained => RMSE: 0.0631
+
+=== Fish 12 - Run 9/10 ===
+
+--- Sequence Length = 5 ---
+
+[Run 9] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.1563, Val Loss: 0.0126
+Epoch 2/3 | Train Loss: 0.0138, Val Loss: 0.0032
+Epoch 3/3 | Train Loss: 0.0079, Val Loss: 0.0017
+GPT2 Pretrained => RMSE: 0.0486
+
+[Run 9] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0345, Val Loss: 0.0022
+Epoch 2/3 | Train Loss: 0.0056, Val Loss: 0.0021
+Epoch 3/3 | Train Loss: 0.0047, Val Loss: 0.0019
+GPT2 Untrained => RMSE: 0.0452
+
+[Run 9] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0172, Val Loss: 0.0036
+Epoch 2/3 | Train Loss: 0.0064, Val Loss: 0.0107
+Epoch 3/3 | Train Loss: 0.0055, Val Loss: 0.0036
+BERT Pretrained => RMSE: 0.0635
+
+[Run 9] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0297, Val Loss: 0.0052
+Epoch 2/3 | Train Loss: 0.0091, Val Loss: 0.0056
+Epoch 3/3 | Train Loss: 0.0064, Val Loss: 0.0034
+BERT Untrained => RMSE: 0.0572
+
+[Run 9] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0404, Val Loss: 0.0071
+Epoch 2/3 | Train Loss: 0.0036, Val Loss: 0.0028
+Epoch 3/3 | Train Loss: 0.0038, Val Loss: 0.0026
+DeepSeek Pretrained => RMSE: 0.0452
+
+[Run 9] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0426, Val Loss: 0.0021
+Epoch 2/3 | Train Loss: 0.0024, Val Loss: 0.0028
+Epoch 3/3 | Train Loss: 0.0024, Val Loss: 0.0022
+DeepSeek Untrained => RMSE: 0.0563
+
+--- Sequence Length = 20 ---
+
+[Run 9] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.0613, Val Loss: 0.0017
+Epoch 2/3 | Train Loss: 0.0073, Val Loss: 0.0029
+Epoch 3/3 | Train Loss: 0.0049, Val Loss: 0.0021
+GPT2 Pretrained => RMSE: 0.0454
+
+[Run 9] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0378, Val Loss: 0.0029
+Epoch 2/3 | Train Loss: 0.0051, Val Loss: 0.0027
+Epoch 3/3 | Train Loss: 0.0043, Val Loss: 0.0024
+GPT2 Untrained => RMSE: 0.0585
+
+[Run 9] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0159, Val Loss: 0.0043
+Epoch 2/3 | Train Loss: 0.0056, Val Loss: 0.0033
+Epoch 3/3 | Train Loss: 0.0048, Val Loss: 0.0043
+BERT Pretrained => RMSE: 0.0630
+
+[Run 9] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0291, Val Loss: 0.0052
+Epoch 2/3 | Train Loss: 0.0071, Val Loss: 0.0043
+Epoch 3/3 | Train Loss: 0.0058, Val Loss: 0.0016
+BERT Untrained => RMSE: 0.0451
+
+[Run 9] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0798, Val Loss: 0.0035
+Epoch 2/3 | Train Loss: 0.0034, Val Loss: 0.0044
+Epoch 3/3 | Train Loss: 0.0040, Val Loss: 0.0026
+DeepSeek Pretrained => RMSE: 0.0456
+
+[Run 9] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0533, Val Loss: 0.0030
+Epoch 2/3 | Train Loss: 0.0021, Val Loss: 0.0024
+Epoch 3/3 | Train Loss: 0.0132, Val Loss: 0.0084
+DeepSeek Untrained => RMSE: 0.0856
+
+=== Fish 12 - Run 10/10 ===
+
+--- Sequence Length = 5 ---
+
+[Run 10] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.0491, Val Loss: 0.0031
+Epoch 2/3 | Train Loss: 0.0095, Val Loss: 0.0026
+Epoch 3/3 | Train Loss: 0.0070, Val Loss: 0.0016
+GPT2 Pretrained => RMSE: 0.0496
+
+[Run 10] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0416, Val Loss: 0.0027
+Epoch 2/3 | Train Loss: 0.0058, Val Loss: 0.0042
+Epoch 3/3 | Train Loss: 0.0051, Val Loss: 0.0019
+GPT2 Untrained => RMSE: 0.0501
+
+[Run 10] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0146, Val Loss: 0.0081
+Epoch 2/3 | Train Loss: 0.0060, Val Loss: 0.0041
+Epoch 3/3 | Train Loss: 0.0051, Val Loss: 0.0070
+BERT Pretrained => RMSE: 0.0759
+
+[Run 10] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0357, Val Loss: 0.0071
+Epoch 2/3 | Train Loss: 0.0086, Val Loss: 0.0031
+Epoch 3/3 | Train Loss: 0.0065, Val Loss: 0.0030
+BERT Untrained => RMSE: 0.0643
+
+[Run 10] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0583, Val Loss: 0.0024
+Epoch 2/3 | Train Loss: 0.0026, Val Loss: 0.0024
+Epoch 3/3 | Train Loss: 0.0025, Val Loss: 0.0021
+DeepSeek Pretrained => RMSE: 0.0444
+
+[Run 10] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0657, Val Loss: 0.0022
+Epoch 2/3 | Train Loss: 0.0027, Val Loss: 0.0027
+Epoch 3/3 | Train Loss: 0.0024, Val Loss: 0.0018
+DeepSeek Untrained => RMSE: 0.0454
+
+--- Sequence Length = 20 ---
+
+[Run 10] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.1502, Val Loss: 0.0057
+Epoch 2/3 | Train Loss: 0.0124, Val Loss: 0.0038
+Epoch 3/3 | Train Loss: 0.0086, Val Loss: 0.0025
+GPT2 Pretrained => RMSE: 0.0498
+
+[Run 10] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0301, Val Loss: 0.0018
+Epoch 2/3 | Train Loss: 0.0049, Val Loss: 0.0024
+Epoch 3/3 | Train Loss: 0.0041, Val Loss: 0.0037
+GPT2 Untrained => RMSE: 0.0760
+
+[Run 10] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0157, Val Loss: 0.0023
+Epoch 2/3 | Train Loss: 0.0052, Val Loss: 0.0074
+Epoch 3/3 | Train Loss: 0.0048, Val Loss: 0.0024
+BERT Pretrained => RMSE: 0.0551
+
+[Run 10] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0273, Val Loss: 0.0076
+Epoch 2/3 | Train Loss: 0.0073, Val Loss: 0.0025
+Epoch 3/3 | Train Loss: 0.0054, Val Loss: 0.0053
+BERT Untrained => RMSE: 0.0818
+
+[Run 10] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.3931, Val Loss: 0.0019
+Epoch 2/3 | Train Loss: 0.0021, Val Loss: 0.0021
+Epoch 3/3 | Train Loss: 0.0018, Val Loss: 0.0023
+DeepSeek Pretrained => RMSE: 0.0586
+
+[Run 10] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0486, Val Loss: 0.0056
+Epoch 2/3 | Train Loss: 0.0021, Val Loss: 0.0024
+Epoch 3/3 | Train Loss: 0.0020, Val Loss: 0.0019
+DeepSeek Untrained => RMSE: 0.0467
+Saved bar plot => /hpc/group/naumannlab/jjm132/nlp4neuro/results/experiment_2/fish12_seq5_barplot.png
+Saved bar plot => /hpc/group/naumannlab/jjm132/nlp4neuro/results/experiment_2/fish12_seq20_barplot.png
+[INFO] Wilcoxon results => /hpc/group/naumannlab/jjm132/nlp4neuro/results/experiment_2/fish12_wilcoxon_results.txt
+=== Done with Fish 12 ===
+
+
+===========================================
+Starting Experiment 2 for Fish 13
+===========================================
+Neural data shape: (2793, 9336)
+Tail data shape: (2793, 6)
+[Fish 13] input_dim=9336, output_dim=6
+
+=== Fish 13 - Run 1/10 ===
+
+--- Sequence Length = 5 ---
+
+[Run 1] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.0426, Val Loss: 0.0074
+Epoch 2/3 | Train Loss: 0.0087, Val Loss: 0.0045
+Epoch 3/3 | Train Loss: 0.0067, Val Loss: 0.0042
+GPT2 Pretrained => RMSE: 0.0500
+
+[Run 1] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0389, Val Loss: 0.0052
+Epoch 2/3 | Train Loss: 0.0068, Val Loss: 0.0075
+Epoch 3/3 | Train Loss: 0.0066, Val Loss: 0.0063
+GPT2 Untrained => RMSE: 0.0790
+
+[Run 1] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0175, Val Loss: 0.0096
+Epoch 2/3 | Train Loss: 0.0067, Val Loss: 0.0077
+Epoch 3/3 | Train Loss: 0.0058, Val Loss: 0.0123
+BERT Pretrained => RMSE: 0.0885
+
+[Run 1] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0302, Val Loss: 0.0114
+Epoch 2/3 | Train Loss: 0.0087, Val Loss: 0.0067
+Epoch 3/3 | Train Loss: 0.0068, Val Loss: 0.0074
+BERT Untrained => RMSE: 0.0600
+
+[Run 1] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 3.7060, Val Loss: 4.2765
+Epoch 2/3 | Train Loss: 2.3383, Val Loss: 1.2924
+Epoch 3/3 | Train Loss: 0.6768, Val Loss: 0.1250
+DeepSeek Pretrained => RMSE: 0.3376
+
+[Run 1] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0504, Val Loss: 0.0042
+Epoch 2/3 | Train Loss: 0.0036, Val Loss: 0.0064
+Epoch 3/3 | Train Loss: 0.0029, Val Loss: 0.0059
+DeepSeek Untrained => RMSE: 0.0847
+
+--- Sequence Length = 20 ---
+
+[Run 1] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.0599, Val Loss: 0.0046
+Epoch 2/3 | Train Loss: 0.0092, Val Loss: 0.0097
+Epoch 3/3 | Train Loss: 0.0071, Val Loss: 0.0051
+GPT2 Pretrained => RMSE: 0.0470
+
+[Run 1] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0484, Val Loss: 0.0047
+Epoch 2/3 | Train Loss: 0.0061, Val Loss: 0.0043
+Epoch 3/3 | Train Loss: 0.0055, Val Loss: 0.0044
+GPT2 Untrained => RMSE: 0.0425
+
+[Run 1] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0132, Val Loss: 0.0071
+Epoch 2/3 | Train Loss: 0.0051, Val Loss: 0.0074
+Epoch 3/3 | Train Loss: 0.0047, Val Loss: 0.0041
+BERT Pretrained => RMSE: 0.0466
+
+[Run 1] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0278, Val Loss: 0.0071
+Epoch 2/3 | Train Loss: 0.0069, Val Loss: 0.0046
+Epoch 3/3 | Train Loss: 0.0056, Val Loss: 0.0062
+BERT Untrained => RMSE: 0.0501
+
+[Run 1] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0380, Val Loss: 0.0049
+Epoch 2/3 | Train Loss: 0.0029, Val Loss: 0.0073
+Epoch 3/3 | Train Loss: 0.0033, Val Loss: 0.0060
+DeepSeek Pretrained => RMSE: 0.0829
+
+[Run 1] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.1476, Val Loss: 0.0110
+Epoch 2/3 | Train Loss: 0.0034, Val Loss: 0.0038
+Epoch 3/3 | Train Loss: 0.0023, Val Loss: 0.0039
+DeepSeek Untrained => RMSE: 0.0489
+
+=== Fish 13 - Run 2/10 ===
+
+--- Sequence Length = 5 ---
+
+[Run 2] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.0572, Val Loss: 0.0069
+Epoch 2/3 | Train Loss: 0.0099, Val Loss: 0.0055
+Epoch 3/3 | Train Loss: 0.0076, Val Loss: 0.0047
+GPT2 Pretrained => RMSE: 0.0582
+
+[Run 2] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0400, Val Loss: 0.0046
+Epoch 2/3 | Train Loss: 0.0070, Val Loss: 0.0040
+Epoch 3/3 | Train Loss: 0.0063, Val Loss: 0.0119
+GPT2 Untrained => RMSE: 0.0842
+
+[Run 2] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0149, Val Loss: 0.0206
+Epoch 2/3 | Train Loss: 0.0064, Val Loss: 0.0065
+Epoch 3/3 | Train Loss: 0.0055, Val Loss: 0.0117
+BERT Pretrained => RMSE: 0.0817
+
+[Run 2] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0295, Val Loss: 0.0092
+Epoch 2/3 | Train Loss: 0.0088, Val Loss: 0.0059
+Epoch 3/3 | Train Loss: 0.0070, Val Loss: 0.0097
+BERT Untrained => RMSE: 0.0750
+
+[Run 2] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0724, Val Loss: 0.0046
+Epoch 2/3 | Train Loss: 0.0039, Val Loss: 0.0055
+Epoch 3/3 | Train Loss: 0.0033, Val Loss: 0.0046
+DeepSeek Pretrained => RMSE: 0.0555
+
+[Run 2] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0475, Val Loss: 0.0080
+Epoch 2/3 | Train Loss: 0.0038, Val Loss: 0.0056
+Epoch 3/3 | Train Loss: 0.0029, Val Loss: 0.0047
+DeepSeek Untrained => RMSE: 0.0679
+
+--- Sequence Length = 20 ---
+
+[Run 2] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.0858, Val Loss: 0.0102
+Epoch 2/3 | Train Loss: 0.0091, Val Loss: 0.0059
+Epoch 3/3 | Train Loss: 0.0071, Val Loss: 0.0044
+GPT2 Pretrained => RMSE: 0.0553
+
+[Run 2] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0306, Val Loss: 0.0056
+Epoch 2/3 | Train Loss: 0.0058, Val Loss: 0.0043
+Epoch 3/3 | Train Loss: 0.0057, Val Loss: 0.0081
+GPT2 Untrained => RMSE: 0.0651
+
+[Run 2] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0141, Val Loss: 0.0052
+Epoch 2/3 | Train Loss: 0.0054, Val Loss: 0.0046
+Epoch 3/3 | Train Loss: 0.0049, Val Loss: 0.0099
+BERT Pretrained => RMSE: 0.0713
+
+[Run 2] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0284, Val Loss: 0.0076
+Epoch 2/3 | Train Loss: 0.0067, Val Loss: 0.0055
+Epoch 3/3 | Train Loss: 0.0056, Val Loss: 0.0074
+BERT Untrained => RMSE: 0.0586
+
+[Run 2] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0410, Val Loss: 0.0041
+Epoch 2/3 | Train Loss: 0.0030, Val Loss: 0.0061
+Epoch 3/3 | Train Loss: 0.0030, Val Loss: 0.0079
+DeepSeek Pretrained => RMSE: 0.1111
+
+[Run 2] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0902, Val Loss: 0.0038
+Epoch 2/3 | Train Loss: 0.0025, Val Loss: 0.0038
+Epoch 3/3 | Train Loss: 0.0022, Val Loss: 0.0038
+DeepSeek Untrained => RMSE: 0.0564
+
+=== Fish 13 - Run 3/10 ===
+
+--- Sequence Length = 5 ---
+
+[Run 3] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.0855, Val Loss: 0.0059
+Epoch 2/3 | Train Loss: 0.0119, Val Loss: 0.0043
+Epoch 3/3 | Train Loss: 0.0091, Val Loss: 0.0060
+GPT2 Pretrained => RMSE: 0.0515
+
+[Run 3] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0305, Val Loss: 0.0043
+Epoch 2/3 | Train Loss: 0.0067, Val Loss: 0.0049
+Epoch 3/3 | Train Loss: 0.0066, Val Loss: 0.0055
+GPT2 Untrained => RMSE: 0.0679
+
+[Run 3] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0175, Val Loss: 0.0080
+Epoch 2/3 | Train Loss: 0.0066, Val Loss: 0.0109
+Epoch 3/3 | Train Loss: 0.0057, Val Loss: 0.0058
+BERT Pretrained => RMSE: 0.0537
+
+[Run 3] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0291, Val Loss: 0.0222
+Epoch 2/3 | Train Loss: 0.0088, Val Loss: 0.0176
+Epoch 3/3 | Train Loss: 0.0071, Val Loss: 0.0100
+BERT Untrained => RMSE: 0.0764
+
+[Run 3] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0527, Val Loss: 0.0053
+Epoch 2/3 | Train Loss: 0.0042, Val Loss: 0.0059
+Epoch 3/3 | Train Loss: 0.0043, Val Loss: 0.0046
+DeepSeek Pretrained => RMSE: 0.0539
+
+[Run 3] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0502, Val Loss: 0.0142
+Epoch 2/3 | Train Loss: 0.0040, Val Loss: 0.0072
+Epoch 3/3 | Train Loss: 0.0026, Val Loss: 0.0069
+DeepSeek Untrained => RMSE: 0.0587
+
+--- Sequence Length = 20 ---
+
+[Run 3] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.1246, Val Loss: 0.0047
+Epoch 2/3 | Train Loss: 0.0110, Val Loss: 0.0094
+Epoch 3/3 | Train Loss: 0.0083, Val Loss: 0.0039
+GPT2 Pretrained => RMSE: 0.0465
+
+[Run 3] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0325, Val Loss: 0.0058
+Epoch 2/3 | Train Loss: 0.0059, Val Loss: 0.0071
+Epoch 3/3 | Train Loss: 0.0057, Val Loss: 0.0039
+GPT2 Untrained => RMSE: 0.0497
+
+[Run 3] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0129, Val Loss: 0.0045
+Epoch 2/3 | Train Loss: 0.0051, Val Loss: 0.0055
+Epoch 3/3 | Train Loss: 0.0047, Val Loss: 0.0047
+BERT Pretrained => RMSE: 0.0453
+
+[Run 3] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0262, Val Loss: 0.0067
+Epoch 2/3 | Train Loss: 0.0068, Val Loss: 0.0045
+Epoch 3/3 | Train Loss: 0.0054, Val Loss: 0.0071
+BERT Untrained => RMSE: 0.0566
+
+[Run 3] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0281, Val Loss: 0.0040
+Epoch 2/3 | Train Loss: 0.0032, Val Loss: 0.0046
+Epoch 3/3 | Train Loss: 0.0029, Val Loss: 0.0072
+DeepSeek Pretrained => RMSE: 0.1035
+
+[Run 3] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0500, Val Loss: 0.0039
+Epoch 2/3 | Train Loss: 0.0025, Val Loss: 0.0040
+Epoch 3/3 | Train Loss: 0.0022, Val Loss: 0.0042
+DeepSeek Untrained => RMSE: 0.0603
+
+=== Fish 13 - Run 4/10 ===
+
+--- Sequence Length = 5 ---
+
+[Run 4] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.2297, Val Loss: 0.0089
+Epoch 2/3 | Train Loss: 0.0139, Val Loss: 0.0125
+Epoch 3/3 | Train Loss: 0.0097, Val Loss: 0.0064
+GPT2 Pretrained => RMSE: 0.0552
+
+[Run 4] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0280, Val Loss: 0.0052
+Epoch 2/3 | Train Loss: 0.0066, Val Loss: 0.0045
+Epoch 3/3 | Train Loss: 0.0061, Val Loss: 0.0061
+GPT2 Untrained => RMSE: 0.0728
+
+[Run 4] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0152, Val Loss: 0.0047
+Epoch 2/3 | Train Loss: 0.0063, Val Loss: 0.0076
+Epoch 3/3 | Train Loss: 0.0054, Val Loss: 0.0098
+BERT Pretrained => RMSE: 0.0751
+
+[Run 4] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0306, Val Loss: 0.0116
+Epoch 2/3 | Train Loss: 0.0090, Val Loss: 0.0091
+Epoch 3/3 | Train Loss: 0.0067, Val Loss: 0.0063
+BERT Untrained => RMSE: 0.0534
+
+[Run 4] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0455, Val Loss: 0.0041
+Epoch 2/3 | Train Loss: 0.0037, Val Loss: 0.0044
+Epoch 3/3 | Train Loss: 0.0036, Val Loss: 0.0061
+DeepSeek Pretrained => RMSE: 0.0817
+
+[Run 4] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0532, Val Loss: 0.0043
+Epoch 2/3 | Train Loss: 0.0037, Val Loss: 0.0097
+Epoch 3/3 | Train Loss: 0.0027, Val Loss: 0.0043
+DeepSeek Untrained => RMSE: 0.0488
+
+--- Sequence Length = 20 ---
+
+[Run 4] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.0392, Val Loss: 0.0054
+Epoch 2/3 | Train Loss: 0.0086, Val Loss: 0.0043
+Epoch 3/3 | Train Loss: 0.0065, Val Loss: 0.0042
+GPT2 Pretrained => RMSE: 0.0444
+
+[Run 4] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0308, Val Loss: 0.0045
+Epoch 2/3 | Train Loss: 0.0059, Val Loss: 0.0047
+Epoch 3/3 | Train Loss: 0.0057, Val Loss: 0.0040
+GPT2 Untrained => RMSE: 0.0453
+
+[Run 4] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0140, Val Loss: 0.0045
+Epoch 2/3 | Train Loss: 0.0050, Val Loss: 0.0047
+Epoch 3/3 | Train Loss: 0.0046, Val Loss: 0.0040
+BERT Pretrained => RMSE: 0.0476
+
+[Run 4] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0263, Val Loss: 0.0067
+Epoch 2/3 | Train Loss: 0.0067, Val Loss: 0.0058
+Epoch 3/3 | Train Loss: 0.0056, Val Loss: 0.0056
+BERT Untrained => RMSE: 0.0535
+
+[Run 4] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0231, Val Loss: 0.0051
+Epoch 2/3 | Train Loss: 0.0042, Val Loss: 0.0040
+Epoch 3/3 | Train Loss: 0.0034, Val Loss: 0.0073
+DeepSeek Pretrained => RMSE: 0.0626
+
+[Run 4] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0492, Val Loss: 0.0047
+Epoch 2/3 | Train Loss: 0.0191, Val Loss: 0.0062
+Epoch 3/3 | Train Loss: 0.0030, Val Loss: 0.0037
+DeepSeek Untrained => RMSE: 0.0505
+
+=== Fish 13 - Run 5/10 ===
+
+--- Sequence Length = 5 ---
+
+[Run 5] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.0354, Val Loss: 0.0063
+Epoch 2/3 | Train Loss: 0.0079, Val Loss: 0.0049
+Epoch 3/3 | Train Loss: 0.0063, Val Loss: 0.0053
+GPT2 Pretrained => RMSE: 0.0473
+
+[Run 5] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0312, Val Loss: 0.0058
+Epoch 2/3 | Train Loss: 0.0069, Val Loss: 0.0042
+Epoch 3/3 | Train Loss: 0.0065, Val Loss: 0.0118
+GPT2 Untrained => RMSE: 0.1145
+
+[Run 5] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0152, Val Loss: 0.0048
+Epoch 2/3 | Train Loss: 0.0059, Val Loss: 0.0049
+Epoch 3/3 | Train Loss: 0.0055, Val Loss: 0.0061
+BERT Pretrained => RMSE: 0.0524
+
+[Run 5] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0283, Val Loss: 0.0047
+Epoch 2/3 | Train Loss: 0.0086, Val Loss: 0.0086
+Epoch 3/3 | Train Loss: 0.0064, Val Loss: 0.0047
+BERT Untrained => RMSE: 0.0477
+
+[Run 5] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0345, Val Loss: 0.0043
+Epoch 2/3 | Train Loss: 0.0055, Val Loss: 0.0059
+Epoch 3/3 | Train Loss: 0.0034, Val Loss: 0.0043
+DeepSeek Pretrained => RMSE: 0.0584
+
+[Run 5] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0264, Val Loss: 0.0066
+Epoch 2/3 | Train Loss: 0.0037, Val Loss: 0.0039
+Epoch 3/3 | Train Loss: 0.0025, Val Loss: 0.0044
+DeepSeek Untrained => RMSE: 0.0511
+
+--- Sequence Length = 20 ---
+
+[Run 5] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.1788, Val Loss: 0.0047
+Epoch 2/3 | Train Loss: 0.0142, Val Loss: 0.0063
+Epoch 3/3 | Train Loss: 0.0105, Val Loss: 0.0061
+GPT2 Pretrained => RMSE: 0.0525
+
+[Run 5] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0304, Val Loss: 0.0046
+Epoch 2/3 | Train Loss: 0.0060, Val Loss: 0.0039
+Epoch 3/3 | Train Loss: 0.0056, Val Loss: 0.0063
+GPT2 Untrained => RMSE: 0.0588
+
+[Run 5] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0136, Val Loss: 0.0075
+Epoch 2/3 | Train Loss: 0.0051, Val Loss: 0.0057
+Epoch 3/3 | Train Loss: 0.0047, Val Loss: 0.0043
+BERT Pretrained => RMSE: 0.0473
+
+[Run 5] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0283, Val Loss: 0.0098
+Epoch 2/3 | Train Loss: 0.0066, Val Loss: 0.0070
+Epoch 3/3 | Train Loss: 0.0055, Val Loss: 0.0050
+BERT Untrained => RMSE: 0.0444
+
+[Run 5] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0229, Val Loss: 0.0047
+Epoch 2/3 | Train Loss: 0.0031, Val Loss: 0.0048
+Epoch 3/3 | Train Loss: 0.0032, Val Loss: 0.0060
+DeepSeek Pretrained => RMSE: 0.0936
+
+[Run 5] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0417, Val Loss: 0.0039
+Epoch 2/3 | Train Loss: 0.0027, Val Loss: 0.0038
+Epoch 3/3 | Train Loss: 0.0026, Val Loss: 0.0044
+DeepSeek Untrained => RMSE: 0.0690
+
+=== Fish 13 - Run 6/10 ===
+
+--- Sequence Length = 5 ---
+
+[Run 6] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.0961, Val Loss: 0.0059
+Epoch 2/3 | Train Loss: 0.0103, Val Loss: 0.0047
+Epoch 3/3 | Train Loss: 0.0079, Val Loss: 0.0046
+GPT2 Pretrained => RMSE: 0.0445
+
+[Run 6] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0292, Val Loss: 0.0053
+Epoch 2/3 | Train Loss: 0.0069, Val Loss: 0.0063
+Epoch 3/3 | Train Loss: 0.0064, Val Loss: 0.0055
+GPT2 Untrained => RMSE: 0.0712
+
+[Run 6] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0151, Val Loss: 0.0119
+Epoch 2/3 | Train Loss: 0.0059, Val Loss: 0.0044
+Epoch 3/3 | Train Loss: 0.0053, Val Loss: 0.0043
+BERT Pretrained => RMSE: 0.0479
+
+[Run 6] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0341, Val Loss: 0.0117
+Epoch 2/3 | Train Loss: 0.0091, Val Loss: 0.0119
+Epoch 3/3 | Train Loss: 0.0072, Val Loss: 0.0054
+BERT Untrained => RMSE: 0.0503
+
+[Run 6] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0308, Val Loss: 0.0141
+Epoch 2/3 | Train Loss: 0.0036, Val Loss: 0.0043
+Epoch 3/3 | Train Loss: 0.0036, Val Loss: 0.0061
+DeepSeek Pretrained => RMSE: 0.0861
+
+[Run 6] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0601, Val Loss: 0.0052
+Epoch 2/3 | Train Loss: 0.0036, Val Loss: 0.0047
+Epoch 3/3 | Train Loss: 0.0029, Val Loss: 0.0081
+DeepSeek Untrained => RMSE: 0.0998
+
+--- Sequence Length = 20 ---
+
+[Run 6] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.3417, Val Loss: 0.0062
+Epoch 2/3 | Train Loss: 0.0175, Val Loss: 0.0045
+Epoch 3/3 | Train Loss: 0.0118, Val Loss: 0.0045
+GPT2 Pretrained => RMSE: 0.0506
+
+[Run 6] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0334, Val Loss: 0.0041
+Epoch 2/3 | Train Loss: 0.0058, Val Loss: 0.0042
+Epoch 3/3 | Train Loss: 0.0056, Val Loss: 0.0042
+GPT2 Untrained => RMSE: 0.0567
+
+[Run 6] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0157, Val Loss: 0.0055
+Epoch 2/3 | Train Loss: 0.0053, Val Loss: 0.0056
+Epoch 3/3 | Train Loss: 0.0048, Val Loss: 0.0083
+BERT Pretrained => RMSE: 0.0625
+
+[Run 6] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0286, Val Loss: 0.0090
+Epoch 2/3 | Train Loss: 0.0068, Val Loss: 0.0057
+Epoch 3/3 | Train Loss: 0.0056, Val Loss: 0.0042
+BERT Untrained => RMSE: 0.0536
+
+[Run 6] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0337, Val Loss: 0.0038
+Epoch 2/3 | Train Loss: 0.0029, Val Loss: 0.0057
+Epoch 3/3 | Train Loss: 0.0024, Val Loss: 0.0042
+DeepSeek Pretrained => RMSE: 0.0590
+
+[Run 6] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0369, Val Loss: 0.0048
+Epoch 2/3 | Train Loss: 0.0037, Val Loss: 0.0036
+Epoch 3/3 | Train Loss: 0.0024, Val Loss: 0.0043
+DeepSeek Untrained => RMSE: 0.0510
+
+=== Fish 13 - Run 7/10 ===
+
+--- Sequence Length = 5 ---
+
+[Run 7] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.0713, Val Loss: 0.0049
+Epoch 2/3 | Train Loss: 0.0104, Val Loss: 0.0086
+Epoch 3/3 | Train Loss: 0.0080, Val Loss: 0.0054
+GPT2 Pretrained => RMSE: 0.0556
+
+[Run 7] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0315, Val Loss: 0.0097
+Epoch 2/3 | Train Loss: 0.0067, Val Loss: 0.0049
+Epoch 3/3 | Train Loss: 0.0067, Val Loss: 0.0064
+GPT2 Untrained => RMSE: 0.0789
+
+[Run 7] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0164, Val Loss: 0.0061
+Epoch 2/3 | Train Loss: 0.0063, Val Loss: 0.0130
+Epoch 3/3 | Train Loss: 0.0056, Val Loss: 0.0116
+BERT Pretrained => RMSE: 0.0850
+
+[Run 7] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0328, Val Loss: 0.0077
+Epoch 2/3 | Train Loss: 0.0087, Val Loss: 0.0157
+Epoch 3/3 | Train Loss: 0.0068, Val Loss: 0.0065
+BERT Untrained => RMSE: 0.0528
+
+[Run 7] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.8547, Val Loss: 0.1857
+Epoch 2/3 | Train Loss: 0.0140, Val Loss: 0.0055
+Epoch 3/3 | Train Loss: 0.0096, Val Loss: 0.0047
+DeepSeek Pretrained => RMSE: 0.0566
+
+[Run 7] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0255, Val Loss: 0.0070
+Epoch 2/3 | Train Loss: 0.0035, Val Loss: 0.0039
+Epoch 3/3 | Train Loss: 0.0030, Val Loss: 0.0111
+DeepSeek Untrained => RMSE: 0.1085
+
+--- Sequence Length = 20 ---
+
+[Run 7] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.1409, Val Loss: 0.0046
+Epoch 2/3 | Train Loss: 0.0101, Val Loss: 0.0070
+Epoch 3/3 | Train Loss: 0.0077, Val Loss: 0.0053
+GPT2 Pretrained => RMSE: 0.0515
+
+[Run 7] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0351, Val Loss: 0.0051
+Epoch 2/3 | Train Loss: 0.0058, Val Loss: 0.0043
+Epoch 3/3 | Train Loss: 0.0056, Val Loss: 0.0044
+GPT2 Untrained => RMSE: 0.0547
+
+[Run 7] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0142, Val Loss: 0.0048
+Epoch 2/3 | Train Loss: 0.0053, Val Loss: 0.0056
+Epoch 3/3 | Train Loss: 0.0048, Val Loss: 0.0057
+BERT Pretrained => RMSE: 0.0518
+
+[Run 7] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0251, Val Loss: 0.0059
+Epoch 2/3 | Train Loss: 0.0069, Val Loss: 0.0074
+Epoch 3/3 | Train Loss: 0.0054, Val Loss: 0.0062
+BERT Untrained => RMSE: 0.0522
+
+[Run 7] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0259, Val Loss: 0.0040
+Epoch 2/3 | Train Loss: 0.0028, Val Loss: 0.0049
+Epoch 3/3 | Train Loss: 0.0027, Val Loss: 0.0040
+DeepSeek Pretrained => RMSE: 0.0508
+
+[Run 7] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0356, Val Loss: 0.0048
+Epoch 2/3 | Train Loss: 0.0029, Val Loss: 0.0039
+Epoch 3/3 | Train Loss: 0.0023, Val Loss: 0.0052
+DeepSeek Untrained => RMSE: 0.0758
+
+=== Fish 13 - Run 8/10 ===
+
+--- Sequence Length = 5 ---
+
+[Run 8] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.0749, Val Loss: 0.0066
+Epoch 2/3 | Train Loss: 0.0107, Val Loss: 0.0050
+Epoch 3/3 | Train Loss: 0.0083, Val Loss: 0.0065
+GPT2 Pretrained => RMSE: 0.0584
+
+[Run 8] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0330, Val Loss: 0.0052
+Epoch 2/3 | Train Loss: 0.0066, Val Loss: 0.0053
+Epoch 3/3 | Train Loss: 0.0065, Val Loss: 0.0041
+GPT2 Untrained => RMSE: 0.0518
+
+[Run 8] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0163, Val Loss: 0.0089
+Epoch 2/3 | Train Loss: 0.0067, Val Loss: 0.0084
+Epoch 3/3 | Train Loss: 0.0059, Val Loss: 0.0063
+BERT Pretrained => RMSE: 0.0526
+
+[Run 8] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0306, Val Loss: 0.0154
+Epoch 2/3 | Train Loss: 0.0091, Val Loss: 0.0067
+Epoch 3/3 | Train Loss: 0.0066, Val Loss: 0.0071
+BERT Untrained => RMSE: 0.0590
+
+[Run 8] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0330, Val Loss: 0.0233
+Epoch 2/3 | Train Loss: 0.0050, Val Loss: 0.0081
+Epoch 3/3 | Train Loss: 0.0040, Val Loss: 0.0049
+DeepSeek Pretrained => RMSE: 0.0705
+
+[Run 8] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0777, Val Loss: 0.0069
+Epoch 2/3 | Train Loss: 0.0035, Val Loss: 0.0129
+Epoch 3/3 | Train Loss: 0.0031, Val Loss: 0.0047
+DeepSeek Untrained => RMSE: 0.0499
+
+--- Sequence Length = 20 ---
+
+[Run 8] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.1549, Val Loss: 0.0064
+Epoch 2/3 | Train Loss: 0.0118, Val Loss: 0.0046
+Epoch 3/3 | Train Loss: 0.0087, Val Loss: 0.0042
+GPT2 Pretrained => RMSE: 0.0470
+
+[Run 8] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0314, Val Loss: 0.0047
+Epoch 2/3 | Train Loss: 0.0058, Val Loss: 0.0040
+Epoch 3/3 | Train Loss: 0.0054, Val Loss: 0.0041
+GPT2 Untrained => RMSE: 0.0523
+
+[Run 8] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0140, Val Loss: 0.0067
+Epoch 2/3 | Train Loss: 0.0051, Val Loss: 0.0050
+Epoch 3/3 | Train Loss: 0.0047, Val Loss: 0.0042
+BERT Pretrained => RMSE: 0.0532
+
+[Run 8] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0289, Val Loss: 0.0068
+Epoch 2/3 | Train Loss: 0.0068, Val Loss: 0.0045
+Epoch 3/3 | Train Loss: 0.0055, Val Loss: 0.0045
+BERT Untrained => RMSE: 0.0445
+
+[Run 8] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0354, Val Loss: 0.0047
+Epoch 2/3 | Train Loss: 0.0038, Val Loss: 0.0053
+Epoch 3/3 | Train Loss: 0.0038, Val Loss: 0.0048
+DeepSeek Pretrained => RMSE: 0.0513
+
+[Run 8] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0554, Val Loss: 0.0040
+Epoch 2/3 | Train Loss: 0.0027, Val Loss: 0.0045
+Epoch 3/3 | Train Loss: 0.0025, Val Loss: 0.0043
+DeepSeek Untrained => RMSE: 0.0502
+
+=== Fish 13 - Run 9/10 ===
+
+--- Sequence Length = 5 ---
+
+[Run 9] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.0462, Val Loss: 0.0093
+Epoch 2/3 | Train Loss: 0.0102, Val Loss: 0.0049
+Epoch 3/3 | Train Loss: 0.0077, Val Loss: 0.0045
+GPT2 Pretrained => RMSE: 0.0440
+
+[Run 9] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0335, Val Loss: 0.0054
+Epoch 2/3 | Train Loss: 0.0064, Val Loss: 0.0068
+Epoch 3/3 | Train Loss: 0.0063, Val Loss: 0.0077
+GPT2 Untrained => RMSE: 0.0616
+
+[Run 9] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0156, Val Loss: 0.0041
+Epoch 2/3 | Train Loss: 0.0061, Val Loss: 0.0056
+Epoch 3/3 | Train Loss: 0.0056, Val Loss: 0.0068
+BERT Pretrained => RMSE: 0.0570
+
+[Run 9] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0287, Val Loss: 0.0079
+Epoch 2/3 | Train Loss: 0.0084, Val Loss: 0.0049
+Epoch 3/3 | Train Loss: 0.0067, Val Loss: 0.0049
+BERT Untrained => RMSE: 0.0447
+
+[Run 9] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0405, Val Loss: 0.0046
+Epoch 2/3 | Train Loss: 0.0035, Val Loss: 0.0044
+Epoch 3/3 | Train Loss: 0.0032, Val Loss: 0.0066
+DeepSeek Pretrained => RMSE: 0.0952
+
+[Run 9] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0824, Val Loss: 0.0093
+Epoch 2/3 | Train Loss: 0.0037, Val Loss: 0.0044
+Epoch 3/3 | Train Loss: 0.0029, Val Loss: 0.0040
+DeepSeek Untrained => RMSE: 0.0560
+
+--- Sequence Length = 20 ---
+
+[Run 9] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.0931, Val Loss: 0.0083
+Epoch 2/3 | Train Loss: 0.0101, Val Loss: 0.0040
+Epoch 3/3 | Train Loss: 0.0075, Val Loss: 0.0041
+GPT2 Pretrained => RMSE: 0.0448
+
+[Run 9] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0356, Val Loss: 0.0043
+Epoch 2/3 | Train Loss: 0.0059, Val Loss: 0.0045
+Epoch 3/3 | Train Loss: 0.0058, Val Loss: 0.0046
+GPT2 Untrained => RMSE: 0.0593
+
+[Run 9] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0129, Val Loss: 0.0041
+Epoch 2/3 | Train Loss: 0.0051, Val Loss: 0.0043
+Epoch 3/3 | Train Loss: 0.0047, Val Loss: 0.0042
+BERT Pretrained => RMSE: 0.0496
+
+[Run 9] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0266, Val Loss: 0.0143
+Epoch 2/3 | Train Loss: 0.0068, Val Loss: 0.0142
+Epoch 3/3 | Train Loss: 0.0057, Val Loss: 0.0102
+BERT Untrained => RMSE: 0.0728
+
+[Run 9] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0436, Val Loss: 0.0052
+Epoch 2/3 | Train Loss: 0.0029, Val Loss: 0.0049
+Epoch 3/3 | Train Loss: 0.0022, Val Loss: 0.0046
+DeepSeek Pretrained => RMSE: 0.0599
+
+[Run 9] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0553, Val Loss: 0.0044
+Epoch 2/3 | Train Loss: 0.0028, Val Loss: 0.0040
+Epoch 3/3 | Train Loss: 0.0021, Val Loss: 0.0042
+DeepSeek Untrained => RMSE: 0.0590
+
+=== Fish 13 - Run 10/10 ===
+
+--- Sequence Length = 5 ---
+
+[Run 10] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.1024, Val Loss: 0.0052
+Epoch 2/3 | Train Loss: 0.0124, Val Loss: 0.0045
+Epoch 3/3 | Train Loss: 0.0093, Val Loss: 0.0052
+GPT2 Pretrained => RMSE: 0.0686
+
+[Run 10] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0352, Val Loss: 0.0049
+Epoch 2/3 | Train Loss: 0.0070, Val Loss: 0.0059
+Epoch 3/3 | Train Loss: 0.0066, Val Loss: 0.0043
+GPT2 Untrained => RMSE: 0.0512
+
+[Run 10] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0156, Val Loss: 0.0045
+Epoch 2/3 | Train Loss: 0.0059, Val Loss: 0.0067
+Epoch 3/3 | Train Loss: 0.0054, Val Loss: 0.0064
+BERT Pretrained => RMSE: 0.0525
+
+[Run 10] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0327, Val Loss: 0.0071
+Epoch 2/3 | Train Loss: 0.0091, Val Loss: 0.0058
+Epoch 3/3 | Train Loss: 0.0068, Val Loss: 0.0066
+BERT Untrained => RMSE: 0.0550
+
+[Run 10] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0337, Val Loss: 0.0043
+Epoch 2/3 | Train Loss: 0.0059, Val Loss: 0.0073
+Epoch 3/3 | Train Loss: 0.0055, Val Loss: 0.0143
+DeepSeek Pretrained => RMSE: 0.1327
+
+[Run 10] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0942, Val Loss: 0.0041
+Epoch 2/3 | Train Loss: 0.0033, Val Loss: 0.0043
+Epoch 3/3 | Train Loss: 0.0031, Val Loss: 0.0043
+DeepSeek Untrained => RMSE: 0.0556
+
+--- Sequence Length = 20 ---
+
+[Run 10] Training GPT2 Pretrained ...
+Epoch 1/3 | Train Loss: 0.1124, Val Loss: 0.0061
+Epoch 2/3 | Train Loss: 0.0105, Val Loss: 0.0052
+Epoch 3/3 | Train Loss: 0.0079, Val Loss: 0.0062
+GPT2 Pretrained => RMSE: 0.0536
+
+[Run 10] Training GPT2 Untrained ...
+Epoch 1/3 | Train Loss: 0.0261, Val Loss: 0.0043
+Epoch 2/3 | Train Loss: 0.0058, Val Loss: 0.0045
+Epoch 3/3 | Train Loss: 0.0056, Val Loss: 0.0043
+GPT2 Untrained => RMSE: 0.0475
+
+[Run 10] Training BERT Pretrained ...
+Epoch 1/3 | Train Loss: 0.0141, Val Loss: 0.0052
+Epoch 2/3 | Train Loss: 0.0051, Val Loss: 0.0054
+Epoch 3/3 | Train Loss: 0.0048, Val Loss: 0.0050
+BERT Pretrained => RMSE: 0.0651
+
+[Run 10] Training BERT Untrained ...
+Epoch 1/3 | Train Loss: 0.0247, Val Loss: 0.0057
+Epoch 2/3 | Train Loss: 0.0067, Val Loss: 0.0046
+Epoch 3/3 | Train Loss: 0.0054, Val Loss: 0.0052
+BERT Untrained => RMSE: 0.0565
+
+[Run 10] Training DeepSeek Pretrained ...
+Epoch 1/3 | Train Loss: 0.0320, Val Loss: 0.0055
+Epoch 2/3 | Train Loss: 0.0033, Val Loss: 0.0040
+Epoch 3/3 | Train Loss: 0.0034, Val Loss: 0.0043
+DeepSeek Pretrained => RMSE: 0.0559
+
+[Run 10] Training DeepSeek Untrained ...
+Epoch 1/3 | Train Loss: 0.0525, Val Loss: 0.0055
+Epoch 2/3 | Train Loss: 0.0026, Val Loss: 0.0044
+Epoch 3/3 | Train Loss: 0.0023, Val Loss: 0.0043
+DeepSeek Untrained => RMSE: 0.0457
+Saved bar plot => /hpc/group/naumannlab/jjm132/nlp4neuro/results/experiment_2/fish13_seq5_barplot.png
+Saved bar plot => /hpc/group/naumannlab/jjm132/nlp4neuro/results/experiment_2/fish13_seq20_barplot.png
+[INFO] Wilcoxon results => /hpc/group/naumannlab/jjm132/nlp4neuro/results/experiment_2/fish13_wilcoxon_results.txt
+=== Done with Fish 13 ===
+
+[INFO] All done. Experiment 2 completed for all fish!

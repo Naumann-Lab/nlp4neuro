@@ -1,0 +1,48 @@
+Sequence Length 5:
+  GPT2 Pretrained vs LSTM: p-value = 6.9048e-01
+  GPT2 Pretrained vs Reservoir: p-value = 7.9365e-03
+  GPT2 Pretrained vs DeepSeek MoE: p-value = 7.9365e-03
+  GPT2 Pretrained vs BERT: p-value = 4.2063e-01
+  LSTM vs Reservoir: p-value = 7.9365e-03
+  LSTM vs DeepSeek MoE: p-value = 7.9365e-03
+  LSTM vs BERT: p-value = 8.4127e-01
+  Reservoir vs DeepSeek MoE: p-value = 7.9365e-03
+  Reservoir vs BERT: p-value = 7.9365e-03
+  DeepSeek MoE vs BERT: p-value = 7.9365e-03
+
+Sequence Length 10:
+  GPT2 Pretrained vs LSTM: p-value = 6.9048e-01
+  GPT2 Pretrained vs Reservoir: p-value = 7.9365e-03
+  GPT2 Pretrained vs DeepSeek MoE: p-value = 7.9365e-03
+  GPT2 Pretrained vs BERT: p-value = 1.0000e+00
+  LSTM vs Reservoir: p-value = 7.9365e-03
+  LSTM vs DeepSeek MoE: p-value = 7.9365e-03
+  LSTM vs BERT: p-value = 6.9048e-01
+  Reservoir vs DeepSeek MoE: p-value = 7.9365e-03
+  Reservoir vs BERT: p-value = 7.9365e-03
+  DeepSeek MoE vs BERT: p-value = 7.9365e-03
+
+Sequence Length 15:
+  GPT2 Pretrained vs LSTM: p-value = 6.9048e-01
+  GPT2 Pretrained vs Reservoir: p-value = 7.9365e-03
+  GPT2 Pretrained vs DeepSeek MoE: p-value = 7.9365e-03
+  GPT2 Pretrained vs BERT: p-value = 1.0000e+00
+  LSTM vs Reservoir: p-value = 7.9365e-03
+  LSTM vs DeepSeek MoE: p-value = 7.9365e-03
+  LSTM vs BERT: p-value = 9.5238e-02
+  Reservoir vs DeepSeek MoE: p-value = 7.9365e-03
+  Reservoir vs BERT: p-value = 7.9365e-03
+  DeepSeek MoE vs BERT: p-value = 7.9365e-03
+
+Sequence Length 20:
+  GPT2 Pretrained vs LSTM: p-value = 2.2222e-01
+  GPT2 Pretrained vs Reservoir: p-value = 7.9365e-03
+  GPT2 Pretrained vs DeepSeek MoE: p-value = 7.9365e-03
+  GPT2 Pretrained vs BERT: p-value = 5.4762e-01
+  LSTM vs Reservoir: p-value = 7.9365e-03
+  LSTM vs DeepSeek MoE: p-value = 7.9365e-03
+  LSTM vs BERT: p-value = 7.9365e-03
+  Reservoir vs DeepSeek MoE: p-value = 7.9365e-03
+  Reservoir vs BERT: p-value = 7.9365e-03
+  DeepSeek MoE vs BERT: p-value = 7.9365e-03
+
