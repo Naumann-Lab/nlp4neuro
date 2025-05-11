@@ -19,4 +19,4 @@
 source /hpc/group/naumannlab/jjm132/miniconda3/bin/activate jjmenv
 
 # Run your python script
-python experiment_6.py
+python experiment_7.py
