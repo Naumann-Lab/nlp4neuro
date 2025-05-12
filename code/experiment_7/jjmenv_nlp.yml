@@ -7,13 +7,13 @@ channels:
 dependencies:
   # ── core ─────────────────────────────────────────────
   - python=3.9
-  - numpy
+  - numpy=1.26.4
   - matplotlib
   - pandas
   - scipy
   - tqdm
   # ── GPU + DL stack (Ampere / A6000 needs ≥ CUDA 11) ─
-  - pytorch=2.2.*           # stable, matches bitsandbytes
+  - pytorch=2.5.*           # stable, matches bitsandbytes
   - pytorch-cuda=11.8       # bundles the CUDA 11.8 runtime
   - torchvision
   # ── NLP & quantisation ───────────────────────────────
