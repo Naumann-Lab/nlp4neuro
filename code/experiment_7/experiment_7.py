@@ -4,7 +4,8 @@
 
 import os, numpy as np, matplotlib.pyplot as plt, torch, torch.nn as nn
 from torch.utils.data import DataLoader, TensorDataset
-from transformers import AutoModel, AdamW, BitsAndBytesConfig
+from transformers import AutoModel, BitsAndBytesConfig
+from torch.optim import AdamW
 
 # ─── CONFIG ───────────────────────────────────────────────────────────────────
 BASE_SAVE_DIR = "/hpc/group/naumannlab/jjm132/nlp4neuro/results/deepseek_only"
