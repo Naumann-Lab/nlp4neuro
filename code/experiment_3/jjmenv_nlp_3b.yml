@@ -1,0 +1,29 @@
+name: jjmenv_nlp_3b
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+dependencies:
+  # ── core ──────────────────────────────────────────────────────────
+  - python=3.9
+  - numpy=1.26.4
+  - matplotlib
+  - pandas
+  - scipy
+  - tqdm
+  # ── GPU / deep-learning stack ─────────────────────────────────────
+  - pytorch=2.5.*
+  - pytorch-cuda=11.8
+  - torchvision
+  # ── NLP & quantisation ────────────────────────────────────────────
+  - transformers>=4.46
+  - accelerate
+  - bitsandbytes
+  - datasets
+  - sentencepiece
+  # ── misc ──────────────────────────────────────────────────────────
+  - scikit-learn
+  - pip
+  - pip:
+      - einops
