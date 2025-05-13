@@ -10,7 +10,7 @@ from torch.optim import AdamW
 from datetime import datetime
 
 # ───────────────────────── CONFIG ────────────────────────────────────────────
-BASE_SAVE_DIR = "/hpc/group/naumannlab/jjm132/nlp4neuro/results/deepseek_only"
+BASE_SAVE_DIR = "/hpc/group/naumannlab/jjm132/nlp4neuro/experiment_7_cleo/results/"
 os.makedirs(BASE_SAVE_DIR, exist_ok=True)
 
 device        = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -126,12 +126,16 @@ for fish in fish_list:
     os.makedirs(fish_dir, exist_ok=True)
 
     # --- load data -----------------------------------------------------------
-    neural = np.load(f"/hpc/group/naumannlab/jjm132/data_prepped_for_models/"
-                     f"fish{fish}_neural_data_matched.npy",
+    neural = np.load(f"/hpc/group/naumannlab/jjm132/nlp4neuro/experiment_7_cleo/data/"
+                     f"neural_data_groundtruth_matched.npy",
                      allow_pickle=True)[:, :-2].T          # (T, N)
-    tail   = np.load(f"/hpc/group/naumannlab/jjm132/data_prepped_for_models/"
-                     f"fish{fish}_tail_data_matched.npy",
+    tail   = np.load(f"/hpc/group/naumannlab/jjm132/nlp4neuro/experiment_7_cleo/data/"
+                     f"tail_data_groundtruth_matched.npy",
                      allow_pickle=True)                    # (T, K)
+
+    tail_sum = np.load(f"/hpc/group/naumannlab/jjm132/nlp4neuro/experiment_7_cleo/data/"
+                     f"tail_data_sum_groundtruth_matched.npy",
+                     allow_pickle=True)                    # (T, 1)
 
     # --- split ---------------------------------------------------------------
     n_frames = neural.shape[0]
