@@ -16,7 +16,7 @@
 # cd /hpc/home/jjm132/nlp4neuro/code
 
 # Activate the venv
-source /hpc/group/naumannlab/jjm132/miniconda3/bin/activate jjmenv
+source /hpc/group/naumannlab/jjm132/miniconda3/bin/activate jjmenv_nlp
 
 # Run your python script
 python experiment_7.py

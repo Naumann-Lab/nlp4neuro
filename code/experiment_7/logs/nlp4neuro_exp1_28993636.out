@@ -1,0 +1,631 @@
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+▶ Script started at 2025-05-11 23:42:09
+▶ Using device : cuda
+▶ CUDA name   : NVIDIA RTX 6000 Ada Generation
+▶ CUDA memory : 50.9 GB
+▶ Epochs      : 100
+▶ Batch size  : 32
+▶ Seq length  : 20
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+================= Fish 9 =================
+  • neural data shape : (3047, 12499)
+  • tail   data shape : (3047, 6)
+  • frames -> train 2132, val 305, test 610
+  • windowed Xtr size  : torch.Size([2113, 20, 12499])
+  • batches/epoch      : 66
+  • model dims         : 12499 → 6
+  • trainable params   : 51,257,358
+    ── Epoch   1/100 ──
+       RMSE train 0.6856 | val 0.0622
+    ── Epoch   2/100 ──
+    ── Epoch   3/100 ──
+    ── Epoch   4/100 ──
+    ── Epoch   5/100 ──
+    ── Epoch   6/100 ──
+    ── Epoch   7/100 ──
+    ── Epoch   8/100 ──
+    ── Epoch   9/100 ──
+    ── Epoch  10/100 ──
+       RMSE train 0.0372 | val 0.0348
+    ── Epoch  11/100 ──
+    ── Epoch  12/100 ──
+    ── Epoch  13/100 ──
+    ── Epoch  14/100 ──
+    ── Epoch  15/100 ──
+    ── Epoch  16/100 ──
+    ── Epoch  17/100 ──
+    ── Epoch  18/100 ──
+    ── Epoch  19/100 ──
+    ── Epoch  20/100 ──
+       RMSE train 0.0332 | val 0.0329
+    ── Epoch  21/100 ──
+    ── Epoch  22/100 ──
+    ── Epoch  23/100 ──
+    ── Epoch  24/100 ──
+    ── Epoch  25/100 ──
+    ── Epoch  26/100 ──
+    ── Epoch  27/100 ──
+    ── Epoch  28/100 ──
+    ── Epoch  29/100 ──
+    ── Epoch  30/100 ──
+       RMSE train 0.0307 | val 0.0375
+    ── Epoch  31/100 ──
+    ── Epoch  32/100 ──
+    ── Epoch  33/100 ──
+    ── Epoch  34/100 ──
+    ── Epoch  35/100 ──
+    ── Epoch  36/100 ──
+    ── Epoch  37/100 ──
+    ── Epoch  38/100 ──
+    ── Epoch  39/100 ──
+    ── Epoch  40/100 ──
+       RMSE train 0.0291 | val 0.0333
+    ── Epoch  41/100 ──
+    ── Epoch  42/100 ──
+    ── Epoch  43/100 ──
+    ── Epoch  44/100 ──
+    ── Epoch  45/100 ──
+    ── Epoch  46/100 ──
+    ── Epoch  47/100 ──
+    ── Epoch  48/100 ──
+    ── Epoch  49/100 ──
+    ── Epoch  50/100 ──
+       RMSE train 0.0298 | val 0.0377
+    ── Epoch  51/100 ──
+    ── Epoch  52/100 ──
+    ── Epoch  53/100 ──
+    ── Epoch  54/100 ──
+    ── Epoch  55/100 ──
+    ── Epoch  56/100 ──
+    ── Epoch  57/100 ──
+    ── Epoch  58/100 ──
+    ── Epoch  59/100 ──
+    ── Epoch  60/100 ──
+       RMSE train 0.0268 | val 0.0361
+    ── Epoch  61/100 ──
+    ── Epoch  62/100 ──
+    ── Epoch  63/100 ──
+    ── Epoch  64/100 ──
+    ── Epoch  65/100 ──
+    ── Epoch  66/100 ──
+    ── Epoch  67/100 ──
+    ── Epoch  68/100 ──
+    ── Epoch  69/100 ──
+    ── Epoch  70/100 ──
+       RMSE train 0.0405 | val 0.0414
+    ── Epoch  71/100 ──
+    ── Epoch  72/100 ──
+    ── Epoch  73/100 ──
+    ── Epoch  74/100 ──
+    ── Epoch  75/100 ──
+    ── Epoch  76/100 ──
+    ── Epoch  77/100 ──
+    ── Epoch  78/100 ──
+    ── Epoch  79/100 ──
+    ── Epoch  80/100 ──
+       RMSE train 0.0240 | val 0.0359
+    ── Epoch  81/100 ──
+    ── Epoch  82/100 ──
+    ── Epoch  83/100 ──
+    ── Epoch  84/100 ──
+    ── Epoch  85/100 ──
+    ── Epoch  86/100 ──
+    ── Epoch  87/100 ──
+    ── Epoch  88/100 ──
+    ── Epoch  89/100 ──
+    ── Epoch  90/100 ──
+       RMSE train 0.0328 | val 0.0846
+    ── Epoch  91/100 ──
+    ── Epoch  92/100 ──
+    ── Epoch  93/100 ──
+    ── Epoch  94/100 ──
+    ── Epoch  95/100 ──
+    ── Epoch  96/100 ──
+    ── Epoch  97/100 ──
+    ── Epoch  98/100 ──
+    ── Epoch  99/100 ──
+    ── Epoch 100/100 ──
+       RMSE train 0.0343 | val 0.0373
+  • saved RMSE curve   ✔
+    ▶ Predicting on test set …
+  • saved sequences    ✔
+  • final test RMSE    : 0.0465
+
+================= Fish 10 =================
+  • neural data shape : (2793, 7441)
+  • tail   data shape : (2793, 6)
+  • frames -> train 1955, val 279, test 559
+  • windowed Xtr size  : torch.Size([1936, 20, 7441])
+  • batches/epoch      : 60
+  • model dims         : 7441 → 6
+  • trainable params   : 30,539,790
+    ── Epoch   1/100 ──
+       RMSE train 0.6322 | val 0.1083
+    ── Epoch   2/100 ──
+    ── Epoch   3/100 ──
+    ── Epoch   4/100 ──
+    ── Epoch   5/100 ──
+    ── Epoch   6/100 ──
+    ── Epoch   7/100 ──
+    ── Epoch   8/100 ──
+    ── Epoch   9/100 ──
+    ── Epoch  10/100 ──
+       RMSE train 0.0473 | val 0.0484
+    ── Epoch  11/100 ──
+    ── Epoch  12/100 ──
+    ── Epoch  13/100 ──
+    ── Epoch  14/100 ──
+    ── Epoch  15/100 ──
+    ── Epoch  16/100 ──
+    ── Epoch  17/100 ──
+    ── Epoch  18/100 ──
+    ── Epoch  19/100 ──
+    ── Epoch  20/100 ──
+       RMSE train 0.0430 | val 0.0457
+    ── Epoch  21/100 ──
+    ── Epoch  22/100 ──
+    ── Epoch  23/100 ──
+    ── Epoch  24/100 ──
+    ── Epoch  25/100 ──
+    ── Epoch  26/100 ──
+    ── Epoch  27/100 ──
+    ── Epoch  28/100 ──
+    ── Epoch  29/100 ──
+    ── Epoch  30/100 ──
+       RMSE train 0.0400 | val 0.0440
+    ── Epoch  31/100 ──
+    ── Epoch  32/100 ──
+    ── Epoch  33/100 ──
+    ── Epoch  34/100 ──
+    ── Epoch  35/100 ──
+    ── Epoch  36/100 ──
+    ── Epoch  37/100 ──
+    ── Epoch  38/100 ──
+    ── Epoch  39/100 ──
+    ── Epoch  40/100 ──
+       RMSE train 0.0398 | val 0.0479
+    ── Epoch  41/100 ──
+    ── Epoch  42/100 ──
+    ── Epoch  43/100 ──
+    ── Epoch  44/100 ──
+    ── Epoch  45/100 ──
+    ── Epoch  46/100 ──
+    ── Epoch  47/100 ──
+    ── Epoch  48/100 ──
+    ── Epoch  49/100 ──
+    ── Epoch  50/100 ──
+       RMSE train 0.0370 | val 0.0472
+    ── Epoch  51/100 ──
+    ── Epoch  52/100 ──
+    ── Epoch  53/100 ──
+    ── Epoch  54/100 ──
+    ── Epoch  55/100 ──
+    ── Epoch  56/100 ──
+    ── Epoch  57/100 ──
+    ── Epoch  58/100 ──
+    ── Epoch  59/100 ──
+    ── Epoch  60/100 ──
+       RMSE train 0.0409 | val 0.0472
+    ── Epoch  61/100 ──
+    ── Epoch  62/100 ──
+    ── Epoch  63/100 ──
+    ── Epoch  64/100 ──
+    ── Epoch  65/100 ──
+    ── Epoch  66/100 ──
+    ── Epoch  67/100 ──
+    ── Epoch  68/100 ──
+    ── Epoch  69/100 ──
+    ── Epoch  70/100 ──
+       RMSE train 0.0359 | val 0.0465
+    ── Epoch  71/100 ──
+    ── Epoch  72/100 ──
+    ── Epoch  73/100 ──
+    ── Epoch  74/100 ──
+    ── Epoch  75/100 ──
+    ── Epoch  76/100 ──
+    ── Epoch  77/100 ──
+    ── Epoch  78/100 ──
+    ── Epoch  79/100 ──
+    ── Epoch  80/100 ──
+       RMSE train 0.0353 | val 0.0486
+    ── Epoch  81/100 ──
+    ── Epoch  82/100 ──
+    ── Epoch  83/100 ──
+    ── Epoch  84/100 ──
+    ── Epoch  85/100 ──
+    ── Epoch  86/100 ──
+    ── Epoch  87/100 ──
+    ── Epoch  88/100 ──
+    ── Epoch  89/100 ──
+    ── Epoch  90/100 ──
+       RMSE train 0.0349 | val 0.0494
+    ── Epoch  91/100 ──
+    ── Epoch  92/100 ──
+    ── Epoch  93/100 ──
+    ── Epoch  94/100 ──
+    ── Epoch  95/100 ──
+    ── Epoch  96/100 ──
+    ── Epoch  97/100 ──
+    ── Epoch  98/100 ──
+    ── Epoch  99/100 ──
+    ── Epoch 100/100 ──
+       RMSE train 0.0350 | val 0.0526
+  • saved RMSE curve   ✔
+    ▶ Predicting on test set …
+  • saved sequences    ✔
+  • final test RMSE    : 0.0517
+
+================= Fish 11 =================
+  • neural data shape : (2798, 14015)
+  • tail   data shape : (2798, 6)
+  • frames -> train 1958, val 280, test 560
+  • windowed Xtr size  : torch.Size([1939, 20, 14015])
+  • batches/epoch      : 60
+  • model dims         : 14015 → 6
+  • trainable params   : 57,466,894
+    ── Epoch   1/100 ──
+       RMSE train 0.7013 | val 0.0514
+    ── Epoch   2/100 ──
+    ── Epoch   3/100 ──
+    ── Epoch   4/100 ──
+    ── Epoch   5/100 ──
+    ── Epoch   6/100 ──
+    ── Epoch   7/100 ──
+    ── Epoch   8/100 ──
+    ── Epoch   9/100 ──
+    ── Epoch  10/100 ──
+       RMSE train 0.0409 | val 0.0376
+    ── Epoch  11/100 ──
+    ── Epoch  12/100 ──
+    ── Epoch  13/100 ──
+    ── Epoch  14/100 ──
+    ── Epoch  15/100 ──
+    ── Epoch  16/100 ──
+    ── Epoch  17/100 ──
+    ── Epoch  18/100 ──
+    ── Epoch  19/100 ──
+    ── Epoch  20/100 ──
+       RMSE train 0.0366 | val 0.0363
+    ── Epoch  21/100 ──
+    ── Epoch  22/100 ──
+    ── Epoch  23/100 ──
+    ── Epoch  24/100 ──
+    ── Epoch  25/100 ──
+    ── Epoch  26/100 ──
+    ── Epoch  27/100 ──
+    ── Epoch  28/100 ──
+    ── Epoch  29/100 ──
+    ── Epoch  30/100 ──
+       RMSE train 0.0340 | val 0.0363
+    ── Epoch  31/100 ──
+    ── Epoch  32/100 ──
+    ── Epoch  33/100 ──
+    ── Epoch  34/100 ──
+    ── Epoch  35/100 ──
+    ── Epoch  36/100 ──
+    ── Epoch  37/100 ──
+    ── Epoch  38/100 ──
+    ── Epoch  39/100 ──
+    ── Epoch  40/100 ──
+       RMSE train 0.0324 | val 0.0369
+    ── Epoch  41/100 ──
+    ── Epoch  42/100 ──
+    ── Epoch  43/100 ──
+    ── Epoch  44/100 ──
+    ── Epoch  45/100 ──
+    ── Epoch  46/100 ──
+    ── Epoch  47/100 ──
+    ── Epoch  48/100 ──
+    ── Epoch  49/100 ──
+    ── Epoch  50/100 ──
+       RMSE train 0.0304 | val 0.0323
+    ── Epoch  51/100 ──
+    ── Epoch  52/100 ──
+    ── Epoch  53/100 ──
+    ── Epoch  54/100 ──
+    ── Epoch  55/100 ──
+    ── Epoch  56/100 ──
+    ── Epoch  57/100 ──
+    ── Epoch  58/100 ──
+    ── Epoch  59/100 ──
+    ── Epoch  60/100 ──
+       RMSE train 0.0330 | val 0.0344
+    ── Epoch  61/100 ──
+    ── Epoch  62/100 ──
+    ── Epoch  63/100 ──
+    ── Epoch  64/100 ──
+    ── Epoch  65/100 ──
+    ── Epoch  66/100 ──
+    ── Epoch  67/100 ──
+    ── Epoch  68/100 ──
+    ── Epoch  69/100 ──
+    ── Epoch  70/100 ──
+       RMSE train 0.0293 | val 0.0342
+    ── Epoch  71/100 ──
+    ── Epoch  72/100 ──
+    ── Epoch  73/100 ──
+    ── Epoch  74/100 ──
+    ── Epoch  75/100 ──
+    ── Epoch  76/100 ──
+    ── Epoch  77/100 ──
+    ── Epoch  78/100 ──
+    ── Epoch  79/100 ──
+    ── Epoch  80/100 ──
+       RMSE train 0.0336 | val 0.0409
+    ── Epoch  81/100 ──
+    ── Epoch  82/100 ──
+    ── Epoch  83/100 ──
+    ── Epoch  84/100 ──
+    ── Epoch  85/100 ──
+    ── Epoch  86/100 ──
+    ── Epoch  87/100 ──
+    ── Epoch  88/100 ──
+    ── Epoch  89/100 ──
+    ── Epoch  90/100 ──
+       RMSE train 0.0923 | val 0.0553
+    ── Epoch  91/100 ──
+    ── Epoch  92/100 ──
+    ── Epoch  93/100 ──
+    ── Epoch  94/100 ──
+    ── Epoch  95/100 ──
+    ── Epoch  96/100 ──
+    ── Epoch  97/100 ──
+    ── Epoch  98/100 ──
+    ── Epoch  99/100 ──
+    ── Epoch 100/100 ──
+       RMSE train 0.0343 | val 0.0350
+  • saved RMSE curve   ✔
+    ▶ Predicting on test set …
+  • saved sequences    ✔
+  • final test RMSE    : 0.0543
+
+================= Fish 12 =================
+  • neural data shape : (2793, 10581)
+  • tail   data shape : (2793, 6)
+  • frames -> train 1955, val 279, test 559
+  • windowed Xtr size  : torch.Size([1936, 20, 10581])
+  • batches/epoch      : 60
+  • model dims         : 10581 → 6
+  • trainable params   : 43,401,230
+    ── Epoch   1/100 ──
+       RMSE train 0.6020 | val 0.0836
+    ── Epoch   2/100 ──
+    ── Epoch   3/100 ──
+    ── Epoch   4/100 ──
+    ── Epoch   5/100 ──
+    ── Epoch   6/100 ──
+    ── Epoch   7/100 ──
+    ── Epoch   8/100 ──
+    ── Epoch   9/100 ──
+    ── Epoch  10/100 ──
+       RMSE train 0.0433 | val 0.0521
+    ── Epoch  11/100 ──
+    ── Epoch  12/100 ──
+    ── Epoch  13/100 ──
+    ── Epoch  14/100 ──
+    ── Epoch  15/100 ──
+    ── Epoch  16/100 ──
+    ── Epoch  17/100 ──
+    ── Epoch  18/100 ──
+    ── Epoch  19/100 ──
+    ── Epoch  20/100 ──
+       RMSE train 0.0408 | val 0.0424
+    ── Epoch  21/100 ──
+    ── Epoch  22/100 ──
+    ── Epoch  23/100 ──
+    ── Epoch  24/100 ──
+    ── Epoch  25/100 ──
+    ── Epoch  26/100 ──
+    ── Epoch  27/100 ──
+    ── Epoch  28/100 ──
+    ── Epoch  29/100 ──
+    ── Epoch  30/100 ──
+       RMSE train 0.0392 | val 0.0454
+    ── Epoch  31/100 ──
+    ── Epoch  32/100 ──
+    ── Epoch  33/100 ──
+    ── Epoch  34/100 ──
+    ── Epoch  35/100 ──
+    ── Epoch  36/100 ──
+    ── Epoch  37/100 ──
+    ── Epoch  38/100 ──
+    ── Epoch  39/100 ──
+    ── Epoch  40/100 ──
+       RMSE train 0.0398 | val 0.0573
+    ── Epoch  41/100 ──
+    ── Epoch  42/100 ──
+    ── Epoch  43/100 ──
+    ── Epoch  44/100 ──
+    ── Epoch  45/100 ──
+    ── Epoch  46/100 ──
+    ── Epoch  47/100 ──
+    ── Epoch  48/100 ──
+    ── Epoch  49/100 ──
+    ── Epoch  50/100 ──
+       RMSE train 0.0404 | val 0.0501
+    ── Epoch  51/100 ──
+    ── Epoch  52/100 ──
+    ── Epoch  53/100 ──
+    ── Epoch  54/100 ──
+    ── Epoch  55/100 ──
+    ── Epoch  56/100 ──
+    ── Epoch  57/100 ──
+    ── Epoch  58/100 ──
+    ── Epoch  59/100 ──
+    ── Epoch  60/100 ──
+       RMSE train 0.0365 | val 0.0456
+    ── Epoch  61/100 ──
+    ── Epoch  62/100 ──
+    ── Epoch  63/100 ──
+    ── Epoch  64/100 ──
+    ── Epoch  65/100 ──
+    ── Epoch  66/100 ──
+    ── Epoch  67/100 ──
+    ── Epoch  68/100 ──
+    ── Epoch  69/100 ──
+    ── Epoch  70/100 ──
+       RMSE train 0.0355 | val 0.0485
+    ── Epoch  71/100 ──
+    ── Epoch  72/100 ──
+    ── Epoch  73/100 ──
+    ── Epoch  74/100 ──
+    ── Epoch  75/100 ──
+    ── Epoch  76/100 ──
+    ── Epoch  77/100 ──
+    ── Epoch  78/100 ──
+    ── Epoch  79/100 ──
+    ── Epoch  80/100 ──
+       RMSE train 0.0373 | val 0.0564
+    ── Epoch  81/100 ──
+    ── Epoch  82/100 ──
+    ── Epoch  83/100 ──
+    ── Epoch  84/100 ──
+    ── Epoch  85/100 ──
+    ── Epoch  86/100 ──
+    ── Epoch  87/100 ──
+    ── Epoch  88/100 ──
+    ── Epoch  89/100 ──
+    ── Epoch  90/100 ──
+       RMSE train 0.0356 | val 0.0635
+    ── Epoch  91/100 ──
+    ── Epoch  92/100 ──
+    ── Epoch  93/100 ──
+    ── Epoch  94/100 ──
+    ── Epoch  95/100 ──
+    ── Epoch  96/100 ──
+    ── Epoch  97/100 ──
+    ── Epoch  98/100 ──
+    ── Epoch  99/100 ──
+    ── Epoch 100/100 ──
+       RMSE train 0.0374 | val 0.0477
+  • saved RMSE curve   ✔
+    ▶ Predicting on test set …
+  • saved sequences    ✔
+  • final test RMSE    : 0.0524
+
+================= Fish 13 =================
+  • neural data shape : (2793, 9336)
+  • tail   data shape : (2793, 6)
+  • frames -> train 1955, val 279, test 559
+  • windowed Xtr size  : torch.Size([1936, 20, 9336])
+  • batches/epoch      : 60
+  • model dims         : 9336 → 6
+  • trainable params   : 38,301,710
+    ── Epoch   1/100 ──
+       RMSE train 0.7758 | val 0.0897
+    ── Epoch   2/100 ──
+    ── Epoch   3/100 ──
+    ── Epoch   4/100 ──
+    ── Epoch   5/100 ──
+    ── Epoch   6/100 ──
+    ── Epoch   7/100 ──
+    ── Epoch   8/100 ──
+    ── Epoch   9/100 ──
+    ── Epoch  10/100 ──
+       RMSE train 0.0551 | val 0.0680
+    ── Epoch  11/100 ──
+    ── Epoch  12/100 ──
+    ── Epoch  13/100 ──
+    ── Epoch  14/100 ──
+    ── Epoch  15/100 ──
+    ── Epoch  16/100 ──
+    ── Epoch  17/100 ──
+    ── Epoch  18/100 ──
+    ── Epoch  19/100 ──
+    ── Epoch  20/100 ──
+       RMSE train 0.0516 | val 0.0687
+    ── Epoch  21/100 ──
+    ── Epoch  22/100 ──
+    ── Epoch  23/100 ──
+    ── Epoch  24/100 ──
+    ── Epoch  25/100 ──
+    ── Epoch  26/100 ──
+    ── Epoch  27/100 ──
+    ── Epoch  28/100 ──
+    ── Epoch  29/100 ──
+    ── Epoch  30/100 ──
+       RMSE train 0.0488 | val 0.0693
+    ── Epoch  31/100 ──
+    ── Epoch  32/100 ──
+    ── Epoch  33/100 ──
+    ── Epoch  34/100 ──
+    ── Epoch  35/100 ──
+    ── Epoch  36/100 ──
+    ── Epoch  37/100 ──
+    ── Epoch  38/100 ──
+    ── Epoch  39/100 ──
+    ── Epoch  40/100 ──
+       RMSE train 0.0471 | val 0.0718
+    ── Epoch  41/100 ──
+    ── Epoch  42/100 ──
+    ── Epoch  43/100 ──
+    ── Epoch  44/100 ──
+    ── Epoch  45/100 ──
+    ── Epoch  46/100 ──
+    ── Epoch  47/100 ──
+    ── Epoch  48/100 ──
+    ── Epoch  49/100 ──
+    ── Epoch  50/100 ──
+       RMSE train 0.0446 | val 0.0740
+    ── Epoch  51/100 ──
+    ── Epoch  52/100 ──
+    ── Epoch  53/100 ──
+    ── Epoch  54/100 ──
+    ── Epoch  55/100 ──
+    ── Epoch  56/100 ──
+    ── Epoch  57/100 ──
+    ── Epoch  58/100 ──
+    ── Epoch  59/100 ──
+    ── Epoch  60/100 ──
+       RMSE train 0.0404 | val 0.0777
+    ── Epoch  61/100 ──
+    ── Epoch  62/100 ──
+    ── Epoch  63/100 ──
+    ── Epoch  64/100 ──
+    ── Epoch  65/100 ──
+    ── Epoch  66/100 ──
+    ── Epoch  67/100 ──
+    ── Epoch  68/100 ──
+    ── Epoch  69/100 ──
+    ── Epoch  70/100 ──
+       RMSE train 0.0397 | val 0.0804
+    ── Epoch  71/100 ──
+    ── Epoch  72/100 ──
+    ── Epoch  73/100 ──
+    ── Epoch  74/100 ──
+    ── Epoch  75/100 ──
+    ── Epoch  76/100 ──
+    ── Epoch  77/100 ──
+    ── Epoch  78/100 ──
+    ── Epoch  79/100 ──
+    ── Epoch  80/100 ──
+       RMSE train 0.0388 | val 0.0715
+    ── Epoch  81/100 ──
+    ── Epoch  82/100 ──
+    ── Epoch  83/100 ──
+    ── Epoch  84/100 ──
+    ── Epoch  85/100 ──
+    ── Epoch  86/100 ──
+    ── Epoch  87/100 ──
+    ── Epoch  88/100 ──
+    ── Epoch  89/100 ──
+    ── Epoch  90/100 ──
+       RMSE train 0.0427 | val 0.0766
+    ── Epoch  91/100 ──
+    ── Epoch  92/100 ──
+    ── Epoch  93/100 ──
+    ── Epoch  94/100 ──
+    ── Epoch  95/100 ──
+    ── Epoch  96/100 ──
+    ── Epoch  97/100 ──
+    ── Epoch  98/100 ──
+    ── Epoch  99/100 ──
+    ── Epoch 100/100 ──
+       RMSE train 0.0324 | val 0.0749
+  • saved RMSE curve   ✔
+    ▶ Predicting on test set …
+  • saved sequences    ✔
+  • final test RMSE    : 0.0688
+
+✓ DeepSeek-only experiment finished for all fish.
