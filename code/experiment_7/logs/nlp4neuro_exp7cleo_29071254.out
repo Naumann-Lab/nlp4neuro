@@ -1,0 +1,12 @@
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+▶ 2025-05-14 11:45:03
+▶ Device          : cuda
+▶ GPU             : NVIDIA RTX 6000 Ada Generation | mem 50.9 GB
+▶ Epochs          : 100 | Batch 32 | seq_length 20
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+==== TAIL ====
+  • checkpoint found – loading and skipping training
+  • final test RMSE : 0.0647
+  • global saliency …
+  • per-frame saliency map …
