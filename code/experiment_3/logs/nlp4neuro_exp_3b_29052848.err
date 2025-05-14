@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/hpc/home/jjm132/jjm132/nlp4neuro/code/experiment_3/experiment_3b.py", line 13, in <module>
+    from transformers import (AutoModel, GPT2Model, BertModel,
+ImportError: cannot import name 'AdamW' from 'transformers' (/hpc/group/naumannlab/jjm132/miniconda3/envs/jjmenv_nlp_3b/lib/python3.9/site-packages/transformers/__init__.py)

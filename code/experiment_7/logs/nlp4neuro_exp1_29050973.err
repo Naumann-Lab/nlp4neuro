@@ -1,0 +1,9 @@
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [01:05<01:05, 65.85s/it]Loading checkpoint shards: 100%|██████████| 2/2 [01:26<00:00, 39.27s/it]Loading checkpoint shards: 100%|██████████| 2/2 [01:26<00:00, 43.26s/it]
+/hpc/group/naumannlab/jjm132/miniconda3/envs/jjmenv_nlp/lib/python3.9/site-packages/bitsandbytes/autograd/_functions.py:315: UserWarning: MatMul8bitLt: inputs will be cast from torch.float32 to float16 during quantization
+  warnings.warn(f"MatMul8bitLt: inputs will be cast from {A.dtype} to float16 during quantization")
+/hpc/group/naumannlab/jjm132/miniconda3/envs/jjmenv_nlp/lib/python3.9/site-packages/bitsandbytes/autograd/_functions.py:315: UserWarning: MatMul8bitLt: inputs will be cast from torch.float32 to float16 during quantization
+  warnings.warn(f"MatMul8bitLt: inputs will be cast from {A.dtype} to float16 during quantization")
+Traceback (most recent call last):
+  File "/hpc/home/jjm132/jjm132/nlp4neuro/code/experiment_7/experiment_7.py", line 226, in <module>
+    wi = (xb.grad * xb).abs().cpu().numpy()     # (B,L,N)
+RuntimeError: Can't call numpy() on Tensor that requires grad. Use tensor.detach().numpy() instead.

@@ -1,0 +1,54 @@
+▶ Device: cuda
+▶ Ground truths saved.
+▶ Loaded top-50 salient neuron list from experiment 7.
+
+━━ salient50_removed | run 1/10 ━━
+→ DeepSeek + Vanilla
+    ↳ train RMSE 0.8554 | val RMSE 0.0447
+    ↳ train RMSE 0.0404 | val RMSE 0.0319
+    ↳ train RMSE 0.0376 | val RMSE 0.0329
+    ↳ train RMSE 0.0365 | val RMSE 0.0376
+    ↳ train RMSE 0.0359 | val RMSE 0.0317
+    ↳ train RMSE 0.0350 | val RMSE 0.0349
+    ↳ train RMSE 0.0346 | val RMSE 0.0434
+    ↳ train RMSE 0.0351 | val RMSE 0.0385
+    ↳ train RMSE 0.0341 | val RMSE 0.0326
+    ↳ train RMSE 0.0337 | val RMSE 0.0369
+   RMSE 0.05025
+→ DeepSeek + Positional
+    ↳ train RMSE 0.8147 | val RMSE 0.0622
+    ↳ train RMSE 0.0437 | val RMSE 0.0297
+    ↳ train RMSE 0.0443 | val RMSE 0.0295
+    ↳ train RMSE 0.0406 | val RMSE 0.0298
+    ↳ train RMSE 0.0404 | val RMSE 0.0301
+    ↳ train RMSE 0.0399 | val RMSE 0.0306
+    ↳ train RMSE 0.0390 | val RMSE 0.0315
+    ↳ train RMSE 0.0381 | val RMSE 0.0327
+    ↳ train RMSE 0.0376 | val RMSE 0.0339
+    ↳ train RMSE 0.0367 | val RMSE 0.0341
+   RMSE 0.04237
+→ DeepSeek + RelativePos
+    ↳ train RMSE 0.8820 | val RMSE 0.0303
+    ↳ train RMSE 0.0431 | val RMSE 0.0293
+    ↳ train RMSE 0.0404 | val RMSE 0.0290
+    ↳ train RMSE 0.0396 | val RMSE 0.0293
+    ↳ train RMSE 0.0389 | val RMSE 0.0295
+    ↳ train RMSE 0.0384 | val RMSE 0.0311
+    ↳ train RMSE 0.0377 | val RMSE 0.0312
+    ↳ train RMSE 0.0373 | val RMSE 0.0317
+    ↳ train RMSE 0.0369 | val RMSE 0.0320
+    ↳ train RMSE 0.0364 | val RMSE 0.0324
+   RMSE 0.04133
+→ DeepSeek + Sparse
+    ↳ train RMSE 0.8448 | val RMSE 0.0545
+    ↳ train RMSE 0.0431 | val RMSE 0.0311
+    ↳ train RMSE 0.0383 | val RMSE 0.0334
+    ↳ train RMSE 0.0361 | val RMSE 0.0343
+    ↳ train RMSE 0.0356 | val RMSE 0.0382
+    ↳ train RMSE 0.0342 | val RMSE 0.0313
+    ↳ train RMSE 0.0329 | val RMSE 0.0398
+    ↳ train RMSE 0.0383 | val RMSE 0.0312
+    ↳ train RMSE 0.0324 | val RMSE 0.0360
+    ↳ train RMSE 0.0301 | val RMSE 0.0321
+   RMSE 0.04184
+→ DeepSeek + Spectral
