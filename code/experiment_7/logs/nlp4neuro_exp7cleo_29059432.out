@@ -1,0 +1,9 @@
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+▶ Script started  : 2025-05-14 00:36:21
+▶ Using device    : cuda
+▶ CUDA name       : NVIDIA RTX 6000 Ada Generation
+▶ CUDA memory     : 50.9 GB
+▶ Epochs          : 100
+▶ Batch size      : 32
+▶ Sequence length : 20
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
