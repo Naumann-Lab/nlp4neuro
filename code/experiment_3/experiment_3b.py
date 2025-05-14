@@ -11,7 +11,8 @@ import matplotlib.pyplot as plt
 import torch, torch.nn as nn
 from torch.utils.data import DataLoader, TensorDataset
 from transformers import (AutoModel, GPT2Model, BertModel,
-                          BitsAndBytesConfig, AdamW)
+                          BitsAndBytesConfig)
+from torch.optim import AdamW
 from scipy.stats import wilcoxon
 from tqdm import tqdm
 

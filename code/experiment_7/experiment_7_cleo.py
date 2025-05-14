@@ -28,7 +28,7 @@ print("▶ Using device    :", device)
 if torch.cuda.is_available():
     props = torch.cuda.get_device_properties(0)
     print("▶ CUDA name       :", props.name)
-    print("▶ CUDA memory     :", f\"{props.total_memory/1e9:.1f} GB\")
+    print("▶ CUDA memory     :", f"{props.total_memory/1e9:.1f} GB")   # ← fixed
 print("▶ Epochs          :", num_epochs)
 print("▶ Batch size      :", batch_size)
 print("▶ Sequence length :", seq_length)
@@ -42,10 +42,10 @@ def create_sequences(x: torch.Tensor, y: torch.Tensor, L: int):
         ys.append(y[i:i + L])
     return torch.stack(xs), torch.stack(ys)
 
-def rmse_from_mse(mses):         # list[float] → list[float]
+def rmse_from_mse(mses):
     return [float(np.sqrt(v)) for v in mses]
 
-def overlap_mean(preds, total_len):               # (Nwin,L,D) → (T,D)
+def overlap_mean(preds, total_len):
     L = preds.shape[1]
     out, cnt = np.zeros((total_len, preds.shape[2])), np.zeros(total_len)
     for i in range(preds.shape[0]):
@@ -57,7 +57,6 @@ def train(model, opt, tr_loader, va_loader):
     crit, tr_hist, va_hist = nn.MSELoss(), [], []
     for ep in range(num_epochs):
         print(f"    ── Epoch {ep + 1:3d}/{num_epochs} ──")
-        # train
         model.train(); tot = 0.
         for xb, yb in tr_loader:
             xb, yb = xb.to(device), yb.to(device)
@@ -66,7 +65,6 @@ def train(model, opt, tr_loader, va_loader):
             loss.backward(); opt.step()
             tot += loss.item()
         tr_hist.append(tot / len(tr_loader))
-        # validate
         model.eval(); tot = 0.
         with torch.no_grad():
             for xb, yb in va_loader:
@@ -87,7 +85,6 @@ def predict(model, loader):
     return torch.cat(preds), torch.cat(gts)
 
 def feature_importance(model, loader, input_dim):
-    """mean |grad×input| across windows & time-steps."""
     model.eval(); imp = torch.zeros(input_dim, device=device); n = 0
     for xb, _ in loader:
         xb = xb.to(device).requires_grad_(True)
@@ -115,22 +112,21 @@ class DeepSeekMoE(nn.Module):
         self.out_proj = nn.Linear(hidden, out_dim)
 
     def forward(self, x):
-        x = self.in_proj(x)                                       # (B,L,D)→(B,L,H)
+        x = self.in_proj(x)
         h = self.backbone(inputs_embeds=x,
                           output_hidden_states=True).hidden_states[-1]
-        w = self.softmax(self.router(h))                          # router weights
+        w = self.softmax(self.router(h))
         top_idx = torch.topk(w, self.top_k, -1).indices
         agg = torch.zeros_like(h)
         for k in range(self.top_k):
             idx = top_idx[..., k].unsqueeze(-1).expand_as(h)
             agg += torch.gather(h, -1, idx) / self.top_k
-        return self.out_proj(agg)                                 # (B,L,out_dim)
+        return self.out_proj(agg)
 
-# ──────────────────── PIPELINE (single label) ────────────────────────────────
+# ──────────────────── PIPELINE ───────────────────────────────────────────────
 def run_pipeline(Xtr, Xva, Xte,
                  Ytr, Yva, Yte,
                  label: str):
-    # sequences
     Xtr_t, Ytr_t = create_sequences(torch.tensor(Xtr), torch.tensor(Ytr), seq_length)
     Xva_t, Yva_t = create_sequences(torch.tensor(Xva), torch.tensor(Yva), seq_length)
     Xte_t, Yte_t = create_sequences(torch.tensor(Xte), torch.tensor(Yte), seq_length)
@@ -139,14 +135,11 @@ def run_pipeline(Xtr, Xva, Xte,
     va_loader = DataLoader(TensorDataset(Xva_t, Yva_t), batch_size=batch_size)
     te_loader = DataLoader(TensorDataset(Xte_t, Yte_t), batch_size=batch_size)
 
-    # model
     model = DeepSeekMoE(Xtr.shape[1], Ytr.shape[1]).to(device)
     opt   = AdamW(filter(lambda p: p.requires_grad, model.parameters()), lr=lr)
 
-    # train
     tr_loss, va_loss = train(model, opt, tr_loader, va_loader)
 
-    # RMSE curve
     epochs = np.arange(1, num_epochs + 1)
     plt.figure(figsize=(6, 4))
     plt.plot(epochs, rmse_from_mse(tr_loss), label="train")
@@ -156,7 +149,6 @@ def run_pipeline(Xtr, Xva, Xte,
     plt.savefig(os.path.join(BASE_SAVE_DIR, f"{label}_rmse_curve.png"), dpi=300)
     plt.close()
 
-    # predictions
     pred_seq, gt_seq = predict(model, te_loader)
     np.save(os.path.join(BASE_SAVE_DIR, f"{label}_pred_sequences.npy"), pred_seq.numpy())
     np.save(os.path.join(BASE_SAVE_DIR, f"{label}_gt_sequences.npy"),   gt_seq.numpy())
@@ -168,7 +160,6 @@ def run_pipeline(Xtr, Xva, Xte,
     final_rmse = np.sqrt(np.mean((pred_full - Yte) ** 2))
     print(f"  • {label} final test RMSE : {final_rmse:.4f}")
 
-    # global saliency
     print(f"  • computing {label} global saliency …")
     imp = feature_importance(model, va_loader, Xtr.shape[1])
     np.save(os.path.join(BASE_SAVE_DIR, f"{label}_importance.npy"), imp)
@@ -177,7 +168,6 @@ def run_pipeline(Xtr, Xva, Xte,
     np.savez(os.path.join(BASE_SAVE_DIR, f"{label}_top200_neurons.npz"),
              idx=top200_idx, score=imp[top200_idx])
 
-    # bar plot of top-20
     k = 20
     topk = imp.argsort()[-k:][::-1]
     plt.figure(figsize=(8, 4))
@@ -188,7 +178,6 @@ def run_pipeline(Xtr, Xva, Xte,
     plt.savefig(os.path.join(BASE_SAVE_DIR, f"{label}_top{k}_saliency.png"))
     plt.close()
 
-    # per-frame saliency
     print(f"  • computing {label} per-frame saliency map …")
     frame_loader = DataLoader(TensorDataset(Xte_t, Yte_t),
                               batch_size=batch_size, shuffle=False)
@@ -201,7 +190,7 @@ def run_pipeline(Xtr, Xva, Xte,
     for xb, _ in frame_loader:
         xb = xb.to(device).requires_grad_(True)
         (model(xb).sum()).backward()
-        wi = (xb.grad * xb).abs().cpu().numpy()     # (B,L,N)
+        wi = (xb.grad * xb).abs().cpu().numpy()
         B, L, _ = wi.shape
         for b in range(B):
             absolute_win = window_start + b
@@ -214,24 +203,20 @@ def run_pipeline(Xtr, Xva, Xte,
     print("    saved ✔")
 
 # ─────────────────────────── MAIN ────────────────────────────────────────────
-# load data (single fish already merged/“groundtruth_matched”)
 neural = np.load("/hpc/group/naumannlab/jjm132/nlp4neuro/experiment_7_cleo/data/"
-                 "neural_data_groundtruth_matched.npy", allow_pickle=True)[:, :-2].T  # (T,N)
+                 "neural_data_groundtruth_matched.npy", allow_pickle=True)[:, :-2].T
 tail       = np.load("/hpc/group/naumannlab/jjm132/nlp4neuro/experiment_7_cleo/data/"
-                     "tail_data_groundtruth_matched.npy", allow_pickle=True)           # (T,K)
+                     "tail_data_groundtruth_matched.npy", allow_pickle=True)
 tail_sum   = np.load("/hpc/group/naumannlab/jjm132/nlp4neuro/experiment_7_cleo/data/"
-                     "tail_data_sum_groundtruth_matched.npy", allow_pickle=True)       # (T,1)
+                     "tail_data_sum_groundtruth_matched.npy", allow_pickle=True)
 
-# split 70/10/20
 n_frames = neural.shape[0]
 tr_end, va_end = int(.70 * n_frames), int(.80 * n_frames)
 Xtr, Xva, Xte = neural[:tr_end], neural[tr_end:va_end], neural[va_end:]
 
-# ─── (A) multi-dimensional tail ───
 Ytr, Yva, Yte = tail[:tr_end], tail[tr_end:va_end], tail[va_end:]
 run_pipeline(Xtr, Xva, Xte, Ytr, Yva, Yte, label="tail")
 
-# ─── (B) 1-D tail_sum ───
 Ytr, Yva, Yte = tail_sum[:tr_end], tail_sum[tr_end:va_end], tail_sum[va_end:]
 run_pipeline(Xtr, Xva, Xte, Ytr, Yva, Yte, label="tail_sum")
 
