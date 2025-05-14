@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # run_deepseek_exp1D_with_saliency.py
 # Fine-tune DeepSeek-coder-7B on neural→tail and neural→tail_sum
-# Save RMSE curves, predictions, global + per-frame saliency maps
-# J. May 2025 (verbose version)
+# Store RMSE curves, predictions, global + per-frame saliency maps
+# J. May 2025  (robust split version)
 
 import os, numpy as np, matplotlib.pyplot as plt, torch, torch.nn as nn
 from numpy.lib.stride_tricks import sliding_window_view
@@ -16,7 +16,7 @@ BASE_SAVE_DIR = "/hpc/group/naumannlab/jjm132/nlp4neuro/experiment_7_cleo/result
 os.makedirs(BASE_SAVE_DIR, exist_ok=True)
 
 device      = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-seq_length  = 20
+seq_length  = 20          # preferred window length
 num_epochs  = 100
 batch_size  = 32
 lr          = 1e-4
@@ -32,7 +32,7 @@ if torch.cuda.is_available():
     print("▶ CUDA memory     :", f"{props.total_memory/1e9:.1f} GB")
 print("▶ Epochs          :", num_epochs)
 print("▶ Batch size      :", batch_size)
-print("▶ Sequence length :", seq_length)
+print("▶ Preferred L     :", seq_length)
 print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
 
 # ──────────────────────── HELPERS ────────────────────────────────────────────
@@ -41,12 +41,12 @@ def create_sequences(x: np.ndarray, y: np.ndarray, L: int):
     x: (T,N)  y: (T,M)  →  Tensor (T-L+1, L, N), Tensor (T-L+1, L, M)
     Uses sliding_window_view to guarantee uniform window size.
     """
-    xs = sliding_window_view(x, window_shape=(L), axis=0)        # (T-L+1, L, N)
-    ys = sliding_window_view(y, window_shape=(L), axis=0)        # (T-L+1, L, M)
+    xs = sliding_window_view(x, window_shape=(L), axis=0)
+    ys = sliding_window_view(y, window_shape=(L), axis=0)
     return (torch.tensor(xs, dtype=torch.float32),
             torch.tensor(ys, dtype=torch.float32))
 
-def rmse_from_mse(mses):           # list[float] → list[float]
+def rmse_from_mse(mses):
     return [float(np.sqrt(v)) for v in mses]
 
 def overlap_mean(preds, total_len):
@@ -64,8 +64,7 @@ def train(model, opt, tr_loader, va_loader):
         model.train(); tot = 0.
         for xb, yb in tr_loader:
             xb, yb = xb.to(device), yb.to(device)
-            opt.zero_grad()
-            loss = crit(model(xb), yb)
+            opt.zero_grad(); loss = crit(model(xb), yb)
             loss.backward(); opt.step()
             tot += loss.item()
         tr_hist.append(tot / len(tr_loader))
@@ -118,24 +117,25 @@ class DeepSeekMoE(nn.Module):
         self.out_proj = nn.Linear(hidden, out_dim)
 
     def forward(self, x):
-        x = self.in_proj(x)                                           # (B,L,D)→(B,L,H)
+        x = self.in_proj(x)
         h = self.backbone(inputs_embeds=x,
                           output_hidden_states=True).hidden_states[-1]
-        w = self.softmax(self.router(h))                              # router weights
-        top_idx = torch.topk(w, self.top_k, -1).indices
+        w = self.softmax(self.router(h))
+        idx = torch.topk(w, self.top_k, -1).indices
         agg = torch.zeros_like(h)
         for k in range(self.top_k):
-            idx = top_idx[..., k].unsqueeze(-1).expand_as(h)
-            agg += torch.gather(h, -1, idx) / self.top_k
-        return self.out_proj(agg)                                     # (B,L,out_dim)
+            gather_idx = idx[..., k].unsqueeze(-1).expand_as(h)
+            agg += torch.gather(h, -1, gather_idx) / self.top_k
+        return self.out_proj(agg)
 
 # ──────────────────── PIPELINE ───────────────────────────────────────────────
 def run_pipeline(Xtr, Xva, Xte,
                  Ytr, Yva, Yte,
-                 label: str):
-    Xtr_t, Ytr_t = create_sequences(Xtr, Ytr, seq_length)
-    Xva_t, Yva_t = create_sequences(Xva, Yva, seq_length)
-    Xte_t, Yte_t = create_sequences(Xte, Yte, seq_length)
+                 label: str, L: int):
+    print(f"  • Window length L = {L}")
+    Xtr_t, Ytr_t = create_sequences(Xtr, Ytr, L)
+    Xva_t, Yva_t = create_sequences(Xva, Yva, L)
+    Xte_t, Yte_t = create_sequences(Xte, Yte, L)
 
     tr_loader = DataLoader(TensorDataset(Xtr_t, Ytr_t), batch_size=batch_size, shuffle=True)
     va_loader = DataLoader(TensorDataset(Xva_t, Yva_t), batch_size=batch_size)
@@ -146,17 +146,15 @@ def run_pipeline(Xtr, Xva, Xte,
 
     tr_loss, va_loss = train(model, opt, tr_loader, va_loader)
 
-    # ─ RMSE curve ─
     epochs = np.arange(1, num_epochs+1)
     plt.figure(figsize=(6,4))
     plt.plot(epochs, rmse_from_mse(tr_loss), label="train")
     plt.plot(epochs, rmse_from_mse(va_loss), label="val")
-    plt.xlabel("epoch"); plt.ylabel("RMSE"); plt.title(f"{label} RMSE")
+    plt.xlabel("epoch"); plt.ylabel("RMSE"); plt.title(f"{label} RMSE (L={L})")
     plt.legend(); plt.tight_layout()
     plt.savefig(os.path.join(BASE_SAVE_DIR, f"{label}_rmse_curve.png"), dpi=300)
     plt.close()
 
-    # ─ predictions ─
     pred_seq, gt_seq = predict(model, te_loader)
     np.save(os.path.join(BASE_SAVE_DIR, f"{label}_pred_sequences.npy"), pred_seq.numpy())
     np.save(os.path.join(BASE_SAVE_DIR, f"{label}_gt_sequences.npy"),   gt_seq.numpy())
@@ -168,14 +166,9 @@ def run_pipeline(Xtr, Xva, Xte,
     final_rmse = np.sqrt(np.mean((pred_full - Yte)**2))
     print(f"  • {label} final test RMSE : {final_rmse:.4f}")
 
-    # ─ global saliency ─
     print(f"  • computing {label} global saliency …")
     imp = feature_importance(model, va_loader, Xtr.shape[1])
     np.save(os.path.join(BASE_SAVE_DIR, f"{label}_importance.npy"), imp)
-
-    top200_idx = imp.argsort()[-200:][::-1]
-    np.savez(os.path.join(BASE_SAVE_DIR, f"{label}_top200_neurons.npz"),
-             idx=top200_idx, score=imp[top200_idx])
 
     k = 20
     topk = imp.argsort()[-k:][::-1]
@@ -187,7 +180,6 @@ def run_pipeline(Xtr, Xva, Xte,
     plt.savefig(os.path.join(BASE_SAVE_DIR, f"{label}_top{k}_saliency.png"))
     plt.close()
 
-    # ─ per-frame saliency ─
     print(f"  • computing {label} per-frame saliency map …")
     frame_loader = DataLoader(TensorDataset(Xte_t, Yte_t),
                               batch_size=batch_size, shuffle=False)
@@ -200,20 +192,19 @@ def run_pipeline(Xtr, Xva, Xte,
     for xb, _ in frame_loader:
         xb = xb.to(device).requires_grad_(True)
         (model(xb).sum()).backward()
-        wi = (xb.grad * xb).abs().cpu().numpy()                     # (B,L,N)
-        B, L, _ = wi.shape
+        wi = (xb.grad * xb).abs().cpu().numpy()     # (B,L,N)
+        B, Lf, _ = wi.shape
         for b in range(B):
-            absolute_win = window_start + b
-            for t in range(L):
-                frame_sal[absolute_win + t] += wi[b, t]
-                frame_cnt[absolute_win + t] += 1
+            abs_win = window_start + b
+            for t in range(Lf):
+                frame_sal[abs_win + t] += wi[b, t]
+                frame_cnt[abs_win + t] += 1
         window_start += B
     frame_sal /= frame_cnt[:, None]
     np.save(os.path.join(BASE_SAVE_DIR, f"{label}_frame_saliency.npy"), frame_sal)
     print("    saved ✔")
 
 # ─────────────────────────── MAIN ────────────────────────────────────────────
-# Load data
 neural = np.load("/hpc/group/naumannlab/jjm132/nlp4neuro/experiment_7_cleo/data/"
                  "neural_data_groundtruth_matched.npy", allow_pickle=True).astype(np.float32)
 tail   = np.load("/hpc/group/naumannlab/jjm132/nlp4neuro/experiment_7_cleo/data/"
@@ -221,29 +212,35 @@ tail   = np.load("/hpc/group/naumannlab/jjm132/nlp4neuro/experiment_7_cleo/data/
 tail_sum = np.load("/hpc/group/naumannlab/jjm132/nlp4neuro/experiment_7_cleo/data/"
                    "tail_data_sum_groundtruth_matched.npy", allow_pickle=True).astype(np.float32)
 
-# Convert neural to (T,N) and drop extra metadata columns if present
-if neural.ndim == 2 and neural.shape[1] >= 2:
-    neural = neural[:, :-2]    # assumes last 2 cols are metadata
-neural = neural.T              # (T,N)
+# Drop last 2 metadata cols and transpose
+neural = neural[:, :-2].T
+tail_sum = tail_sum[:, None] if tail_sum.ndim == 1 else tail_sum
 
-# Ensure tail_sum is 2-D column
-if tail_sum.ndim == 1:
-    tail_sum = tail_sum[:, None]
-
-# Trim all to equal length
+# Trim to equal length
 T = min(len(neural), len(tail), len(tail_sum))
 neural, tail, tail_sum = neural[:T], tail[:T], tail_sum[:T]
 
-# Split 70/10/20
+# --- choose an L that fits all three splits ---
+L_pref = seq_length
+if T >= 3 * L_pref:
+    L = L_pref
+else:
+    # largest L so that each split (train 70%, val 10%, test 20%) has ≥ L
+    L = max(2, int(T * 0.1))          # at least 2 frames
+    while (T*0.2) < L:                # ensure test ≥ L
+        L -= 1
+    print(f"⚠ Data are short (T={T}). Falling back to L = {L}")
+
+# Split
 tr_end, va_end = int(.70*T), int(.80*T)
 Xtr, Xva, Xte = neural[:tr_end], neural[tr_end:va_end], neural[va_end:]
 
 # ─── (A) multi-dimensional tail ───
 Ytr, Yva, Yte = tail[:tr_end], tail[tr_end:va_end], tail[va_end:]
-run_pipeline(Xtr, Xva, Xte, Ytr, Yva, Yte, label="tail")
+run_pipeline(Xtr, Xva, Xte, Ytr, Yva, Yte, label="tail",      L=L)
 
 # ─── (B) 1-D tail_sum ───
 Ytr, Yva, Yte = tail_sum[:tr_end], tail_sum[tr_end:va_end], tail_sum[va_end:]
-run_pipeline(Xtr, Xva, Xte, Ytr, Yva, Yte, label="tail_sum")
+run_pipeline(Xtr, Xva, Xte, Ytr, Yva, Yte, label="tail_sum", L=L)
 
 print("\n✓ DeepSeek experiment finished (neural→tail and neural→tail_sum).")
