@@ -773,3 +773,2171 @@
     ↳ train RMSE 0.0445 | val RMSE 0.0367
     ↳ train RMSE 0.0424 | val RMSE 0.0355
     ↳ train RMSE 0.0403 | val RMSE 0.0349
+    ↳ train RMSE 0.0396 | val RMSE 0.0354
+    ↳ train RMSE 0.0408 | val RMSE 0.0338
+    ↳ train RMSE 0.0378 | val RMSE 0.0349
+    ↳ train RMSE 0.0374 | val RMSE 0.0347
+    ↳ train RMSE 0.0406 | val RMSE 0.0410
+   RMSE 0.05431
+→ DeepSeek + Spectral
+    ↳ train RMSE 0.8848 | val RMSE 0.0334
+    ↳ train RMSE 0.0393 | val RMSE 0.0332
+    ↳ train RMSE 0.0371 | val RMSE 0.0342
+    ↳ train RMSE 0.0361 | val RMSE 0.0337
+    ↳ train RMSE 0.0359 | val RMSE 0.0417
+    ↳ train RMSE 0.0352 | val RMSE 0.0439
+    ↳ train RMSE 0.0355 | val RMSE 0.0352
+    ↳ train RMSE 0.0343 | val RMSE 0.0356
+    ↳ train RMSE 0.0339 | val RMSE 0.0362
+    ↳ train RMSE 0.0336 | val RMSE 0.0342
+   RMSE 0.03817
+→ GPT2 + Vanilla
+    ↳ train RMSE 1.8558 | val RMSE 0.3172
+    ↳ train RMSE 0.7258 | val RMSE 0.1731
+    ↳ train RMSE 0.6349 | val RMSE 0.1231
+    ↳ train RMSE 0.5649 | val RMSE 0.1368
+    ↳ train RMSE 0.4967 | val RMSE 0.2790
+    ↳ train RMSE 0.4404 | val RMSE 0.3939
+    ↳ train RMSE 0.3908 | val RMSE 0.3924
+    ↳ train RMSE 0.3552 | val RMSE 0.3366
+    ↳ train RMSE 0.3270 | val RMSE 0.3019
+    ↳ train RMSE 0.3102 | val RMSE 0.2794
+   RMSE 0.29046
+→ GPT2 + Positional
+    ↳ train RMSE 1.2712 | val RMSE 0.3939
+    ↳ train RMSE 0.5095 | val RMSE 0.2885
+    ↳ train RMSE 0.4223 | val RMSE 0.3372
+    ↳ train RMSE 0.3546 | val RMSE 0.2164
+    ↳ train RMSE 0.3078 | val RMSE 0.1915
+    ↳ train RMSE 0.2856 | val RMSE 0.1815
+    ↳ train RMSE 0.2717 | val RMSE 0.1817
+    ↳ train RMSE 0.2568 | val RMSE 0.1885
+    ↳ train RMSE 0.2453 | val RMSE 0.1781
+    ↳ train RMSE 0.2385 | val RMSE 0.1865
+   RMSE 0.19612
+→ GPT2 + RelativePos
+    ↳ train RMSE 0.8687 | val RMSE 0.2358
+    ↳ train RMSE 0.3201 | val RMSE 0.1830
+    ↳ train RMSE 0.2733 | val RMSE 0.1288
+    ↳ train RMSE 0.2371 | val RMSE 0.0992
+    ↳ train RMSE 0.2191 | val RMSE 0.0998
+    ↳ train RMSE 0.2066 | val RMSE 0.0864
+    ↳ train RMSE 0.1970 | val RMSE 0.0873
+    ↳ train RMSE 0.1889 | val RMSE 0.0866
+    ↳ train RMSE 0.1809 | val RMSE 0.0806
+    ↳ train RMSE 0.1774 | val RMSE 0.0830
+   RMSE 0.09060
+→ GPT2 + Sparse
+    ↳ train RMSE 1.3925 | val RMSE 0.2814
+    ↳ train RMSE 0.5240 | val RMSE 0.2010
+    ↳ train RMSE 0.4162 | val RMSE 0.2772
+    ↳ train RMSE 0.3700 | val RMSE 0.2490
+    ↳ train RMSE 0.3431 | val RMSE 0.2843
+    ↳ train RMSE 0.3322 | val RMSE 0.2955
+    ↳ train RMSE 0.3171 | val RMSE 0.2970
+    ↳ train RMSE 0.3069 | val RMSE 0.2582
+    ↳ train RMSE 0.2946 | val RMSE 0.2723
+    ↳ train RMSE 0.2858 | val RMSE 0.2728
+   RMSE 0.28613
+→ GPT2 + Spectral
+    ↳ train RMSE 1.4357 | val RMSE 0.4086
+    ↳ train RMSE 0.7267 | val RMSE 0.3767
+    ↳ train RMSE 0.6126 | val RMSE 0.3986
+    ↳ train RMSE 0.5335 | val RMSE 0.3867
+    ↳ train RMSE 0.4780 | val RMSE 0.4059
+    ↳ train RMSE 0.4359 | val RMSE 0.3537
+    ↳ train RMSE 0.4000 | val RMSE 0.2454
+    ↳ train RMSE 0.3700 | val RMSE 0.1918
+    ↳ train RMSE 0.3447 | val RMSE 0.1484
+    ↳ train RMSE 0.3247 | val RMSE 0.1075
+   RMSE 0.09046
+→ BERT + Vanilla
+    ↳ train RMSE 0.7779 | val RMSE 0.2343
+    ↳ train RMSE 0.1485 | val RMSE 0.1642
+    ↳ train RMSE 0.1413 | val RMSE 0.1453
+    ↳ train RMSE 0.1365 | val RMSE 0.1390
+    ↳ train RMSE 0.1334 | val RMSE 0.1314
+    ↳ train RMSE 0.1311 | val RMSE 0.1203
+    ↳ train RMSE 0.1287 | val RMSE 0.1228
+    ↳ train RMSE 0.1253 | val RMSE 0.1174
+    ↳ train RMSE 0.1235 | val RMSE 0.1101
+    ↳ train RMSE 0.1220 | val RMSE 0.1083
+   RMSE 0.12487
+→ BERT + Positional
+    ↳ train RMSE 0.7153 | val RMSE 0.1058
+    ↳ train RMSE 0.1403 | val RMSE 0.1024
+    ↳ train RMSE 0.1331 | val RMSE 0.1035
+    ↳ train RMSE 0.1275 | val RMSE 0.1076
+    ↳ train RMSE 0.1238 | val RMSE 0.0964
+    ↳ train RMSE 0.1196 | val RMSE 0.0884
+    ↳ train RMSE 0.1166 | val RMSE 0.0853
+    ↳ train RMSE 0.1143 | val RMSE 0.0848
+    ↳ train RMSE 0.1119 | val RMSE 0.0839
+    ↳ train RMSE 0.1105 | val RMSE 0.0821
+   RMSE 0.09479
+→ BERT + RelativePos
+    ↳ train RMSE 0.5569 | val RMSE 0.0984
+    ↳ train RMSE 0.1437 | val RMSE 0.0923
+    ↳ train RMSE 0.1362 | val RMSE 0.1115
+    ↳ train RMSE 0.1317 | val RMSE 0.0986
+    ↳ train RMSE 0.1255 | val RMSE 0.1020
+    ↳ train RMSE 0.1217 | val RMSE 0.1019
+    ↳ train RMSE 0.1193 | val RMSE 0.1126
+    ↳ train RMSE 0.1166 | val RMSE 0.1029
+    ↳ train RMSE 0.1146 | val RMSE 0.1030
+    ↳ train RMSE 0.1119 | val RMSE 0.0890
+   RMSE 0.10434
+→ BERT + Sparse
+    ↳ train RMSE 0.6830 | val RMSE 0.2089
+    ↳ train RMSE 0.1463 | val RMSE 0.1521
+    ↳ train RMSE 0.1391 | val RMSE 0.1378
+    ↳ train RMSE 0.1356 | val RMSE 0.1280
+    ↳ train RMSE 0.1318 | val RMSE 0.1095
+    ↳ train RMSE 0.1286 | val RMSE 0.1199
+    ↳ train RMSE 0.1261 | val RMSE 0.1039
+    ↳ train RMSE 0.1233 | val RMSE 0.1166
+    ↳ train RMSE 0.1220 | val RMSE 0.1090
+    ↳ train RMSE 0.1195 | val RMSE 0.1089
+   RMSE 0.12216
+→ BERT + Spectral
+    ↳ train RMSE 0.8365 | val RMSE 0.2071
+    ↳ train RMSE 0.1571 | val RMSE 0.1189
+    ↳ train RMSE 0.1461 | val RMSE 0.1114
+    ↳ train RMSE 0.1404 | val RMSE 0.1223
+    ↳ train RMSE 0.1357 | val RMSE 0.1130
+    ↳ train RMSE 0.1322 | val RMSE 0.1177
+    ↳ train RMSE 0.1285 | val RMSE 0.1123
+    ↳ train RMSE 0.1257 | val RMSE 0.1074
+    ↳ train RMSE 0.1234 | val RMSE 0.0991
+    ↳ train RMSE 0.1206 | val RMSE 0.0906
+   RMSE 0.10334
+
+━━ salient50_removed | run 6/10 ━━
+→ DeepSeek + Vanilla
+    ↳ train RMSE 0.8262 | val RMSE 0.0749
+    ↳ train RMSE 0.0662 | val RMSE 0.0606
+    ↳ train RMSE 0.0560 | val RMSE 0.0611
+    ↳ train RMSE 0.0492 | val RMSE 0.0453
+    ↳ train RMSE 0.0449 | val RMSE 0.0413
+    ↳ train RMSE 0.0423 | val RMSE 0.0392
+    ↳ train RMSE 0.0396 | val RMSE 0.0388
+    ↳ train RMSE 0.0377 | val RMSE 0.0372
+    ↳ train RMSE 0.0362 | val RMSE 0.0388
+    ↳ train RMSE 0.0350 | val RMSE 0.0350
+   RMSE 0.04687
+→ DeepSeek + Positional
+    ↳ train RMSE 0.8363 | val RMSE 0.0687
+    ↳ train RMSE 0.0441 | val RMSE 0.0296
+    ↳ train RMSE 0.0407 | val RMSE 0.0297
+    ↳ train RMSE 0.0400 | val RMSE 0.0299
+    ↳ train RMSE 0.0394 | val RMSE 0.0300
+    ↳ train RMSE 0.0389 | val RMSE 0.0305
+    ↳ train RMSE 0.0385 | val RMSE 0.0311
+    ↳ train RMSE 0.0382 | val RMSE 0.0317
+    ↳ train RMSE 0.0380 | val RMSE 0.0315
+    ↳ train RMSE 0.0378 | val RMSE 0.0319
+   RMSE 0.03894
+→ DeepSeek + RelativePos
+    ↳ train RMSE 0.7505 | val RMSE 0.0405
+    ↳ train RMSE 0.0455 | val RMSE 0.0358
+    ↳ train RMSE 0.0433 | val RMSE 0.0360
+    ↳ train RMSE 0.0421 | val RMSE 0.0353
+    ↳ train RMSE 0.0411 | val RMSE 0.0349
+    ↳ train RMSE 0.0405 | val RMSE 0.0365
+    ↳ train RMSE 0.0393 | val RMSE 0.0341
+    ↳ train RMSE 0.0417 | val RMSE 0.0334
+    ↳ train RMSE 0.0384 | val RMSE 0.0343
+    ↳ train RMSE 0.0375 | val RMSE 0.0340
+   RMSE 0.04220
+→ DeepSeek + Sparse
+    ↳ train RMSE 0.6691 | val RMSE 0.0480
+    ↳ train RMSE 0.0452 | val RMSE 0.0360
+    ↳ train RMSE 0.0407 | val RMSE 0.0361
+    ↳ train RMSE 0.0387 | val RMSE 0.0340
+    ↳ train RMSE 0.0375 | val RMSE 0.0356
+    ↳ train RMSE 0.0366 | val RMSE 0.0352
+    ↳ train RMSE 0.0360 | val RMSE 0.0352
+    ↳ train RMSE 0.0356 | val RMSE 0.0317
+    ↳ train RMSE 0.0350 | val RMSE 0.0329
+    ↳ train RMSE 0.0344 | val RMSE 0.0321
+   RMSE 0.04077
+→ DeepSeek + Spectral
+    ↳ train RMSE 0.9691 | val RMSE 0.0819
+    ↳ train RMSE 0.0481 | val RMSE 0.0302
+    ↳ train RMSE 0.0401 | val RMSE 0.0304
+    ↳ train RMSE 0.0397 | val RMSE 0.0307
+    ↳ train RMSE 0.0387 | val RMSE 0.0313
+    ↳ train RMSE 0.0380 | val RMSE 0.0326
+    ↳ train RMSE 0.0375 | val RMSE 0.0334
+    ↳ train RMSE 0.0370 | val RMSE 0.0332
+    ↳ train RMSE 0.0365 | val RMSE 0.0352
+    ↳ train RMSE 0.0362 | val RMSE 0.0337
+   RMSE 0.04056
+→ GPT2 + Vanilla
+    ↳ train RMSE 1.1157 | val RMSE 0.4870
+    ↳ train RMSE 0.4988 | val RMSE 0.1462
+    ↳ train RMSE 0.3029 | val RMSE 0.0882
+    ↳ train RMSE 0.2590 | val RMSE 0.0841
+    ↳ train RMSE 0.2367 | val RMSE 0.0924
+    ↳ train RMSE 0.2233 | val RMSE 0.0876
+    ↳ train RMSE 0.2122 | val RMSE 0.0854
+    ↳ train RMSE 0.2039 | val RMSE 0.0784
+    ↳ train RMSE 0.1965 | val RMSE 0.0755
+    ↳ train RMSE 0.1896 | val RMSE 0.0786
+   RMSE 0.09319
+→ GPT2 + Positional
+    ↳ train RMSE 1.0144 | val RMSE 0.1623
+    ↳ train RMSE 0.3388 | val RMSE 0.1279
+    ↳ train RMSE 0.2830 | val RMSE 0.1246
+    ↳ train RMSE 0.2578 | val RMSE 0.1376
+    ↳ train RMSE 0.2385 | val RMSE 0.1147
+    ↳ train RMSE 0.2247 | val RMSE 0.1307
+    ↳ train RMSE 0.2135 | val RMSE 0.1356
+    ↳ train RMSE 0.2051 | val RMSE 0.1251
+    ↳ train RMSE 0.1967 | val RMSE 0.1157
+    ↳ train RMSE 0.1908 | val RMSE 0.1181
+   RMSE 0.13598
+→ GPT2 + RelativePos
+    ↳ train RMSE 0.7411 | val RMSE 0.1470
+    ↳ train RMSE 0.2672 | val RMSE 0.1141
+    ↳ train RMSE 0.2328 | val RMSE 0.1005
+    ↳ train RMSE 0.2136 | val RMSE 0.0954
+    ↳ train RMSE 0.1999 | val RMSE 0.0792
+    ↳ train RMSE 0.1897 | val RMSE 0.0782
+    ↳ train RMSE 0.1809 | val RMSE 0.0744
+    ↳ train RMSE 0.1736 | val RMSE 0.0768
+    ↳ train RMSE 0.1687 | val RMSE 0.0645
+    ↳ train RMSE 0.1636 | val RMSE 0.0707
+   RMSE 0.08237
+→ GPT2 + Sparse
+    ↳ train RMSE 1.6913 | val RMSE 0.3406
+    ↳ train RMSE 0.5916 | val RMSE 0.3328
+    ↳ train RMSE 0.4890 | val RMSE 0.2663
+    ↳ train RMSE 0.4323 | val RMSE 0.2358
+    ↳ train RMSE 0.3936 | val RMSE 0.2237
+    ↳ train RMSE 0.3645 | val RMSE 0.1919
+    ↳ train RMSE 0.3432 | val RMSE 0.2183
+    ↳ train RMSE 0.3228 | val RMSE 0.2026
+    ↳ train RMSE 0.3120 | val RMSE 0.1743
+    ↳ train RMSE 0.3002 | val RMSE 0.2021
+   RMSE 0.21564
+→ GPT2 + Spectral
+    ↳ train RMSE 1.6973 | val RMSE 0.2422
+    ↳ train RMSE 0.7826 | val RMSE 0.1822
+    ↳ train RMSE 0.6533 | val RMSE 0.2648
+    ↳ train RMSE 0.5762 | val RMSE 0.2800
+    ↳ train RMSE 0.5185 | val RMSE 0.3488
+    ↳ train RMSE 0.4747 | val RMSE 0.3874
+    ↳ train RMSE 0.4512 | val RMSE 0.2560
+    ↳ train RMSE 0.4167 | val RMSE 0.3764
+    ↳ train RMSE 0.3917 | val RMSE 0.4077
+    ↳ train RMSE 0.3710 | val RMSE 0.4017
+   RMSE 0.39915
+→ BERT + Vanilla
+    ↳ train RMSE 0.7343 | val RMSE 0.1611
+    ↳ train RMSE 0.1498 | val RMSE 0.1095
+    ↳ train RMSE 0.1418 | val RMSE 0.1149
+    ↳ train RMSE 0.1379 | val RMSE 0.1092
+    ↳ train RMSE 0.1325 | val RMSE 0.1110
+    ↳ train RMSE 0.1270 | val RMSE 0.1080
+    ↳ train RMSE 0.1245 | val RMSE 0.1054
+    ↳ train RMSE 0.1207 | val RMSE 0.1061
+    ↳ train RMSE 0.1177 | val RMSE 0.1023
+    ↳ train RMSE 0.1164 | val RMSE 0.1056
+   RMSE 0.11963
+→ BERT + Positional
+    ↳ train RMSE 0.8954 | val RMSE 0.2335
+    ↳ train RMSE 0.1560 | val RMSE 0.1905
+    ↳ train RMSE 0.1492 | val RMSE 0.1680
+    ↳ train RMSE 0.1446 | val RMSE 0.1542
+    ↳ train RMSE 0.1408 | val RMSE 0.1329
+    ↳ train RMSE 0.1362 | val RMSE 0.1282
+    ↳ train RMSE 0.1328 | val RMSE 0.1088
+    ↳ train RMSE 0.1281 | val RMSE 0.1333
+    ↳ train RMSE 0.1239 | val RMSE 0.1341
+    ↳ train RMSE 0.1216 | val RMSE 0.1202
+   RMSE 0.13685
+→ BERT + RelativePos
+    ↳ train RMSE 0.5661 | val RMSE 0.1072
+    ↳ train RMSE 0.1427 | val RMSE 0.1291
+    ↳ train RMSE 0.1353 | val RMSE 0.1244
+    ↳ train RMSE 0.1288 | val RMSE 0.1168
+    ↳ train RMSE 0.1255 | val RMSE 0.1196
+    ↳ train RMSE 0.1219 | val RMSE 0.1089
+    ↳ train RMSE 0.1186 | val RMSE 0.1043
+    ↳ train RMSE 0.1162 | val RMSE 0.1089
+    ↳ train RMSE 0.1139 | val RMSE 0.0978
+    ↳ train RMSE 0.1119 | val RMSE 0.1097
+   RMSE 0.12183
+→ BERT + Sparse
+    ↳ train RMSE 0.6671 | val RMSE 0.1864
+    ↳ train RMSE 0.1447 | val RMSE 0.1259
+    ↳ train RMSE 0.1384 | val RMSE 0.1265
+    ↳ train RMSE 0.1354 | val RMSE 0.1217
+    ↳ train RMSE 0.1326 | val RMSE 0.1150
+    ↳ train RMSE 0.1292 | val RMSE 0.1211
+    ↳ train RMSE 0.1269 | val RMSE 0.0995
+    ↳ train RMSE 0.1246 | val RMSE 0.1106
+    ↳ train RMSE 0.1224 | val RMSE 0.0890
+    ↳ train RMSE 0.1206 | val RMSE 0.0927
+   RMSE 0.11023
+→ BERT + Spectral
+    ↳ train RMSE 0.6307 | val RMSE 0.1412
+    ↳ train RMSE 0.1524 | val RMSE 0.1589
+    ↳ train RMSE 0.1442 | val RMSE 0.1467
+    ↳ train RMSE 0.1389 | val RMSE 0.1339
+    ↳ train RMSE 0.1353 | val RMSE 0.1260
+    ↳ train RMSE 0.1323 | val RMSE 0.1244
+    ↳ train RMSE 0.1294 | val RMSE 0.1193
+    ↳ train RMSE 0.1260 | val RMSE 0.1176
+    ↳ train RMSE 0.1238 | val RMSE 0.1096
+    ↳ train RMSE 0.1221 | val RMSE 0.1147
+   RMSE 0.12923
+
+━━ salient50_removed | run 7/10 ━━
+→ DeepSeek + Vanilla
+    ↳ train RMSE 0.5008 | val RMSE 0.0419
+    ↳ train RMSE 0.0417 | val RMSE 0.0332
+    ↳ train RMSE 0.0383 | val RMSE 0.0330
+    ↳ train RMSE 0.0371 | val RMSE 0.0323
+    ↳ train RMSE 0.0362 | val RMSE 0.0332
+    ↳ train RMSE 0.0355 | val RMSE 0.0368
+    ↳ train RMSE 0.0352 | val RMSE 0.0331
+    ↳ train RMSE 0.0346 | val RMSE 0.0311
+    ↳ train RMSE 0.0344 | val RMSE 0.0337
+    ↳ train RMSE 0.0336 | val RMSE 0.0321
+   RMSE 0.04359
+→ DeepSeek + Positional
+    ↳ train RMSE 0.8729 | val RMSE 0.0391
+    ↳ train RMSE 0.0387 | val RMSE 0.0347
+    ↳ train RMSE 0.0375 | val RMSE 0.0339
+    ↳ train RMSE 0.0361 | val RMSE 0.0332
+    ↳ train RMSE 0.0353 | val RMSE 0.0341
+    ↳ train RMSE 0.0348 | val RMSE 0.0346
+    ↳ train RMSE 0.0347 | val RMSE 0.0367
+    ↳ train RMSE 0.0343 | val RMSE 0.0346
+    ↳ train RMSE 0.0343 | val RMSE 0.0345
+    ↳ train RMSE 0.0337 | val RMSE 0.0338
+   RMSE 0.03868
+→ DeepSeek + RelativePos
+    ↳ train RMSE 0.8238 | val RMSE 0.0325
+    ↳ train RMSE 0.0440 | val RMSE 0.0291
+    ↳ train RMSE 0.0404 | val RMSE 0.0294
+    ↳ train RMSE 0.0402 | val RMSE 0.0296
+    ↳ train RMSE 0.0395 | val RMSE 0.0299
+    ↳ train RMSE 0.0387 | val RMSE 0.0312
+    ↳ train RMSE 0.0382 | val RMSE 0.0330
+    ↳ train RMSE 0.0409 | val RMSE 0.0321
+    ↳ train RMSE 0.0378 | val RMSE 0.0331
+    ↳ train RMSE 0.0365 | val RMSE 0.0337
+   RMSE 0.04290
+→ DeepSeek + Sparse
+    ↳ train RMSE 0.7789 | val RMSE 0.0511
+    ↳ train RMSE 0.0473 | val RMSE 0.0349
+    ↳ train RMSE 0.0407 | val RMSE 0.0337
+    ↳ train RMSE 0.0393 | val RMSE 0.0362
+    ↳ train RMSE 0.0381 | val RMSE 0.0329
+    ↳ train RMSE 0.0391 | val RMSE 0.0323
+    ↳ train RMSE 0.0366 | val RMSE 0.0346
+    ↳ train RMSE 0.0353 | val RMSE 0.0328
+    ↳ train RMSE 0.0348 | val RMSE 0.0344
+    ↳ train RMSE 0.0346 | val RMSE 0.0322
+   RMSE 0.03974
+→ DeepSeek + Spectral
+    ↳ train RMSE 0.5583 | val RMSE 0.0352
+    ↳ train RMSE 0.0416 | val RMSE 0.0326
+    ↳ train RMSE 0.0395 | val RMSE 0.0355
+    ↳ train RMSE 0.0402 | val RMSE 0.0337
+    ↳ train RMSE 0.0374 | val RMSE 0.0333
+    ↳ train RMSE 0.0365 | val RMSE 0.0328
+    ↳ train RMSE 0.0359 | val RMSE 0.0333
+    ↳ train RMSE 0.0356 | val RMSE 0.0318
+    ↳ train RMSE 0.0354 | val RMSE 0.0338
+    ↳ train RMSE 0.0343 | val RMSE 0.0343
+   RMSE 0.04561
+→ GPT2 + Vanilla
+    ↳ train RMSE 0.5511 | val RMSE 0.0744
+    ↳ train RMSE 0.2855 | val RMSE 0.0619
+    ↳ train RMSE 0.2330 | val RMSE 0.0598
+    ↳ train RMSE 0.2102 | val RMSE 0.0696
+    ↳ train RMSE 0.1965 | val RMSE 0.0595
+    ↳ train RMSE 0.1844 | val RMSE 0.0666
+    ↳ train RMSE 0.1773 | val RMSE 0.0759
+    ↳ train RMSE 0.1712 | val RMSE 0.0671
+    ↳ train RMSE 0.1642 | val RMSE 0.0747
+    ↳ train RMSE 0.1600 | val RMSE 0.0615
+   RMSE 0.07826
+→ GPT2 + Positional
+    ↳ train RMSE 1.6086 | val RMSE 0.5253
+    ↳ train RMSE 0.6648 | val RMSE 0.4179
+    ↳ train RMSE 0.4924 | val RMSE 0.3321
+    ↳ train RMSE 0.3752 | val RMSE 0.2229
+    ↳ train RMSE 0.3254 | val RMSE 0.1678
+    ↳ train RMSE 0.3011 | val RMSE 0.1582
+    ↳ train RMSE 0.2858 | val RMSE 0.1505
+    ↳ train RMSE 0.2704 | val RMSE 0.1462
+    ↳ train RMSE 0.2581 | val RMSE 0.1467
+    ↳ train RMSE 0.2475 | val RMSE 0.1273
+   RMSE 0.12890
+→ GPT2 + RelativePos
+    ↳ train RMSE 0.6958 | val RMSE 0.1275
+    ↳ train RMSE 0.2560 | val RMSE 0.1126
+    ↳ train RMSE 0.2265 | val RMSE 0.1101
+    ↳ train RMSE 0.2096 | val RMSE 0.1033
+    ↳ train RMSE 0.1967 | val RMSE 0.0885
+    ↳ train RMSE 0.1867 | val RMSE 0.0894
+    ↳ train RMSE 0.1795 | val RMSE 0.1050
+    ↳ train RMSE 0.1739 | val RMSE 0.0845
+    ↳ train RMSE 0.1671 | val RMSE 0.0795
+    ↳ train RMSE 0.1617 | val RMSE 0.0820
+   RMSE 0.09416
+→ GPT2 + Sparse
+    ↳ train RMSE 1.9463 | val RMSE 0.7085
+    ↳ train RMSE 0.6966 | val RMSE 0.5521
+    ↳ train RMSE 0.5535 | val RMSE 0.4514
+    ↳ train RMSE 0.4924 | val RMSE 0.4181
+    ↳ train RMSE 0.4477 | val RMSE 0.4058
+    ↳ train RMSE 0.4174 | val RMSE 0.3580
+    ↳ train RMSE 0.3980 | val RMSE 0.3393
+    ↳ train RMSE 0.3714 | val RMSE 0.3735
+    ↳ train RMSE 0.3548 | val RMSE 0.3289
+    ↳ train RMSE 0.3391 | val RMSE 0.2740
+   RMSE 0.26331
+→ GPT2 + Spectral
+    ↳ train RMSE 1.2230 | val RMSE 0.5982
+    ↳ train RMSE 0.6894 | val RMSE 0.5817
+    ↳ train RMSE 0.5516 | val RMSE 0.3662
+    ↳ train RMSE 0.4303 | val RMSE 0.3013
+    ↳ train RMSE 0.3116 | val RMSE 0.1701
+    ↳ train RMSE 0.2631 | val RMSE 0.1440
+    ↳ train RMSE 0.2408 | val RMSE 0.1425
+    ↳ train RMSE 0.2247 | val RMSE 0.1186
+    ↳ train RMSE 0.2136 | val RMSE 0.1265
+    ↳ train RMSE 0.2056 | val RMSE 0.1349
+   RMSE 0.14094
+→ BERT + Vanilla
+    ↳ train RMSE 0.8507 | val RMSE 0.2170
+    ↳ train RMSE 0.1633 | val RMSE 0.1644
+    ↳ train RMSE 0.1551 | val RMSE 0.1318
+    ↳ train RMSE 0.1477 | val RMSE 0.1166
+    ↳ train RMSE 0.1413 | val RMSE 0.1119
+    ↳ train RMSE 0.1359 | val RMSE 0.0883
+    ↳ train RMSE 0.1302 | val RMSE 0.0934
+    ↳ train RMSE 0.1270 | val RMSE 0.0927
+    ↳ train RMSE 0.1232 | val RMSE 0.0844
+    ↳ train RMSE 0.1197 | val RMSE 0.0826
+   RMSE 0.09752
+→ BERT + Positional
+    ↳ train RMSE 0.8517 | val RMSE 0.1656
+    ↳ train RMSE 0.1407 | val RMSE 0.1146
+    ↳ train RMSE 0.1359 | val RMSE 0.1114
+    ↳ train RMSE 0.1313 | val RMSE 0.1103
+    ↳ train RMSE 0.1280 | val RMSE 0.1051
+    ↳ train RMSE 0.1241 | val RMSE 0.1014
+    ↳ train RMSE 0.1221 | val RMSE 0.0933
+    ↳ train RMSE 0.1197 | val RMSE 0.0960
+    ↳ train RMSE 0.1174 | val RMSE 0.0991
+    ↳ train RMSE 0.1158 | val RMSE 0.1004
+   RMSE 0.11660
+→ BERT + RelativePos
+    ↳ train RMSE 0.5981 | val RMSE 0.1701
+    ↳ train RMSE 0.1512 | val RMSE 0.1626
+    ↳ train RMSE 0.1425 | val RMSE 0.1464
+    ↳ train RMSE 0.1368 | val RMSE 0.1297
+    ↳ train RMSE 0.1314 | val RMSE 0.1227
+    ↳ train RMSE 0.1283 | val RMSE 0.1203
+    ↳ train RMSE 0.1247 | val RMSE 0.1095
+    ↳ train RMSE 0.1218 | val RMSE 0.1055
+    ↳ train RMSE 0.1201 | val RMSE 0.1058
+    ↳ train RMSE 0.1167 | val RMSE 0.0997
+   RMSE 0.11423
+→ BERT + Sparse
+    ↳ train RMSE 0.6447 | val RMSE 0.2211
+    ↳ train RMSE 0.1600 | val RMSE 0.1688
+    ↳ train RMSE 0.1502 | val RMSE 0.1619
+    ↳ train RMSE 0.1423 | val RMSE 0.1315
+    ↳ train RMSE 0.1381 | val RMSE 0.1359
+    ↳ train RMSE 0.1333 | val RMSE 0.1264
+    ↳ train RMSE 0.1301 | val RMSE 0.1233
+    ↳ train RMSE 0.1277 | val RMSE 0.1071
+    ↳ train RMSE 0.1254 | val RMSE 0.1100
+    ↳ train RMSE 0.1223 | val RMSE 0.1096
+   RMSE 0.12560
+→ BERT + Spectral
+    ↳ train RMSE 0.8804 | val RMSE 0.2202
+    ↳ train RMSE 0.1675 | val RMSE 0.1722
+    ↳ train RMSE 0.1597 | val RMSE 0.1469
+    ↳ train RMSE 0.1570 | val RMSE 0.1389
+    ↳ train RMSE 0.1512 | val RMSE 0.1275
+    ↳ train RMSE 0.1439 | val RMSE 0.1190
+    ↳ train RMSE 0.1381 | val RMSE 0.1103
+    ↳ train RMSE 0.1344 | val RMSE 0.1088
+    ↳ train RMSE 0.1299 | val RMSE 0.1189
+    ↳ train RMSE 0.1264 | val RMSE 0.1057
+   RMSE 0.11936
+
+━━ salient50_removed | run 8/10 ━━
+→ DeepSeek + Vanilla
+    ↳ train RMSE 0.4784 | val RMSE 0.0389
+    ↳ train RMSE 0.0430 | val RMSE 0.0357
+    ↳ train RMSE 0.0433 | val RMSE 0.0386
+    ↳ train RMSE 0.0384 | val RMSE 0.0331
+    ↳ train RMSE 0.0367 | val RMSE 0.0369
+    ↳ train RMSE 0.0360 | val RMSE 0.0335
+    ↳ train RMSE 0.0351 | val RMSE 0.0344
+    ↳ train RMSE 0.0345 | val RMSE 0.0320
+    ↳ train RMSE 0.0342 | val RMSE 0.0337
+    ↳ train RMSE 0.0336 | val RMSE 0.0346
+   RMSE 0.04706
+→ DeepSeek + Positional
+    ↳ train RMSE 0.7378 | val RMSE 0.0761
+    ↳ train RMSE 0.0717 | val RMSE 0.0696
+    ↳ train RMSE 0.0589 | val RMSE 0.0573
+    ↳ train RMSE 0.0507 | val RMSE 0.0510
+    ↳ train RMSE 0.0449 | val RMSE 0.0451
+    ↳ train RMSE 0.0418 | val RMSE 0.0525
+    ↳ train RMSE 0.0369 | val RMSE 0.0487
+    ↳ train RMSE 0.0343 | val RMSE 0.0459
+    ↳ train RMSE 0.0317 | val RMSE 0.0424
+    ↳ train RMSE 0.0316 | val RMSE 0.0571
+   RMSE 0.07092
+→ DeepSeek + RelativePos
+    ↳ train RMSE 0.8189 | val RMSE 0.0713
+    ↳ train RMSE 0.0436 | val RMSE 0.0313
+    ↳ train RMSE 0.0400 | val RMSE 0.0315
+    ↳ train RMSE 0.0393 | val RMSE 0.0319
+    ↳ train RMSE 0.0386 | val RMSE 0.0326
+    ↳ train RMSE 0.0380 | val RMSE 0.0348
+    ↳ train RMSE 0.0377 | val RMSE 0.0341
+    ↳ train RMSE 0.0371 | val RMSE 0.0362
+    ↳ train RMSE 0.0365 | val RMSE 0.0346
+    ↳ train RMSE 0.0360 | val RMSE 0.0343
+   RMSE 0.04182
+→ DeepSeek + Sparse
+    ↳ train RMSE 1.0780 | val RMSE 0.0562
+    ↳ train RMSE 0.0456 | val RMSE 0.0362
+    ↳ train RMSE 0.0410 | val RMSE 0.0352
+    ↳ train RMSE 0.0393 | val RMSE 0.0380
+    ↳ train RMSE 0.0386 | val RMSE 0.0358
+    ↳ train RMSE 0.0375 | val RMSE 0.0357
+    ↳ train RMSE 0.0369 | val RMSE 0.0336
+    ↳ train RMSE 0.0366 | val RMSE 0.0353
+    ↳ train RMSE 0.0358 | val RMSE 0.0354
+    ↳ train RMSE 0.0353 | val RMSE 0.0325
+   RMSE 0.04271
+→ DeepSeek + Spectral
+    ↳ train RMSE 0.6544 | val RMSE 0.0371
+    ↳ train RMSE 0.0399 | val RMSE 0.0336
+    ↳ train RMSE 0.0377 | val RMSE 0.0371
+    ↳ train RMSE 0.0371 | val RMSE 0.0349
+    ↳ train RMSE 0.0362 | val RMSE 0.0365
+    ↳ train RMSE 0.0354 | val RMSE 0.0330
+    ↳ train RMSE 0.0348 | val RMSE 0.0323
+    ↳ train RMSE 0.0343 | val RMSE 0.0328
+    ↳ train RMSE 0.0340 | val RMSE 0.0320
+    ↳ train RMSE 0.0336 | val RMSE 0.0334
+   RMSE 0.04323
+→ GPT2 + Vanilla
+    ↳ train RMSE 1.0664 | val RMSE 0.4046
+    ↳ train RMSE 0.4928 | val RMSE 0.2967
+    ↳ train RMSE 0.3130 | val RMSE 0.1863
+    ↳ train RMSE 0.2713 | val RMSE 0.1805
+    ↳ train RMSE 0.2500 | val RMSE 0.1299
+    ↳ train RMSE 0.2340 | val RMSE 0.1349
+    ↳ train RMSE 0.2221 | val RMSE 0.1461
+    ↳ train RMSE 0.2128 | val RMSE 0.1407
+    ↳ train RMSE 0.2056 | val RMSE 0.1435
+    ↳ train RMSE 0.2003 | val RMSE 0.1282
+   RMSE 0.14545
+→ GPT2 + Positional
+    ↳ train RMSE 1.1063 | val RMSE 0.4264
+    ↳ train RMSE 0.4092 | val RMSE 0.3113
+    ↳ train RMSE 0.3338 | val RMSE 0.2401
+    ↳ train RMSE 0.2942 | val RMSE 0.1974
+    ↳ train RMSE 0.2668 | val RMSE 0.1493
+    ↳ train RMSE 0.2465 | val RMSE 0.1439
+    ↳ train RMSE 0.2311 | val RMSE 0.1024
+    ↳ train RMSE 0.2214 | val RMSE 0.1088
+    ↳ train RMSE 0.2087 | val RMSE 0.0957
+    ↳ train RMSE 0.2016 | val RMSE 0.1059
+   RMSE 0.12218
+→ GPT2 + RelativePos
+    ↳ train RMSE 0.8608 | val RMSE 0.1906
+    ↳ train RMSE 0.2987 | val RMSE 0.1514
+    ↳ train RMSE 0.2585 | val RMSE 0.1296
+    ↳ train RMSE 0.2344 | val RMSE 0.1176
+    ↳ train RMSE 0.2212 | val RMSE 0.1254
+    ↳ train RMSE 0.2085 | val RMSE 0.1217
+    ↳ train RMSE 0.2004 | val RMSE 0.1082
+    ↳ train RMSE 0.1913 | val RMSE 0.1039
+    ↳ train RMSE 0.1856 | val RMSE 0.1018
+    ↳ train RMSE 0.1790 | val RMSE 0.0980
+   RMSE 0.10348
+→ GPT2 + Sparse
+    ↳ train RMSE 0.9798 | val RMSE 0.4672
+    ↳ train RMSE 0.5734 | val RMSE 0.1709
+    ↳ train RMSE 0.3777 | val RMSE 0.3223
+    ↳ train RMSE 0.2962 | val RMSE 0.3308
+    ↳ train RMSE 0.2662 | val RMSE 0.2752
+    ↳ train RMSE 0.2478 | val RMSE 0.2574
+    ↳ train RMSE 0.2389 | val RMSE 0.3053
+    ↳ train RMSE 0.2272 | val RMSE 0.2737
+    ↳ train RMSE 0.2187 | val RMSE 0.2244
+    ↳ train RMSE 0.2116 | val RMSE 0.1972
+   RMSE 0.21694
+→ GPT2 + Spectral
+    ↳ train RMSE 1.7653 | val RMSE 0.2977
+    ↳ train RMSE 0.8081 | val RMSE 0.2066
+    ↳ train RMSE 0.6874 | val RMSE 0.2530
+    ↳ train RMSE 0.6122 | val RMSE 0.4383
+    ↳ train RMSE 0.5534 | val RMSE 0.5612
+    ↳ train RMSE 0.5046 | val RMSE 0.5601
+    ↳ train RMSE 0.4723 | val RMSE 0.5427
+    ↳ train RMSE 0.4382 | val RMSE 0.4958
+    ↳ train RMSE 0.4151 | val RMSE 0.4082
+    ↳ train RMSE 0.3792 | val RMSE 0.2240
+   RMSE 0.23001
+→ BERT + Vanilla
+    ↳ train RMSE 0.7377 | val RMSE 0.2005
+    ↳ train RMSE 0.1504 | val RMSE 0.1514
+    ↳ train RMSE 0.1437 | val RMSE 0.1437
+    ↳ train RMSE 0.1398 | val RMSE 0.1284
+    ↳ train RMSE 0.1358 | val RMSE 0.1247
+    ↳ train RMSE 0.1326 | val RMSE 0.1150
+    ↳ train RMSE 0.1307 | val RMSE 0.1052
+    ↳ train RMSE 0.1268 | val RMSE 0.1053
+    ↳ train RMSE 0.1242 | val RMSE 0.1002
+    ↳ train RMSE 0.1212 | val RMSE 0.1021
+   RMSE 0.11697
+→ BERT + Positional
+    ↳ train RMSE 0.6668 | val RMSE 0.1318
+    ↳ train RMSE 0.1388 | val RMSE 0.1045
+    ↳ train RMSE 0.1316 | val RMSE 0.1002
+    ↳ train RMSE 0.1271 | val RMSE 0.0996
+    ↳ train RMSE 0.1241 | val RMSE 0.0892
+    ↳ train RMSE 0.1206 | val RMSE 0.0930
+    ↳ train RMSE 0.1184 | val RMSE 0.0825
+    ↳ train RMSE 0.1172 | val RMSE 0.0952
+    ↳ train RMSE 0.1148 | val RMSE 0.0947
+    ↳ train RMSE 0.1128 | val RMSE 0.0841
+   RMSE 0.09720
+→ BERT + RelativePos
+    ↳ train RMSE 0.6309 | val RMSE 0.1112
+    ↳ train RMSE 0.1396 | val RMSE 0.1356
+    ↳ train RMSE 0.1305 | val RMSE 0.1271
+    ↳ train RMSE 0.1256 | val RMSE 0.1173
+    ↳ train RMSE 0.1230 | val RMSE 0.0999
+    ↳ train RMSE 0.1201 | val RMSE 0.0949
+    ↳ train RMSE 0.1174 | val RMSE 0.1011
+    ↳ train RMSE 0.1155 | val RMSE 0.1033
+    ↳ train RMSE 0.1152 | val RMSE 0.0973
+    ↳ train RMSE 0.1114 | val RMSE 0.0946
+   RMSE 0.10830
+→ BERT + Sparse
+    ↳ train RMSE 0.8331 | val RMSE 0.1883
+    ↳ train RMSE 0.1593 | val RMSE 0.1259
+    ↳ train RMSE 0.1540 | val RMSE 0.1289
+    ↳ train RMSE 0.1500 | val RMSE 0.1170
+    ↳ train RMSE 0.1471 | val RMSE 0.1090
+    ↳ train RMSE 0.1440 | val RMSE 0.0953
+    ↳ train RMSE 0.1413 | val RMSE 0.1122
+    ↳ train RMSE 0.1369 | val RMSE 0.1048
+    ↳ train RMSE 0.1352 | val RMSE 0.0931
+    ↳ train RMSE 0.1328 | val RMSE 0.0907
+   RMSE 0.10468
+→ BERT + Spectral
+    ↳ train RMSE 0.9172 | val RMSE 0.2246
+    ↳ train RMSE 0.1673 | val RMSE 0.1269
+    ↳ train RMSE 0.1557 | val RMSE 0.1214
+    ↳ train RMSE 0.1500 | val RMSE 0.0878
+    ↳ train RMSE 0.1422 | val RMSE 0.0835
+    ↳ train RMSE 0.1364 | val RMSE 0.0736
+    ↳ train RMSE 0.1320 | val RMSE 0.0593
+    ↳ train RMSE 0.1277 | val RMSE 0.0620
+    ↳ train RMSE 0.1246 | val RMSE 0.0533
+    ↳ train RMSE 0.1216 | val RMSE 0.0596
+   RMSE 0.06949
+
+━━ salient50_removed | run 9/10 ━━
+→ DeepSeek + Vanilla
+    ↳ train RMSE 0.5142 | val RMSE 0.0352
+    ↳ train RMSE 0.0399 | val RMSE 0.0339
+    ↳ train RMSE 0.0381 | val RMSE 0.0334
+    ↳ train RMSE 0.0370 | val RMSE 0.0339
+    ↳ train RMSE 0.0361 | val RMSE 0.0348
+    ↳ train RMSE 0.0354 | val RMSE 0.0353
+    ↳ train RMSE 0.0351 | val RMSE 0.0360
+    ↳ train RMSE 0.0349 | val RMSE 0.0328
+    ↳ train RMSE 0.0374 | val RMSE 0.0483
+    ↳ train RMSE 0.0368 | val RMSE 0.0393
+   RMSE 0.05298
+→ DeepSeek + Positional
+    ↳ train RMSE 0.9984 | val RMSE 0.0674
+    ↳ train RMSE 0.0623 | val RMSE 0.0537
+    ↳ train RMSE 0.0480 | val RMSE 0.0451
+    ↳ train RMSE 0.0427 | val RMSE 0.0375
+    ↳ train RMSE 0.0405 | val RMSE 0.0370
+    ↳ train RMSE 0.0393 | val RMSE 0.0351
+    ↳ train RMSE 0.0385 | val RMSE 0.0354
+    ↳ train RMSE 0.0378 | val RMSE 0.0357
+    ↳ train RMSE 0.0373 | val RMSE 0.0351
+    ↳ train RMSE 0.0367 | val RMSE 0.0350
+   RMSE 0.04404
+→ DeepSeek + RelativePos
+    ↳ train RMSE 0.8719 | val RMSE 0.0306
+    ↳ train RMSE 0.0419 | val RMSE 0.0298
+    ↳ train RMSE 0.0397 | val RMSE 0.0295
+    ↳ train RMSE 0.0387 | val RMSE 0.0312
+    ↳ train RMSE 0.0379 | val RMSE 0.0321
+    ↳ train RMSE 0.0390 | val RMSE 0.0330
+    ↳ train RMSE 0.0373 | val RMSE 0.0325
+    ↳ train RMSE 0.0361 | val RMSE 0.0331
+    ↳ train RMSE 0.0357 | val RMSE 0.0347
+    ↳ train RMSE 0.0354 | val RMSE 0.0337
+   RMSE 0.04187
+→ DeepSeek + Sparse
+    ↳ train RMSE 1.0748 | val RMSE 0.0360
+    ↳ train RMSE 0.0417 | val RMSE 0.0436
+    ↳ train RMSE 0.0383 | val RMSE 0.0350
+    ↳ train RMSE 0.0368 | val RMSE 0.0324
+    ↳ train RMSE 0.0361 | val RMSE 0.0335
+    ↳ train RMSE 0.0362 | val RMSE 0.0348
+    ↳ train RMSE 0.0353 | val RMSE 0.0356
+    ↳ train RMSE 0.0347 | val RMSE 0.0337
+    ↳ train RMSE 0.0342 | val RMSE 0.0323
+    ↳ train RMSE 0.0340 | val RMSE 0.0345
+   RMSE 0.04697
+→ DeepSeek + Spectral
+    ↳ train RMSE 0.6765 | val RMSE 0.0353
+    ↳ train RMSE 0.0409 | val RMSE 0.0312
+    ↳ train RMSE 0.0382 | val RMSE 0.0313
+    ↳ train RMSE 0.0369 | val RMSE 0.0332
+    ↳ train RMSE 0.0365 | val RMSE 0.0348
+    ↳ train RMSE 0.0351 | val RMSE 0.0357
+    ↳ train RMSE 0.0343 | val RMSE 0.0318
+    ↳ train RMSE 0.0335 | val RMSE 0.0317
+    ↳ train RMSE 0.0327 | val RMSE 0.0358
+    ↳ train RMSE 0.0317 | val RMSE 0.0324
+   RMSE 0.04307
+→ GPT2 + Vanilla
+    ↳ train RMSE 1.0739 | val RMSE 0.2139
+    ↳ train RMSE 0.3586 | val RMSE 0.1645
+    ↳ train RMSE 0.3130 | val RMSE 0.1332
+    ↳ train RMSE 0.2847 | val RMSE 0.1253
+    ↳ train RMSE 0.2597 | val RMSE 0.1018
+    ↳ train RMSE 0.2411 | val RMSE 0.1134
+    ↳ train RMSE 0.2274 | val RMSE 0.1256
+    ↳ train RMSE 0.2174 | val RMSE 0.1203
+    ↳ train RMSE 0.2089 | val RMSE 0.1157
+    ↳ train RMSE 0.2031 | val RMSE 0.1307
+   RMSE 0.14703
+→ GPT2 + Positional
+    ↳ train RMSE 1.1602 | val RMSE 0.3165
+    ↳ train RMSE 0.3775 | val RMSE 0.2202
+    ↳ train RMSE 0.2912 | val RMSE 0.1578
+    ↳ train RMSE 0.2532 | val RMSE 0.1363
+    ↳ train RMSE 0.2341 | val RMSE 0.1406
+    ↳ train RMSE 0.2205 | val RMSE 0.1582
+    ↳ train RMSE 0.2130 | val RMSE 0.1709
+    ↳ train RMSE 0.2043 | val RMSE 0.1318
+    ↳ train RMSE 0.1961 | val RMSE 0.0926
+    ↳ train RMSE 0.1906 | val RMSE 0.1042
+   RMSE 0.11102
+→ GPT2 + RelativePos
+    ↳ train RMSE 0.8169 | val RMSE 0.1735
+    ↳ train RMSE 0.2811 | val RMSE 0.1481
+    ↳ train RMSE 0.2404 | val RMSE 0.1194
+    ↳ train RMSE 0.2200 | val RMSE 0.1200
+    ↳ train RMSE 0.2071 | val RMSE 0.1306
+    ↳ train RMSE 0.1974 | val RMSE 0.1282
+    ↳ train RMSE 0.1892 | val RMSE 0.1200
+    ↳ train RMSE 0.1817 | val RMSE 0.1040
+    ↳ train RMSE 0.1764 | val RMSE 0.1150
+    ↳ train RMSE 0.1703 | val RMSE 0.0973
+   RMSE 0.10600
+→ GPT2 + Sparse
+    ↳ train RMSE 1.0499 | val RMSE 0.2277
+    ↳ train RMSE 0.3858 | val RMSE 0.2100
+    ↳ train RMSE 0.3193 | val RMSE 0.2243
+    ↳ train RMSE 0.2865 | val RMSE 0.2076
+    ↳ train RMSE 0.2704 | val RMSE 0.2191
+    ↳ train RMSE 0.2558 | val RMSE 0.2282
+    ↳ train RMSE 0.2455 | val RMSE 0.2171
+    ↳ train RMSE 0.2344 | val RMSE 0.2100
+    ↳ train RMSE 0.2269 | val RMSE 0.2181
+    ↳ train RMSE 0.2196 | val RMSE 0.2039
+   RMSE 0.21754
+→ GPT2 + Spectral
+    ↳ train RMSE 1.0932 | val RMSE 0.3154
+    ↳ train RMSE 0.5395 | val RMSE 0.2698
+    ↳ train RMSE 0.4691 | val RMSE 0.2396
+    ↳ train RMSE 0.4308 | val RMSE 0.1172
+    ↳ train RMSE 0.3498 | val RMSE 0.0741
+    ↳ train RMSE 0.3005 | val RMSE 0.0787
+    ↳ train RMSE 0.2733 | val RMSE 0.0711
+    ↳ train RMSE 0.2551 | val RMSE 0.0701
+    ↳ train RMSE 0.2420 | val RMSE 0.0816
+    ↳ train RMSE 0.2288 | val RMSE 0.0769
+   RMSE 0.08463
+→ BERT + Vanilla
+    ↳ train RMSE 0.9224 | val RMSE 0.1814
+    ↳ train RMSE 0.1717 | val RMSE 0.1634
+    ↳ train RMSE 0.1620 | val RMSE 0.1407
+    ↳ train RMSE 0.1541 | val RMSE 0.1229
+    ↳ train RMSE 0.1479 | val RMSE 0.1132
+    ↳ train RMSE 0.1436 | val RMSE 0.1160
+    ↳ train RMSE 0.1395 | val RMSE 0.1110
+    ↳ train RMSE 0.1357 | val RMSE 0.1134
+    ↳ train RMSE 0.1319 | val RMSE 0.1064
+    ↳ train RMSE 0.1293 | val RMSE 0.1069
+   RMSE 0.12238
+→ BERT + Positional
+    ↳ train RMSE 0.6903 | val RMSE 0.2131
+    ↳ train RMSE 0.1485 | val RMSE 0.1454
+    ↳ train RMSE 0.1417 | val RMSE 0.1484
+    ↳ train RMSE 0.1365 | val RMSE 0.1470
+    ↳ train RMSE 0.1324 | val RMSE 0.1310
+    ↳ train RMSE 0.1298 | val RMSE 0.1220
+    ↳ train RMSE 0.1258 | val RMSE 0.1239
+    ↳ train RMSE 0.1223 | val RMSE 0.1321
+    ↳ train RMSE 0.1200 | val RMSE 0.1145
+    ↳ train RMSE 0.1175 | val RMSE 0.1176
+   RMSE 0.13072
+→ BERT + RelativePos
+    ↳ train RMSE 0.6852 | val RMSE 0.2144
+    ↳ train RMSE 0.1536 | val RMSE 0.1601
+    ↳ train RMSE 0.1426 | val RMSE 0.1493
+    ↳ train RMSE 0.1360 | val RMSE 0.1340
+    ↳ train RMSE 0.1307 | val RMSE 0.1220
+    ↳ train RMSE 0.1267 | val RMSE 0.1199
+    ↳ train RMSE 0.1229 | val RMSE 0.1152
+    ↳ train RMSE 0.1207 | val RMSE 0.1104
+    ↳ train RMSE 0.1183 | val RMSE 0.1099
+    ↳ train RMSE 0.1153 | val RMSE 0.1042
+   RMSE 0.11831
+→ BERT + Sparse
+    ↳ train RMSE 0.6023 | val RMSE 0.1561
+    ↳ train RMSE 0.1488 | val RMSE 0.1334
+    ↳ train RMSE 0.1420 | val RMSE 0.1001
+    ↳ train RMSE 0.1399 | val RMSE 0.1144
+    ↳ train RMSE 0.1358 | val RMSE 0.1054
+    ↳ train RMSE 0.1331 | val RMSE 0.0977
+    ↳ train RMSE 0.1301 | val RMSE 0.1082
+    ↳ train RMSE 0.1280 | val RMSE 0.0920
+    ↳ train RMSE 0.1248 | val RMSE 0.0815
+    ↳ train RMSE 0.1231 | val RMSE 0.1008
+   RMSE 0.11670
+→ BERT + Spectral
+    ↳ train RMSE 0.8569 | val RMSE 0.1571
+    ↳ train RMSE 0.1796 | val RMSE 0.1434
+    ↳ train RMSE 0.1691 | val RMSE 0.1350
+    ↳ train RMSE 0.1601 | val RMSE 0.1359
+    ↳ train RMSE 0.1496 | val RMSE 0.1261
+    ↳ train RMSE 0.1424 | val RMSE 0.1225
+    ↳ train RMSE 0.1363 | val RMSE 0.1153
+    ↳ train RMSE 0.1314 | val RMSE 0.1087
+    ↳ train RMSE 0.1283 | val RMSE 0.1119
+    ↳ train RMSE 0.1246 | val RMSE 0.1083
+   RMSE 0.12696
+
+━━ salient50_removed | run 10/10 ━━
+→ DeepSeek + Vanilla
+    ↳ train RMSE 0.6272 | val RMSE 0.0480
+    ↳ train RMSE 0.0481 | val RMSE 0.0385
+    ↳ train RMSE 0.0429 | val RMSE 0.0367
+    ↳ train RMSE 0.0402 | val RMSE 0.0349
+    ↳ train RMSE 0.0389 | val RMSE 0.0339
+    ↳ train RMSE 0.0376 | val RMSE 0.0324
+    ↳ train RMSE 0.0369 | val RMSE 0.0333
+    ↳ train RMSE 0.0364 | val RMSE 0.0334
+    ↳ train RMSE 0.0358 | val RMSE 0.0330
+    ↳ train RMSE 0.0354 | val RMSE 0.0320
+   RMSE 0.03849
+→ DeepSeek + Positional
+    ↳ train RMSE 0.7624 | val RMSE 0.0774
+    ↳ train RMSE 0.0637 | val RMSE 0.1003
+    ↳ train RMSE 0.0585 | val RMSE 0.0495
+    ↳ train RMSE 0.0453 | val RMSE 0.0452
+    ↳ train RMSE 0.0406 | val RMSE 0.0478
+    ↳ train RMSE 0.0367 | val RMSE 0.0412
+    ↳ train RMSE 0.0379 | val RMSE 0.0461
+    ↳ train RMSE 0.0337 | val RMSE 0.0440
+    ↳ train RMSE 0.0305 | val RMSE 0.0361
+    ↳ train RMSE 0.0340 | val RMSE 0.0587
+   RMSE 0.07471
+→ DeepSeek + RelativePos
+    ↳ train RMSE 0.8190 | val RMSE 0.0438
+    ↳ train RMSE 0.0418 | val RMSE 0.0295
+    ↳ train RMSE 0.0397 | val RMSE 0.0306
+    ↳ train RMSE 0.0383 | val RMSE 0.0324
+    ↳ train RMSE 0.0382 | val RMSE 0.0333
+    ↳ train RMSE 0.0388 | val RMSE 0.0341
+    ↳ train RMSE 0.0364 | val RMSE 0.0340
+    ↳ train RMSE 0.0357 | val RMSE 0.0330
+    ↳ train RMSE 0.0354 | val RMSE 0.0368
+    ↳ train RMSE 0.0349 | val RMSE 0.0338
+   RMSE 0.04546
+→ DeepSeek + Sparse
+    ↳ train RMSE 1.0283 | val RMSE 0.0967
+    ↳ train RMSE 0.0509 | val RMSE 0.0292
+    ↳ train RMSE 0.0408 | val RMSE 0.0295
+    ↳ train RMSE 0.0410 | val RMSE 0.0296
+    ↳ train RMSE 0.0405 | val RMSE 0.0296
+    ↳ train RMSE 0.0404 | val RMSE 0.0297
+    ↳ train RMSE 0.0403 | val RMSE 0.0297
+    ↳ train RMSE 0.0400 | val RMSE 0.0299
+    ↳ train RMSE 0.0398 | val RMSE 0.0300
+    ↳ train RMSE 0.0398 | val RMSE 0.0304
+   RMSE 0.03843
+→ DeepSeek + Spectral
+    ↳ train RMSE 1.0222 | val RMSE 0.0534
+    ↳ train RMSE 0.0434 | val RMSE 0.0301
+    ↳ train RMSE 0.0399 | val RMSE 0.0308
+    ↳ train RMSE 0.0392 | val RMSE 0.0321
+    ↳ train RMSE 0.0384 | val RMSE 0.0323
+    ↳ train RMSE 0.0379 | val RMSE 0.0330
+    ↳ train RMSE 0.0372 | val RMSE 0.0345
+    ↳ train RMSE 0.0364 | val RMSE 0.0344
+    ↳ train RMSE 0.0390 | val RMSE 0.0401
+    ↳ train RMSE 0.0355 | val RMSE 0.0349
+   RMSE 0.04492
+→ GPT2 + Vanilla
+    ↳ train RMSE 1.3161 | val RMSE 0.5616
+    ↳ train RMSE 0.6136 | val RMSE 0.2162
+    ↳ train RMSE 0.4457 | val RMSE 0.2067
+    ↳ train RMSE 0.3324 | val RMSE 0.3149
+    ↳ train RMSE 0.2884 | val RMSE 0.3121
+    ↳ train RMSE 0.2631 | val RMSE 0.3279
+    ↳ train RMSE 0.2450 | val RMSE 0.2787
+    ↳ train RMSE 0.2299 | val RMSE 0.2207
+    ↳ train RMSE 0.2204 | val RMSE 0.1779
+    ↳ train RMSE 0.2116 | val RMSE 0.1773
+   RMSE 0.18870
+→ GPT2 + Positional
+    ↳ train RMSE 0.9640 | val RMSE 0.3458
+    ↳ train RMSE 0.3696 | val RMSE 0.2600
+    ↳ train RMSE 0.3000 | val RMSE 0.1622
+    ↳ train RMSE 0.2599 | val RMSE 0.1399
+    ↳ train RMSE 0.2366 | val RMSE 0.1427
+    ↳ train RMSE 0.2202 | val RMSE 0.1373
+    ↳ train RMSE 0.2070 | val RMSE 0.1260
+    ↳ train RMSE 0.1969 | val RMSE 0.1142
+    ↳ train RMSE 0.1879 | val RMSE 0.1135
+    ↳ train RMSE 0.1817 | val RMSE 0.1195
+   RMSE 0.13572
+→ GPT2 + RelativePos
+    ↳ train RMSE 0.9428 | val RMSE 0.3399
+    ↳ train RMSE 0.3367 | val RMSE 0.1718
+    ↳ train RMSE 0.2687 | val RMSE 0.1283
+    ↳ train RMSE 0.2334 | val RMSE 0.1079
+    ↳ train RMSE 0.2157 | val RMSE 0.1120
+    ↳ train RMSE 0.2039 | val RMSE 0.1117
+    ↳ train RMSE 0.1943 | val RMSE 0.1000
+    ↳ train RMSE 0.1850 | val RMSE 0.1015
+    ↳ train RMSE 0.1780 | val RMSE 0.0967
+    ↳ train RMSE 0.1734 | val RMSE 0.1071
+   RMSE 0.11701
+→ GPT2 + Sparse
+    ↳ train RMSE 1.0478 | val RMSE 0.3415
+    ↳ train RMSE 0.4218 | val RMSE 0.2493
+    ↳ train RMSE 0.3630 | val RMSE 0.2809
+    ↳ train RMSE 0.3287 | val RMSE 0.2169
+    ↳ train RMSE 0.2966 | val RMSE 0.1795
+    ↳ train RMSE 0.2743 | val RMSE 0.1613
+    ↳ train RMSE 0.2569 | val RMSE 0.1628
+    ↳ train RMSE 0.2487 | val RMSE 0.1412
+    ↳ train RMSE 0.2380 | val RMSE 0.1481
+    ↳ train RMSE 0.2324 | val RMSE 0.1445
+   RMSE 0.16000
+→ GPT2 + Spectral
+    ↳ train RMSE 0.9140 | val RMSE 0.2536
+    ↳ train RMSE 0.5731 | val RMSE 0.3256
+    ↳ train RMSE 0.4254 | val RMSE 0.1839
+    ↳ train RMSE 0.3031 | val RMSE 0.1795
+    ↳ train RMSE 0.2610 | val RMSE 0.1785
+    ↳ train RMSE 0.2397 | val RMSE 0.1832
+    ↳ train RMSE 0.2240 | val RMSE 0.1944
+    ↳ train RMSE 0.2120 | val RMSE 0.1793
+    ↳ train RMSE 0.2020 | val RMSE 0.1518
+    ↳ train RMSE 0.1945 | val RMSE 0.1269
+   RMSE 0.13726
+→ BERT + Vanilla
+    ↳ train RMSE 0.7489 | val RMSE 0.1823
+    ↳ train RMSE 0.1438 | val RMSE 0.1596
+    ↳ train RMSE 0.1358 | val RMSE 0.1524
+    ↳ train RMSE 0.1289 | val RMSE 0.1283
+    ↳ train RMSE 0.1248 | val RMSE 0.1155
+    ↳ train RMSE 0.1208 | val RMSE 0.1044
+    ↳ train RMSE 0.1186 | val RMSE 0.0972
+    ↳ train RMSE 0.1163 | val RMSE 0.0885
+    ↳ train RMSE 0.1148 | val RMSE 0.0996
+    ↳ train RMSE 0.1133 | val RMSE 0.0890
+   RMSE 0.10295
+→ BERT + Positional
+    ↳ train RMSE 0.7687 | val RMSE 0.1961
+    ↳ train RMSE 0.1499 | val RMSE 0.1813
+    ↳ train RMSE 0.1424 | val RMSE 0.1516
+    ↳ train RMSE 0.1380 | val RMSE 0.1473
+    ↳ train RMSE 0.1335 | val RMSE 0.1307
+    ↳ train RMSE 0.1309 | val RMSE 0.1310
+    ↳ train RMSE 0.1287 | val RMSE 0.1303
+    ↳ train RMSE 0.1257 | val RMSE 0.1134
+    ↳ train RMSE 0.1231 | val RMSE 0.0970
+    ↳ train RMSE 0.1210 | val RMSE 0.1054
+   RMSE 0.11997
+→ BERT + RelativePos
+    ↳ train RMSE 0.6015 | val RMSE 0.1310
+    ↳ train RMSE 0.1438 | val RMSE 0.1100
+    ↳ train RMSE 0.1355 | val RMSE 0.1102
+    ↳ train RMSE 0.1303 | val RMSE 0.1024
+    ↳ train RMSE 0.1266 | val RMSE 0.0967
+    ↳ train RMSE 0.1233 | val RMSE 0.1042
+    ↳ train RMSE 0.1199 | val RMSE 0.1047
+    ↳ train RMSE 0.1170 | val RMSE 0.1006
+    ↳ train RMSE 0.1146 | val RMSE 0.0987
+    ↳ train RMSE 0.1119 | val RMSE 0.0919
+   RMSE 0.10637
+→ BERT + Sparse
+    ↳ train RMSE 0.8413 | val RMSE 0.1833
+    ↳ train RMSE 0.1514 | val RMSE 0.1095
+    ↳ train RMSE 0.1443 | val RMSE 0.1049
+    ↳ train RMSE 0.1398 | val RMSE 0.0977
+    ↳ train RMSE 0.1352 | val RMSE 0.0766
+    ↳ train RMSE 0.1310 | val RMSE 0.0817
+    ↳ train RMSE 0.1286 | val RMSE 0.0780
+    ↳ train RMSE 0.1276 | val RMSE 0.0800
+    ↳ train RMSE 0.1233 | val RMSE 0.0784
+    ↳ train RMSE 0.1212 | val RMSE 0.0864
+   RMSE 0.10218
+→ BERT + Spectral
+    ↳ train RMSE 0.7500 | val RMSE 0.1407
+    ↳ train RMSE 0.1546 | val RMSE 0.1271
+    ↳ train RMSE 0.1451 | val RMSE 0.1053
+    ↳ train RMSE 0.1408 | val RMSE 0.1007
+    ↳ train RMSE 0.1360 | val RMSE 0.1136
+    ↳ train RMSE 0.1328 | val RMSE 0.1065
+    ↳ train RMSE 0.1291 | val RMSE 0.1077
+    ↳ train RMSE 0.1270 | val RMSE 0.1150
+    ↳ train RMSE 0.1236 | val RMSE 0.1089
+    ↳ train RMSE 0.1211 | val RMSE 0.0932
+   RMSE 0.11028
+
+━━ random50_removed | run 1/10 ━━
+→ DeepSeek + Vanilla
+    ↳ train RMSE 0.5117 | val RMSE 0.0373
+    ↳ train RMSE 0.0380 | val RMSE 0.0381
+    ↳ train RMSE 0.0357 | val RMSE 0.0335
+    ↳ train RMSE 0.0347 | val RMSE 0.0322
+    ↳ train RMSE 0.0326 | val RMSE 0.0376
+    ↳ train RMSE 0.0311 | val RMSE 0.0377
+    ↳ train RMSE 0.0289 | val RMSE 0.0351
+    ↳ train RMSE 0.0307 | val RMSE 0.0431
+    ↳ train RMSE 0.0328 | val RMSE 0.0547
+    ↳ train RMSE 0.0362 | val RMSE 0.0325
+   RMSE 0.03828
+→ DeepSeek + Positional
+    ↳ train RMSE 0.5892 | val RMSE 0.0377
+    ↳ train RMSE 0.0429 | val RMSE 0.0341
+    ↳ train RMSE 0.0404 | val RMSE 0.0400
+    ↳ train RMSE 0.0388 | val RMSE 0.0336
+    ↳ train RMSE 0.0373 | val RMSE 0.0364
+    ↳ train RMSE 0.0363 | val RMSE 0.0350
+    ↳ train RMSE 0.0355 | val RMSE 0.0336
+    ↳ train RMSE 0.0349 | val RMSE 0.0337
+    ↳ train RMSE 0.0343 | val RMSE 0.0333
+    ↳ train RMSE 0.0339 | val RMSE 0.0318
+   RMSE 0.03937
+→ DeepSeek + RelativePos
+    ↳ train RMSE 0.8169 | val RMSE 0.0413
+    ↳ train RMSE 0.0450 | val RMSE 0.0366
+    ↳ train RMSE 0.0417 | val RMSE 0.0366
+    ↳ train RMSE 0.0401 | val RMSE 0.0385
+    ↳ train RMSE 0.0394 | val RMSE 0.0356
+    ↳ train RMSE 0.0383 | val RMSE 0.0374
+    ↳ train RMSE 0.0373 | val RMSE 0.0362
+    ↳ train RMSE 0.0365 | val RMSE 0.0379
+    ↳ train RMSE 0.0366 | val RMSE 0.0337
+    ↳ train RMSE 0.0356 | val RMSE 0.0354
+   RMSE 0.04498
+→ DeepSeek + Sparse
+    ↳ train RMSE 0.8640 | val RMSE 0.0438
+    ↳ train RMSE 0.0450 | val RMSE 0.0383
+    ↳ train RMSE 0.0400 | val RMSE 0.0361
+    ↳ train RMSE 0.0380 | val RMSE 0.0432
+    ↳ train RMSE 0.0371 | val RMSE 0.0350
+    ↳ train RMSE 0.0357 | val RMSE 0.0383
+    ↳ train RMSE 0.0351 | val RMSE 0.0425
+    ↳ train RMSE 0.0348 | val RMSE 0.0372
+    ↳ train RMSE 0.0356 | val RMSE 0.0405
+    ↳ train RMSE 0.0340 | val RMSE 0.0352
+   RMSE 0.04595
+→ DeepSeek + Spectral
+    ↳ train RMSE 0.7194 | val RMSE 0.0376
+    ↳ train RMSE 0.0411 | val RMSE 0.0308
+    ↳ train RMSE 0.0392 | val RMSE 0.0309
+    ↳ train RMSE 0.0383 | val RMSE 0.0311
+    ↳ train RMSE 0.0377 | val RMSE 0.0334
+    ↳ train RMSE 0.0370 | val RMSE 0.0327
+    ↳ train RMSE 0.0362 | val RMSE 0.0350
+    ↳ train RMSE 0.0358 | val RMSE 0.0317
+    ↳ train RMSE 0.0353 | val RMSE 0.0362
+    ↳ train RMSE 0.0348 | val RMSE 0.0367
+   RMSE 0.04882
+→ GPT2 + Vanilla
+    ↳ train RMSE 1.2101 | val RMSE 0.3955
+    ↳ train RMSE 0.6016 | val RMSE 0.2109
+    ↳ train RMSE 0.3629 | val RMSE 0.1010
+    ↳ train RMSE 0.2993 | val RMSE 0.0821
+    ↳ train RMSE 0.2695 | val RMSE 0.0756
+    ↳ train RMSE 0.2519 | val RMSE 0.0699
+    ↳ train RMSE 0.2375 | val RMSE 0.0670
+    ↳ train RMSE 0.2256 | val RMSE 0.0649
+    ↳ train RMSE 0.2195 | val RMSE 0.0709
+    ↳ train RMSE 0.2127 | val RMSE 0.0655
+   RMSE 0.07644
+→ GPT2 + Positional
+    ↳ train RMSE 0.8172 | val RMSE 0.2432
+    ↳ train RMSE 0.4291 | val RMSE 0.2264
+    ↳ train RMSE 0.3185 | val RMSE 0.1580
+    ↳ train RMSE 0.2714 | val RMSE 0.1250
+    ↳ train RMSE 0.2448 | val RMSE 0.0693
+    ↳ train RMSE 0.2257 | val RMSE 0.0617
+    ↳ train RMSE 0.2087 | val RMSE 0.0583
+    ↳ train RMSE 0.1962 | val RMSE 0.0541
+    ↳ train RMSE 0.1854 | val RMSE 0.0601
+    ↳ train RMSE 0.1760 | val RMSE 0.0525
+   RMSE 0.05700
+→ GPT2 + RelativePos
+    ↳ train RMSE 0.7838 | val RMSE 0.1414
+    ↳ train RMSE 0.2630 | val RMSE 0.1223
+    ↳ train RMSE 0.2359 | val RMSE 0.1253
+    ↳ train RMSE 0.2171 | val RMSE 0.1084
+    ↳ train RMSE 0.2049 | val RMSE 0.1040
+    ↳ train RMSE 0.1941 | val RMSE 0.1005
+    ↳ train RMSE 0.1851 | val RMSE 0.0939
+    ↳ train RMSE 0.1768 | val RMSE 0.1000
+    ↳ train RMSE 0.1706 | val RMSE 0.1155
+    ↳ train RMSE 0.1661 | val RMSE 0.1005
+   RMSE 0.11112
+→ GPT2 + Sparse
+    ↳ train RMSE 0.9111 | val RMSE 0.3774
+    ↳ train RMSE 0.5038 | val RMSE 0.2542
+    ↳ train RMSE 0.4279 | val RMSE 0.1951
+    ↳ train RMSE 0.3924 | val RMSE 0.1575
+    ↳ train RMSE 0.3571 | val RMSE 0.1428
+    ↳ train RMSE 0.3288 | val RMSE 0.1853
+    ↳ train RMSE 0.3102 | val RMSE 0.1743
+    ↳ train RMSE 0.2951 | val RMSE 0.1492
+    ↳ train RMSE 0.2794 | val RMSE 0.1525
+    ↳ train RMSE 0.2658 | val RMSE 0.1171
+   RMSE 0.11670
+→ GPT2 + Spectral
+    ↳ train RMSE 1.1478 | val RMSE 0.5311
+    ↳ train RMSE 0.6440 | val RMSE 0.5989
+    ↳ train RMSE 0.5243 | val RMSE 0.2340
+    ↳ train RMSE 0.3805 | val RMSE 0.3574
+    ↳ train RMSE 0.3173 | val RMSE 0.3994
+    ↳ train RMSE 0.2671 | val RMSE 0.2524
+    ↳ train RMSE 0.2392 | val RMSE 0.2107
+    ↳ train RMSE 0.2241 | val RMSE 0.1709
+    ↳ train RMSE 0.2125 | val RMSE 0.1677
+    ↳ train RMSE 0.2052 | val RMSE 0.1923
+   RMSE 0.20049
+→ BERT + Vanilla
+    ↳ train RMSE 0.7088 | val RMSE 0.1961
+    ↳ train RMSE 0.1519 | val RMSE 0.1588
+    ↳ train RMSE 0.1430 | val RMSE 0.1474
+    ↳ train RMSE 0.1381 | val RMSE 0.1412
+    ↳ train RMSE 0.1329 | val RMSE 0.1234
+    ↳ train RMSE 0.1299 | val RMSE 0.1136
+    ↳ train RMSE 0.1264 | val RMSE 0.1192
+    ↳ train RMSE 0.1231 | val RMSE 0.1122
+    ↳ train RMSE 0.1211 | val RMSE 0.1049
+    ↳ train RMSE 0.1186 | val RMSE 0.1025
+   RMSE 0.11630
+→ BERT + Positional
+    ↳ train RMSE 0.6171 | val RMSE 0.1015
+    ↳ train RMSE 0.1337 | val RMSE 0.1513
+    ↳ train RMSE 0.1279 | val RMSE 0.1225
+    ↳ train RMSE 0.1223 | val RMSE 0.1099
+    ↳ train RMSE 0.1209 | val RMSE 0.1085
+    ↳ train RMSE 0.1171 | val RMSE 0.1044
+    ↳ train RMSE 0.1149 | val RMSE 0.1103
+    ↳ train RMSE 0.1130 | val RMSE 0.0976
+    ↳ train RMSE 0.1110 | val RMSE 0.0982
+    ↳ train RMSE 0.1089 | val RMSE 0.0933
+   RMSE 0.10759
+→ BERT + RelativePos
+    ↳ train RMSE 0.5218 | val RMSE 0.2258
+    ↳ train RMSE 0.1467 | val RMSE 0.1795
+    ↳ train RMSE 0.1386 | val RMSE 0.1676
+    ↳ train RMSE 0.1327 | val RMSE 0.1529
+    ↳ train RMSE 0.1284 | val RMSE 0.1419
+    ↳ train RMSE 0.1245 | val RMSE 0.1198
+    ↳ train RMSE 0.1215 | val RMSE 0.1312
+    ↳ train RMSE 0.1182 | val RMSE 0.1083
+    ↳ train RMSE 0.1154 | val RMSE 0.1073
+    ↳ train RMSE 0.1134 | val RMSE 0.1095
+   RMSE 0.12406
+→ BERT + Sparse
+    ↳ train RMSE 0.6771 | val RMSE 0.1313
+    ↳ train RMSE 0.1630 | val RMSE 0.1066
+    ↳ train RMSE 0.1569 | val RMSE 0.0974
+    ↳ train RMSE 0.1494 | val RMSE 0.0964
+    ↳ train RMSE 0.1450 | val RMSE 0.0963
+    ↳ train RMSE 0.1413 | val RMSE 0.1031
+    ↳ train RMSE 0.1379 | val RMSE 0.1042
+    ↳ train RMSE 0.1348 | val RMSE 0.1115
+    ↳ train RMSE 0.1340 | val RMSE 0.1156
+    ↳ train RMSE 0.1308 | val RMSE 0.1146
+   RMSE 0.13212
+→ BERT + Spectral
+    ↳ train RMSE 0.7748 | val RMSE 0.2278
+    ↳ train RMSE 0.1591 | val RMSE 0.1643
+    ↳ train RMSE 0.1506 | val RMSE 0.1437
+    ↳ train RMSE 0.1440 | val RMSE 0.1388
+    ↳ train RMSE 0.1393 | val RMSE 0.1347
+    ↳ train RMSE 0.1349 | val RMSE 0.1360
+    ↳ train RMSE 0.1312 | val RMSE 0.1312
+    ↳ train RMSE 0.1282 | val RMSE 0.1243
+    ↳ train RMSE 0.1259 | val RMSE 0.1262
+    ↳ train RMSE 0.1234 | val RMSE 0.1171
+   RMSE 0.13411
+
+━━ random50_removed | run 2/10 ━━
+→ DeepSeek + Vanilla
+    ↳ train RMSE 0.5511 | val RMSE 0.0429
+    ↳ train RMSE 0.0416 | val RMSE 0.0356
+    ↳ train RMSE 0.0371 | val RMSE 0.0342
+    ↳ train RMSE 0.0345 | val RMSE 0.0331
+    ↳ train RMSE 0.0333 | val RMSE 0.0357
+    ↳ train RMSE 0.0329 | val RMSE 0.0636
+    ↳ train RMSE 0.0349 | val RMSE 0.0332
+    ↳ train RMSE 0.0299 | val RMSE 0.0357
+    ↳ train RMSE 0.0311 | val RMSE 0.0396
+    ↳ train RMSE 0.0291 | val RMSE 0.0333
+   RMSE 0.04078
+→ DeepSeek + Positional
+    ↳ train RMSE 0.6706 | val RMSE 0.0440
+    ↳ train RMSE 0.0481 | val RMSE 0.0409
+    ↳ train RMSE 0.0443 | val RMSE 0.0394
+    ↳ train RMSE 0.0417 | val RMSE 0.0372
+    ↳ train RMSE 0.0399 | val RMSE 0.0380
+    ↳ train RMSE 0.0385 | val RMSE 0.0388
+    ↳ train RMSE 0.0378 | val RMSE 0.0364
+    ↳ train RMSE 0.0369 | val RMSE 0.0381
+    ↳ train RMSE 0.0365 | val RMSE 0.0362
+    ↳ train RMSE 0.0356 | val RMSE 0.0365
+   RMSE 0.04481
+→ DeepSeek + RelativePos
+    ↳ train RMSE 0.8178 | val RMSE 0.0310
+    ↳ train RMSE 0.0411 | val RMSE 0.0305
+    ↳ train RMSE 0.0396 | val RMSE 0.0308
+    ↳ train RMSE 0.0387 | val RMSE 0.0315
+    ↳ train RMSE 0.0381 | val RMSE 0.0323
+    ↳ train RMSE 0.0375 | val RMSE 0.0328
+    ↳ train RMSE 0.0370 | val RMSE 0.0335
+    ↳ train RMSE 0.0365 | val RMSE 0.0334
+    ↳ train RMSE 0.0361 | val RMSE 0.0351
+    ↳ train RMSE 0.0357 | val RMSE 0.0341
+   RMSE 0.04506
+→ DeepSeek + Sparse
+    ↳ train RMSE 1.1524 | val RMSE 0.0383
+    ↳ train RMSE 0.0424 | val RMSE 0.0409
+    ↳ train RMSE 0.0370 | val RMSE 0.0319
+    ↳ train RMSE 0.0363 | val RMSE 0.0326
+    ↳ train RMSE 0.0359 | val RMSE 0.0327
+    ↳ train RMSE 0.0369 | val RMSE 0.0342
+    ↳ train RMSE 0.0342 | val RMSE 0.0358
+    ↳ train RMSE 0.0344 | val RMSE 0.0327
+    ↳ train RMSE 0.0339 | val RMSE 0.0328
+    ↳ train RMSE 0.0339 | val RMSE 0.0330
+   RMSE 0.04276
+→ DeepSeek + Spectral
+    ↳ train RMSE 0.5781 | val RMSE 0.0304
+    ↳ train RMSE 0.0391 | val RMSE 0.0303
+    ↳ train RMSE 0.0370 | val RMSE 0.0325
+    ↳ train RMSE 0.0351 | val RMSE 0.0339
+    ↳ train RMSE 0.0337 | val RMSE 0.0312
+    ↳ train RMSE 0.0312 | val RMSE 0.0312
+    ↳ train RMSE 0.5992 | val RMSE 0.0396
+    ↳ train RMSE 0.0436 | val RMSE 0.0295
+    ↳ train RMSE 0.0406 | val RMSE 0.0296
+    ↳ train RMSE 0.0405 | val RMSE 0.0295
+   RMSE 0.03517
+→ GPT2 + Vanilla
+    ↳ train RMSE 1.0919 | val RMSE 0.2104
+    ↳ train RMSE 0.3680 | val RMSE 0.1885
+    ↳ train RMSE 0.3198 | val RMSE 0.1821
+    ↳ train RMSE 0.2889 | val RMSE 0.1429
+    ↳ train RMSE 0.2652 | val RMSE 0.1586
+    ↳ train RMSE 0.2517 | val RMSE 0.1285
+    ↳ train RMSE 0.2416 | val RMSE 0.1388
+    ↳ train RMSE 0.2319 | val RMSE 0.1251
+    ↳ train RMSE 0.2246 | val RMSE 0.1371
+    ↳ train RMSE 0.2179 | val RMSE 0.1266
+   RMSE 0.14144
+→ GPT2 + Positional
+    ↳ train RMSE 1.3150 | val RMSE 0.5739
+    ↳ train RMSE 0.4927 | val RMSE 0.3466
+    ↳ train RMSE 0.3421 | val RMSE 0.2441
+    ↳ train RMSE 0.3014 | val RMSE 0.1664
+    ↳ train RMSE 0.2786 | val RMSE 0.1720
+    ↳ train RMSE 0.2604 | val RMSE 0.1731
+    ↳ train RMSE 0.2450 | val RMSE 0.1565
+    ↳ train RMSE 0.2339 | val RMSE 0.1541
+    ↳ train RMSE 0.2235 | val RMSE 0.1467
+    ↳ train RMSE 0.2148 | val RMSE 0.1388
+   RMSE 0.14574
+→ GPT2 + RelativePos
+    ↳ train RMSE 0.8116 | val RMSE 0.1926
+    ↳ train RMSE 0.2921 | val RMSE 0.1114
+    ↳ train RMSE 0.2377 | val RMSE 0.1011
+    ↳ train RMSE 0.2139 | val RMSE 0.1007
+    ↳ train RMSE 0.2007 | val RMSE 0.0823
+    ↳ train RMSE 0.1900 | val RMSE 0.0842
+    ↳ train RMSE 0.1816 | val RMSE 0.0791
+    ↳ train RMSE 0.1739 | val RMSE 0.0769
+    ↳ train RMSE 0.1686 | val RMSE 0.0758
+    ↳ train RMSE 0.1622 | val RMSE 0.0733
+   RMSE 0.08413
+→ GPT2 + Sparse
+    ↳ train RMSE 1.3958 | val RMSE 0.4347
+    ↳ train RMSE 0.4590 | val RMSE 0.4211
+    ↳ train RMSE 0.3952 | val RMSE 0.3421
+    ↳ train RMSE 0.3530 | val RMSE 0.2036
+    ↳ train RMSE 0.3286 | val RMSE 0.1592
+    ↳ train RMSE 0.2987 | val RMSE 0.1713
+    ↳ train RMSE 0.2879 | val RMSE 0.1675
+    ↳ train RMSE 0.2760 | val RMSE 0.1677
+    ↳ train RMSE 0.2627 | val RMSE 0.1744
+    ↳ train RMSE 0.2549 | val RMSE 0.1686
+   RMSE 0.18588
+→ GPT2 + Spectral
+    ↳ train RMSE 1.0830 | val RMSE 0.4200
+    ↳ train RMSE 0.4266 | val RMSE 0.3010
+    ↳ train RMSE 0.3525 | val RMSE 0.1063
+    ↳ train RMSE 0.2978 | val RMSE 0.1332
+    ↳ train RMSE 0.2729 | val RMSE 0.1188
+    ↳ train RMSE 0.2556 | val RMSE 0.1124
+    ↳ train RMSE 0.2401 | val RMSE 0.1206
+    ↳ train RMSE 0.2287 | val RMSE 0.0978
+    ↳ train RMSE 0.2173 | val RMSE 0.1038
+    ↳ train RMSE 0.2088 | val RMSE 0.1012
+   RMSE 0.11557
+→ BERT + Vanilla
+    ↳ train RMSE 0.6277 | val RMSE 0.2226
+    ↳ train RMSE 0.1527 | val RMSE 0.2027
+    ↳ train RMSE 0.1472 | val RMSE 0.1776
+    ↳ train RMSE 0.1428 | val RMSE 0.1621
+    ↳ train RMSE 0.1392 | val RMSE 0.1483
+    ↳ train RMSE 0.1368 | val RMSE 0.1512
+    ↳ train RMSE 0.1335 | val RMSE 0.1425
+    ↳ train RMSE 0.1308 | val RMSE 0.1163
+    ↳ train RMSE 0.1284 | val RMSE 0.1356
+    ↳ train RMSE 0.1252 | val RMSE 0.1217
+   RMSE 0.13947
+→ BERT + Positional
+    ↳ train RMSE 0.8122 | val RMSE 0.2157
+    ↳ train RMSE 0.1527 | val RMSE 0.1909
+    ↳ train RMSE 0.1442 | val RMSE 0.1758
+    ↳ train RMSE 0.1383 | val RMSE 0.1603
+    ↳ train RMSE 0.1334 | val RMSE 0.1372
+    ↳ train RMSE 0.1290 | val RMSE 0.1446
+    ↳ train RMSE 0.1257 | val RMSE 0.1301
+    ↳ train RMSE 0.1219 | val RMSE 0.1221
+    ↳ train RMSE 0.1200 | val RMSE 0.1161
+    ↳ train RMSE 0.1171 | val RMSE 0.1118
+   RMSE 0.12877
+→ BERT + RelativePos
+    ↳ train RMSE 0.6074 | val RMSE 0.2354
+    ↳ train RMSE 0.1587 | val RMSE 0.1923
+    ↳ train RMSE 0.1510 | val RMSE 0.1645
+    ↳ train RMSE 0.1448 | val RMSE 0.1526
+    ↳ train RMSE 0.1394 | val RMSE 0.1502
+    ↳ train RMSE 0.1337 | val RMSE 0.1215
+    ↳ train RMSE 0.1281 | val RMSE 0.1210
+    ↳ train RMSE 0.1243 | val RMSE 0.1043
+    ↳ train RMSE 0.1208 | val RMSE 0.0985
+    ↳ train RMSE 0.1173 | val RMSE 0.0974
+   RMSE 0.11204
+→ BERT + Sparse
+    ↳ train RMSE 0.8387 | val RMSE 0.2362
+    ↳ train RMSE 0.1604 | val RMSE 0.2051
+    ↳ train RMSE 0.1536 | val RMSE 0.1801
+    ↳ train RMSE 0.1515 | val RMSE 0.1582
+    ↳ train RMSE 0.1483 | val RMSE 0.1596
+    ↳ train RMSE 0.1431 | val RMSE 0.1548
+    ↳ train RMSE 0.1401 | val RMSE 0.1418
+    ↳ train RMSE 0.1377 | val RMSE 0.1329
+    ↳ train RMSE 0.1352 | val RMSE 0.1376
+    ↳ train RMSE 0.1324 | val RMSE 0.1315
+   RMSE 0.14456
+→ BERT + Spectral
+    ↳ train RMSE 0.7301 | val RMSE 0.1618
+    ↳ train RMSE 0.1361 | val RMSE 0.1079
+    ↳ train RMSE 0.1314 | val RMSE 0.1010
+    ↳ train RMSE 0.1277 | val RMSE 0.0914
+    ↳ train RMSE 0.1246 | val RMSE 0.0924
+    ↳ train RMSE 0.1223 | val RMSE 0.0931
+    ↳ train RMSE 0.1211 | val RMSE 0.0889
+    ↳ train RMSE 0.1185 | val RMSE 0.0821
+    ↳ train RMSE 0.1167 | val RMSE 0.0875
+    ↳ train RMSE 0.1150 | val RMSE 0.0881
+   RMSE 0.10623
+
+━━ random50_removed | run 3/10 ━━
+→ DeepSeek + Vanilla
+    ↳ train RMSE 0.6431 | val RMSE 0.0451
+    ↳ train RMSE 0.0438 | val RMSE 0.0359
+    ↳ train RMSE 0.0398 | val RMSE 0.0358
+    ↳ train RMSE 0.0376 | val RMSE 0.0321
+    ↳ train RMSE 0.0363 | val RMSE 0.0361
+    ↳ train RMSE 0.0348 | val RMSE 0.0397
+    ↳ train RMSE 0.0362 | val RMSE 0.0353
+    ↳ train RMSE 0.0330 | val RMSE 0.0334
+    ↳ train RMSE 0.0304 | val RMSE 0.0340
+    ↳ train RMSE 0.0313 | val RMSE 0.0441
+   RMSE 0.05919
+→ DeepSeek + Positional
+    ↳ train RMSE 0.7103 | val RMSE 0.0335
+    ↳ train RMSE 0.0404 | val RMSE 0.0324
+    ↳ train RMSE 0.0404 | val RMSE 0.0341
+    ↳ train RMSE 0.0380 | val RMSE 0.0355
+    ↳ train RMSE 0.0372 | val RMSE 0.0338
+    ↳ train RMSE 0.0365 | val RMSE 0.0346
+    ↳ train RMSE 0.0360 | val RMSE 0.0333
+    ↳ train RMSE 0.0357 | val RMSE 0.0372
+    ↳ train RMSE 0.0351 | val RMSE 0.0371
+    ↳ train RMSE 0.0351 | val RMSE 0.0355
+   RMSE 0.04817
+→ DeepSeek + RelativePos
+    ↳ train RMSE 0.7249 | val RMSE 0.0429
+    ↳ train RMSE 0.0438 | val RMSE 0.0379
+    ↳ train RMSE 0.0419 | val RMSE 0.0394
+    ↳ train RMSE 0.0401 | val RMSE 0.0370
+    ↳ train RMSE 0.0388 | val RMSE 0.0351
+    ↳ train RMSE 0.0377 | val RMSE 0.0411
+    ↳ train RMSE 0.0392 | val RMSE 0.0484
+    ↳ train RMSE 0.0397 | val RMSE 0.0354
+    ↳ train RMSE 0.0355 | val RMSE 0.0332
+    ↳ train RMSE 0.0352 | val RMSE 0.0353
+   RMSE 0.04574
+→ DeepSeek + Sparse
+    ↳ train RMSE 0.9019 | val RMSE 0.0424
+    ↳ train RMSE 0.0455 | val RMSE 0.0303
+    ↳ train RMSE 0.0410 | val RMSE 0.0299
+    ↳ train RMSE 0.0396 | val RMSE 0.0300
+    ↳ train RMSE 0.0395 | val RMSE 0.0301
+    ↳ train RMSE 0.0389 | val RMSE 0.0304
+    ↳ train RMSE 0.0383 | val RMSE 0.0314
+    ↳ train RMSE 0.0375 | val RMSE 0.0314
+    ↳ train RMSE 0.0370 | val RMSE 0.0308
+    ↳ train RMSE 0.0367 | val RMSE 0.0328
+   RMSE 0.04412
+→ DeepSeek + Spectral
+    ↳ train RMSE 0.6356 | val RMSE 0.0625
+    ↳ train RMSE 0.0439 | val RMSE 0.0444
+    ↳ train RMSE 0.0382 | val RMSE 0.0406
+    ↳ train RMSE 0.0365 | val RMSE 0.0388
+    ↳ train RMSE 0.0355 | val RMSE 0.0418
+    ↳ train RMSE 0.0352 | val RMSE 0.0420
+    ↳ train RMSE 0.0344 | val RMSE 0.0378
+    ↳ train RMSE 0.0342 | val RMSE 0.0414
+    ↳ train RMSE 0.0334 | val RMSE 0.0361
+    ↳ train RMSE 0.0332 | val RMSE 0.0390
+   RMSE 0.04968
+→ GPT2 + Vanilla
+    ↳ train RMSE 0.8360 | val RMSE 0.1135
+    ↳ train RMSE 0.2815 | val RMSE 0.1309
+    ↳ train RMSE 0.2537 | val RMSE 0.1010
+    ↳ train RMSE 0.2339 | val RMSE 0.1224
+    ↳ train RMSE 0.2191 | val RMSE 0.1185
+    ↳ train RMSE 0.2085 | val RMSE 0.1072
+    ↳ train RMSE 0.2013 | val RMSE 0.1139
+    ↳ train RMSE 0.1934 | val RMSE 0.0985
+    ↳ train RMSE 0.1868 | val RMSE 0.1028
+    ↳ train RMSE 0.1818 | val RMSE 0.1001
+   RMSE 0.11670
+→ GPT2 + Positional
+    ↳ train RMSE 1.1691 | val RMSE 0.3192
+    ↳ train RMSE 0.5041 | val RMSE 0.4448
+    ↳ train RMSE 0.3717 | val RMSE 0.3353
+    ↳ train RMSE 0.3265 | val RMSE 0.2353
+    ↳ train RMSE 0.2933 | val RMSE 0.2273
+    ↳ train RMSE 0.2695 | val RMSE 0.2018
+    ↳ train RMSE 0.2509 | val RMSE 0.1672
+    ↳ train RMSE 0.2350 | val RMSE 0.1457
+    ↳ train RMSE 0.2184 | val RMSE 0.1382
+    ↳ train RMSE 0.2061 | val RMSE 0.1417
+   RMSE 0.14757
+→ GPT2 + RelativePos
+    ↳ train RMSE 1.0264 | val RMSE 0.1863
+    ↳ train RMSE 0.3280 | val RMSE 0.1550
+    ↳ train RMSE 0.2771 | val RMSE 0.1368
+    ↳ train RMSE 0.2515 | val RMSE 0.1337
+    ↳ train RMSE 0.2363 | val RMSE 0.1107
+    ↳ train RMSE 0.2236 | val RMSE 0.1107
+    ↳ train RMSE 0.2160 | val RMSE 0.1034
+    ↳ train RMSE 0.2055 | val RMSE 0.1119
+    ↳ train RMSE 0.1989 | val RMSE 0.0973
+    ↳ train RMSE 0.1917 | val RMSE 0.0968
+   RMSE 0.09565
+→ GPT2 + Sparse
+    ↳ train RMSE 1.3757 | val RMSE 0.4179
+    ↳ train RMSE 0.4807 | val RMSE 0.2716
+    ↳ train RMSE 0.4158 | val RMSE 0.2455
+    ↳ train RMSE 0.3627 | val RMSE 0.1938
+    ↳ train RMSE 0.3322 | val RMSE 0.2232
+    ↳ train RMSE 0.3076 | val RMSE 0.2040
+    ↳ train RMSE 0.2910 | val RMSE 0.1761
+    ↳ train RMSE 0.2805 | val RMSE 0.1898
+    ↳ train RMSE 0.2678 | val RMSE 0.1796
+    ↳ train RMSE 0.2574 | val RMSE 0.1603
+   RMSE 0.17029
+→ GPT2 + Spectral
+    ↳ train RMSE 1.2004 | val RMSE 0.3076
+    ↳ train RMSE 0.6099 | val RMSE 0.1824
+    ↳ train RMSE 0.5159 | val RMSE 0.2261
+    ↳ train RMSE 0.4571 | val RMSE 0.1891
+    ↳ train RMSE 0.4160 | val RMSE 0.1745
+    ↳ train RMSE 0.3820 | val RMSE 0.1674
+    ↳ train RMSE 0.3541 | val RMSE 0.1749
+    ↳ train RMSE 0.3303 | val RMSE 0.1406
+    ↳ train RMSE 0.3072 | val RMSE 0.1303
+    ↳ train RMSE 0.2909 | val RMSE 0.1138
+   RMSE 0.08911
+→ BERT + Vanilla
+    ↳ train RMSE 0.7768 | val RMSE 0.2421
+    ↳ train RMSE 0.1589 | val RMSE 0.1529
+    ↳ train RMSE 0.1526 | val RMSE 0.1486
+    ↳ train RMSE 0.1484 | val RMSE 0.1437
+    ↳ train RMSE 0.1447 | val RMSE 0.1457
+    ↳ train RMSE 0.1419 | val RMSE 0.1353
+    ↳ train RMSE 0.1386 | val RMSE 0.1379
+    ↳ train RMSE 0.1363 | val RMSE 0.1321
+    ↳ train RMSE 0.1340 | val RMSE 0.1303
+    ↳ train RMSE 0.1311 | val RMSE 0.1199
+   RMSE 0.13791
+→ BERT + Positional
+    ↳ train RMSE 0.5637 | val RMSE 0.0878
+    ↳ train RMSE 0.1352 | val RMSE 0.0921
+    ↳ train RMSE 0.1283 | val RMSE 0.0825
+    ↳ train RMSE 0.1230 | val RMSE 0.0713
+    ↳ train RMSE 0.1192 | val RMSE 0.0671
+    ↳ train RMSE 0.1160 | val RMSE 0.0635
+    ↳ train RMSE 0.1145 | val RMSE 0.0701
+    ↳ train RMSE 0.1121 | val RMSE 0.0659
+    ↳ train RMSE 0.1103 | val RMSE 0.0710
+    ↳ train RMSE 0.1081 | val RMSE 0.0710
+   RMSE 0.08756
+→ BERT + RelativePos
+    ↳ train RMSE 0.6600 | val RMSE 0.1576
+    ↳ train RMSE 0.1396 | val RMSE 0.1333
+    ↳ train RMSE 0.1319 | val RMSE 0.1216
+    ↳ train RMSE 0.1270 | val RMSE 0.1161
+    ↳ train RMSE 0.1228 | val RMSE 0.1204
+    ↳ train RMSE 0.1200 | val RMSE 0.1185
+    ↳ train RMSE 0.1177 | val RMSE 0.1151
+    ↳ train RMSE 0.1149 | val RMSE 0.1109
+    ↳ train RMSE 0.1130 | val RMSE 0.1064
+    ↳ train RMSE 0.1107 | val RMSE 0.0998
+   RMSE 0.11396
+→ BERT + Sparse
+    ↳ train RMSE 0.7888 | val RMSE 0.2562
+    ↳ train RMSE 0.1508 | val RMSE 0.2037
+    ↳ train RMSE 0.1440 | val RMSE 0.1916
+    ↳ train RMSE 0.1396 | val RMSE 0.1554
+    ↳ train RMSE 0.1355 | val RMSE 0.1269
+    ↳ train RMSE 0.1315 | val RMSE 0.1280
+    ↳ train RMSE 0.1291 | val RMSE 0.1186
+    ↳ train RMSE 0.1268 | val RMSE 0.1127
+    ↳ train RMSE 0.1239 | val RMSE 0.1102
+    ↳ train RMSE 0.1220 | val RMSE 0.1084
+   RMSE 0.12530
+→ BERT + Spectral
+    ↳ train RMSE 0.8231 | val RMSE 0.2518
+    ↳ train RMSE 0.1701 | val RMSE 0.1943
+    ↳ train RMSE 0.1590 | val RMSE 0.1597
+    ↳ train RMSE 0.1511 | val RMSE 0.1527
+    ↳ train RMSE 0.1450 | val RMSE 0.1364
+    ↳ train RMSE 0.1391 | val RMSE 0.1286
+    ↳ train RMSE 0.1360 | val RMSE 0.1294
+    ↳ train RMSE 0.1317 | val RMSE 0.1047
+    ↳ train RMSE 0.1273 | val RMSE 0.1096
+    ↳ train RMSE 0.1239 | val RMSE 0.0938
+   RMSE 0.11156
+
+━━ random50_removed | run 4/10 ━━
+→ DeepSeek + Vanilla
+    ↳ train RMSE 0.8080 | val RMSE 0.0647
+    ↳ train RMSE 0.0505 | val RMSE 0.0361
+    ↳ train RMSE 0.0430 | val RMSE 0.0326
+    ↳ train RMSE 0.0412 | val RMSE 0.0316
+    ↳ train RMSE 0.0398 | val RMSE 0.0315
+    ↳ train RMSE 0.0389 | val RMSE 0.0315
+    ↳ train RMSE 0.0386 | val RMSE 0.0316
+    ↳ train RMSE 0.0381 | val RMSE 0.0341
+    ↳ train RMSE 0.0375 | val RMSE 0.0322
+    ↳ train RMSE 0.0379 | val RMSE 0.0332
+   RMSE 0.04375
+→ DeepSeek + Positional
+    ↳ train RMSE 0.8528 | val RMSE 0.0408
+    ↳ train RMSE 0.0447 | val RMSE 0.0290
+    ↳ train RMSE 0.0409 | val RMSE 0.0290
+    ↳ train RMSE 0.0421 | val RMSE 0.0290
+    ↳ train RMSE 0.0397 | val RMSE 0.0292
+    ↳ train RMSE 0.0391 | val RMSE 0.0295
+    ↳ train RMSE 0.0386 | val RMSE 0.0311
+    ↳ train RMSE 0.0380 | val RMSE 0.0308
+    ↳ train RMSE 0.0379 | val RMSE 0.0314
+    ↳ train RMSE 0.0371 | val RMSE 0.0332
+   RMSE 0.04275
+→ DeepSeek + RelativePos
+    ↳ train RMSE 0.6723 | val RMSE 0.0441
+    ↳ train RMSE 0.0441 | val RMSE 0.0372
+    ↳ train RMSE 0.0411 | val RMSE 0.0396
+    ↳ train RMSE 0.0394 | val RMSE 0.0350
+    ↳ train RMSE 0.0385 | val RMSE 0.0365
+    ↳ train RMSE 0.0377 | val RMSE 0.0355
+    ↳ train RMSE 0.0362 | val RMSE 0.0358
+    ↳ train RMSE 0.0354 | val RMSE 0.0343
+    ↳ train RMSE 0.0353 | val RMSE 0.0395
+    ↳ train RMSE 0.0361 | val RMSE 0.0347
+   RMSE 0.04641
+→ DeepSeek + Sparse
+    ↳ train RMSE 0.9039 | val RMSE 0.0722
+    ↳ train RMSE 0.0592 | val RMSE 0.0442
+    ↳ train RMSE 0.0472 | val RMSE 0.0407
+    ↳ train RMSE 0.0429 | val RMSE 0.0382
+    ↳ train RMSE 0.0432 | val RMSE 0.0355
+    ↳ train RMSE 0.0393 | val RMSE 0.0353
+    ↳ train RMSE 0.0379 | val RMSE 0.0335
+    ↳ train RMSE 0.0372 | val RMSE 0.0355
+    ↳ train RMSE 0.0364 | val RMSE 0.0354
+    ↳ train RMSE 0.0359 | val RMSE 0.0359
+   RMSE 0.04731
+→ DeepSeek + Spectral
+    ↳ train RMSE 0.6350 | val RMSE 0.0431
+    ↳ train RMSE 0.0417 | val RMSE 0.0349
+    ↳ train RMSE 0.0393 | val RMSE 0.0337
+    ↳ train RMSE 0.0382 | val RMSE 0.0331
+    ↳ train RMSE 0.0374 | val RMSE 0.0364
+    ↳ train RMSE 0.0364 | val RMSE 0.0349
+    ↳ train RMSE 0.0358 | val RMSE 0.0344
+    ↳ train RMSE 0.0352 | val RMSE 0.0333
+    ↳ train RMSE 0.0346 | val RMSE 0.0356
+    ↳ train RMSE 0.0343 | val RMSE 0.0328
+   RMSE 0.04008
+→ GPT2 + Vanilla
+    ↳ train RMSE 1.5294 | val RMSE 0.6556
+    ↳ train RMSE 0.6344 | val RMSE 0.3735
+    ↳ train RMSE 0.5258 | val RMSE 0.2494
+    ↳ train RMSE 0.4553 | val RMSE 0.2333
+    ↳ train RMSE 0.4146 | val RMSE 0.2531
+    ↳ train RMSE 0.3895 | val RMSE 0.2799
+    ↳ train RMSE 0.3664 | val RMSE 0.2963
+    ↳ train RMSE 0.3499 | val RMSE 0.3089
+    ↳ train RMSE 0.3322 | val RMSE 0.3068
+    ↳ train RMSE 0.3183 | val RMSE 0.3143
+   RMSE 0.31705
+→ GPT2 + Positional
+    ↳ train RMSE 0.9180 | val RMSE 0.1539
+    ↳ train RMSE 0.2960 | val RMSE 0.1354
+    ↳ train RMSE 0.2590 | val RMSE 0.1267
+    ↳ train RMSE 0.2396 | val RMSE 0.1301
+    ↳ train RMSE 0.2247 | val RMSE 0.1380
+    ↳ train RMSE 0.2124 | val RMSE 0.1267
+    ↳ train RMSE 0.2046 | val RMSE 0.1251
+    ↳ train RMSE 0.1968 | val RMSE 0.1281
+    ↳ train RMSE 0.1914 | val RMSE 0.1391
+    ↳ train RMSE 0.1843 | val RMSE 0.1305
+   RMSE 0.14369
+→ GPT2 + RelativePos
+    ↳ train RMSE 0.6110 | val RMSE 0.1142
+    ↳ train RMSE 0.2549 | val RMSE 0.0922
+    ↳ train RMSE 0.2130 | val RMSE 0.0797
+    ↳ train RMSE 0.1939 | val RMSE 0.0778
+    ↳ train RMSE 0.1806 | val RMSE 0.0695
+    ↳ train RMSE 0.1701 | val RMSE 0.0745
+    ↳ train RMSE 0.1615 | val RMSE 0.0633
+    ↳ train RMSE 0.1544 | val RMSE 0.0535
+    ↳ train RMSE 0.1501 | val RMSE 0.0556
+    ↳ train RMSE 0.1451 | val RMSE 0.0535
+   RMSE 0.06168
+→ GPT2 + Sparse
+    ↳ train RMSE 1.3173 | val RMSE 0.3600
+    ↳ train RMSE 0.4447 | val RMSE 0.2881
+    ↳ train RMSE 0.3558 | val RMSE 0.2629
+    ↳ train RMSE 0.3226 | val RMSE 0.2251
+    ↳ train RMSE 0.2989 | val RMSE 0.2125
+    ↳ train RMSE 0.2868 | val RMSE 0.1952
+    ↳ train RMSE 0.2759 | val RMSE 0.1956
+    ↳ train RMSE 0.2669 | val RMSE 0.1844
+    ↳ train RMSE 0.2582 | val RMSE 0.1937
+    ↳ train RMSE 0.2513 | val RMSE 0.1951
+   RMSE 0.20123
+→ GPT2 + Spectral
+    ↳ train RMSE 0.9704 | val RMSE 0.3564
+    ↳ train RMSE 0.5694 | val RMSE 0.2596
+    ↳ train RMSE 0.3462 | val RMSE 0.1955
+    ↳ train RMSE 0.2737 | val RMSE 0.1444
+    ↳ train RMSE 0.2505 | val RMSE 0.1212
+    ↳ train RMSE 0.2349 | val RMSE 0.1066
+    ↳ train RMSE 0.2220 | val RMSE 0.1124
+    ↳ train RMSE 0.2134 | val RMSE 0.1028
+    ↳ train RMSE 0.2060 | val RMSE 0.1048
+    ↳ train RMSE 0.1989 | val RMSE 0.0982
+   RMSE 0.09758
+→ BERT + Vanilla
+    ↳ train RMSE 0.6299 | val RMSE 0.1191
+    ↳ train RMSE 0.1472 | val RMSE 0.0890
+    ↳ train RMSE 0.1401 | val RMSE 0.0863
+    ↳ train RMSE 0.1358 | val RMSE 0.0829
+    ↳ train RMSE 0.1316 | val RMSE 0.0828
+    ↳ train RMSE 0.1287 | val RMSE 0.0687
+    ↳ train RMSE 0.1258 | val RMSE 0.0655
+    ↳ train RMSE 0.1234 | val RMSE 0.0650
+    ↳ train RMSE 0.1214 | val RMSE 0.0609
+    ↳ train RMSE 0.1189 | val RMSE 0.0538
+   RMSE 0.07118
+→ BERT + Positional
+    ↳ train RMSE 0.5938 | val RMSE 0.0944
+    ↳ train RMSE 0.1430 | val RMSE 0.1122
+    ↳ train RMSE 0.1362 | val RMSE 0.0897
+    ↳ train RMSE 0.1315 | val RMSE 0.0914
+    ↳ train RMSE 0.1267 | val RMSE 0.0948
+    ↳ train RMSE 0.1238 | val RMSE 0.0953
+    ↳ train RMSE 0.1212 | val RMSE 0.0892
+    ↳ train RMSE 0.1185 | val RMSE 0.0981
+    ↳ train RMSE 0.1159 | val RMSE 0.0908
+    ↳ train RMSE 0.1140 | val RMSE 0.0833
+   RMSE 0.09795
+→ BERT + RelativePos
+    ↳ train RMSE 0.6503 | val RMSE 0.1724
+    ↳ train RMSE 0.1461 | val RMSE 0.1567
+    ↳ train RMSE 0.1374 | val RMSE 0.1144
+    ↳ train RMSE 0.1322 | val RMSE 0.1232
+    ↳ train RMSE 0.1283 | val RMSE 0.1116
+    ↳ train RMSE 0.1238 | val RMSE 0.1086
+    ↳ train RMSE 0.1203 | val RMSE 0.1016
+    ↳ train RMSE 0.1173 | val RMSE 0.1043
+    ↳ train RMSE 0.1146 | val RMSE 0.0931
+    ↳ train RMSE 0.1119 | val RMSE 0.0892
+   RMSE 0.10503
+→ BERT + Sparse
+    ↳ train RMSE 0.9590 | val RMSE 0.2207
+    ↳ train RMSE 0.1621 | val RMSE 0.1950
+    ↳ train RMSE 0.1520 | val RMSE 0.1758
+    ↳ train RMSE 0.1475 | val RMSE 0.1793
+    ↳ train RMSE 0.1439 | val RMSE 0.1663
+    ↳ train RMSE 0.1409 | val RMSE 0.1581
+    ↳ train RMSE 0.1377 | val RMSE 0.1600
+    ↳ train RMSE 0.1341 | val RMSE 0.1514
+    ↳ train RMSE 0.1320 | val RMSE 0.1540
+    ↳ train RMSE 0.1299 | val RMSE 0.1526
+   RMSE 0.16776
+→ BERT + Spectral
+    ↳ train RMSE 0.7996 | val RMSE 0.2209
+    ↳ train RMSE 0.1486 | val RMSE 0.1605
+    ↳ train RMSE 0.1407 | val RMSE 0.1389
+    ↳ train RMSE 0.1358 | val RMSE 0.1244
+    ↳ train RMSE 0.1317 | val RMSE 0.1231
+    ↳ train RMSE 0.1278 | val RMSE 0.1012
+    ↳ train RMSE 0.1251 | val RMSE 0.1025
+    ↳ train RMSE 0.1226 | val RMSE 0.1080
+    ↳ train RMSE 0.1201 | val RMSE 0.1026
+    ↳ train RMSE 0.1178 | val RMSE 0.0935
+   RMSE 0.10819
+
+━━ random50_removed | run 5/10 ━━
+→ DeepSeek + Vanilla
+    ↳ train RMSE 0.6305 | val RMSE 0.0429
+    ↳ train RMSE 0.0423 | val RMSE 0.0358
+    ↳ train RMSE 0.0431 | val RMSE 0.0390
+    ↳ train RMSE 0.0390 | val RMSE 0.0390
+    ↳ train RMSE 0.0369 | val RMSE 0.0351
+    ↳ train RMSE 0.0362 | val RMSE 0.0334
+    ↳ train RMSE 0.0353 | val RMSE 0.0375
+    ↳ train RMSE 0.0350 | val RMSE 0.0353
+    ↳ train RMSE 0.0345 | val RMSE 0.0343
+    ↳ train RMSE 0.0346 | val RMSE 0.0369
+   RMSE 0.04979
+→ DeepSeek + Positional
+    ↳ train RMSE 0.8346 | val RMSE 0.0433
+    ↳ train RMSE 0.0428 | val RMSE 0.0294
+    ↳ train RMSE 0.0404 | val RMSE 0.0295
+    ↳ train RMSE 0.0400 | val RMSE 0.0298
+    ↳ train RMSE 0.0400 | val RMSE 0.0301
+    ↳ train RMSE 0.0389 | val RMSE 0.0307
+    ↳ train RMSE 0.0382 | val RMSE 0.0317
+    ↳ train RMSE 0.0376 | val RMSE 0.0324
+    ↳ train RMSE 0.0375 | val RMSE 0.0335
+    ↳ train RMSE 0.0365 | val RMSE 0.0336
+   RMSE 0.04024
+→ DeepSeek + RelativePos
+    ↳ train RMSE 0.6938 | val RMSE 0.0459
+    ↳ train RMSE 0.0484 | val RMSE 0.0383
+    ↳ train RMSE 0.0426 | val RMSE 0.0385
+    ↳ train RMSE 0.0403 | val RMSE 0.0372
+    ↳ train RMSE 0.0394 | val RMSE 0.0370
+    ↳ train RMSE 0.0381 | val RMSE 0.0348
+    ↳ train RMSE 0.0388 | val RMSE 0.0376
+    ↳ train RMSE 0.0365 | val RMSE 0.0359
+    ↳ train RMSE 0.0365 | val RMSE 0.0408
+    ↳ train RMSE 0.0355 | val RMSE 0.0348
+   RMSE 0.04484
+→ DeepSeek + Sparse
+    ↳ train RMSE 0.7664 | val RMSE 0.0680
+    ↳ train RMSE 0.0507 | val RMSE 0.0469
+    ↳ train RMSE 0.0398 | val RMSE 0.0373
+    ↳ train RMSE 0.0354 | val RMSE 0.0542
+    ↳ train RMSE 0.0357 | val RMSE 0.0363
+    ↳ train RMSE 0.0315 | val RMSE 0.0333
+    ↳ train RMSE 0.0299 | val RMSE 0.0363
+    ↳ train RMSE 0.0283 | val RMSE 0.0341
+    ↳ train RMSE 0.0269 | val RMSE 0.0352
+    ↳ train RMSE 0.0277 | val RMSE 0.0635
+   RMSE 0.07857
+→ DeepSeek + Spectral
+    ↳ train RMSE 0.8420 | val RMSE 0.0403
+    ↳ train RMSE 0.0394 | val RMSE 0.0333
+    ↳ train RMSE 0.0368 | val RMSE 0.0336
+    ↳ train RMSE 0.0358 | val RMSE 0.0343
+    ↳ train RMSE 0.0353 | val RMSE 0.0336
+    ↳ train RMSE 0.0347 | val RMSE 0.0381
+    ↳ train RMSE 0.0350 | val RMSE 0.0329
+    ↳ train RMSE 0.0340 | val RMSE 0.0337
+    ↳ train RMSE 0.0344 | val RMSE 0.0337
+    ↳ train RMSE 0.0333 | val RMSE 0.0330
+   RMSE 0.04213
+→ GPT2 + Vanilla
+    ↳ train RMSE 1.5599 | val RMSE 0.3684
+    ↳ train RMSE 0.6575 | val RMSE 0.3655
+    ↳ train RMSE 0.5770 | val RMSE 0.4635
+    ↳ train RMSE 0.4966 | val RMSE 0.4400
+    ↳ train RMSE 0.4327 | val RMSE 0.3796
+    ↳ train RMSE 0.3828 | val RMSE 0.3087
+    ↳ train RMSE 0.3502 | val RMSE 0.2920
+    ↳ train RMSE 0.3254 | val RMSE 0.2862
+    ↳ train RMSE 0.3051 | val RMSE 0.2821
+    ↳ train RMSE 0.2880 | val RMSE 0.2493
+   RMSE 0.25777
+→ GPT2 + Positional
+    ↳ train RMSE 1.3393 | val RMSE 0.4145
+    ↳ train RMSE 0.5212 | val RMSE 0.3860
+    ↳ train RMSE 0.4167 | val RMSE 0.4279
+    ↳ train RMSE 0.3676 | val RMSE 0.3928
+    ↳ train RMSE 0.3352 | val RMSE 0.2979
+    ↳ train RMSE 0.3107 | val RMSE 0.2791
+    ↳ train RMSE 0.2904 | val RMSE 0.2772
+    ↳ train RMSE 0.2709 | val RMSE 0.2092
+    ↳ train RMSE 0.2539 | val RMSE 0.2104
+    ↳ train RMSE 0.2417 | val RMSE 0.1679
+   RMSE 0.17927
+→ GPT2 + RelativePos
+    ↳ train RMSE 1.0564 | val RMSE 0.2281
+    ↳ train RMSE 0.3421 | val RMSE 0.1611
+    ↳ train RMSE 0.2956 | val RMSE 0.1413
+    ↳ train RMSE 0.2611 | val RMSE 0.1485
+    ↳ train RMSE 0.2419 | val RMSE 0.1493
+    ↳ train RMSE 0.2288 | val RMSE 0.1596
+    ↳ train RMSE 0.2176 | val RMSE 0.1452
+    ↳ train RMSE 0.2099 | val RMSE 0.1536
+    ↳ train RMSE 0.2033 | val RMSE 0.1615
+    ↳ train RMSE 0.1969 | val RMSE 0.1388
+   RMSE 0.14847
+→ GPT2 + Sparse
+    ↳ train RMSE 2.0384 | val RMSE 0.4294
+    ↳ train RMSE 0.8544 | val RMSE 0.7776
+    ↳ train RMSE 0.6998 | val RMSE 0.7695
+    ↳ train RMSE 0.6263 | val RMSE 0.7205
+    ↳ train RMSE 0.5750 | val RMSE 0.6220
+    ↳ train RMSE 0.5272 | val RMSE 0.5201
+    ↳ train RMSE 0.4900 | val RMSE 0.4519
+    ↳ train RMSE 0.4586 | val RMSE 0.3959
+    ↳ train RMSE 0.4307 | val RMSE 0.2943
+    ↳ train RMSE 0.4053 | val RMSE 0.1981
+   RMSE 0.18814
+→ GPT2 + Spectral
+    ↳ train RMSE 1.2876 | val RMSE 0.2699
+    ↳ train RMSE 0.6961 | val RMSE 0.1926
+    ↳ train RMSE 0.5794 | val RMSE 0.6345
+    ↳ train RMSE 0.4910 | val RMSE 0.4065
+    ↳ train RMSE 0.4104 | val RMSE 0.2293
+    ↳ train RMSE 0.3510 | val RMSE 0.2884
+    ↳ train RMSE 0.3083 | val RMSE 0.2820
+    ↳ train RMSE 0.2803 | val RMSE 0.2572
+    ↳ train RMSE 0.2593 | val RMSE 0.2455
+    ↳ train RMSE 0.2430 | val RMSE 0.2592
+   RMSE 0.27789
+→ BERT + Vanilla
+    ↳ train RMSE 0.7753 | val RMSE 0.1954
+    ↳ train RMSE 0.1722 | val RMSE 0.1246
+    ↳ train RMSE 0.1600 | val RMSE 0.1023
+    ↳ train RMSE 0.1520 | val RMSE 0.1076
+    ↳ train RMSE 0.1465 | val RMSE 0.0993
+    ↳ train RMSE 0.1418 | val RMSE 0.0938
+    ↳ train RMSE 0.1373 | val RMSE 0.0971
+    ↳ train RMSE 0.1339 | val RMSE 0.0886
+    ↳ train RMSE 0.1305 | val RMSE 0.0958
+    ↳ train RMSE 0.1273 | val RMSE 0.0797
+   RMSE 0.09591
+→ BERT + Positional
+    ↳ train RMSE 0.7278 | val RMSE 0.1353
+    ↳ train RMSE 0.1448 | val RMSE 0.1165
+    ↳ train RMSE 0.1367 | val RMSE 0.1016
+    ↳ train RMSE 0.1322 | val RMSE 0.1017
+    ↳ train RMSE 0.1281 | val RMSE 0.0889
+    ↳ train RMSE 0.1246 | val RMSE 0.0891
+    ↳ train RMSE 0.1219 | val RMSE 0.0863
+    ↳ train RMSE 0.1192 | val RMSE 0.0904
+    ↳ train RMSE 0.1170 | val RMSE 0.0933
+    ↳ train RMSE 0.1152 | val RMSE 0.0866
+   RMSE 0.09983
+→ BERT + RelativePos
+    ↳ train RMSE 0.6614 | val RMSE 0.2109
+    ↳ train RMSE 0.1574 | val RMSE 0.1713
+    ↳ train RMSE 0.1486 | val RMSE 0.1465
+    ↳ train RMSE 0.1419 | val RMSE 0.1448
+    ↳ train RMSE 0.1359 | val RMSE 0.1238
+    ↳ train RMSE 0.1319 | val RMSE 0.1227
+    ↳ train RMSE 0.1278 | val RMSE 0.1144
+    ↳ train RMSE 0.1237 | val RMSE 0.1021
+    ↳ train RMSE 0.1209 | val RMSE 0.1020
+    ↳ train RMSE 0.1185 | val RMSE 0.0935
+   RMSE 0.10917
+→ BERT + Sparse
+    ↳ train RMSE 0.7365 | val RMSE 0.2144
+    ↳ train RMSE 0.1491 | val RMSE 0.1401
+    ↳ train RMSE 0.1427 | val RMSE 0.1350
+    ↳ train RMSE 0.1364 | val RMSE 0.1330
+    ↳ train RMSE 0.1326 | val RMSE 0.1342
+    ↳ train RMSE 0.1294 | val RMSE 0.1390
+    ↳ train RMSE 0.1274 | val RMSE 0.1361
+    ↳ train RMSE 0.1248 | val RMSE 0.1324
+    ↳ train RMSE 0.1233 | val RMSE 0.1295
+    ↳ train RMSE 0.1210 | val RMSE 0.1367
+   RMSE 0.15275
+→ BERT + Spectral
+    ↳ train RMSE 0.7604 | val RMSE 0.1842
+    ↳ train RMSE 0.1581 | val RMSE 0.1264
+    ↳ train RMSE 0.1484 | val RMSE 0.1285
+    ↳ train RMSE 0.1439 | val RMSE 0.1167
+    ↳ train RMSE 0.1374 | val RMSE 0.1038
+    ↳ train RMSE 0.1330 | val RMSE 0.0877
+    ↳ train RMSE 0.1297 | val RMSE 0.0920
+    ↳ train RMSE 0.1259 | val RMSE 0.0777
+    ↳ train RMSE 0.1232 | val RMSE 0.0721
+    ↳ train RMSE 0.1201 | val RMSE 0.0790
+   RMSE 0.09615
+
+━━ random50_removed | run 6/10 ━━
+→ DeepSeek + Vanilla
+    ↳ train RMSE 0.9965 | val RMSE 0.0735
+    ↳ train RMSE 0.0469 | val RMSE 0.0312
+    ↳ train RMSE 0.0400 | val RMSE 0.0308
+    ↳ train RMSE 0.0393 | val RMSE 0.0309
+    ↳ train RMSE 0.0387 | val RMSE 0.0315
+    ↳ train RMSE 0.0382 | val RMSE 0.0317
+    ↳ train RMSE 0.0377 | val RMSE 0.0327
+    ↳ train RMSE 0.0373 | val RMSE 0.0337
+    ↳ train RMSE 0.0368 | val RMSE 0.0356
+    ↳ train RMSE 0.0364 | val RMSE 0.0365
+   RMSE 0.04724
+→ DeepSeek + Positional
+    ↳ train RMSE 0.8782 | val RMSE 0.0856
+    ↳ train RMSE 0.0750 | val RMSE 0.0673
+    ↳ train RMSE 0.0651 | val RMSE 0.0738
+    ↳ train RMSE 0.0573 | val RMSE 0.0571
+    ↳ train RMSE 0.0514 | val RMSE 0.0653
+    ↳ train RMSE 0.0481 | val RMSE 0.0492
+    ↳ train RMSE 0.0444 | val RMSE 0.0459
+    ↳ train RMSE 0.0427 | val RMSE 0.0477
+    ↳ train RMSE 0.0396 | val RMSE 0.0447
+    ↳ train RMSE 0.0380 | val RMSE 0.0413
+   RMSE 0.05366
+→ DeepSeek + RelativePos
+    ↳ train RMSE 0.8334 | val RMSE 0.0384
+    ↳ train RMSE 0.0422 | val RMSE 0.0295
+    ↳ train RMSE 0.0402 | val RMSE 0.0297
+    ↳ train RMSE 0.0392 | val RMSE 0.0312
+    ↳ train RMSE 0.0385 | val RMSE 0.0307
+    ↳ train RMSE 0.0381 | val RMSE 0.0318
+    ↳ train RMSE 0.0375 | val RMSE 0.0319
+    ↳ train RMSE 0.0372 | val RMSE 0.0319
+    ↳ train RMSE 0.0372 | val RMSE 0.0339
+    ↳ train RMSE 0.0364 | val RMSE 0.0341
+   RMSE 0.04429
+→ DeepSeek + Sparse
+    ↳ train RMSE 1.3205 | val RMSE 0.0895
+    ↳ train RMSE 0.0680 | val RMSE 0.0289
+    ↳ train RMSE 0.0408 | val RMSE 0.0289
+    ↳ train RMSE 0.0402 | val RMSE 0.0291
+    ↳ train RMSE 0.0391 | val RMSE 0.0295
+    ↳ train RMSE 0.0390 | val RMSE 0.0302
+    ↳ train RMSE 0.0382 | val RMSE 0.0310
+    ↳ train RMSE 0.0379 | val RMSE 0.0322
+    ↳ train RMSE 0.0374 | val RMSE 0.0314
+    ↳ train RMSE 0.0371 | val RMSE 0.0332
+   RMSE 0.04351
+→ DeepSeek + Spectral
+    ↳ train RMSE 1.2965 | val RMSE 0.0667
+    ↳ train RMSE 0.0434 | val RMSE 0.0317
+    ↳ train RMSE 0.0417 | val RMSE 0.0339
+    ↳ train RMSE 0.0380 | val RMSE 0.0359
+    ↳ train RMSE 0.0362 | val RMSE 0.0341
+    ↳ train RMSE 0.0360 | val RMSE 0.0348
+    ↳ train RMSE 0.0353 | val RMSE 0.0344
+    ↳ train RMSE 0.0350 | val RMSE 0.0352
+    ↳ train RMSE 0.0347 | val RMSE 0.0367
+    ↳ train RMSE 0.0342 | val RMSE 0.0344
+   RMSE 0.04282
+→ GPT2 + Vanilla
+    ↳ train RMSE 1.0003 | val RMSE 0.2192
+    ↳ train RMSE 0.5183 | val RMSE 0.1627
+    ↳ train RMSE 0.3121 | val RMSE 0.1090
+    ↳ train RMSE 0.2522 | val RMSE 0.0901
+    ↳ train RMSE 0.2349 | val RMSE 0.0834
+    ↳ train RMSE 0.2212 | val RMSE 0.0761
+    ↳ train RMSE 0.2098 | val RMSE 0.0773
+    ↳ train RMSE 0.2008 | val RMSE 0.0735
+    ↳ train RMSE 0.1932 | val RMSE 0.0673
+    ↳ train RMSE 0.1871 | val RMSE 0.0617
+   RMSE 0.07795
+→ GPT2 + Positional
+    ↳ train RMSE 0.9871 | val RMSE 0.4191
+    ↳ train RMSE 0.4232 | val RMSE 0.2494
+    ↳ train RMSE 0.3218 | val RMSE 0.1489
+    ↳ train RMSE 0.2814 | val RMSE 0.1327
+    ↳ train RMSE 0.2558 | val RMSE 0.1104
+    ↳ train RMSE 0.2364 | val RMSE 0.1115
+    ↳ train RMSE 0.2171 | val RMSE 0.1076
+    ↳ train RMSE 0.2043 | val RMSE 0.1132
+    ↳ train RMSE 0.1955 | val RMSE 0.1127
+    ↳ train RMSE 0.1884 | val RMSE 0.0985
+   RMSE 0.11170
+→ GPT2 + RelativePos
+    ↳ train RMSE 0.7414 | val RMSE 0.1432
+    ↳ train RMSE 0.2715 | val RMSE 0.1206
+    ↳ train RMSE 0.2425 | val RMSE 0.1140
+    ↳ train RMSE 0.2233 | val RMSE 0.1043
+    ↳ train RMSE 0.2080 | val RMSE 0.0920
+    ↳ train RMSE 0.1972 | val RMSE 0.0915
+    ↳ train RMSE 0.1872 | val RMSE 0.0893
+    ↳ train RMSE 0.1812 | val RMSE 0.0874
+    ↳ train RMSE 0.1755 | val RMSE 0.0865
+    ↳ train RMSE 0.1697 | val RMSE 0.0740
+   RMSE 0.08272
+→ GPT2 + Sparse
+    ↳ train RMSE 2.1776 | val RMSE 0.9660
+    ↳ train RMSE 1.0132 | val RMSE 0.6178
+    ↳ train RMSE 0.8046 | val RMSE 0.4699
+    ↳ train RMSE 0.6997 | val RMSE 0.4079
+    ↳ train RMSE 0.6202 | val RMSE 0.3919
+    ↳ train RMSE 0.5504 | val RMSE 0.3743
+    ↳ train RMSE 0.4871 | val RMSE 0.3050
+    ↳ train RMSE 0.4456 | val RMSE 0.2443
+    ↳ train RMSE 0.4129 | val RMSE 0.2292
+    ↳ train RMSE 0.3856 | val RMSE 0.2046
+   RMSE 0.19804
+→ GPT2 + Spectral
+    ↳ train RMSE 0.9629 | val RMSE 0.4903
+    ↳ train RMSE 0.5671 | val RMSE 0.4802
+    ↳ train RMSE 0.4046 | val RMSE 0.2454
+    ↳ train RMSE 0.2883 | val RMSE 0.2777
+    ↳ train RMSE 0.2398 | val RMSE 0.1393
+    ↳ train RMSE 0.2162 | val RMSE 0.1138
+    ↳ train RMSE 0.2043 | val RMSE 0.1079
+    ↳ train RMSE 0.1946 | val RMSE 0.1141
+    ↳ train RMSE 0.1864 | val RMSE 0.1081
+    ↳ train RMSE 0.1788 | val RMSE 0.1026
+   RMSE 0.12038
+→ BERT + Vanilla
+    ↳ train RMSE 0.7825 | val RMSE 0.2284
+    ↳ train RMSE 0.1505 | val RMSE 0.1662
+    ↳ train RMSE 0.1444 | val RMSE 0.1474
+    ↳ train RMSE 0.1398 | val RMSE 0.1311
+    ↳ train RMSE 0.1365 | val RMSE 0.1283
+    ↳ train RMSE 0.1330 | val RMSE 0.0959
+    ↳ train RMSE 0.1296 | val RMSE 0.0947
+    ↳ train RMSE 0.1263 | val RMSE 0.0917
+    ↳ train RMSE 0.1239 | val RMSE 0.0748
+    ↳ train RMSE 0.1221 | val RMSE 0.0752
+   RMSE 0.08809
+→ BERT + Positional
+    ↳ train RMSE 0.6627 | val RMSE 0.1672
+    ↳ train RMSE 0.1453 | val RMSE 0.1606
+    ↳ train RMSE 0.1396 | val RMSE 0.1667
+    ↳ train RMSE 0.1366 | val RMSE 0.1691
+    ↳ train RMSE 0.1333 | val RMSE 0.1512
+    ↳ train RMSE 0.1311 | val RMSE 0.1606
+    ↳ train RMSE 0.1282 | val RMSE 0.1458
+    ↳ train RMSE 0.1265 | val RMSE 0.1320
+    ↳ train RMSE 0.1249 | val RMSE 0.1469
+    ↳ train RMSE 0.1216 | val RMSE 0.1424
+   RMSE 0.15879
+→ BERT + RelativePos
+    ↳ train RMSE 0.5229 | val RMSE 0.0868
+    ↳ train RMSE 0.1323 | val RMSE 0.1084
+    ↳ train RMSE 0.1263 | val RMSE 0.0930
+    ↳ train RMSE 0.1223 | val RMSE 0.1017
+    ↳ train RMSE 0.1190 | val RMSE 0.1098
+    ↳ train RMSE 0.1165 | val RMSE 0.0891
+    ↳ train RMSE 0.1141 | val RMSE 0.0982
+    ↳ train RMSE 0.1118 | val RMSE 0.0944
+    ↳ train RMSE 0.1099 | val RMSE 0.0886
+    ↳ train RMSE 0.1081 | val RMSE 0.0934
+   RMSE 0.10757
+→ BERT + Sparse
+    ↳ train RMSE 0.7423 | val RMSE 0.2274
+    ↳ train RMSE 0.1540 | val RMSE 0.1719
+    ↳ train RMSE 0.1461 | val RMSE 0.1735
+    ↳ train RMSE 0.1419 | val RMSE 0.1594
+    ↳ train RMSE 0.1364 | val RMSE 0.1375
+    ↳ train RMSE 0.1330 | val RMSE 0.1337
+    ↳ train RMSE 0.1305 | val RMSE 0.1285
+    ↳ train RMSE 0.1272 | val RMSE 0.1223
+    ↳ train RMSE 0.1259 | val RMSE 0.1166
+    ↳ train RMSE 0.1234 | val RMSE 0.1181
+   RMSE 0.13168
+→ BERT + Spectral
+    ↳ train RMSE 0.5830 | val RMSE 0.1648
+    ↳ train RMSE 0.1525 | val RMSE 0.1312
+    ↳ train RMSE 0.1411 | val RMSE 0.1071
+    ↳ train RMSE 0.1339 | val RMSE 0.0957
+    ↳ train RMSE 0.1280 | val RMSE 0.0872
+    ↳ train RMSE 0.1226 | val RMSE 0.0766
+    ↳ train RMSE 0.1194 | val RMSE 0.0823
+    ↳ train RMSE 0.1165 | val RMSE 0.0809
+    ↳ train RMSE 0.1139 | val RMSE 0.0824
+    ↳ train RMSE 0.1122 | val RMSE 0.0799
+   RMSE 0.09390
+
+━━ random50_removed | run 7/10 ━━
+→ DeepSeek + Vanilla
+    ↳ train RMSE 1.2471 | val RMSE 0.0369
+    ↳ train RMSE 0.0423 | val RMSE 0.0331
+    ↳ train RMSE 0.0390 | val RMSE 0.0317
+    ↳ train RMSE 0.0372 | val RMSE 0.0331
+    ↳ train RMSE 0.0362 | val RMSE 0.0324
+    ↳ train RMSE 0.0354 | val RMSE 0.0348
+    ↳ train RMSE 0.0348 | val RMSE 0.0337
+    ↳ train RMSE 0.0344 | val RMSE 0.0323
+    ↳ train RMSE 0.0343 | val RMSE 0.0362
+    ↳ train RMSE 0.0345 | val RMSE 0.0341
+   RMSE 0.03459
+→ DeepSeek + Positional
+    ↳ train RMSE 0.8025 | val RMSE 0.0697
+    ↳ train RMSE 0.0683 | val RMSE 0.0762
+    ↳ train RMSE 0.0580 | val RMSE 0.0563
+    ↳ train RMSE 0.0516 | val RMSE 0.0639
+    ↳ train RMSE 0.0469 | val RMSE 0.0490
+    ↳ train RMSE 0.0436 | val RMSE 0.0586
+    ↳ train RMSE 0.0402 | val RMSE 0.0531
+    ↳ train RMSE 0.0378 | val RMSE 0.0691
+    ↳ train RMSE 0.0377 | val RMSE 0.0428
+    ↳ train RMSE 0.0331 | val RMSE 0.0481
+   RMSE 0.06088
+→ DeepSeek + RelativePos
+    ↳ train RMSE 0.7276 | val RMSE 0.0386

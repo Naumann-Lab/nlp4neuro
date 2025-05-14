@@ -13,3 +13,5 @@
 /hpc/group/naumannlab/jjm132/miniconda3/envs/jjmenv_nlp/lib/python3.9/site-packages/bitsandbytes/autograd/_functions.py:315: UserWarning: MatMul8bitLt: inputs will be cast from torch.float32 to float16 during quantization
   warnings.warn(f"MatMul8bitLt: inputs will be cast from {A.dtype} to float16 during quantization")
 Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:04<00:04,  4.69s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:06<00:00,  2.86s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:06<00:00,  3.13s/it]
+/hpc/group/naumannlab/jjm132/miniconda3/envs/jjmenv_nlp/lib/python3.9/site-packages/bitsandbytes/autograd/_functions.py:315: UserWarning: MatMul8bitLt: inputs will be cast from torch.float32 to float16 during quantization
+  warnings.warn(f"MatMul8bitLt: inputs will be cast from {A.dtype} to float16 during quantization")
