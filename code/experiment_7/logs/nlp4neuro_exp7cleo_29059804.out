@@ -1,0 +1,11 @@
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+▶ Script started  : 2025-05-14 00:53:16
+▶ Using device    : cuda
+▶ CUDA name       : NVIDIA RTX 6000 Ada Generation
+▶ CUDA memory     : 50.9 GB
+▶ Epochs          : 100
+▶ Batch size      : 32
+▶ Preferred L     : 20
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚠ Data are short (T=1). Falling back to L = 0
+  • Window length L = 0
