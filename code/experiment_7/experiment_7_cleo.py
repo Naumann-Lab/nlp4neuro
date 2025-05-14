@@ -129,12 +129,22 @@ def predict(model, loader):
     return torch.cat(preds), torch.cat(gts)
 
 def feature_importance(model, loader, N_in):
-    model.eval(); imp = torch.zeros(N_in, device=device); n = 0
+    """
+    Mean |grad × input| across all windows & time-steps.
+    Returns a NumPy array of length N_in.
+    """
+    model.eval()
+    imp = torch.zeros(N_in, device=device)          # accumulation buffer
+    n = 0
     for xb, _ in loader:
         xb = xb.to(device).requires_grad_(True)
-        model(xb).sum().backward()
-        imp += (xb.grad * xb).abs().mean(dim=(0,1)); n += 1
-    return (imp / n).cpu().numpy()
+        model(xb).sum().backward()                  # single scalar backward
+        imp += (xb.grad * xb).abs().mean(dim=(0, 1)).detach()
+        n += 1
+    if n == 0:                                      # should never happen, but safe-guard
+        return imp.cpu().numpy()
+    return (imp / n).detach().cpu().numpy()         # ← detach before .numpy()
+
 
 # ──────────────────── PIPELINE ───────────────────────────────────────────────
 def run_pipeline(Xtr, Xva, Xte,
