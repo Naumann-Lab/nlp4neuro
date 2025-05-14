@@ -197,7 +197,7 @@ def run_pipeline(Xtr, Xva, Xte,
     for xb, _ in frame_loader:
         xb = xb.to(device).requires_grad_(True)
         model(xb).sum().backward()
-        wi = (xb.grad * xb).abs().cpu().numpy()   # (B,L,N)
+        wi = (xb.grad * xb).abs().detach().cpu().numpy()   # (B,L,N)
         B,L,_ = wi.shape
         for b in range(B):
             frame_sal[win_start+b : win_start+b+L] += wi[b]
