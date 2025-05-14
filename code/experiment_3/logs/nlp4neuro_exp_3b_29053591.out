@@ -758,3 +758,18 @@
 → DeepSeek + RelativePos
     ↳ train RMSE 0.8121 | val RMSE 0.0794
     ↳ train RMSE 0.0458 | val RMSE 0.0301
+    ↳ train RMSE 0.0409 | val RMSE 0.0302
+    ↳ train RMSE 0.0407 | val RMSE 0.0301
+    ↳ train RMSE 0.0403 | val RMSE 0.0301
+    ↳ train RMSE 0.0401 | val RMSE 0.0304
+    ↳ train RMSE 0.0397 | val RMSE 0.0306
+    ↳ train RMSE 0.0396 | val RMSE 0.0303
+    ↳ train RMSE 0.0391 | val RMSE 0.0304
+    ↳ train RMSE 0.0388 | val RMSE 0.0313
+   RMSE 0.04073
+→ DeepSeek + Sparse
+    ↳ train RMSE 0.7977 | val RMSE 0.0609
+    ↳ train RMSE 0.0518 | val RMSE 0.0392
+    ↳ train RMSE 0.0445 | val RMSE 0.0367
+    ↳ train RMSE 0.0424 | val RMSE 0.0355
+    ↳ train RMSE 0.0403 | val RMSE 0.0349
