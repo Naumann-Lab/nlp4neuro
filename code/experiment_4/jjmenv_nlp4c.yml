@@ -1,4 +1,4 @@
-name: jjmenv_nlp2
+name: jjmenv_env4c
 channels:
   - pytorch
   - conda-forge

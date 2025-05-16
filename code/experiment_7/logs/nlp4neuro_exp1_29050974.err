@@ -1,4 +1,0 @@
-  File "/hpc/home/jjm132/jjm132/nlp4neuro/code/experiment_7/experiment_7_cleo.py", line 31
-    print("▶ CUDA memory     :", f\"{props.total_memory/1e9:.1f} GB\")
-                                     ^
-SyntaxError: unexpected character after line continuation character

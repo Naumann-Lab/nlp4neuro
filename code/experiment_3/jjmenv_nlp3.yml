@@ -1,4 +1,4 @@
-name: jjmenv_nlp2
+name: jjmenv_nlp3
 channels:
   - pytorch
   - conda-forge
@@ -9,6 +9,7 @@ dependencies:
   - pytorch=1.13.1
   - cudatoolkit=11.6
   - scipy
+  - tqdm
   - pip
   - pip:
     - transformers

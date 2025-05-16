@@ -1,6 +1,0 @@
-Traceback (most recent call last):
-  File "/hpc/home/jjm132/jjm132/nlp4neuro/code/experiment_6/experiment_6.py", line 198, in <module>
-    model = DeepSeekV3MoE(input_dim, output_dim).to(device)
-  File "/hpc/group/naumannlab/jjm132/miniconda3/envs/jjmenv/lib/python3.9/site-packages/torch/nn/modules/module.py", line 488, in __init__
-    raise TypeError(
-TypeError: DeepSeekV3MoE.__init__() takes 1 positional argument but 3 were given

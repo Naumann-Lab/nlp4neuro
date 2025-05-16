@@ -9,9 +9,10 @@ Off-the-shelf, pre-trained large language models applied to neural population de
 ## Conda environments
 
 - Each experiment provides a .yml file and script for activating the corresponding environment. All packages which are necessary for a given experiment will be installed.
+- To run each code, you will need to point the directories (e.g. results directory, data directory) to the corresponding "data" folder.
 
 ## Data availability
-- All data is available at https://doi.org/10.7910/DVN/EFP1IL. Please download all data and unzip the folder in the same parent directory as the code folder.
+- All data is available at https://doi.org/10.7910/DVN/EFP1IL. Please download all data and unzip the folder into the "data" folder.
 
 ## Running each experiment
 - To run an experiment, depending on your working environment, run the corresponding shell script or simply type

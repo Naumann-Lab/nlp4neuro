@@ -1,4 +1,0 @@
-Traceback (most recent call last):
-  File "/hpc/home/jjm132/jjm132/nlp4neuro/code/experiment_3/experiment_3b.py", line 417, in <module>
-    model = ModelClass(embedding_instance, output_dim).to(device)
-NameError: name 'output_dim' is not defined

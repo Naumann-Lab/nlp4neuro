@@ -1,8 +1,0 @@
-Traceback (most recent call last):
-  File "/hpc/home/jjm132/jjm132/nlp4neuro/code/experiment_7/experiment_7_cleo.py", line 218, in <module>
-    run_pipeline(Xtr, Xva, Xte, Ytr, Yva, Yte, label="tail")
-  File "/hpc/home/jjm132/jjm132/nlp4neuro/code/experiment_7/experiment_7_cleo.py", line 130, in run_pipeline
-    Xtr_t, Ytr_t = create_sequences(torch.tensor(Xtr), torch.tensor(Ytr), seq_length)
-  File "/hpc/home/jjm132/jjm132/nlp4neuro/code/experiment_7/experiment_7_cleo.py", line 43, in create_sequences
-    return torch.stack(xs), torch.stack(ys)
-RuntimeError: stack expects each tensor to be equal size, but got [6, 3436] at entry 0 and [5, 3436] at entry 1
