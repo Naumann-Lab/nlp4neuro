@@ -1,0 +1,15 @@
+name: jjmenv_nlp1
+channels:
+  - pytorch
+  - conda-forge
+dependencies:
+  - python=3.10
+  - numpy
+  - matplotlib
+  - pytorch=1.13.1
+  - cudatoolkit=11.6
+  - scipy
+  - pip
+  - pip:
+    - transformers
+    - bitsandbytes
