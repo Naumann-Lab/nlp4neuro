@@ -1,4 +1,4 @@
-<img src="https://github.com/user-attachments/assets/5ba45c6e-999b-43a0-881c-689adb8b99d7" width="300">
+<img src="https://github.com/user-attachments/assets/5ba45c6e-999b-43a0-881c-689adb8b99d7" width="450">
 
 Off-the-shelf, pre-trained large language models applied to neural population decoding.
 
