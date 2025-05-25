@@ -1,5 +1,4 @@
-[git_banner.pdf](https://github.com/user-attachments/files/20433132/git_banner.pdf)
-
+![Image](https://github.com/user-attachments/assets/5ba45c6e-999b-43a0-881c-689adb8b99d7)
 
 # NLP4Neuro
 Off-the-shelf, pre-trained large language models applied to neural population decoding.
