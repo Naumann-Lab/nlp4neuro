@@ -1,3 +1,5 @@
+![alt text](git_banner.pdf)
+
 # NLP4Neuro
 Off-the-shelf, pre-trained large language models applied to neural population decoding.
 
