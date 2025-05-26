@@ -27,6 +27,15 @@ user@remotepc ~/nlp4neuro/data wget
 
 - Each experiment provides a .yml file and script for activating the corresponding environment.
 
+## Assigning a GPU
+- All jobs were run using the Duke Compute Cluster (DCC) in conjunction with SLURM workload manager.
+- Please note that each experiment .sh script header data corresponds to this particular setup.
+- You may alter each .sh script based on your work environment, or simply run the experiment .py file. 
+
+```
+(my_env) user@remotepc ~/nlp4neuro/code/experiment_1 python run_experiment1.py
+```
+
 ## Web links for code/data
 - NLP4Neuro code: [https://github.com/Naumann-Lab/nlp4neuro]
 - NLP-4-Neuro data: [https://doi.org/10.7910/DVN/I8LULX]
