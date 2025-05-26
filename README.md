@@ -40,4 +40,4 @@ user@remotepc ~/nlp4neuro/data wget
 - NLP4Neuro code: [https://github.com/Naumann-Lab/nlp4neuro]
 - NLP-4-Neuro data: [https://doi.org/10.7910/DVN/I8LULX]
 
-For assistance or clarification, please create an issue or contact me by mail at jacob.morra@duke.edu.
+Documentation written by Jacob Morra. For clarification you may contact me at [jacob.morra@duke.edu].
