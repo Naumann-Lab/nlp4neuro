@@ -5,25 +5,30 @@ Off-the-shelf, pre-trained large language models applied to neural population de
 
 ## Getting started
 
-1) Download the data here: [https://doi.org/10.7910/DVN/I8LULX]
-2) Point to the data folder based on your setup, by altering one line in the "data_loc.txt" file
-3) Run an experiment, or view our experiment results, found in the "plot_results" folder.
-
-E.g.
+1) Download the data from here [https://doi.org/10.7910/DVN/I8LULX] into the "data" directory.
 ```
-(my_env) user@remotepc ~/nlp4neuro/experiment_1 bash run_experiment1.sh
+user@remotepc ~/nlp4neuro/data wget 
+```
+
+2) Activate a conda environment corresponding to the experiment you wish to run.
+```
+(my_env) user@remotepc ~/nlp4neuro/data wget 
+```
+
+3) Run the experiment, or view experiment results, found in the "plot_results" folder.
+```
+(my_env) user@remotepc ~/nlp4neuro/code/experiment_1 bash run_experiment1.sh
+```
+```
+(my_env) user@remotepc ~/nlp4neuro/code/plot_results python results1plot.py
 ```
 
 ## Conda environments
 
 - Each experiment provides a .yml file and script for activating the corresponding environment.
 
-## Running each experiment
-- To run an experiment, depending on your working environment, run the corresponding shell script or simply type
-
-For assistance or clarification, please create an issue or contact me by mail at jacob.morra@duke.edu.
-
-## Github page
-https://github.com/Naumann-Lab/nlp4neuro
+## Web links for code/data
+NLP4Neuro code: [https://github.com/Naumann-Lab/nlp4neuro]
+NLP-4-Neuro data: [https://doi.org/10.7910/DVN/I8LULX]
 
 For assistance or clarification, please create an issue or contact me by mail at jacob.morra@duke.edu.
