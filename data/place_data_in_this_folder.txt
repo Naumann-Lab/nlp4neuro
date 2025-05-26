@@ -1,1 +1,1 @@
-Unzip data into this folder.
+Place data in this folder.
