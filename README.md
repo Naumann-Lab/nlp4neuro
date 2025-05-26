@@ -1,24 +1,29 @@
 <img src="https://github.com/user-attachments/assets/5ba45c6e-999b-43a0-881c-689adb8b99d7" width="450">
 
+# NLP4Neuro
 Off-the-shelf, pre-trained large language models applied to neural population decoding.
 
 ## Getting started
 
-- Models can be fine-tuned with or without a GPU. For testing, we used an Nvidia RTX A6000 card.
-- You will need to install Python 3.9, including package managers i.e. Anaconda and pip.
+1) Download the data here: 
+2) Point to the data folder based on your setup, by altering one line in the "data_loc.txt" file
+3) Run an experiment, or view our experiment results, found in the "plot_results" folder.
+
+E.g.
+```
+(my_env) user@remotepc ~/nlp4neuro/experiment_1 bash run_experiment1.sh
+```
 
 ## Conda environments
 
-- Each experiment provides a .yml file and script for activating the corresponding environment. All packages which are necessary for a given experiment will be installed.
-- To run each code, you will need to point the directories (e.g. results directory, data directory) to the corresponding "data" folder.
-
-## Data availability
-- All data is available at https://doi.org/10.7910/DVN/EFP1IL. Please download all data and unzip the folder into the "data" folder.
+- Each experiment provides a .yml file and script for activating the corresponding environment.
 
 ## Running each experiment
 - To run an experiment, depending on your working environment, run the corresponding shell script or simply type
-```
-python run_experimentX.py
-```
+
+For assistance or clarification, please create an issue or contact me by mail at jacob.morra@duke.edu.
+
+## Github page
+https://github.com/Naumann-Lab/nlp4neuro
 
 For assistance or clarification, please create an issue or contact me by mail at jacob.morra@duke.edu.
