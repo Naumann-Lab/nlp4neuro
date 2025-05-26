@@ -5,7 +5,7 @@ Off-the-shelf, pre-trained large language models applied to neural population de
 
 ## Getting started
 
-1) Download the data here: 
+1) Download the data here: [https://doi.org/10.7910/DVN/I8LULX]
 2) Point to the data folder based on your setup, by altering one line in the "data_loc.txt" file
 3) Run an experiment, or view our experiment results, found in the "plot_results" folder.
 
