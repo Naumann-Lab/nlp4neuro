@@ -8,17 +8,20 @@ from torch.utils.data import DataLoader, TensorDataset
 from transformers import GPT2Config, GPT2Model, AdamW, AutoModel, BertModel, BertConfig, BitsAndBytesConfig
 from scipy.stats import mannwhitneyu
 
+# use .yaml file to set directories...
+from config import DATA_DIR, RESULTS_DIR
+
 quant_config = BitsAndBytesConfig(
     load_in_8bit=True,
     llm_int8_threshold=6.0
 )
 
 # if needed, change to where you would like model results to be saved
-BASE_SAVE_DIR = os.path.join(os.getcwd(), os.pardir, os.pardir, "results", "experiment_1")
+BASE_SAVE_DIR = os.path.join(RESULTS_DIR, "experiment_1")
 os.makedirs(BASE_SAVE_DIR, exist_ok=True)
 
 # this should point to where the exp1-4_data folder and subfolders are...
-DATA_DIR = os.path.join(os.getcwd(), os.pardir, os.pardir, "exp1-4_data", "data_prepped_for_models")
+DATA_DIR = os.path.join(DATA_DIR, "exp1-4_data", "data_prepped_for_models")
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"Using device: {device}")
