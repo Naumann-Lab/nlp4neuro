@@ -12,8 +12,13 @@ from tqdm import tqdm
 
 quant_config = BitsAndBytesConfig(load_in_8bit=True, llm_int8_threshold=6.0)
 
-BASE_SAVE_DIR = "/hpc/group/naumannlab/jjm132/nlp4neuro/results/experiment_4a"
+
+# if needed, change to where you would like model results to be saved
+BASE_SAVE_DIR = os.path.join(os.getcwd(), os.pardir, os.pardir, "results", "experiment_4a")
 os.makedirs(BASE_SAVE_DIR, exist_ok=True)
+
+# this should point to where the exp1-4_data folder and subfolders are...
+DATA_DIR = os.path.join(os.getcwd(), os.pardir, os.pardir, "exp1-4_data", "data_prepped_for_models")
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print("Using device:", device)
@@ -119,11 +124,11 @@ for fish in fish_list:
     fish_dir = os.path.join(BASE_SAVE_DIR, f"fish{fish}")
     os.makedirs(fish_dir, exist_ok=True)
     neural = np.load(
-        f"/hpc/group/naumannlab/jjm132/data_prepped_for_models/fish{fish}_neural_data_matched.npy",
+        f"{DATA_DIR}/fish{fish}_neural_data_matched.npy",
         allow_pickle=True
     )[:, :-2].T
     tail = np.load(
-        f"/hpc/group/naumannlab/jjm132/data_prepped_for_models/fish{fish}_tail_data_matched.npy",
+        f"{DATA_DIR}/fish{fish}_tail_data_matched.npy",
         allow_pickle=True
     )
     n  = neural.shape[0]

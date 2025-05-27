@@ -9,8 +9,12 @@ from transformers import AutoModel, BitsAndBytesConfig
 from torch.optim import AdamW
 from datetime import datetime
 
-BASE_SAVE_DIR = "/hpc/group/naumannlab/jjm132/nlp4neuro/results/deepseek_only"
+# if needed, change to where you would like model results to be saved
+BASE_SAVE_DIR = os.path.join(os.getcwd(), os.pardir, os.pardir, "results", "experiment_4b")
 os.makedirs(BASE_SAVE_DIR, exist_ok=True)
+
+# this should point to where the exp1-4_data folder and subfolders are...
+DATA_DIR = os.path.join(os.getcwd(), os.pardir, os.pardir, "exp1-4_data", "data_prepped_for_models")
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 fish_list = [9, 10, 11, 12, 13]
@@ -106,8 +110,8 @@ for fish in fish_list:
     os.makedirs(fish_dir, exist_ok=True)
     ckpt_path = os.path.join(fish_dir, "finetuned_heads.pt")
 
-    neural = np.load(f"/hpc/group/naumannlab/jjm132/data_prepped_for_models/fish{fish}_neural_data_matched.npy", allow_pickle=True)[:, :-2].T
-    tail = np.load(f"/hpc/group/naumannlab/jjm132/data_prepped_for_models/fish{fish}_tail_data_matched.npy", allow_pickle=True)
+    neural = np.load(f"{DATA_DIR}/fish{fish}_neural_data_matched.npy", allow_pickle=True)[:, :-2].T
+    tail = np.load(f"{DATA_DIR}/fish{fish}_tail_data_matched.npy", allow_pickle=True)
 
     n_frames = neural.shape[0]
     tr_end, va_end = int(.70*n_frames), int(.80*n_frames)

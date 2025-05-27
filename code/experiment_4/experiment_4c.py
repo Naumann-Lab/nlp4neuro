@@ -9,9 +9,15 @@ from transformers import AutoModel, BitsAndBytesConfig
 from torch.optim import AdamW
 from datetime import datetime
 
-BASE = "/hpc/group/naumannlab/jjm132/nlp4neuro/experiment_4c"
-DATA_DIR = f"{BASE}/data"
-RESULT_DIR = f"{BASE}/results"
+# if needed, change to where you would like model results to be saved
+BASE_SAVE_DIR = os.path.join(os.getcwd(), os.pardir, os.pardir, "results", "experiment_4c")
+os.makedirs(BASE_SAVE_DIR, exist_ok=True)
+
+# this should point to where the exp1-4_data folder and subfolders are...
+DATA_DIR = os.path.join(os.getcwd(), os.pardir, os.pardir, "exp1-4_data", "data_prepped_for_models")
+
+BASE = BASE_SAVE_DIR
+RESULT_DIR = BASE
 os.makedirs(RESULT_DIR, exist_ok=True)
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -185,14 +191,14 @@ if __name__ == "__main__":
     banner()
     neural = np.load(f"{DATA_DIR}/neural_data_groundtruth_matched.npy", allow_pickle=True).astype(np.float32)
     tail = np.load(f"{DATA_DIR}/tail_data_groundtruth_matched.npy", allow_pickle=True).astype(np.float32)
-    tail_sum = np.load(f"{DATA_DIR}/tail_data_sum_groundtruth_matched.npy", allow_pickle=True).astype(np.float32)
+    # tail_sum = np.load(f"{DATA_DIR}/tail_data_sum_groundtruth_matched.npy", allow_pickle=True).astype(np.float32)
     neural = orient_t_first(neural)
     T = neural.shape[0]
     tail = orient_t_first(tail, T_ref=T)[:T]
-    tail_sum = orient_t_first(tail_sum, T_ref=T)[:T]
+    # tail_sum = orient_t_first(tail_sum, T_ref=T)[:T]
     if neural.shape[1] > tail.shape[1]:
         neural = neural[:, :tail.shape[1]]
     tr_end, va_end = int(.70*T), int(.80*T)
     Xtr, Xva, Xte = neural[:tr_end], neural[tr_end:va_end], neural[va_end:]
     run_pipeline(Xtr, Xva, Xte, tail[:tr_end], tail[tr_end:va_end], tail[va_end:], label="tail")
-    run_pipeline(Xtr, Xva, Xte, tail_sum[:tr_end], tail_sum[tr_end:va_end], tail_sum[va_end:], label="tail_sum")
+    # run_pipeline(Xtr, Xva, Xte, tail_sum[:tr_end], tail_sum[tr_end:va_end], tail_sum[va_end:], label="tail_sum")

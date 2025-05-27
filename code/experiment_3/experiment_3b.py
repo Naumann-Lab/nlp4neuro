@@ -9,14 +9,20 @@ from torch.optim import AdamW
 from scipy.stats import wilcoxon
 from tqdm import tqdm
 
-RESULTS_DIR = "/hpc/group/naumannlab/jjm132/nlp4neuro/results/experiment3b_results"
-os.makedirs(RESULTS_DIR, exist_ok=True)
+# if needed, change to where you would like model results to be saved
+BASE_SAVE_DIR = os.path.join(os.getcwd(), os.pardir, os.pardir, "results", "experiment_3b")
+os.makedirs(BASE_SAVE_DIR, exist_ok=True)
+
+# rename...
+RESULTS_DIR = BASE_SAVE_DIR
+
+# this should point to where the exp1-4_data folder and subfolders are...
+DATA_DIR = os.path.join(os.getcwd(), os.pardir, os.pardir, "exp1-4_data", "data_prepped_for_models")
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print("▶ Device:", device)
 
 fish_num   = 9
-DATA_DIR   = "/hpc/group/naumannlab/jjm132/data_prepped_for_models"
 X_full_raw = np.load(f"{DATA_DIR}/fish{fish_num}_neural_data_matched.npy", allow_pickle=True)[:, :-2]
 Y_full_raw = np.load(f"{DATA_DIR}/fish{fish_num}_tail_data_matched.npy", allow_pickle=True)
 
@@ -35,8 +41,9 @@ np.save(os.path.join(RESULTS_DIR, "groundtruth_val.npy"),  Y_va)
 np.save(os.path.join(RESULTS_DIR, "groundtruth_test.npy"), Y_te)
 print("▶ Ground truths saved.")
 
-SALIENCY_ROOT = "/hpc/group/naumannlab/jjm132/nlp4neuro/results/deepseek_only"
-imp_path      = f"{SALIENCY_ROOT}/fish{fish_num}/fish{fish_num}_importance.npy"
+# if not working, adjust to wherever the fishX_importance.npy file is...
+SALIENCY_ROOT = os.path.join(os.getcwd(), os.pardir, os.pardir, "plot_results")
+imp_path      = f"{SALIENCY_ROOT}/fish{fish_num}_importance.npy"
 precomp_imp   = np.load(imp_path)
 SALIENT50_IDX = precomp_imp.argsort()[-50:][::-1]
 print("▶ Loaded top-50 salient neuron list.")
@@ -288,7 +295,7 @@ for scenario in ("salient50_removed", "random50_removed"):
                 np.savez(os.path.join(emb_dir, f"{fam.lower()}_{emb_name.lower()}_top50_salient.npz"),
                          idx=top50, score=imp[top50])
 
-PLOT_DIR = os.path.join(RESULTS_DIR, "final_plots_and_stats")
+PLOT_DIR = os.path.join(RESULTS_DIR)
 os.makedirs(PLOT_DIR, exist_ok=True)
 
 for fam in families:

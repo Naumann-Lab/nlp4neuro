@@ -13,8 +13,12 @@ quant_config = BitsAndBytesConfig(
     llm_int8_threshold=6.0
 )
 
-BASE_SAVE_DIR = os.path.join(os.getcwd(), f"/hpc/group/naumannlab/jjm132/nlp4neuro/results/experiment_1")
+# if needed, change to where you would like model results to be saved
+BASE_SAVE_DIR = os.path.join(os.getcwd(), os.pardir, os.pardir, "results", "experiment_1")
 os.makedirs(BASE_SAVE_DIR, exist_ok=True)
+
+# this should point to where the exp1-4_data folder and subfolders are...
+DATA_DIR = os.path.join(os.getcwd(), os.pardir, os.pardir, "exp1-4_data", "data_prepped_for_models")
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"Using device: {device}")
@@ -34,8 +38,8 @@ for fish_num in fish_list:
     fish_save_dir = os.path.join(BASE_SAVE_DIR, f"fish{fish_num}")
     os.makedirs(fish_save_dir, exist_ok=True)
 
-    neural_data = np.load(f"/hpc/group/naumannlab/jjm132/data_prepped_for_models/fish{fish_num}_neural_data_matched.npy", allow_pickle=True)[:, :-2]
-    tail_data = np.load(f"/hpc/group/naumannlab/jjm132/data_prepped_for_models/fish{fish_num}_tail_data_matched.npy", allow_pickle=True)
+    neural_data = np.load(f"{DATA_DIR}/fish{fish_num}_neural_data_matched.npy", allow_pickle=True)[:, :-2]
+    tail_data = np.load(f"{DATA_DIR}/fish{fish_num}_tail_data_matched.npy", allow_pickle=True)
 
     neural_data = neural_data.T
     print("Neural data shape:", neural_data.shape)

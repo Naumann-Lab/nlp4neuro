@@ -12,14 +12,21 @@ from transformers import GPT2Model, GPT2Config, AdamW, AutoModel, AutoConfig, Be
 from scipy.stats import wilcoxon
 from tqdm import tqdm
 
-RESULTS_DIR = "/hpc/group/naumannlab/jjm132/nlp4neuro/results/experiment3_results"
-os.makedirs(RESULTS_DIR, exist_ok=True)
+# if needed, change to where you would like model results to be saved
+BASE_SAVE_DIR = os.path.join(os.getcwd(), os.pardir, os.pardir, "results", "experiment_3")
+os.makedirs(BASE_SAVE_DIR, exist_ok=True)
+
+# rename...
+RESULTS_DIR = BASE_SAVE_DIR
+
+# this should point to where the exp1-4_data folder and subfolders are...
+DATA_DIR = os.path.join(os.getcwd(), os.pardir, os.pardir, "exp1-4_data", "data_prepped_for_models")
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"Using device: {device}")
 
 fish_num = 9
-data_dir = "/hpc/group/naumannlab/jjm132/data_prepped_for_models"
+data_dir = DATA_DIR # rename...
 neural_data = np.load(os.path.join(data_dir, f"fish{fish_num}_neural_data_matched.npy"), allow_pickle=True)[:, :-2]
 tail_data   = np.load(os.path.join(data_dir, f"fish{fish_num}_tail_data_matched.npy"), allow_pickle=True)
 

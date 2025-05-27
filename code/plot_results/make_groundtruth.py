@@ -9,14 +9,24 @@ from sklearn.preprocessing import MinMaxScaler, StandardScaler
 from sklearn.decomposition import PCA
 from IPython.display import display
 
+# please adjust here if you wish to save the ground truth data to another directory
+BASE_SAVE_DIR = os.path.join(os.getcwd(), os.pardir, os.pardir, "exp1-4_data", "data_prepped_for_models")
+os.makedirs(BASE_SAVE_DIR, exist_ok=True)
+
 # neural data ------------------------------------------------------------------------------------------------------------------------------------------------
-fish9_data_folder = "../data/20241104_elavl3rsChrm_h2bg6s_OMR2stim_fish9_omr_stack-002/20241104_elavl3rsChrm_h2bg6s_OMR2stim_fish9_omr_stack-002"
-fish10_data_folder = "../data/20241119_elavl3rsChrm_H2bG6s_7dpf_OMR2Stim_fish10_OMR_stack-002/20241119_elavl3rsChrm_H2bG6s_7dpf_OMR2Stim_fish10_OMR_stack-002"
-fish11_data_folder = "../data/20241209_elavl3rsChrm_H2bG6s_OMR2Stim_fish11_omr_stack-007/20241209_elavl3rsChrm_H2bG6s_OMR2Stim_fish11_omr_stack-007"
-fish12_data_folder = "../data/20241209_elavl3rsChrm_H2bG6s_OMR2Stim_fish12_omr_stack-009/20241209_elavl3rsChrm_H2bG6s_OMR2Stim_fish12_omr_stack-009"
-fish13_data_folder = "../data/20241216_elavl3rsChrm_H2bG6s_OMR2Stim_fish13_omr_stack/20241216_elavl3rsChrm_H2bG6s_OMR2Stim_fish13_omr_stack"
+# if you wish to reconstruct the matched neural and tail data files, point these to the raw data folders...
+DATA_DIR = os.path.join(os.getcwd(), os.pardir, os.pardir)
+fish9_data_folder = f"{DATA_DIR}/raw_data_f9"
+fish10_data_folder = f"{DATA_DIR}/raw_data_f10"
+fish11_data_folder = f"{DATA_DIR}/raw_data_f11"
+fish12_data_folder = f"{DATA_DIR}/raw_data_f12"
+fish13_data_folder = f"{DATA_DIR}/raw_data_f13"
 num_planes = 6
+
+# !!! CHANGE TO FISH YOU ARE BUILDING DATA FOR...---------------------------------------------------------------------------
 fish = 13
+# --------------------------------------------------------------------------------------------------------------------------
+
 arrays = []
 for plane_idx in range(num_planes):
     if fish==9:
@@ -49,8 +59,8 @@ normalized_array = scaler_minmax.fit_transform(standardized_array)
 print("Normalization complete.")
 
 print(normalized_array.shape) # num_neurons by num_time bins
-np.save(f"../data/data_prepped_for_models/fish{fish}_neural_data_full.npy", normalized_array)
-np.save(f"../data/data_prepped_for_models/fish{fish}_neural_data_matched.npy", normalized_array[:,:4462])
+np.save(f"{BASE_SAVE_DIR}/fish{fish}_neural_data_full.npy", normalized_array)
+np.save(f"{BASE_SAVE_DIR}/fish{fish}_neural_data_matched.npy", normalized_array[:,:4462])
 
 
 # tail data --------------------------------------------------------------------------------------------------------------------------------------------------
@@ -85,7 +95,7 @@ display("Tail dataframe display: \n", tail_df_useful)
 # just use the array for simulation
 tail_array = tail_df_useful.values
 print(tail_array.shape)
-np.save(f"../data/data_prepped_for_models/fish{fish}_tail_data_full.npy", tail_array)
+np.save(f"{BASE_SAVE_DIR}/fish{fish}_tail_data_full.npy", tail_array)
 
 # merge data in given frame
 # Define the tail component columns
@@ -94,4 +104,4 @@ tail_components = ["theta_00", "theta_01", "theta_02", "theta_03", "theta_04", "
 tail_avg = tail_df_useful.groupby("frame")[tail_components].mean()
 print(tail_avg.values.shape)
 print(tail_avg.values)
-np.save(f"../data/data_prepped_for_models/fish{fish}_tail_data_matched.npy", tail_avg.values)
+np.save(f"{BASE_SAVE_DIR}/fish{fish}_tail_data_matched.npy", tail_avg.values)
