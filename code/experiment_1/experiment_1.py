@@ -1,40 +1,51 @@
+# Jacob Morra, May 2025
+# RNNs + transformers are trained + tested on sequence-to-sequence data, i.e. larval zebrafish neuron population decoding.
+
+# imports
 import os
 import numpy as np
 import matplotlib.pyplot as plt
 import torch
 import torch.nn as nn
 import torch.optim as optim
+
 from torch.utils.data import DataLoader, TensorDataset
 from transformers import GPT2Config, GPT2Model, AdamW, AutoModel, BertModel, BertConfig, BitsAndBytesConfig
 from scipy.stats import mannwhitneyu
 
+# CONFIGURATION --------
+
 # use .yaml file to set directories...
 from config import DATA_DIR, RESULTS_DIR
 
+# load quantized version of DeepSeek-c7b
 quant_config = BitsAndBytesConfig(
     load_in_8bit=True,
     llm_int8_threshold=6.0
 )
 
-# if needed, change to where you would like model results to be saved
+# save data in experiment 1 sub-directory
 BASE_SAVE_DIR = os.path.join(RESULTS_DIR, "experiment_1")
 os.makedirs(BASE_SAVE_DIR, exist_ok=True)
 
-# this should point to where the exp1-4_data folder and subfolders are...
+# load data from experiment sub-directory
 DATA_DIR = os.path.join(DATA_DIR, "exp1-4_data", "data_prepped_for_models")
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"Using device: {device}")
 
+
+# DATA ASSIGNMENT -------
 fish_list = [9, 10, 11, 12, 13]
 
+# PARAMETERS --------
 seq_lengths = [5, 10, 15, 20]
 num_epochs = 10
 batch_size = 32
 lr_default = 1e-4
 num_runs = 10
 
-# main loop
+# run the main loop
 for fish_num in fish_list:
     print(f"Processing Fish {fish_num}...")
 
@@ -84,6 +95,7 @@ for fish_num in fish_list:
             sequences_targets.append(targets[i : i + seq_length])
         return torch.stack(sequences_inputs), torch.stack(sequences_targets)
 
+    # generate output predictions, averaging overlapping sequence frames
     def average_sliding_window_predictions(predictions, seq_length, total_length):
         if torch.is_tensor(predictions):
             predictions = predictions.cpu().numpy()
@@ -159,6 +171,7 @@ for fish_num in fish_list:
         all_targets = torch.cat(targets_list, dim=0)
         return all_preds, all_targets
 
+    # GPT-2
     class CustomGPT2ModelPretrained(nn.Module):
         def __init__(self, input_dim, output_dim):
             super().__init__()
@@ -174,6 +187,7 @@ for fish_num in fish_list:
             logits = self.output_proj(hidden_states)
             return logits
 
+    # LSTM
     class LSTMModel(nn.Module):
         def __init__(self, input_dim, hidden_dim, output_dim, num_layers=1):
             super().__init__()
@@ -185,6 +199,7 @@ for fish_num in fish_list:
             out = self.fc(out)
             return out
 
+    # RC
     class ReservoirComputer(nn.Module):
         def __init__(self, input_dim, hidden_dim, output_dim, alpha=0.9):
             super().__init__()
@@ -207,6 +222,7 @@ for fish_num in fish_list:
                 outputs.append(y_t.unsqueeze(1))
             return torch.cat(outputs, dim=1)
 
+    # DeepSeek-c7b
     hidden_size_deepseek = 4096
     num_experts = 8
     top_k = 2
@@ -240,25 +256,21 @@ for fish_num in fish_list:
             logits = self.output_proj(aggregated_output)
             return logits
 
-    class CustomBERTModel(nn.Module):
-        def __init__(self, input_dim, hidden_size, output_dim):
+    # BERT-bu
+    class BERTPretrainedModel(nn.Module):
+        def __init__(self, input_dim, output_dim):
             super().__init__()
+            self.bert = BertModel.from_pretrained("bert-base-uncased")
+            hidden_size = self.bert.config.hidden_size
             self.input_proj = nn.Linear(input_dim, hidden_size)
-            config = BertConfig(
-                hidden_size=hidden_size,
-                num_hidden_layers=6,
-                num_attention_heads=12,
-                intermediate_size=hidden_size * 4
-            )
-            self.bert = BertModel(config)
             self.output_proj = nn.Linear(hidden_size, output_dim)
 
-        def forward(self, x, position_ids=None):
+        def forward(self, x):
             x = self.input_proj(x)
             outputs = self.bert(inputs_embeds=x)
             hidden_states = outputs.last_hidden_state
-            logits = self.output_proj(hidden_states)
-            return logits
+            return self.output_proj(hidden_states)
+
 
     model_names_list = ["GPT2 Pretrained", "LSTM", "Reservoir", "DeepSeek MoE", "BERT"]
 
@@ -362,7 +374,7 @@ for fish_num in fish_list:
 
             print("\nTraining Small BERT Model...")
             bert_hidden_size = 768
-            model_bert = CustomBERTModel(input_dim, bert_hidden_size, output_dim).to(device)
+            model_bert = BERTPretrainedModel(input_dim, bert_hidden_size, output_dim).to(device)
             optimizer_bert = AdamW(model_bert.parameters(), lr=lr_default)
             train_model(model_bert, optimizer_bert, train_loader, val_loader, device, num_epochs)
 
