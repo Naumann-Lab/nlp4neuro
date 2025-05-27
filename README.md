@@ -7,7 +7,8 @@ Off-the-shelf, pre-trained large language models applied to neural population de
 
 1) Download the data from here [https://doi.org/10.7910/DVN/I8LULX] into the "data" directory.
 ```
-user@remotepc ~/nlp4neuro/data wget 
+user@remotepc ~/nlp4neuro/data wget -r --no-parent data "https://dataverse.harvard.edu/api/datasets/:persistentId/dirindex?persistentId=doi:10.7910/DVN/I8LULX&folder=exp1-4_data"
+
 ```
 
 2) Activate a conda environment corresponding to the experiment you wish to run.
