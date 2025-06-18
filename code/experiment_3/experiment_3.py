@@ -7,28 +7,30 @@ import matplotlib.pyplot as plt
 import torch
 import torch.nn as nn
 import torch.optim as optim
+from pathlib import Path
 from torch.utils.data import DataLoader, TensorDataset
 from transformers import GPT2Model, GPT2Config, AdamW, AutoModel, AutoConfig, BertModel, BertConfig, BitsAndBytesConfig
 from scipy.stats import wilcoxon
 from tqdm import tqdm
+from config import DATA_DIR as CONFIG_DATA_DIR, RESULTS_DIR as CONFIG_RESULTS_DIR
 
 # if needed, change to where you would like model results to be saved
-BASE_SAVE_DIR = os.path.join(os.getcwd(), os.pardir, os.pardir, "results", "experiment_3")
-os.makedirs(BASE_SAVE_DIR, exist_ok=True)
+BASE_SAVE_DIR = (CONFIG_RESULTS_DIR / "experiment_3").resolve()
+BASE_SAVE_DIR.mkdir(parents=True, exist_ok=True)
 
 # rename...
 RESULTS_DIR = BASE_SAVE_DIR
 
 # this should point to where the exp1-4_data folder and subfolders are...
-DATA_DIR = os.path.join(os.getcwd(), os.pardir, os.pardir, "exp1-4_data", "data_prepped_for_models")
+DATA_DIR = (CONFIG_DATA_DIR / "exp1-4_data" / "data_prepped_for_models").resolve()
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"Using device: {device}")
 
 fish_num = 9
 data_dir = DATA_DIR # rename...
-neural_data = np.load(os.path.join(data_dir, f"fish{fish_num}_neural_data_matched.npy"), allow_pickle=True)[:, :-2]
-tail_data   = np.load(os.path.join(data_dir, f"fish{fish_num}_tail_data_matched.npy"), allow_pickle=True)
+neural_data = np.load(DATA_DIR / f"fish{fish_num}_neural_data_matched.npy", allow_pickle=True)[:, :-2]
+tail_data   = np.load(DATA_DIR / f"fish{fish_num}_tail_data_matched.npy",   allow_pickle=True)
 
 neural_data = neural_data.T
 assert neural_data.shape[0] == tail_data.shape[0]
@@ -44,8 +46,8 @@ Y_train = tail_data[:train_end]
 Y_val   = tail_data[train_end:val_end]
 Y_test  = tail_data[val_end:]
 
-np.save(os.path.join(RESULTS_DIR, "groundtruth_val.npy"), Y_val)
-np.save(os.path.join(RESULTS_DIR, "groundtruth_test.npy"), Y_test)
+np.save(RESULTS_DIR / "groundtruth_val.npy",  Y_val)
+np.save(RESULTS_DIR / "groundtruth_test.npy", Y_test)
 
 X_train_t = torch.tensor(X_train, dtype=torch.float32)
 X_val_t   = torch.tensor(X_val,   dtype=torch.float32)
@@ -265,8 +267,8 @@ families = {
 results = {f: {emb: [] for emb in embedding_models} for f in families}
 
 for run_idx in range(1, NUM_RUNS+1):
-    run_folder = os.path.join(RESULTS_DIR, f"run_{run_idx}")
-    os.makedirs(run_folder, exist_ok=True)
+    run_folder = RESULTS_DIR / f"run_{run_idx}"
+    run_folder.mkdir(exist_ok=True)
     seed = 1234 + run_idx
     np.random.seed(seed)
     torch.manual_seed(seed)
@@ -274,8 +276,8 @@ for run_idx in range(1, NUM_RUNS+1):
         torch.cuda.manual_seed_all(seed)
 
     for family_name, fam_params in families.items():
-        family_folder = os.path.join(run_folder, family_name.lower() + "_embedding_comparisons")
-        os.makedirs(family_folder, exist_ok=True)
+        family_folder = run_folder / (family_name.lower() + "_embedding_comparisons")
+        family_folder.mkdir(exist_ok=True)
 
         for emb_name, emb_class in embedding_models.items():
             hidden_size = fam_params["hidden_size"]
@@ -288,15 +290,15 @@ for run_idx in range(1, NUM_RUNS+1):
             final_preds = average_sliding_window_predictions(preds_tensor, seq_length, len(X_test_t))
             rmse_val = compute_rmse(final_preds, Y_test)
             results[family_name][emb_name].append(rmse_val)
-            emb_subfolder = os.path.join(family_folder, emb_name.lower())
-            os.makedirs(emb_subfolder, exist_ok=True)
-            np.save(os.path.join(emb_subfolder, f"{family_name.lower()}_{emb_name.lower()}_preds_run{run_idx}.npy"), final_preds)
-            truth_path = os.path.join(emb_subfolder, f"{family_name.lower()}_{emb_name.lower()}_groundtruth.npy")
-            if not os.path.exists(truth_path):
+            emb_subfolder = family_folder / emb_name.lower()
+            emb_subfolder.mkdir(exist_ok=True)
+            np.save(emb_subfolder / f"{family_name.lower()}_{emb_name.lower()}_preds_run{run_idx}.npy", final_preds)
+            truth_path = emb_subfolder / f"{family_name.lower()}_{emb_name.lower()}_groundtruth.npy"
+            if not truth_path.exists():
                 np.save(truth_path, Y_test)
 
-final_plots_folder = os.path.join(RESULTS_DIR, "final_plots_and_stats")
-os.makedirs(final_plots_folder, exist_ok=True)
+final_plots_folder = RESULTS_DIR / "final_plots_and_stats"
+final_plots_folder.mkdir(exist_ok=True)
 
 for family_name in families:
     emb_names = list(results[family_name].keys())
@@ -311,9 +313,9 @@ for family_name in families:
     ax.set_ylabel("RMSE")
     ax.set_title(f"{family_name} - Embedding Comparison (Mean ± SEM, n={NUM_RUNS})")
     plt.tight_layout()
-    plt.savefig(os.path.join(final_plots_folder, f"{family_name.lower()}_embeddings_barplot.png"))
+    plt.savefig(final_plots_folder / f"{family_name.lower()}_embeddings_barplot.png")
     plt.close()
-    sig_file = os.path.join(final_plots_folder, f"{family_name.lower()}_wilcoxon_significance.txt")
+    sig_file = final_plots_folder / f"{family_name.lower()}_wilcoxon_significance.txt"
     with open(sig_file, "w") as f:
         f.write(f"Significance tests for {family_name}\nPairwise Wilcoxon tests:\n\n")
         for i in range(len(emb_names)):

@@ -8,13 +8,17 @@ from torch.utils.data import DataLoader, TensorDataset
 from transformers import AutoModel, BitsAndBytesConfig
 from torch.optim import AdamW
 from datetime import datetime
+from pathlib import Path
+from config import DATA_DIR as CONFIG_DATA_DIR, RESULTS_DIR as CONFIG_RESULTS_DIR
+
+quant_config = BitsAndBytesConfig(load_in_8bit=True, llm_int8_threshold=6.0)
 
 # if needed, change to where you would like model results to be saved
-BASE_SAVE_DIR = os.path.join(os.getcwd(), os.pardir, os.pardir, "results", "experiment_4b")
+BASE_SAVE_DIR = (CONFIG_RESULTS_DIR / "experiment_4b").resolve()
 os.makedirs(BASE_SAVE_DIR, exist_ok=True)
 
 # this should point to where the exp1-4_data folder and subfolders are...
-DATA_DIR = os.path.join(os.getcwd(), os.pardir, os.pardir, "exp1-4_data", "data_prepped_for_models")
+DATA_DIR = (CONFIG_DATA_DIR / "exp1-4_data" / "data_prepped_for_models").resolve()
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 fish_list = [9, 10, 11, 12, 13]
@@ -106,12 +110,12 @@ class DeepSeekMoE(nn.Module):
         return self.out_proj(agg)
 
 for fish in fish_list:
-    fish_dir = os.path.join(BASE_SAVE_DIR, f"fish{fish}")
+    fish_dir = BASE_SAVE_DIR / f"fish{fish}"
     os.makedirs(fish_dir, exist_ok=True)
-    ckpt_path = os.path.join(fish_dir, "finetuned_heads.pt")
+    ckpt_path = fish_dir / "finetuned_heads.pt"
 
-    neural = np.load(f"{DATA_DIR}/fish{fish}_neural_data_matched.npy", allow_pickle=True)[:, :-2].T
-    tail = np.load(f"{DATA_DIR}/fish{fish}_tail_data_matched.npy", allow_pickle=True)
+    neural = np.load(DATA_DIR / f"fish{fish}_neural_data_matched.npy", allow_pickle=True)[:, :-2].T
+    tail = np.load(DATA_DIR / f"fish{fish}_tail_data_matched.npy", allow_pickle=True)
 
     n_frames = neural.shape[0]
     tr_end, va_end = int(.70*n_frames), int(.80*n_frames)
@@ -150,13 +154,13 @@ for fish in fish_list:
         plt.title(f"Fish {fish}")
         plt.legend()
         plt.tight_layout()
-        plt.savefig(os.path.join(fish_dir, f"fish{fish}_rmse_curve.png"), dpi=300)
+        plt.savefig(fish_dir / f"fish{fish}_rmse_curve.png", dpi=300)
         plt.close()
 
     pred_seq, gt_seq = predict(model, te_loader)
-    np.save(os.path.join(fish_dir, f"fish{fish}_pred_sequences.npy"), pred_seq.numpy())
-    np.save(os.path.join(fish_dir, f"fish{fish}_gt_sequences.npy"), gt_seq.numpy())
-    np.save(os.path.join(fish_dir, f"fish{fish}_groundtruth_full.npy"), Yte)
+    np.save(fish_dir / f"fish{fish}_pred_sequences.npy", pred_seq.numpy())
+    np.save(fish_dir / f"fish{fish}_gt_sequences.npy",   gt_seq.numpy())
+    np.save(fish_dir / f"fish{fish}_groundtruth_full.npy", Yte)
 
     def overlap_mean(preds, total_len):
         L = preds.shape[1]
@@ -168,13 +172,13 @@ for fish in fish_list:
         return out / cnt[:, None]
 
     pred_full = overlap_mean(pred_seq.numpy(), len(Xte))
-    np.save(os.path.join(fish_dir, f"fish{fish}_pred_full.npy"), pred_full)
+    np.save(fish_dir / f"fish{fish}_pred_full.npy", pred_full)
 
     imp = feature_importance(model, va_loader, Xtr.shape[1])
-    np.save(os.path.join(fish_dir, f"fish{fish}_importance.npy"), imp)
+    np.save(fish_dir / f"fish{fish}_importance.npy", imp)
 
     top200 = imp.argsort()[-200:][::-1]
-    np.savez(os.path.join(fish_dir, f"fish{fish}_top200_neurons.npz"), idx=top200, score=imp[top200])
+    np.savez(fish_dir / f"fish{fish}_top200_neurons.npz", idx=top200, score=imp[top200])
 
     k = 20
     topk = imp.argsort()[-k:][::-1]
@@ -184,7 +188,7 @@ for fish in fish_list:
     plt.ylabel("|grad × input|")
     plt.title(f"Fish {fish} – top {k} saliency")
     plt.tight_layout()
-    plt.savefig(os.path.join(fish_dir, f"fish{fish}_top{k}_saliency.png"))
+    plt.savefig(fish_dir / f"fish{fish}_top{k}_saliency.png")
     plt.close()
 
     frame_loader = DataLoader(TensorDataset(Xte_t, Yte_t), batch_size=batch_size, shuffle=False)
@@ -206,4 +210,4 @@ for fish in fish_list:
         win_start += B
 
     frame_sal /= frame_cnt[:, None]
-    np.save(os.path.join(fish_dir, f"fish{fish}_frame_saliency.npy"), frame_sal)
+    np.save(fish_dir / f"fish{fish}_frame_saliency.npy", frame_sal)

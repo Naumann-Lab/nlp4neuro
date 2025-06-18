@@ -1,14 +1,14 @@
-# Jacob Morra, May 2025
+# Jacob Morra, June 2025
 # RNNs + transformers are trained + tested on sequence-to-sequence data, i.e. larval zebrafish neuron population decoding.
 
 # imports
 import os
+from pathlib import Path
 import numpy as np
 import matplotlib.pyplot as plt
 import torch
 import torch.nn as nn
 import torch.optim as optim
-
 from torch.utils.data import DataLoader, TensorDataset
 from transformers import GPT2Config, GPT2Model, AdamW, AutoModel, BertModel, BertConfig, BitsAndBytesConfig
 from scipy.stats import mannwhitneyu
@@ -25,15 +25,14 @@ quant_config = BitsAndBytesConfig(
 )
 
 # save data in experiment 1 sub-directory
-BASE_SAVE_DIR = os.path.join(RESULTS_DIR, "experiment_1")
-os.makedirs(BASE_SAVE_DIR, exist_ok=True)
+BASE_SAVE_DIR = RESULTS_DIR / "experiment_1"
+BASE_SAVE_DIR.mkdir(parents=True, exist_ok=True)
 
 # load data from experiment sub-directory
-DATA_DIR = os.path.join(DATA_DIR, "exp1-4_data", "data_prepped_for_models")
+DATA_DIR = DATA_DIR / "exp1-4_data" / "data_prepped_for_models"
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"Using device: {device}")
-
 
 # DATA ASSIGNMENT -------
 fish_list = [9, 10, 11, 12, 13]
@@ -49,11 +48,11 @@ num_runs = 10
 for fish_num in fish_list:
     print(f"Processing Fish {fish_num}...")
 
-    fish_save_dir = os.path.join(BASE_SAVE_DIR, f"fish{fish_num}")
-    os.makedirs(fish_save_dir, exist_ok=True)
+    fish_save_dir = BASE_SAVE_DIR / f"fish{fish_num}"
+    fish_save_dir.mkdir(parents=True, exist_ok=True)
 
-    neural_data = np.load(f"{DATA_DIR}/fish{fish_num}_neural_data_matched.npy", allow_pickle=True)[:, :-2]
-    tail_data = np.load(f"{DATA_DIR}/fish{fish_num}_tail_data_matched.npy", allow_pickle=True)
+    neural_data = np.load(str(DATA_DIR / f"fish{fish_num}_neural_data_matched.npy"), allow_pickle=True)[:, :-2]
+    tail_data = np.load(str(DATA_DIR / f"fish{fish_num}_tail_data_matched.npy"), allow_pickle=True)
 
     neural_data = neural_data.T
     print("Neural data shape:", neural_data.shape)
@@ -72,8 +71,8 @@ for fish_num in fish_list:
     Y_val = tail_data[train_end:val_end]
     Y_test = tail_data[val_end:]
 
-    np.save(os.path.join(fish_save_dir, f"fish{fish_num}_final_predictions_groundtruth_val.npy"), Y_val)
-    np.save(os.path.join(fish_save_dir, f"fish{fish_num}_final_predictions_groundtruth_test.npy"), Y_test)
+    np.save(str(fish_save_dir / f"fish{fish_num}_final_predictions_groundtruth_val.npy"), Y_val)
+    np.save(str(fish_save_dir / f"fish{fish_num}_final_predictions_groundtruth_test.npy"), Y_test)
     print("Ground truth for val/test saved.")
 
     X_train_t = torch.tensor(X_train, dtype=torch.float32)
@@ -113,8 +112,6 @@ for fish_num in fish_list:
 
     def train_model(model, optimizer, train_loader, val_loader, device, num_epochs, use_position_ids=False):
         criterion = nn.MSELoss()
-        train_losses = []
-        val_losses = []
         for epoch in range(num_epochs):
             model.train()
             total_train_loss = 0.0
@@ -132,7 +129,6 @@ for fish_num in fish_list:
                 optimizer.step()
                 total_train_loss += loss.item()
             avg_train_loss = total_train_loss / len(train_loader)
-            train_losses.append(avg_train_loss)
 
             model.eval()
             total_val_loss = 0.0
@@ -148,9 +144,7 @@ for fish_num in fish_list:
                     loss = criterion(outputs, targets)
                     total_val_loss += loss.item()
             avg_val_loss = total_val_loss / len(val_loader)
-            val_losses.append(avg_val_loss)
             print(f"Epoch {epoch+1}/{num_epochs}: Train Loss: {avg_train_loss:.4f}, Val Loss: {avg_val_loss:.4f}")
-        return train_losses, val_losses
 
     def get_predictions(model, data_loader, device, use_position_ids=False):
         model.eval()
@@ -271,7 +265,6 @@ for fish_num in fish_list:
             hidden_states = outputs.last_hidden_state
             return self.output_proj(hidden_states)
 
-
     model_names_list = ["GPT2 Pretrained", "LSTM", "Reservoir", "DeepSeek MoE", "BERT"]
 
     final_all_rmse = {seq: {model: [] for model in model_names_list} for seq in seq_lengths}
@@ -281,16 +274,16 @@ for fish_num in fish_list:
         print(f"Fish {fish_num} - Run {run} of {num_runs}")
         print("==============================")
 
-        run_folder = os.path.join(fish_save_dir, f"run_{run}")
-        os.makedirs(run_folder, exist_ok=True)
+        run_folder = fish_save_dir / f"run_{run}"
+        run_folder.mkdir(exist_ok=True)
 
         for seq_length in seq_lengths:
             print("\n------------------------------")
             print(f"Fish {fish_num} - Run {run}, Sequence Length = {seq_length}")
             print("------------------------------")
 
-            seq_folder = os.path.join(run_folder, f"seq_{seq_length}")
-            os.makedirs(seq_folder, exist_ok=True)
+            seq_folder = run_folder / f"seq_{seq_length}"
+            seq_folder.mkdir(exist_ok=True)
 
             train_neural_seq, train_tail_seq = create_sequences(X_train_t, Y_train_t, seq_length)
             val_neural_seq, val_tail_seq = create_sequences(X_val_t, Y_val_t, seq_length)
@@ -313,8 +306,8 @@ for fish_num in fish_list:
 
             preds, _ = get_predictions(model_gpt2_pretrained, test_loader, device)
             final_preds = average_sliding_window_predictions(preds, seq_length, len(X_test_t))
-            save_path = os.path.join(seq_folder, f"fish{fish_num}_final_predictions_gpt2_pretrained_test_run{run}.npy")
-            np.save(save_path, final_preds)
+            save_path = seq_folder / f"fish{fish_num}_final_predictions_gpt2_pretrained_test_run{run}.npy"
+            np.save(str(save_path), final_preds)
 
             rmse = compute_rmse(final_preds, Y_test)
             rmse_results["GPT2 Pretrained"] = rmse
@@ -328,8 +321,8 @@ for fish_num in fish_list:
 
             preds, _ = get_predictions(model_lstm, test_loader, device)
             final_preds = average_sliding_window_predictions(preds, seq_length, len(X_test_t))
-            save_path = os.path.join(seq_folder, f"fish{fish_num}_final_predictions_lstm_test_run{run}.npy")
-            np.save(save_path, final_preds)
+            save_path = seq_folder / f"fish{fish_num}_final_predictions_lstm_test_run{run}.npy"
+            np.save(str(save_path), final_preds)
 
             rmse = compute_rmse(final_preds, Y_test)
             rmse_results["LSTM"] = rmse
@@ -344,8 +337,8 @@ for fish_num in fish_list:
 
             preds, _ = get_predictions(model_res, test_loader, device)
             final_preds = average_sliding_window_predictions(preds, seq_length, len(X_test_t))
-            save_path = os.path.join(seq_folder, f"fish{fish_num}_final_predictions_reservoir_test_run{run}.npy")
-            np.save(save_path, final_preds)
+            save_path = seq_folder / f"fish{fish_num}_final_predictions_reservoir_test_run{run}.npy"
+            np.save(str(save_path), final_preds)
 
             rmse = compute_rmse(final_preds, Y_test)
             rmse_results["Reservoir"] = rmse
@@ -365,8 +358,8 @@ for fish_num in fish_list:
 
             preds, _ = get_predictions(model_deepseek, test_loader, device)
             final_preds = average_sliding_window_predictions(preds, seq_length, len(X_test_t))
-            save_path = os.path.join(seq_folder, f"fish{fish_num}_final_predictions_deepseek_moe_test_run{run}.npy")
-            np.save(save_path, final_preds)
+            save_path = seq_folder / f"fish{fish_num}_final_predictions_deepseek_moe_test_run{run}.npy"
+            np.save(str(save_path), final_preds)
 
             rmse = compute_rmse(final_preds, Y_test)
             rmse_results["DeepSeek MoE"] = rmse
@@ -380,8 +373,8 @@ for fish_num in fish_list:
 
             preds, _ = get_predictions(model_bert, test_loader, device)
             final_preds = average_sliding_window_predictions(preds, seq_length, len(X_test_t))
-            save_path = os.path.join(seq_folder, f"fish{fish_num}_final_predictions_bert_test_run{run}.npy")
-            np.save(save_path, final_preds)
+            save_path = seq_folder / f"fish{fish_num}_final_predictions_bert_test_run{run}.npy"
+            np.save(str(save_path), final_preds)
 
             rmse = compute_rmse(final_preds, Y_test)
             rmse_results["BERT"] = rmse
@@ -414,8 +407,8 @@ for fish_num in fish_list:
     ax.set_xticklabels(seq_lengths)
     ax.legend()
     plt.tight_layout()
-    final_plot_path = os.path.join(fish_save_dir, f"fish{fish_num}_grouped_rmse_comparison.png")
-    plt.savefig(final_plot_path)
+    final_plot_path = fish_save_dir / f"fish{fish_num}_grouped_rmse_comparison.png"
+    plt.savefig(str(final_plot_path))
     print(f"Final grouped bar plot saved to {final_plot_path}")
 
     significance_results = ""
@@ -431,7 +424,7 @@ for fish_num in fish_list:
                 significance_results += f"  {model_a} vs {model_b}: p-value = {p_val:.4e}\n"
         significance_results += "\n"
 
-    sig_file_path = os.path.join(fish_save_dir, f"fish{fish_num}_significance_results.txt")
+    sig_file_path = fish_save_dir / f"fish{fish_num}_significance_results.txt"
     with open(sig_file_path, "w") as f:
         f.write(significance_results)
     print(f"Significance test results saved to {sig_file_path}")

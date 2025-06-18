@@ -3,28 +3,30 @@ import os, math, numpy as np, matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import torch, torch.nn as nn
+from pathlib import Path
 from torch.utils.data import DataLoader, TensorDataset
 from transformers import AutoModel, GPT2Model, BertModel, BitsAndBytesConfig
 from torch.optim import AdamW
 from scipy.stats import wilcoxon
 from tqdm import tqdm
+from config import DATA_DIR as CONFIG_DATA_DIR, RESULTS_DIR as CONFIG_RESULTS_DIR
 
 # if needed, change to where you would like model results to be saved
-BASE_SAVE_DIR = os.path.join(os.getcwd(), os.pardir, os.pardir, "results", "experiment_3b")
-os.makedirs(BASE_SAVE_DIR, exist_ok=True)
+BASE_SAVE_DIR = (CONFIG_RESULTS_DIR / "experiment_3b").resolve()
+BASE_SAVE_DIR.mkdir(parents=True, exist_ok=True)
 
 # rename...
 RESULTS_DIR = BASE_SAVE_DIR
 
 # this should point to where the exp1-4_data folder and subfolders are...
-DATA_DIR = os.path.join(os.getcwd(), os.pardir, os.pardir, "exp1-4_data", "data_prepped_for_models")
+DATA_DIR = (CONFIG_DATA_DIR / "exp1-4_data" / "data_prepped_for_models").resolve()
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-print("▶ Device:", device)
+print("Device:", device)
 
 fish_num   = 9
-X_full_raw = np.load(f"{DATA_DIR}/fish{fish_num}_neural_data_matched.npy", allow_pickle=True)[:, :-2]
-Y_full_raw = np.load(f"{DATA_DIR}/fish{fish_num}_tail_data_matched.npy", allow_pickle=True)
+X_full_raw = np.load(DATA_DIR / f"fish{fish_num}_neural_data_matched.npy", allow_pickle=True)[:, :-2]
+Y_full_raw = np.load(DATA_DIR / f"fish{fish_num}_tail_data_matched.npy",   allow_pickle=True)
 
 X_full_raw = X_full_raw.T
 assert X_full_raw.shape[0] == Y_full_raw.shape[0]
@@ -37,13 +39,13 @@ X_tr, X_va, X_te = X_full_raw[:tr_end], X_full_raw[tr_end:va_end], X_full_raw[va
 Y_tr, Y_va, Y_te = Y_full_raw[:tr_end], Y_full_raw[tr_end:va_end], Y_full_raw[va_end:]
 out_dim          = Y_tr.shape[1]
 
-np.save(os.path.join(RESULTS_DIR, "groundtruth_val.npy"),  Y_va)
-np.save(os.path.join(RESULTS_DIR, "groundtruth_test.npy"), Y_te)
-print("▶ Ground truths saved.")
+np.save(RESULTS_DIR / "groundtruth_val.npy",  Y_va)
+np.save(RESULTS_DIR / "groundtruth_test.npy", Y_te)
+print("Ground truths saved.")
 
 # if not working, adjust to wherever the fishX_importance.npy file is...
-SALIENCY_ROOT = os.path.join(os.getcwd(), os.pardir, os.pardir, "plot_results")
-imp_path      = f"{SALIENCY_ROOT}/fish{fish_num}_importance.npy"
+SALIENCY_ROOT = (CONFIG_RESULTS_DIR.parent / "plot_results").resolve()
+imp_path      = SALIENCY_ROOT / f"fish{fish_num}_importance.npy"
 precomp_imp   = np.load(imp_path)
 SALIENT50_IDX = precomp_imp.argsort()[-50:][::-1]
 print("▶ Loaded top-50 salient neuron list.")
@@ -236,8 +238,8 @@ results_sal = {f:{e:[] for e in embed_dict} for f in families}
 results_rnd = {f:{e:[] for e in embed_dict} for f in families}
 
 for scenario in ("salient50_removed", "random50_removed"):
-    scen_dir = os.path.join(RESULTS_DIR, scenario)
-    os.makedirs(scen_dir, exist_ok=True)
+    scen_dir = RESULTS_DIR / scenario
+    scen_dir.mkdir(exist_ok=True)
 
     for run in range(1, RUNS+1):
         print(f"\n━━ {scenario} | run {run}/{RUNS} ━━")
@@ -265,8 +267,8 @@ for scenario in ("salient50_removed", "random50_removed"):
         te_loader = make_loader(X_te_s, Y_te)
 
         for fam, fp in families.items():
-            fam_dir = os.path.join(scen_dir, f"run_{run}", fam.lower()+"_embedding_comparisons")
-            os.makedirs(fam_dir, exist_ok=True)
+            fam_dir = scen_dir / f"run_{run}" / (fam.lower()+"_embedding_comparisons")
+            fam_dir.mkdir(parents=True, exist_ok=True)
             for emb_name, emb_cls in embed_dict.items():
                 print(f"→ {fam} + {emb_name}")
                 emb = emb_cls(in_dim, fp["h"]).to(device)
@@ -282,21 +284,21 @@ for scenario in ("salient50_removed", "random50_removed"):
                 target[fam][emb_name].append(e_rmse)
                 print(f"   RMSE {e_rmse:.5f}")
 
-                emb_dir = os.path.join(fam_dir, emb_name.lower())
-                os.makedirs(emb_dir, exist_ok=True)
-                np.save(os.path.join(emb_dir, f"{fam.lower()}_{emb_name.lower()}_preds_run{run}.npy"), predsF)
+                emb_dir = fam_dir / emb_name.lower()
+                emb_dir.mkdir(exist_ok=True)
+                np.save(emb_dir / f"{fam.lower()}_{emb_name.lower()}_preds_run{run}.npy", predsF)
 
-                gt_path = os.path.join(emb_dir, f"{fam.lower()}_{emb_name.lower()}_groundtruth.npy")
-                if not os.path.exists(gt_path):
+                gt_path = emb_dir / f"{fam.lower()}_{emb_name.lower()}_groundtruth.npy"
+                if not gt_path.exists():
                     np.save(gt_path, Y_te)
 
                 imp = feature_importance(net, va_loader, in_dim)
                 top50 = imp.argsort()[-50:][::-1]
-                np.savez(os.path.join(emb_dir, f"{fam.lower()}_{emb_name.lower()}_top50_salient.npz"),
+                np.savez(emb_dir / f"{fam.lower()}_{emb_name.lower()}_top50_salient.npz",
                          idx=top50, score=imp[top50])
 
-PLOT_DIR = os.path.join(RESULTS_DIR)
-os.makedirs(PLOT_DIR, exist_ok=True)
+PLOT_DIR = RESULTS_DIR
+PLOT_DIR.mkdir(exist_ok=True)
 
 for fam in families:
     emb_names = list(embed_dict.keys())
@@ -315,17 +317,17 @@ for fam in families:
     plt.title(f"{fam}: salient vs random neuron removal (mean ± SEM, n={RUNS})")
     plt.legend()
     plt.tight_layout()
-    pth = f"{PLOT_DIR}/{fam.lower()}_salient_vs_random_barplot.png"
+    pth = PLOT_DIR / f"{fam.lower()}_salient_vs_random_barplot.png"
     plt.savefig(pth)
     plt.close()
     print("Saved", pth)
 
-    sig_p = f"{PLOT_DIR}/{fam.lower()}_salient_vs_random_significance.txt"
+    sig_p = PLOT_DIR / f"{fam.lower()}_salient_vs_random_significance.txt"
     with open(sig_p, "w") as f:
         f.write(f"Wilcoxon (salient vs random) ― {fam}\n")
         for e in emb_names:
             stat, p = wilcoxon(results_sal[fam][e], results_rnd[fam][e])
             f.write(f"{e}: p={p:.4e}\n")
-    print("Stats →", sig_p)
+    print("Stats ->", sig_p)
 
 print("\n Experiment 3b completed.")

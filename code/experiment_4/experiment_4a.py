@@ -5,20 +5,21 @@ import matplotlib.pyplot as plt
 import torch
 import torch.nn as nn
 import torch.optim as optim
+from pathlib import Path
 from torch.utils.data import DataLoader, TensorDataset
 from transformers import AutoModel, AdamW, BitsAndBytesConfig
 from scipy.stats import wilcoxon
 from tqdm import tqdm
+from config import DATA_DIR as CONFIG_DATA_DIR, RESULTS_DIR as CONFIG_RESULTS_DIR
 
 quant_config = BitsAndBytesConfig(load_in_8bit=True, llm_int8_threshold=6.0)
 
-
 # if needed, change to where you would like model results to be saved
-BASE_SAVE_DIR = os.path.join(os.getcwd(), os.pardir, os.pardir, "results", "experiment_4a")
-os.makedirs(BASE_SAVE_DIR, exist_ok=True)
+BASE_SAVE_DIR = (CONFIG_RESULTS_DIR / "experiment_4a").resolve()
+BASE_SAVE_DIR.mkdir(parents=True, exist_ok=True)
 
 # this should point to where the exp1-4_data folder and subfolders are...
-DATA_DIR = os.path.join(os.getcwd(), os.pardir, os.pardir, "exp1-4_data", "data_prepped_for_models")
+DATA_DIR = (CONFIG_DATA_DIR / "exp1-4_data" / "data_prepped_for_models").resolve()
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print("Using device:", device)
@@ -121,16 +122,10 @@ class DeepSeekV3MoE(nn.Module):
         return self.output_proj(agg)
 
 for fish in fish_list:
-    fish_dir = os.path.join(BASE_SAVE_DIR, f"fish{fish}")
-    os.makedirs(fish_dir, exist_ok=True)
-    neural = np.load(
-        f"{DATA_DIR}/fish{fish}_neural_data_matched.npy",
-        allow_pickle=True
-    )[:, :-2].T
-    tail = np.load(
-        f"{DATA_DIR}/fish{fish}_tail_data_matched.npy",
-        allow_pickle=True
-    )
+    fish_dir = BASE_SAVE_DIR / f"fish{fish}"
+    fish_dir.mkdir(parents=True, exist_ok=True)
+    neural = np.load(DATA_DIR / f"fish{fish}_neural_data_matched.npy", allow_pickle=True)[:, :-2].T
+    tail = np.load(DATA_DIR / f"fish{fish}_tail_data_matched.npy", allow_pickle=True)
     n  = neural.shape[0]
     tr = int(0.7 * n)
     vl = int(0.8 * n)
@@ -144,14 +139,14 @@ for fish in fish_list:
     }
     inp_dim = splits["X_train"].shape[-1]
     out_dim = splits["Y_train"].shape[-1]
-    np.save(os.path.join(fish_dir, "val_gt.npy"), splits["Y_val"].numpy())
-    np.save(os.path.join(fish_dir, "test_gt.npy"), splits["Y_test"].numpy())
+    np.save(fish_dir / "val_gt.npy",  splits["Y_val"].numpy())
+    np.save(fish_dir / "test_gt.npy", splits["Y_test"].numpy())
     for run in range(1, num_runs+1):
-        run_dir = os.path.join(fish_dir, f"run_{run}")
-        os.makedirs(run_dir, exist_ok=True)
+        run_dir = fish_dir / f"run_{run}"
+        run_dir.mkdir(exist_ok=True)
         for seq_len in seq_lengths:
-            seq_dir = os.path.join(run_dir, f"seq_{seq_len}")
-            os.makedirs(seq_dir, exist_ok=True)
+            seq_dir = run_dir / f"seq_{seq_len}"
+            seq_dir.mkdir(exist_ok=True)
             X_tr_s, Y_tr_s = create_sequences(splits["X_train"], splits["Y_train"], seq_len)
             X_vl_s, Y_vl_s = create_sequences(splits["X_val"],   splits["Y_val"],   seq_len)
             X_ts_s, Y_ts_s = create_sequences(splits["X_test"],  splits["Y_test"],  seq_len)
@@ -165,10 +160,10 @@ for fish in fish_list:
             train_model(model, optimizer, dl_tr, dl_vl, num_epochs)
             preds, _ = get_predictions(model, dl_ts)
             preds = average_sliding_window_predictions(preds, seq_len, len(splits["X_test"]))
-            np.save(os.path.join(seq_dir, "preds.npy"), preds)
+            np.save(seq_dir / "preds.npy", preds)
             err = compute_rmse(preds, splits["Y_test"].numpy())
             imp = feature_importance(model, dl_vl, inp_dim)
-            np.save(os.path.join(seq_dir, "importance.npy"), imp)
+            np.save(seq_dir / "importance.npy", imp)
             top10 = imp.argsort()[-10:][::-1]
             k = 20
             plt.figure(figsize=(8,4))
@@ -178,5 +173,5 @@ for fish in fish_list:
             plt.ylabel("|grad × input|")
             plt.title(f"Fish {fish} run {run} seq {seq_len}")
             plt.tight_layout()
-            plt.savefig(os.path.join(seq_dir, f"top{k}_saliency.png"))
+            plt.savefig(seq_dir / f"top{k}_saliency.png")
             plt.close()

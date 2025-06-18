@@ -8,13 +8,15 @@ from torch.utils.data import DataLoader, TensorDataset
 from transformers import AutoModel, BitsAndBytesConfig
 from torch.optim import AdamW
 from datetime import datetime
+from pathlib import Path
+from config import DATA_DIR as CONFIG_DATA_DIR, RESULTS_DIR as CONFIG_RESULTS_DIR
 
 # if needed, change to where you would like model results to be saved
-BASE_SAVE_DIR = os.path.join(os.getcwd(), os.pardir, os.pardir, "results", "experiment_4c")
+BASE_SAVE_DIR = (CONFIG_RESULTS_DIR / "experiment_4c").resolve()
 os.makedirs(BASE_SAVE_DIR, exist_ok=True)
 
 # this should point to where the exp1-4_data folder and subfolders are...
-DATA_DIR = os.path.join(os.getcwd(), os.pardir, os.pardir, "exp1-4_data", "data_prepped_for_models")
+DATA_DIR = (CONFIG_DATA_DIR / "exp1-4_data" / "data_prepped_for_models").resolve()
 
 BASE = BASE_SAVE_DIR
 RESULT_DIR = BASE
@@ -93,7 +95,7 @@ class DeepSeekMoE(nn.Module):
         return self.out_proj(agg)
 
 def train_or_load(model, tr_loader, va_loader, path):
-    if os.path.exists(path):
+    if Path(path).exists():
         model.load_state_dict(torch.load(path, map_location=device))
         return None, None
     crit = nn.MSELoss()
@@ -141,7 +143,7 @@ def feature_importance(model, loader, N_in):
     return (imp / n).cpu().numpy()
 
 def run_pipeline(Xtr, Xva, Xte, Ytr, Yva, Yte, label):
-    model_path = f"{RESULT_DIR}/{label}_model.pt"
+    model_path = Path(RESULT_DIR) / f"{label}_model.pt"
     Xtr_t, Ytr_t = create_sequences(torch.tensor(Xtr), torch.tensor(Ytr), seq_length)
     Xva_t, Yva_t = create_sequences(torch.tensor(Xva), torch.tensor(Yva), seq_length)
     Xte_t, Yte_t = create_sequences(torch.tensor(Xte), torch.tensor(Yte), seq_length)
@@ -160,16 +162,16 @@ def run_pipeline(Xtr, Xva, Xte, Ytr, Yva, Yte, label):
         plt.title(label)
         plt.legend()
         plt.tight_layout()
-        plt.savefig(f"{RESULT_DIR}/{label}_rmse_curve.png", dpi=300)
+        plt.savefig(Path(RESULT_DIR) / f"{label}_rmse_curve.png", dpi=300)
         plt.close()
     pred_seq, gt_seq = predict(model, te_loader)
-    np.save(f"{RESULT_DIR}/{label}_pred_sequences.npy", pred_seq.numpy())
-    np.save(f"{RESULT_DIR}/{label}_gt_sequences.npy", gt_seq.numpy())
-    np.save(f"{RESULT_DIR}/{label}_groundtruth_full.npy", Yte)
+    np.save(Path(RESULT_DIR) / f"{label}_pred_sequences.npy", pred_seq.numpy())
+    np.save(Path(RESULT_DIR) / f"{label}_gt_sequences.npy", gt_seq.numpy())
+    np.save(Path(RESULT_DIR) / f"{label}_groundtruth_full.npy", Yte)
     pred_full = overlap_mean(pred_seq.numpy(), len(Xte))
-    np.save(f"{RESULT_DIR}/{label}_pred_full.npy", pred_full)
+    np.save(Path(RESULT_DIR) / f"{label}_pred_full.npy", pred_full)
     imp = feature_importance(model, va_loader, Xtr.shape[1])
-    np.save(f"{RESULT_DIR}/{label}_importance.npy", imp)
+    np.save(Path(RESULT_DIR) / f"{label}_importance.npy", imp)
     frame_loader = DataLoader(TensorDataset(Xte_t, Yte_t), batch_size=batch_size, shuffle=False)
     n_frames, N_in = Xte.shape
     frame_sal = np.zeros((n_frames, N_in))
@@ -185,20 +187,17 @@ def run_pipeline(Xtr, Xva, Xte, Ytr, Yva, Yte, label):
             frame_cnt[win_start+b : win_start+b+L] += 1
         win_start += B
     frame_sal /= frame_cnt[:, None]
-    np.save(f"{RESULT_DIR}/{label}_frame_saliency.npy", frame_sal)
+    np.save(Path(RESULT_DIR) / f"{label}_frame_saliency.npy", frame_sal)
 
 if __name__ == "__main__":
     banner()
-    neural = np.load(f"{DATA_DIR}/neural_data_groundtruth_matched.npy", allow_pickle=True).astype(np.float32)
-    tail = np.load(f"{DATA_DIR}/tail_data_groundtruth_matched.npy", allow_pickle=True).astype(np.float32)
-    # tail_sum = np.load(f"{DATA_DIR}/tail_data_sum_groundtruth_matched.npy", allow_pickle=True).astype(np.float32)
+    neural = np.load(DATA_DIR / "neural_data_groundtruth_matched.npy", allow_pickle=True).astype(np.float32)
+    tail = np.load(DATA_DIR / "tail_data_groundtruth_matched.npy", allow_pickle=True).astype(np.float32)
     neural = orient_t_first(neural)
     T = neural.shape[0]
     tail = orient_t_first(tail, T_ref=T)[:T]
-    # tail_sum = orient_t_first(tail_sum, T_ref=T)[:T]
     if neural.shape[1] > tail.shape[1]:
         neural = neural[:, :tail.shape[1]]
     tr_end, va_end = int(.70*T), int(.80*T)
     Xtr, Xva, Xte = neural[:tr_end], neural[tr_end:va_end], neural[va_end:]
     run_pipeline(Xtr, Xva, Xte, tail[:tr_end], tail[tr_end:va_end], tail[va_end:], label="tail")
-    # run_pipeline(Xtr, Xva, Xte, tail_sum[:tr_end], tail_sum[tr_end:va_end], tail_sum[va_end:], label="tail_sum")

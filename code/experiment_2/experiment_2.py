@@ -6,17 +6,16 @@ import matplotlib.pyplot as plt
 import torch
 import torch.nn as nn
 import torch.optim as optim
+from pathlib import Path
 from torch.utils.data import DataLoader, TensorDataset
 from transformers import GPT2Config, GPT2Model, AdamW, AutoModel, BertModel, BertConfig, BitsAndBytesConfig
 from scipy.stats import wilcoxon
+from config import DATA_DIR, RESULTS_DIR
 
+BASE_SAVE_DIR = RESULTS_DIR / "experiment_2"
+BASE_SAVE_DIR.mkdir(parents=True, exist_ok=True)
 
-# if needed, change to where you would like model results to be saved
-BASE_SAVE_DIR = os.path.join(os.getcwd(), os.pardir, os.pardir, "results", "experiment_2")
-os.makedirs(BASE_SAVE_DIR, exist_ok=True)
-
-# this should point to where the exp1-4_data folder and subfolders are...
-DATA_DIR = os.path.join(os.getcwd(), os.pardir, os.pardir, "exp1-4_data", "data_prepped_for_models")
+DATA_DIR = DATA_DIR / "exp1-4_data" / "data_prepped_for_models"
 
 BATCH_SIZE = 2
 NUM_EPOCHS = 3
@@ -68,7 +67,6 @@ def train_model(model, optimizer, train_loader, val_loader, device, num_epochs):
             optimizer.step()
             total_train_loss += loss.item()
         avg_train_loss = total_train_loss / len(train_loader)
-
         model.eval()
         total_val_loss = 0.0
         with torch.no_grad():
@@ -221,12 +219,11 @@ model_variants = [
     ("DeepSeek Untrained", DeepSeekUntrainedMoE),
 ]
 
-# run main loop..
 for fish_num in FISH_LIST:
     print(f"\nStarting Experiment 2 for Fish {fish_num}")
 
-    neural_data = np.load(f"{DATA_DIR}/fish{fish_num}_neural_data_matched.npy", allow_pickle=True)[:, :-2]
-    tail_data = np.load(f"{DATA_DIR}/fish{fish_num}_tail_data_matched.npy", allow_pickle=True)
+    neural_data = np.load(str(DATA_DIR / f"fish{fish_num}_neural_data_matched.npy"), allow_pickle=True)[:, :-2]
+    tail_data = np.load(str(DATA_DIR / f"fish{fish_num}_tail_data_matched.npy"), allow_pickle=True)
     neural_data = neural_data.T
     assert neural_data.shape[0] == tail_data.shape[0]
     total_frames = neural_data.shape[0]
@@ -240,8 +237,8 @@ for fish_num in FISH_LIST:
     Y_val = tail_data[train_end:val_end]
     Y_test = tail_data[val_end:]
 
-    gt_path = os.path.join(BASE_SAVE_DIR, f"fish{fish_num}_test_groundtruth.npy")
-    np.save(gt_path, Y_test)
+    gt_path = BASE_SAVE_DIR / f"fish{fish_num}_test_groundtruth.npy"
+    np.save(str(gt_path), Y_test)
 
     X_train_t = torch.tensor(X_train, dtype=torch.float32)
     Y_train_t = torch.tensor(Y_train, dtype=torch.float32)
@@ -280,7 +277,7 @@ for fish_num in FISH_LIST:
                 final_preds = average_sliding_window_predictions(preds_tensor, seq_length, len(X_test_t))
 
                 pred_filename = f"fish{fish_num}_model_{model_name.replace(' ','_')}_run{run_idx}_seq{seq_length}_test_preds.npy"
-                np.save(os.path.join(BASE_SAVE_DIR, pred_filename), final_preds)
+                np.save(str(BASE_SAVE_DIR / pred_filename), final_preds)
 
                 rmse_val = compute_rmse(final_preds, Y_test)
                 final_rmse[seq_length][model_name].append(rmse_val)
@@ -299,8 +296,8 @@ for fish_num in FISH_LIST:
         ax.set_ylabel("RMSE")
         ax.set_title(f"Fish {fish_num} - SeqLength {seq_length}")
         plt.tight_layout()
-        barplot_path = os.path.join(BASE_SAVE_DIR, f"fish{fish_num}_seq{seq_length}_barplot.png")
-        plt.savefig(barplot_path)
+        barplot_path = BASE_SAVE_DIR / f"fish{fish_num}_seq{seq_length}_barplot.png"
+        plt.savefig(str(barplot_path))
         plt.close()
 
     sig_results = []
@@ -320,7 +317,7 @@ for fish_num in FISH_LIST:
         sig_results.append(f"DeepSeek (Pre vs Un): p-value = {pval:.4e}")
         sig_results.append("")
 
-    sig_path = os.path.join(BASE_SAVE_DIR, f"fish{fish_num}_wilcoxon_results.txt")
+    sig_path = BASE_SAVE_DIR / f"fish{fish_num}_wilcoxon_results.txt"
     with open(sig_path, "w") as f:
         f.write("\n".join(sig_results))
 
