@@ -65,8 +65,8 @@ user@remotepc ~/nlp4neuro/code/experiment_1 bash create_jjm_env_nlp1.sh
 
 ## Systems/envs used for testing
 1) Lenovo Legion Slim 5 14APH8, 32 GB RAM, NVidia RTX 4060 8 GB, Windows 11 Home
-- checked that all code works? no as of June 13, 2025
-2) Duke Compute Cluster (DCC) remote access, ATX 6000 via Windows Powershell
-- checked that all code works? no as of June 13, 2025
+- checked that data download code works? yes as of June 17, 2025
+2) Duke Compute Cluster (DCC) remote access, NVidia A6000 via Windows Powershell
+- checked that data download code works? no as of June 17, 2025
 
 Documentation written by Jacob Morra. For clarification you may contact me at [jacob.morra@duke.edu].
