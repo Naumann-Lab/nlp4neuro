@@ -74,3 +74,11 @@ user@remotepc ~/nlp4neuro/code/experiment_1 bash create_jjm_env_nlp1.sh
 2) Duke Compute Cluster (DCC) remote access, NVidia A6000 via Windows Powershell
 
 Documentation written by Jacob Morra. For clarification you may contact me at [jacob.morra@duke.edu].
+
+
+## Citing this work
+If you wish to use this platform or any of the provided data/code, please cite our paper:
+
+```
+J. J. Morra et al., “NLP4Neuro: Sequence-to-sequence learning for neural population decoding,” arXiv [q-bio.NC], 03-Jul-2025.
+```
