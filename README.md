@@ -17,12 +17,15 @@ From Windows Powershell:
 Invoke-WebRequest -Uri "https://dataverse.harvard.edu/api/datasets/:persistentId/dirindex?persistentId=doi:10.7910/DVN/I8LULX&folder=exp1-4_data" -OutFile "exp1-4_data"
 ```
 
-2) Activate a conda environment corresponding to the experiment you wish to run.
+2) Update the config.yaml file with the locations of your data and results folders.
+
+
+3) Activate a conda environment corresponding to the experiment you wish to run.
 ```
 user@remotepc ~/nlp4neuro/code/experiment_1 bash create_jjm_env_nlp1.sh
 ```
 
-3) Run the experiment, or view experiment results, found in the "plot_results" folder.
+4) Run the experiment, or view experiment results, found in the "plot_results" folder.
 ```
 (jjm_env_nlp1) user@remotepc ~/nlp4neuro/code/experiment_1 bash run_experiment1.sh
 ```
@@ -65,8 +68,6 @@ user@remotepc ~/nlp4neuro/code/experiment_1 bash create_jjm_env_nlp1.sh
 
 ## Systems/envs used for testing
 1) Lenovo Legion Slim 5 14APH8, 32 GB RAM, NVidia RTX 4060 8 GB, Windows 11 Home
-- checked that data download code works? yes as of June 17, 2025
 2) Duke Compute Cluster (DCC) remote access, NVidia A6000 via Windows Powershell
-- checked that data download code works? no as of June 17, 2025
 
 Documentation written by Jacob Morra. For clarification you may contact me at [jacob.morra@duke.edu].
