@@ -17,6 +17,9 @@ From Windows Powershell:
 Invoke-WebRequest -Uri "https://dataverse.harvard.edu/api/datasets/:persistentId/dirindex?persistentId=doi:10.7910/DVN/I8LULX&folder=exp1-4_data" -OutFile "exp1-4_data"
 ```
 
+Alternatively, there is a sample download_dataverse powershell script provided in the "data" folder. 
+
+
 2) Update the config.yaml file with the locations of your data and results folders.
 
 
